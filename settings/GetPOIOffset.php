@@ -60,28 +60,6 @@
 	}
 	else {
 
-	echo pg_num_rows($qGetpoi) . "@ ";
-
-	// ------------------ NASLOVI NA KOLONI  -------------------------------------
-	if($isExpanded == 0) { ?>
-
-		<tr class="col-titles">
-			<td width="4%"  class="text2 td-row ca"><?php dic("Fm.Rbr")?></td>
-			<td width="38%" valign ="middle" class="text2 la td-row" style="padding-left:8px">
-				<span style="padding-left: 75px;"><?php echo dic("Routes.Name")?></span><br>
-				<span style="padding-left: 75px;">(<?php dic("Routes.CreatedBy")?>)</span>&nbsp;&nbsp;
-			</td>
-			<td width="13%" class="text2 td-row ca" ><?php dic("Settings.TypeOfPoi")?><br> (<?php dic("Tracking.Radius")?>)</td>
-			<td width="13%" class="text2 td-row ca" ><?php dic("Reports.AvailableFor")?></td>
-			<td width="8%"  class="text2 td-row c-or ca" ><?php dic("Settings.TransferPOI")?></td>
-			<td width="8%"  class="text2 td-row c-or ca" ><?php dic("Routes.Overview")?></td>
-			<td width="8%"  class="text2 td-row c-or ca" ><?php dic("Routes.Mod")?></td>
-			<td width="8%"  class="text2 td-row c-or ca" ><?php dic("Fm.Delete")?></td>
-		</tr>
-
-	<?php }
-	// ---------------------------------------------------------------------------
-
 	while($row = pg_fetch_assoc($qGetpoi)) {
 
 	?>

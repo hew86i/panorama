@@ -1,7 +1,7 @@
 
 
 // ------- GLOBAL VARs -----------
-
+lang = '<?php echo $cLang?>';
 haveData = true;
 limit = 20;
 dataOffset = 0;
@@ -18,8 +18,8 @@ function fetchData(limit,offset,gpid) {
 	var isExpanded = (GroupsInfo[groupPos].firstExpand == true) ? 1 : 0;
 
 	GroupsInfo[groupPos].firstExpand = true;
-
 	$.ajax({
+
 	    url: "GetPOIOffset.php?limit=" + limit + "&offset=" + offset + "&groupid=" + gpid + "&expanded=" + isExpanded + "&l=" + lang,
 	    context: document.body,
 
@@ -33,9 +33,10 @@ function fetchData(limit,offset,gpid) {
 	    		haveData = false;
 	    		GroupsInfo[groupPos].haveData = false;
 	    	} else {
-	    		var getData = data.split("@");
-	    		haveData = (getData[0] < limit) ? false : true;
-	    		$('#POI_data_' + gpid + ' table tbody').append(getData[1]);
+	    		var getData = data; //data.split("@");
+	    		haveData = (getData < limit) ? false : true;
+
+	    		$('#POI_data_' + gpid + ' table tbody').append(getData);
 	    		buttonIcons();
 	    		dataOffset+=limit;
 	    		GroupsInfo[groupPos].haveData = haveData;
@@ -85,17 +86,21 @@ function show_group(_id) {
 
 	// zastani tuka ako e vo rezim na prebaruvanje
 
-	if(GroupsInfo[inx].clicked == false) {
+	if(GroupsInfo[inx].clicked === false) {
 
 		GroupsInfo[inx].clicked = true;
 		dataOffset = 0;
 		console.log("first DATA FETCH...");
 
+		if(currPoints !== 0) {
+			var cp = $('.proto-col tr').clone();
+			$('#POI_data_' + currGroup + ' table').append(cp);
+		}
+
 		if(currPoints > 20) {
 
 			GroupsInfo[inx].haveData = true;
 			GroupsInfo[inx].firstExpand = false;
-
 			groupData.css({ height: '500px',overflowY: 'auto'});
 
 		} else {
@@ -130,6 +135,9 @@ function first_expand(groupid){
 	else {
 		GroupsInfo[inx].expanded = true;
 		GroupsInfo[inx].firstExpand = false;
+
+		var cp = $('.proto-col tr').clone();
+		$('#POI_data_' + groupid + ' table').append(cp);
 
 		$('#POI_group' + groupid + ' .expand-icon').html("▼");
 
