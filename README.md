@@ -1,2 +1,0 @@
-# panorama
-working panorama
