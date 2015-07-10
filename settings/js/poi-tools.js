@@ -586,10 +586,13 @@ function displayData(filtered){
 	 */
 
 	$.each(filter_info,function(i,gi){
-		// setScroll(g.count,g.id);
 		$('#POI_group'+gi.id).show();
 		$('#POI_data_'+gi.id).after('<div id="POI_data_new_'+gi.id+'" class="POI_data_new align-center toi-row"><table><tbody></tbody></table></div>');
 		if(gi.count > 20) { $('#POI_data_new_' + gi.id).css({ height: '500',overflowY: 'scroll'}); }
+
+		var cp = $('.proto-col tr').clone();
+		$('#POI_data_new_'+gi.id+' table').append(cp);
+
 	});
 
 	$.each(filtered, function(i,red){
