@@ -1,0 +1,73 @@
+@media only screen and (max-width : 1080px)
+{
+	.rescompany {
+		display: none;
+	}
+}
+@media only screen and (max-width : 935px)
+{
+	.resuser {
+		display: none;
+	}
+	.resmenucol2{
+		width: 50%;
+	}
+	.resmenucol1{
+		width: 50%;
+	}
+	#div-layer-icons-0 {
+		width: 300px;
+	}
+}
+@media only screen and (max-width : 790px)
+{
+	.reslogo {
+		display: none;
+	}
+}
+
+@media only screen and (max-width : 890px)
+{
+	.rescompany1 {
+		display: none;
+	}
+	.resmenucol4{
+		width: 50%;
+	}
+}
+@media only screen and (max-width : 716px)
+{
+	.resmenucol4{
+		width: 42%;
+	}
+	.resmenucol3{
+		width: 25%;
+	}
+}
+@media only screen and (max-width : 987px)
+{
+	.resvehicle {
+		display: none;
+	}
+	.resperiod {
+		display: none;
+	}
+	.resizberi{
+		width: 97%;
+	}
+}
+@media only screen and (min-width : 988px)
+{
+	.resperiod {
+		display: inline; float: left; margin-left: 10px; margin-top: 7px;
+	}
+	.resizberi{
+		width: 98%;
+	}
+}
+@media only screen and (max-width : 860px)
+{
+	.resbutton {
+		display: none;
+	}
+}

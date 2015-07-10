@@ -1,0 +1,53 @@
+--------------------------------------------------------------------------------
+| 								[CHANGELOG]		  						       |
+--------------------------------------------------------------------------------
+
+Promeni:
+
+	[DATABASE]
+	 - Dodadena kolona 'isactive' (bit) vo alarmtypes koja indicira dali
+	   toj alarm se izlistuva vo <select> odnosno dali moze da se odbere
+	 - Dodadena kolona 'alarmgroup' (text) vo alarmtypes koja e vo oblik
+	   [int]_[name] zaradi polesno sortirawe i prikazuvawe.
+
+	[AllAlerts.php]
+	 - Se koristi eden ui.combobox so dodaden metod 'setval' namesto tri
+	 - Site alerti koi treba da se prikazat se zacuvuvaat vo $alarmRowInfo
+	   nizata. Istata se copira i na klientsa strana kako object array koj
+	   gi sodrzi site vrednosti potrebni za edit kopceto.
+	 - Pri prikaz na vozila od organizaciona edinica ili cela kompanija,
+	   istite se prvicno sokrieni (imeto na grupata)
+	 - Prvo se prikaczuvaat alerti koi nemaat 'uniqid' odnosno tie koi se
+	   odnesuvaat na odredeno vozilo (order by uniqid desc, alarmtypeid,
+	   code asc")
+	 - dodadeni se JS funkcii za validacija
+	 - Promenuvaweneto i dodavaweto na nov alert se odviva preku edna JS
+	   funkcija storeAlerts()
+	 - Ostavena e funkcionalnosta za SMS. Porakata samo se zapisuva vo baza
+	 - Dodadena e novata funkcionalnost za prakjanje na alarmi na SMS preku
+	   email.
+	 --------------- novi promeni ----------------------------------------------
+	 - Otfrleno e overflow:auto kaj glavnata tabela i height:700
+	 - Otfrleno e SMS opcijata kompletno
+	 ---------------------------------------------------------------------------
+
+	[zabeleski]
+	 - Site specifisnosti pri prikaz ili valicacija na alertot zavisat od
+	   negoviot 'id' vo baza (toj ne treba se se promeni)
+	 - <select> za odbiranje na alerti sega se potpolnuva dinamicki
+
+	[prevodi]
+	 - Dodadeni se potrebnite prevodi (mk,al,en,fr)
+--------------------------------------------------------------------------------
+Dodadeni:
+
+	- [storeAlert.php] za EDIT i ADD na alert
+--------------------------------------------------------------------------------
+	NE SE KORISTAT:
+
+	__AddAlert2.php
+	__EditAlarm2.php
+	__UpAlert2.php
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------

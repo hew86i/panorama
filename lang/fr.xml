@@ -1,0 +1,2225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<note>
+<Login.UserIsNotActive>Cet utilisateur a été désactivé. S'il vous plaît nous contacter par email:</Login.UserIsNotActive>
+<Settings.InsertValidLength>Entrez kilométrage valide</Settings.InsertValidLength>
+<Settings.InvalidPhoneFormat>Format mauvais numéro</Settings.InvalidPhoneFormat>
+<Tracking.MobileOperator>Réseau mobile</Tracking.MobileOperator>
+<Tracking.SMSNumber>numéro de SMS</Tracking.SMSNumber>
+<Settings.SendviaEmail>SMS/email</Settings.SendviaEmail>
+<Settings.MobileOperator>Choisissez un opérateur mobile</Settings.MobileOperator>
+<Settings.MobileOperatorMust>S'il vous plaît sélectionner un opérateur mobile</Settings.MobileOperatorMust>
+<Settings.InsertValidTime>Entrez une heure valide</Settings.InsertValidTime>
+<Settings.FleetManagement>Gestion de flotte</Settings.FleetManagement>
+<Settings.RFID>RFID</Settings.RFID>
+<odlozenablokada>Serrure retardé</odlozenablokada>
+<zadenpanik>Bouton arrière de panique</zadenpanik>
+<zadenaodlozenablokada>Serrure retardé arrière</zadenaodlozenablokada>
+<granicaobrtai>Dépassement de la limite de couple</granicaobrtai>
+<nacionalnamreza>Réseau national après itinérance</nacionalnamreza>
+<taxioffpasson>Taximètre off avec des passagers à</taxioffpasson>
+<Settings.ClubCardsName>carte de club</Settings.ClubCardsName>
+<Settings.Temperature>Température</Settings.Temperature>
+<Login.ActProfile>Profil d`activation</Login.ActProfile>
+<Reports.ModalInfo>Vous devez changer votre nom d`utilisateur avec une adresse email valide. Il vous servir de votre nouvelle connexion des titres de compétences.</Reports.ModalInfo>
+<Reports.ModalInfoAlertT1>Vous disposez de</Reports.ModalInfoAlertT1>
+<Reports.ModalInfoAlertT2>jours pour faire le changement.</Reports.ModalInfoAlertT2>
+<Reports.ModalInfoAlertLastDay>Vous avez un jour laissé pour faire le changement!</Reports.ModalInfoAlertLastDay>
+<Reports.PasswordChange>S`il vous plaît changer votre mot de passe. Votre mot de passe doit être plus de 6 caractères.</Reports.PasswordChange>
+<Reports.NotificationEmail>Vous devez entrer une adresse e-mail!</Reports.NotificationEmail>
+<Reports.NotificationEmailSuccess>Un lien de confirmation a été envoyé à votre adresse email. S`il vous plaît suivez les instructions dans l`e-mail de confirmation.</Reports.NotificationEmailSuccess>
+<Reports.NotificationEmailValid>Entrez une adresse email valide!</Reports.NotificationEmailValid>
+<Settings.EmailValidationFailed>Email existe pas! S`il vous plaît essayer à nouveau.</Settings.EmailValidationFailed>
+<Settings.EmailChangeSuccess>Merci pour changer votre nom d`utilisateur.</Settings.EmailChangeSuccess>
+<Settings.EmailBodyLink>S`il vous plaît cliquer sur le lien ci-dessous pour confirmer que vous avez reçu ce message, et pour activer votre compte.</Settings.EmailBodyLink>
+<Settings.ModalButtonChange>Modifier</Settings.ModalButtonChange>
+<Reports.WithIgnOn>moteur inclus</Reports.WithIgnOn>   
+<Settings.MustReg>Entrez un enregistrement de véhicule !!!</Settings.MustReg>
+<Settings.MustCode>Entrer un code de véhicule !!!</Settings.MustCode>
+<Tracking.FuelDown>Baisse de carburant</Tracking.FuelDown>
+<Tracking.FuelDownDetails>Détails déclinent dans le carburant</Tracking.FuelDownDetails>
+<Tracking.Hoist>Treuil</Tracking.Hoist>
+<Tracking.DetailNewTab>Détails ouvertes sur les véhicules dans un nouvel onglet</Tracking.DetailNewTab>
+<Tracking.OrdersNewTab>Les ordres ouverts aujourd'hui dans un nouvel onglet</Tracking.OrdersNewTab>
+<Routes.NotCreatedPreOrders>Ne pas avoir les commandes prédéfinies créées!!!</Routes.NotCreatedPreOrders>
+<Settings.PeriodFrom>Période de</Settings.PeriodFrom>
+<Settings.ForVeh>véhicules</Settings.ForVeh>
+<Settings.CurrYearAllVeh>Année en cours pour tous les véhicules</Settings.CurrYearAllVeh>
+<Settings.ForAllVeh>pour tous les véhicules</Settings.ForAllVeh>
+<Reports.LastPhoto>Dernière image</Reports.LastPhoto>
+<Reports.ClickNewPhoto>Cliquez ici pour une nouvelle image</Reports.ClickNewPhoto>
+<Reports.VehNoPhoto>Ce véhicule n'a pas une image...</Reports.VehNoPhoto>
+<Reports.Max3Photos>Sur une base quotidienne, vous pouvez izgenerirate manuellement maximum de trois photos par véhicule.</Reports.Max3Photos>
+<Reports.LimitPhotos>Pour ce véhicule, vous avez atteint la limite de trois images de la main de la journée.</Reports.LimitPhotos>
+<Reports.PreviewLastPhoto>Voir la dernière photo</Reports.PreviewLastPhoto>
+<Reports.PhotoName>Image Nom</Reports.PhotoName>
+<Reports.NewPhoto>Nouvelle image</Reports.NewPhoto>
+<Reports.TimeFirstIgnOn>Au cours du premier moteur à allumage</Reports.TimeFirstIgnOn>
+<Reports.TimeLastData>Lors de la dernière données reçues</Reports.TimeLastData>
+<Reports.TotalTimeBetween>Temps total entre le premier démarrage du moteur et le dernier données reçues</Reports.TotalTimeBetween>
+<Reports.OdometerStart>Valeur initiale de l'odomètre</Reports.OdometerStart>
+<Reports.CurrSpeed>Vitesse actuelle</Reports.CurrSpeed>
+<Reports.MaxSpeedDay>La vitesse maximale atteinte pendant la journée</Reports.MaxSpeedDay>
+<Reports.TotalToursDay>Nombre total de touristes pendant la journée</Reports.TotalToursDay>
+<Reports.TotalPriceDay>Le coût total de toutes les visites pendant la journée</Reports.TotalPriceDay>
+<Reports.TotalPriceDayTaxi>Le coût total de toutes les visites inclus taximètre</Reports.TotalPriceDayTaxi>
+<Reports.TotalPriceDayWithout>Le coût total de toutes les visites à l'exclusion taximètre</Reports.TotalPriceDayWithout>
+<Reports.CurrTaximeter>État actuel du taximètre</Reports.CurrTaximeter>
+<Reports.CurrPassengers>Nombre actuel de passagers</Reports.CurrPassengers>
+<Reports.CurrOdometer>Valeur actuelle de l'odomètre</Reports.CurrOdometer>
+<Reports.PastDistDay>Distance parcourue pendant la journée</Reports.PastDistDay>
+<Reports.CurrLocation>Localisation Actuelle</Reports.CurrLocation>
+<Reports.CurrPoi>Point consultée actuel d'intérêt</Reports.CurrPoi>
+<Reports.CurrZone>Zone visitée instantanée</Reports.CurrZone>
+<Reports.CameraReport>Rapport de la caméra</Reports.CameraReport>
+<Reports.VehNotCam>Ce véhicule a pas de caméra intégrée !!!</Reports.VehNotCam>
+<Reports.CameraImg>Photo</Reports.CameraImg>
+<Reports.ViewCameraImg>Prévisualisation de l'image</Reports.ViewCameraImg>
+<hideColVehDetails>Cette colonne se trouve dans la section Détails véhicules. Son spectacle nouveau, vous pouvez l'activer via les paramètres.</hideColVehDetails>
+	<currdataweather>Météo</currdataweather>
+	<garmin>Garmin</garmin>
+	<fueldown>Une chute brutale du carburant!</fueldown>
+<Settings.FallFuel>Une chute brutale du carburant</Settings.FallFuel>
+	<Reports.NoTours1>Tours</Reports.NoTours1>
+	<tow>Mouvement non autorisé</tow>
+	<weakAccumulator>Accumulateur faible</weakAccumulator>
+	<geolock>Non autorisée de quitter la zone de stationnement</geolock>
+	<changelocation>Changer de lieu</changelocation>
+	<geolockasset>Zone de sortie non autorisée</geolockasset>
+	<weakbattery>Batterie faible</weakbattery>
+	<mainpoweroff>Le dispositif est débranché</mainpoweroff>
+	<mainpoweron>L''appareil est connecté</mainpoweron>
+<Reports.Fast>Rapide</Reports.Fast>
+<Reports.Short>Court</Reports.Short>	
+<Reports.StartPoi>Point de départ</Reports.StartPoi>	
+<Reports.Destination>La destination</Reports.Destination>		
+<Reports.SavedDirections>Calculs enregistréesи</Reports.SavedDirections>	
+	<incorrectcalculation>Vous ne faites pas un calcul correct!</incorrectcalculation>
+	<invalidendposition>Invalid position de destination!</invalidendposition>
+	<invalidstartposition>Invalid position de départ!</invalidstartposition>
+	<invaliddestination>Point de départ et de destination non valide!</invaliddestination>
+	<directionsaved>Calcul enregistrée réussie</directionsaved>
+	<OneClickDirection>Nécessite un clic sur une carte pour choisir la position</OneClickDirection>
+	<clickforendpoint>Choisir une destination en cliquant sur la carte</clickforendpoint>
+	<clickforstartpoint>Sélection de la position de départ en cliquant sur la carte</clickforstartpoint>
+<Routes.OptimizedTooltip>L'itinéraire avec le temps d'entraînement/plus brefs délais la distance/marche le plus optimisé qui comprend tous les endroits intermédiaires (l'origine et de destination restent fixes).</Routes.OptimizedTooltip>
+<Routes.ShortestTooltip>Le plus court itinéraire conduite à distance.</Routes.ShortestTooltip>
+<Routes.FastestTooltip>Plus rapide lecteur itinéraire à temps.</Routes.FastestTooltip>	
+	<WeatherForecast>Prévisions météo</WeatherForecast>
+	<directlive>Directement dans la surveillance en direct</directlive>
+	<Reports.Tooltip13>Le coût total de toutes les visites en termes de distance parcourue inclus taximètre divisée par la distance totale parcourue</Reports.Tooltip13>
+	<Reports.Productivity>Productivité</Reports.Productivity>
+	<feelslike>Feels like</feelslike>
+  <lastupdate>Dernières données du</lastupdate>
+  <wind>Vent</wind>
+  <humidity>Humidité</humidity>
+  <weather>Météo</weather>
+  <ReverseDestinationa>Point de départ et de destination inverse</ReverseDestinationa>
+  <ChooseStartingPoint>Choisissez un point de départ</ChooseStartingPoint>
+  <ChooseDestination>Choisissez une destination</ChooseDestination>
+  <FastRoute>itinéraire rapide</FastRoute>
+  <ShortRoute>itinéraire court</ShortRoute>
+  <calculate>Calculer</calculate>
+  <CalculatingDistance>Calcul de la distance</CalculatingDistance>
+  <directions>Directions</directions>
+  <Routes.OldRoute>Vous ne pouvez pas entrer une route dans le passé !!!</Routes.OldRoute>
+  <Reports.Active>Actif</Reports.Active>
+  <Reports.Completed>Terminé</Reports.Completed>
+  <Reports.Unread>Non lus</Reports.Unread>
+  <Reports.Read>Labourer</Reports.Read>
+  <Reports.Deleted>Supprimé</Reports.Deleted>
+  <Reports.MessNotDel>Le message n'a pas été livré !!!</Reports.MessNotDel>
+  <Reports.DtDelete>Suppression temps</Reports.DtDelete>
+  <Reports.DtEnd>Extrémité</Reports.DtEnd>
+  <Reports.DtStart>Moment de l'activation</Reports.DtStart>
+  <Reports.Checked>Vérifiée</Reports.Checked>
+  <Reports.DtSeen>Heure de lecture</Reports.DtSeen>
+  <Reports.DtDelivery>Poster un temps</Reports.DtDelivery>
+  <Reports.Messages>Postes</Reports.Messages>
+  <Reports.StopStatus>Statut d'arrêt</Reports.StopStatus>
+  <person>Personne</person>
+  <sosalarm>SOS Alarme</sosalarm>
+  <mandown>Un homme à la mer!</mandown>
+  <Routes.NotSelOpt>Vous ne avez sélectionné une option !!!</Routes.NotSelOpt>
+  <Routes.OrdinalNumber>Nombre</Routes.OrdinalNumber>
+  <Routes.TotalArea>Superficie totale</Routes.TotalArea>
+  <Routes.DoneArea>Fait région</Routes.DoneArea>
+  <Routes.TotWorkTime>Temps de travail total</Routes.TotWorkTime>
+  <Routes.Downtime>Temps d'arrêt</Routes.Downtime>
+  <Routes.SelectCulture>Sélectionnez la culture</Routes.SelectCulture>
+  <Routes.RouteAct>Activités autorisées par l'ordonnance</Routes.RouteAct>
+  <Routes.AddedMechanisation>Méc. ajoutée</Routes.AddedMechanisation>
+  <Routes.PopupDO>Télécharger des ordres prédéfinisи</Routes.PopupDO>
+  <Routes.Optimized>Optimisé</Routes.Optimized>
+  <Routes.Short>Court</Routes.Short>
+  <Routes.DownloadOrder>Télécharger l'ordre</Routes.DownloadOrder>
+  <Routes.EnterStartEnd>Entrez le point de la route début et de fin</Routes.EnterStartEnd>
+  <Routes.ToBeEntered>Voulez-vous cet article à être entré comme</Routes.ToBeEntered>
+  <Routes.StartPoiRoute>point de départ</Routes.StartPoiRoute>
+  <Routes.And>et</Routes.And>
+  <Routes.EndPoiRoute>point de la route de fin?</Routes.EndPoiRoute>
+  <Routes.NoSEPoi>Vous ne avez pas entré le point de départ de la route et à la fin !!!</Routes.NoSEPoi>
+  <Routes.NoSPoi>Vous ne avez pas entré le point de la route de départ !!!</Routes.NoSPoi>
+  <Routes.NoEPoi>Vous ne avez pas entré le point final de l'itinéraire !!!</Routes.NoEPoi>
+  <Settings.WaitPrice>Coût de l'attente</Settings.WaitPrice>
+  <Admin.FuelTankHeight>Hauteur Bac</Admin.FuelTankHeight>
+  <Admin.Allow>Permettre</Admin.Allow>
+  <Admin.AllowFuel>Autoriser capteur de carburant</Admin.AllowFuel>
+  <Admin.AllowTemp>Autoriser capteur de température</Admin.AllowTemp>
+  <Admin.AllowRfid>Permettre rfid</Admin.AllowRfid>
+  <Admin.AllowInputVoltage>Permettre accumulateur</Admin.AllowInputVoltage>
+  <Admin.AllowGarmin>Permettre garmin</Admin.AllowGarmin>
+  <Admin.AllowRpm>Permettre rpm</Admin.AllowRpm>
+  <Admin.AllowMotoBlock>Permettre moto-bloc</Admin.AllowMotoBlock>
+  <Admin.AllowMotoAlarm>Permettre moto-alarme</Admin.AllowMotoAlarm>
+  <Admin.AllowBattery>Permettre batterie</Admin.AllowBattery>
+  <Admin.AllowGeoLock>Permettre geo-lock</Admin.AllowGeoLock>
+  <Admin.AddCountry>Ajouter état</Admin.AddCountry>
+  <Admin.AddCity>Ajouter ville</Admin.AddCity>
+  <Settings.MotoAlarms>Alarmes de moto</Settings.MotoAlarms>
+  <Settings.Tow>Remorquage</Settings.Tow>
+  <Settings.WeakAcc>Accumulateur faible</Settings.WeakAcc>
+  <Settings.PoiGroups>Groupes de points d'intérêt</Settings.PoiGroups>
+  <Reports.NoPerm>Vous n'avez pas l'autorisation d'afficher ce menu !!!</Reports.NoPerm>
+  <Settings.AutomResetDriver>Contrôle automatique des conducteurs affectés à des véhicules</Settings.AutomResetDriver>
+  <Settings.OptionsResetDriver>Options pour la déconnexion automatique</Settings.OptionsResetDriver>
+  <Settings.ResetDriver1>Chaque moteur de feu</Settings.ResetDriver1>
+  <Settings.ResetDriver2>Chaque jour à 00:00</Settings.ResetDriver2>
+  <Settings.ResetDriver3>La prochaine mission de pilote</Settings.ResetDriver3>
+  <Settings.FmAlarmInfo1>L'arrivée de cette alarme est nécessaire d'avoir entré le dernier enregistrement de ce véhicule.</Settings.FmAlarmInfo1>
+  <Settings.FmAlarmInfo2>L'arrivée de cette alarme est un must ont conclu au moins un coût de réparer ce véhicule.</Settings.FmAlarmInfo2>
+  <Settings.FmAlarmInfo3>L'arrivée de cette alarme est un proxy doit être entré au moins un des conducteurs admissibles de ce véhicule.</Settings.FmAlarmInfo3>
+  <Settings.MustServiceInterval>Vous devez saisir un intervalle de service pour véhicule !!!</Settings.MustServiceInterval>
+  <Settings.Months>mois</Settings.Months>
+  <Settings.RemindMeMustOne>Vous devez entrer au moins une option pour "Rappelez-moi plus tôt"</Settings.RemindMeMustOne>
+  <Reports.FrontPassenger>Passager avant</Reports.FrontPassenger>
+  <Reports.Yes1>oui</Reports.Yes1>
+  <Reports.No1>aucun</Reports.No1>
+  <Admin.VehiclePutRight>Le véhicule dans l'intervalle a été mis à droite</Admin.VehiclePutRight>
+  <Admin.ChooseFilter>Sélectionnez le filtre pour afficher les véhicules!</Admin.ChooseFilter>
+  <Admin.Valid>valide</Admin.Valid>
+  <Admin.Invalid>invalide</Admin.Invalid>
+  <Admin.Satellites>Satellites</Admin.Satellites>
+  <Admin.MarkAsInactive>Mark inactif</Admin.MarkAsInactive>
+  <Admin.AllClients>Tous les clients</Admin.AllClients>
+  <Admin.History>Histoire</Admin.History>
+  <Admin.CurrentStatus>État actuel de véhicules selon le statut</Admin.CurrentStatus>
+  <Admin.IgnOnMore2>Moteur en marche, les données de plus de 5 min</Admin.IgnOnMore2>
+  <Admin.More2>Données plus de 2 jours</Admin.More2>
+  <Settings.AlreadyFuelCost>Déjà sont entrés dans le coût du carburant !!!</Settings.AlreadyFuelCost>
+  <Settings.AlreadyServiceCost>Déjà sont entrés dans le coût du service !!!</Settings.AlreadyServiceCost>
+  <Settings.AlreadyOthCost>Ont déjà conclu ce coût !!!</Settings.AlreadyOthCost>
+  <Settings.AlreadyCost>Ont déjà conclu ce coût !!!</Settings.AlreadyCost>
+  <Settings.SuccDownloadHolidays1>Les jours fériés ont été téléchargés avec succès et automatiquement tous les calculs dans l'application seront faites pour eux à nouveau !!!</Settings.SuccDownloadHolidays1>
+  <Settings.SuccRemoveHolidays1>Les jours fériés ont bien été supprimés et tous les calculs automatiquement dans l'application seront faites pour eux à nouveau !!!</Settings.SuccRemoveHolidays1>
+  <Settings.RemoveHolidays>Retirer les jours fériés</Settings.RemoveHolidays>
+  <Settings.SuccRemoveHolidays>Les jours fériés ont été supprimés avec succès</Settings.SuccRemoveHolidays>
+  <Settings.AlertRegTitle>Ajouter expiration alerte de l'enregistrement</Settings.AlertRegTitle>
+  <Settings.AlertServiceTitle>Ajouter service d'alerte</Settings.AlertServiceTitle>
+  <Settings.AlertGreenCardTitle>Ajouter une alerte pour la carte verte</Settings.AlertGreenCardTitle>
+  <Settings.RemindMe>Me rappeler</Settings.RemindMe>
+  <Settings.Before>avant</Settings.Before>
+  <Settings.AddShift>La suspension a été ajouté avec succès automatiquement et tous les calculs de la demande sera faite à nouveau pour tous les jours du mois précédent à laquelle le changement !!!</Settings.AddShift>
+  <Settings.ModifyShift>La suspension a été modifié avec succès et l'application automatique dans tous les calculs seront effectués de nouveau tous les jours du mois précédent à laquelle le changement !!!</Settings.ModifyShift>
+  <Settings.DeleteShift>La suspension a été supprimé automatiquement et tous les calculs de la demande sera faite à nouveau pour tous les jours du mois précédent à laquelle le changement !!!</Settings.DeleteShift>
+  <Settings.1>première</Settings.1>
+  <Settings.2>deuxième</Settings.2>
+  <Settings.3>troisième</Settings.3>
+  <Settings.4>quatrième</Settings.4>
+  <Settings.DeleteRecache>Jour a été supprimé comme vacances et tous les calculs automatiquement dans l'application sera faite pour le même !!!</Settings.DeleteRecache>
+  <Settings.AddRecache>Journée a été ajouté avec succès comme un jour férié et tous les calculs automatiquement dans l'application sera faite pour le même !!!</Settings.AddRecache>
+  <Settings.Play>Jouer</Settings.Play>
+  <Settings.Stop>Arrêter</Settings.Stop>
+  <Settings.Louder>Fort</Settings.Louder>
+  <Settings.Quieter>Silencieux</Settings.Quieter>
+  <Settings.SuccDownloadHolidays>Les jours fériés ont été menées avec succès</Settings.SuccDownloadHolidays>
+  <Settings.NameHoliday>Nom de vacances</Settings.NameHoliday>
+  <Settings.DownloadHolidays>Télécharger des jours fériés</Settings.DownloadHolidays>
+  <Settings.Last>Dernier</Settings.Last>
+  <Settings.Next>Suivant</Settings.Next>
+  <Reports.NoDataDayAct>Le jour requis aucun classes actives. Heures passifs:</Reports.NoDataDayAct>
+  <Reports.NoCalcActOption>Ce véhicule a la possibilité de calculer les heures actives !!!</Reports.NoCalcActOption>
+  <Reports.DeleteCostType>Type de dépense de suppression</Reports.DeleteCostType>
+  <Reports.DelExecutor>Supprimer exécuteur</Reports.DelExecutor>
+  <Reports.DelCostType>Supprimer type de dépense</Reports.DelCostType>
+  <Reports.SureDelComp>Etes-vous sûr de vouloir supprimer composant</Reports.SureDelComp>
+  <Reports.DelComp>Supprimer composant</Reports.DelComp>
+  <Reports.DelComp1>Supprimer composant</Reports.DelComp1>
+  <Reports.DelListComp>Obtenez la liste des composants sélectionnés</Reports.DelListComp>
+  <Admin.SelectCalc>Sélectionnez la méthode de calcul des classes actives</Admin.SelectCalc>
+  <Admin.SelectShowRpm>Sélectionnez l'affichage aller</Admin.SelectShowRpm>
+  <Admin.SelectRpmLimit>Sélectionnez la limite de contact</Admin.SelectRpmLimit>
+  <Admin.SelectMinRpm>Sélectionnez un nombre minimum de contacts</Admin.SelectMinRpm>
+  <Admin.SelectMaxRpm>Sélectionnez le nombre maximum de contacts</Admin.SelectMaxRpm>
+  <Admin.SelectSpeedLimit>Sélectionnez la limite de vitesse</Admin.SelectSpeedLimit>
+  <Admin.Limit>Frontière</Admin.Limit>
+  <Admin.NoRPM>Nom. rpm</Admin.NoRPM>
+  <Admin.RpmSpeed>Et la vitesse RPM</Admin.RpmSpeed>
+  <Admin.ShowRPM>Afficher RPM</Admin.ShowRPM>
+  <Admin.CalculateActiveH>Calcul des classes actives sous la limite</Admin.CalculateActiveH>
+  <Admin.VehicleStatus>Statut véhicule</Admin.VehicleStatus>
+  <Reports.TheRPMLimit>La limite de RPM est</Reports.TheRPMLimit>
+  <Reports.Obrtai>rpm</Reports.Obrtai>
+  <Reports.Obrtai1>RPM</Reports.Obrtai1>
+  <Reports.MinRPM>Le nombre minimum de tours</Reports.MinRPM>
+  <Reports.MaxRPM>Nombre maximum de tours</Reports.MaxRPM>
+  <Reports.SpeedLimit>Limitation de vitesse</Reports.SpeedLimit>
+  <Reports.RpmLimit>Limite RPM</Reports.RpmLimit>
+  <Reports.Load>La charge</Reports.Load>
+  <Reports.LockPass>Mot de passe verrou</Reports.LockPass>
+  <Reports.ActiveHours>Heures actives</Reports.ActiveHours>
+  <Reports.PassiveHours>Heures passives</Reports.PassiveHours>
+  <Reports.TotalActiveHours>Nombre total d'heures actives</Reports.TotalActiveHours>
+  <Reports.TotalPassiveHours>Nombre total d'heures de passif</Reports.TotalPassiveHours>
+  <Reports.UnauthUse>L'utilisation non autorisée</Reports.UnauthUse>
+  <Reports.Range>Gamme</Reports.Range>
+  <Settings.VisibleLive>Visibilité en temps réel de surveillance</Settings.VisibleLive>
+  <Reports.DailyFuel>Les données sur le carburant sont calculées sur une base quotidienne.</Reports.DailyFuel>
+  <Reports.TotalDistance>Distance totale</Reports.TotalDistance>
+  <Reports.Intervention>L'intervention</Reports.Intervention>
+  <Reports.Pump>Pompe</Reports.Pump>
+  <Reports.Caps>Couvertures</Reports.Caps>
+  <Reports.Opened>ouvert</Reports.Opened>
+  <Reports.Closed>fermé</Reports.Closed>
+  <Reports.PCReport>Condition pompe/housses</Reports.PCReport>
+  <Reports.ActivePump>actif</Reports.ActivePump>
+  <Reports.InactivePump>inactif</Reports.InactivePump>
+  <Tracking.LostComm>Perdu la communication</Tracking.LostComm>
+  <Reports.Tours1>tours</Reports.Tours1>
+  <Reports.TaxiActivity>Taxi activité</Reports.TaxiActivity>
+  <Reports.TaxiReport2>Frais rapportent 2</Reports.TaxiReport2>
+  <Reports.TaxiReport1>Frais rapportent 1</Reports.TaxiReport1>
+  <Reports.IntervReport>Rapport intervention</Reports.IntervReport>
+  <Reports.TimePI>Durée de IP</Reports.TimePI>
+  <Reports.TimePITooltip>Temps de l'intervention précédente</Reports.TimePITooltip>
+  <Admin.NumberSensorsPassengers>Nombre de capteurs pour les passagers</Admin.NumberSensorsPassengers>
+  <Reports.Tours>Tournées</Reports.Tours>
+  <Reports.Times>fois</Reports.Times>
+  <Reports.CostTour>Coût de la visite</Reports.CostTour>
+  <Reports.CostTour1>Kostoja e turne</Reports.CostTour1>
+  <Reports.DistanceInTour>Dist. en tournée</Reports.DistanceInTour>
+  <Reports.DistanceInTour1>Distance à Tours</Reports.DistanceInTour1>
+  <Reports.OutOfTours>de visites</Reports.OutOfTours>
+  <Reports.InTours>à des visites</Reports.InTours>
+  <Reports.Loss>Pas de taximètre</Reports.Loss>
+  <Reports.Profit>Le taximètre</Reports.Profit>
+  <Reports.Effectiveness>Efficacité</Reports.Effectiveness>
+  <Reports.TempCargo>Température soute</Reports.TempCargo>
+  <Reports.FuelLevel>Niveau de carburant</Reports.FuelLevel>
+  <Reports.DistCum>Distance cumulée</Reports.DistCum>
+  <Reports.EndOdometer>Fin odomètre</Reports.EndOdometer>
+  <Reports.StartOdometer>Commencez odomètre</Reports.StartOdometer>
+  <Reports.AvgEngTemp>Température moyenne de moteur</Reports.AvgEngTemp>
+  <Reports.MaxEngTemp>Température maximale du moteur</Reports.MaxEngTemp>
+  <Reports.EngTemp>Température moteur</Reports.EngTemp>
+  <Reports.RPM>RPM</Reports.RPM>
+  <Reports.PZ>PO</Reports.PZ>
+  <Reports.FirstIgnOn>Premier contact</Reports.FirstIgnOn>
+  <Reports.LastIgnOff>Dernière feu</Reports.LastIgnOff>
+  <Reports.TimePZ>Temps secondaire occupé</Reports.TimePZ>
+  <Reports.DistPZ>Distance occupé avec passif</Reports.DistPZ>
+  <Reports.TimePZAll>Temps secondaire occupée entre toutes les visites</Reports.TimePZAll>
+  <Reports.DistPZAll>Distance entre le passif occupé toutes les visites</Reports.DistPZAll>
+  <Reports.DeletedPoi>POI supprimés</Reports.DeletedPoi>
+  <temporaryNonUse>Non-utilisation temporaire d''un véhicule</temporaryNonUse>
+  <iconCosts>Les coûts d''entrée</iconCosts>
+  <iconMail>Le module de communication</iconMail>
+  <iconAlert>Alertes et notifications</iconAlert>
+  <Reports.Drivers>Conducteurs</Reports.Drivers>
+  <Reports.GeonetTeam>Geonet GPS équipe</Reports.GeonetTeam>
+  <Reports.ContactMail>Pour plus d''informations contactez-nous au</Reports.ContactMail>
+  <Reports.DontReply>Ne pas "Répondre" à ce mail.</Reports.DontReply>
+  <Reports.Format1>format</Reports.Format1>
+  <Reports.InAttach>À votre demande, je joins envoyer le rapport</Reports.InAttach>
+  <Reports.MailAutoSend>Ce message sera automatiquement le système pour surveiller vos véhicules</Reports.MailAutoSend>
+  <deletePolygon>Polygon est supprimé avec succès!</deletePolygon>
+  <successfullyPolygon>Polygon est ajouté avec succès!</successfullyPolygon>
+  <updatePolygon>Mise à jour polygone</updatePolygon>
+  <AddPolygon>Ajouter un nouveau polygone</AddPolygon>
+  <Settings.Polygon>Polygon</Settings.Polygon>
+  <Main.Alarms>Alarmes</Main.Alarms>
+  <Main.Messaging>Messagerie</Main.Messaging>
+  <al>Albanais</al>
+  <Settings.InactivePOIHeader>POI inactif</Settings.InactivePOIHeader>
+  <Settings.ActivateMultiplePOI>Activez les points d''intérêt</Settings.ActivateMultiplePOI>
+  <Settings.DeactivateMultiplePOI>Désactiver les points d''intérêt</Settings.DeactivateMultiplePOI>
+  <Settings.TransferMultiplePOI>Les points de transfert d''intérêt</Settings.TransferMultiplePOI>
+  <Settings.DeleteMultiplePOI>Supprimer les points d''intérêt</Settings.DeleteMultiplePOI>
+  <Settings.ActivateMarkers>Etes-vous sûr que vous voulez activer à nouveau les marqueurs sélectionnés? Si vous choisissez Oui, nous allons mettre les marqueurs de retour dans le groupe où ils étaient avant.</Settings.ActivateMarkers>
+  <Settings.SuccActivatedMarkers>Vous avez activé avec succès les marqueurs sélectionnés.</Settings.SuccActivatedMarkers>
+  <Settings.SuccMadeInactive>Vous avez réussi à faire cette points d''intérêt inactive.</Settings.SuccMadeInactive>
+  <Settings.MakeInactiveQuestion>Etes-vous sûr que vous voulez faire ces marqueurs inactif? Si vous le faites, nous allons créer un tableau au bas de la page qui aura tous les marqueurs actifs et à partir de là que vous pouvez faire à nouveau leur actif.</Settings.MakeInactiveQuestion>
+  <Reports.DeletePoiMultiple>Etes-vous sûr que vous voulez supprimer les points d''intérêt sélectionnés?</Reports.DeletePoiMultiple>
+  <Settings.TransferPOI>Transférer</Settings.TransferPOI>
+  <Settings.LatitudeName>Latitude</Settings.LatitudeName>
+  <Settings.LongitudeName>Longitude</Settings.LongitudeName>
+  <Settings.POI>point</Settings.POI>
+  <Settings.TypeOfPoi>Type POI</Settings.TypeOfPoi>
+  <Settings.MechanisationAlreadyUsedName>Il existe déjà une mécanisation défini avec ce nom, s''il vous plaît choisir un autre nom.</Settings.MechanisationAlreadyUsedName>
+  <Settings.MaterialAlreadyUsedName>Il ya déjà une matière définie avec ce nom, s''il vous plaît choisir un autre nom.</Settings.MaterialAlreadyUsedName>
+  <Settings.OperationAlreadyUsedName>Il ya déjà une opération définie avec ce nom, s''il vous plaît choisir un autre nom.</Settings.OperationAlreadyUsedName>
+  <Settings.CultureAlreadyUsedName>Il existe déjà une culture définie avec ce nom, s''il vous plaît choisir un autre nom.</Settings.CultureAlreadyUsedName>
+  <Settings.DeleteMechanisationSure>Etes-vous sûr de vouloir supprimer ce mécanisation?</Settings.DeleteMechanisationSure>
+  <Settings.DeleteMaterialSure>Etes-vous sûr de vouloir supprimer ce matériau?</Settings.DeleteMaterialSure>
+  <Settings.DeleteOperationSure>Etes-vous sûr de vouloir effacer cette opération?</Settings.DeleteOperationSure>
+  <Settings.DeleteCultureSure>Etes-vous sûr de vouloir effacer cette culture?</Settings.DeleteCultureSure>
+  <Settings.NameOfThe>Nom de l''</Settings.NameOfThe>
+  <Settings.MechanisationName>Nom de la mécanisation</Settings.MechanisationName>
+  <Settings.CultureTemplate>Modèle de la Culture</Settings.CultureTemplate>
+  <Settings.AddedMechanisation>Mécanisation ajoutée</Settings.AddedMechanisation>
+  <Settings.Material>Matériel</Settings.Material>
+  <Settings.Operation>Opération</Settings.Operation>
+  <Settings.Culture>Culture</Settings.Culture>
+  <Settings.NewCulture>Nouvelle culture</Settings.NewCulture>
+  <Admin.DeleteUserQuestion>Etes-vous sûr de vouloir supprimer l''utilisateur</Admin.DeleteUserQuestion>
+  <Reports.WithoutPass>sans passagers</Reports.WithoutPass>
+  <Reports.WithPass>avec des passagers</Reports.WithPass>
+  <Reports.TaxiOFF>Taxi. OFF</Reports.TaxiOFF>
+  <Reports.TaxiON>Taxi. ON</Reports.TaxiON>
+  <Reports.DiffIn>Différence de</Reports.DiffIn>
+  <Reports.ON1>on</Reports.ON1>
+  <Reports.OFF1>off</Reports.OFF1>
+  <Reports.DistWithTaxi>Taximètre totale</Reports.DistWithTaxi>
+  <Reports.DistWithoutTaxi>Nombre total taximètre</Reports.DistWithoutTaxi>
+  <Reports.TotalIdleTour>Tot. debout à Tours</Reports.TotalIdleTour>
+  <Reports.TotalTourTime>Visites durée totale</Reports.TotalTourTime>
+  <Reports.WithoutTaxi>Pas de taxi.</Reports.WithoutTaxi>
+  <Reports.WithTaxi>Le taxi.</Reports.WithTaxi>
+  <Reports.FromPT>la TP</Reports.FromPT>
+  <Reports.TourTime>Pendant la tournée</Reports.TourTime>
+  <Reports.TourTime1>Lors des visites</Reports.TourTime1>
+  <Reports.DistancePT>Distance entre les deux tours</Reports.DistancePT>
+  <Reports.TimePT>Temps entre les tournées</Reports.TimePT>
+  <Reports.NoExceed>Aucun dépassement de la vitesse sur cette journée !!!</Reports.NoExceed>
+  <Reports.NoEmployeeAss>Aucun employé affecté</Reports.NoEmployeeAss>
+  <Admin.HaveNoVehSelClient>n''ont pas de véhicule, sélectionner un autre client!</Admin.HaveNoVehSelClient>
+  <Reports.NoReply>Ne pas Répondre à ce mail. Pour plus d''informations contactez-nous au</Reports.NoReply>
+  <Reports.Regards>Cordialement</Reports.Regards>
+  <Reports.AttachMess>En plus d''envoyer le rapport au format pdf.</Reports.AttachMess>
+  <Reports.AutMess>Ce message sera automatiquement le système pour le suivi de vos véhicules.</Reports.AutMess>
+  <Reports.Dear>Cher</Reports.Dear>
+  <Reports.GeneratePDF>Générer un PDF et envoyer des e-mail ...</Reports.GeneratePDF>
+  <Reports.EnterNameComp>Entrez le nom du nouveau composant</Reports.EnterNameComp>
+  <Reports.EnterNameExe>Entrez le nom du nouveau exécuteur</Reports.EnterNameExe>
+  <Reports.EnterNameCost>Entrez un nouveau type de coût</Reports.EnterNameCost>
+  <Reports.DelExe>Suppression d''exécuteur</Reports.DelExe>
+  <Reports.SureDelExe>Etes-vous sûr de vouloir supprimer l''exécuteur</Reports.SureDelExe>
+  <Reports.SuccDelCost>est supprimé avec succès</Reports.SuccDelCost>
+  <Reports.TheCost>Le coût</Reports.TheCost>
+  <Reports.DefCosts>Les coûts de défaut ne peuvent pas être supprimés</Reports.DefCosts>
+  <Reports.SelectCost>Sélectionnez la dépense que vous souhaitez supprimer</Reports.SelectCost>
+  <Reports.SureDelCost>Etes-vous sûr de vouloir supprimer coût</Reports.SureDelCost>
+  <Reports.DelCost>Supprimer frais</Reports.DelCost>
+  <Reports.NotReceiver>Sélectionnez le destinataire du message</Reports.NotReceiver>
+  <Reports.NotMessage>Entrez le message texte</Reports.NotMessage>
+  <Admin.SearchByKye>Recherche par clé</Admin.SearchByKye>
+  <Reports.Choose3VehCompare>Vous ne pouvez choisir que 3 véhicules pour comparer!</Reports.Choose3VehCompare>
+  <Reports.ChooseExecutor>Choisissez exécuteur</Reports.ChooseExecutor>
+  <Routes.ShowMessages>Afficher les messages</Routes.ShowMessages>
+  <Routes.AllOrdersInPeriod>Toutes les commandes pour une période de:</Routes.AllOrdersInPeriod>
+  <Routes.NewOrderWithNumber>Nouveau décret numéro</Routes.NewOrderWithNumber>
+  <Admin.completeAllfiels>Remplissez tous les champs!</Admin.completeAllfiels>
+  <Admin.SameKey>Clé avec ce nom existe déjà</Admin.SameKey>
+  <Admin.SucChangedTran>Traduction réussie modifié</Admin.SucChangedTran>
+  <Admin.UnSucChangedTran>Traduction infructueuse modifié</Admin.UnSucChangedTran>
+  <Admin.NoSuchVehSearch>Un tel véhicule avec ces données!!!</Admin.NoSuchVehSearch>
+  <Admin.NameOfPort>Nom du port</Admin.NameOfPort>
+  <Reports.SuccMess>Le message a été envoyé avec succès</Reports.SuccMess>
+  <Reports.ComposeMess>Composez un message</Reports.ComposeMess>
+  <Reports.Empty>Vide</Reports.Empty>
+  <Reports.Sentbox>Les messages sortants</Reports.Sentbox>
+  <Reports.Inbox>Boîte de réception</Reports.Inbox>
+  <reports.Compose>Composez</reports.Compose>
+  <Settings.CantAddThisDay>Tu ne peux pas ajouter cette journée, car il existe déjà, vous pouvez le changer après avoir cliqué sur Jours ajoutés par l''administrateur.</Settings.CantAddThisDay>
+  <Admin.NotSelectedTemp>Vous n''avez pas sélectionné modèle</Admin.NotSelectedTemp>
+  <Admin.AlreadyExsistPortname>Il est déjà exsist un port du même nom</Admin.AlreadyExsistPortname>
+  <Admin.portName>nom de port</Admin.portName>
+  <Admin.SenCover>Capteur</Admin.SenCover>
+  <Admin.Seats>sièges</Admin.Seats>
+  <Admin.ConfDevices>La configuration des périphériques</Admin.ConfDevices>
+  <Admin.poiids>poiids</Admin.poiids>
+  <Admin.poiNames>Noms des points</Admin.poiNames>
+  <Admin.Text>Texte</Admin.Text>
+  <Ai>Ai</Ai>
+  <Admin.Ignition>Ignition</Admin.Ignition>
+  <Do>Do</Do>
+  <Admin.SucCaching>Succès cache!!!</Admin.SucCaching>
+  <Admin.InSucCaching>Échec de la mise en cache!!!</Admin.InSucCaching>
+  <Admin.StartDateSameAsFinal>La date de départ est la même que la dernière</Admin.StartDateSameAsFinal>
+  <Admin.IncorrectRange>Plage incorrecte</Admin.IncorrectRange>
+  <Admin.Di>Di</Admin.Di>
+  <Admin.InputVoltage>Tension d''entrée</Admin.InputVoltage>
+  <Admin.Battery>Batterie</Admin.Battery>
+  <Admin.Status>Statut</Admin.Status>
+  <Admin.Reload>Recharger</Admin.Reload>
+  <Admin.EnterEndDate>Entrez une date de fin</Admin.EnterEndDate>
+  <Admin.EnterStartDate>Entrez une date de départ</Admin.EnterStartDate>
+  <Admin.ModCommand>Commande modifier</Admin.ModCommand>
+  <Admin.NoResultsNoDataForVehicle>Si vous ne voyez pas les résultats il n''y a pas de données de véhicule pour la période</Admin.NoResultsNoDataForVehicle>
+  <Admin.ClickViewDataPeriod>puis cliquez sur Afficher pour afficher les données dans cette période</Admin.ClickViewDataPeriod>
+  <Admin.AddingComm>Ajout de la commande</Admin.AddingComm>
+  <Admin.SelectClientVehicleDate>Sélectionnez un client, le véhicule du client, date de début et de fin</Admin.SelectClientVehicleDate>
+  <Admin.AlredyExsistTempName>Modèle existe déjà avec ce nom!</Admin.AlredyExsistTempName>
+  <Admin.ModTempPort>Modifier les ports de modèle</Admin.ModTempPort>
+  <Admin.EnterKeywordToSearch>Entrez un mot clé!</Admin.EnterKeywordToSearch>
+  <Admin.CommandName>Nom de la commande</Admin.CommandName>
+  <Admin.TempExisistNewName>Modèle existe déjà avec ce nom! Entrez un nouveau nom.</Admin.TempExisistNewName>
+  <Admin.NoDataCommands>Pas de commandes de données</Admin.NoDataCommands>
+  <Admin.EnterTempName>Entrez un nom de modèle!</Admin.EnterTempName>
+  <Admin.AddNewCommand>Ajouter une nouvelle commande</Admin.AddNewCommand>
+  <Admin.RevTypeCommands>Examinez les types de commandes</Admin.RevTypeCommands>
+  <Admin.AnalogInput>Entrée analogique</Admin.AnalogInput>
+  <Admin.AddNewTemplate>Ajouter un nouveau modèle</Admin.AddNewTemplate>
+  <Admin.DigitalOutput>Sortie numérique</Admin.DigitalOutput>
+  <Admin.RevTypePortTemplates>Passez en revue les types de ports de modèles</Admin.RevTypePortTemplates>
+  <Admin.DigitalInput>Entrée numérique</Admin.DigitalInput>
+  <Admin.NameOfTemp>Name of template</Admin.NameOfTemp>
+  <Admin.AddNewPort>Ajouter nouveau port</Admin.AddNewPort>
+  <Admin.ModPort>Modifier le port</Admin.ModPort>
+  <Admin.RevTypePort>Passez en revue les types de ports</Admin.RevTypePort>
+  <Admin.AddPort>Ajouter le porto</Admin.AddPort>
+  <Admin.SuccUpdate>Mis à jour</Admin.SuccUpdate>
+  <Admin.TheUser>l''utilisateur</Admin.TheUser>
+  <Admin.GeneralSettUser>Paramètres généraux pour l''utilisateur</Admin.GeneralSettUser>
+  <Admin.ChangeUserData>Modifiez les données de l''utilisateur</Admin.ChangeUserData>
+  <Admin.AlredyAUserNewUN>Il existe déjà un utilisateur avec ce nom d''utilisateur! Entrez un nouveau nom d''utilisateur!</Admin.AlredyAUserNewUN>
+  <Admin.onecapitalLetter>au moins une lettre majuscule</Admin.onecapitalLetter>
+  <Admin.SixChar>Il devrait contenir plus de 6 caractères</Admin.SixChar>
+  <Admin.OneSpecChar>au moins un caractère spécial</Admin.OneSpecChar>
+  <Admin.Notification>Déclaration</Admin.Notification>
+  <Admin.Timezone>Fuseau horaire</Admin.Timezone>
+  <Admin.AddnewuserForClient>Ajouter un nouvel utilisateur pour le client</Admin.AddnewuserForClient>
+  <Admin.SelAll>Sélectionner tous</Admin.SelAll>
+  <Admin.Porttype>Type de port</Admin.Porttype>
+  <Admin.SelVehCom>Vous n''avez pas sélectionné de véhicule!</Admin.SelVehCom>
+  <Admin.SelComm>Sélectionnez la commande</Admin.SelComm>
+  <Admin.SelCommandQ>Vous n''avez pas sélectionné de commande</Admin.SelCommandQ>
+  <Admin.DelVEhQuest>Etes-vous sûr que vous voulez supprimer ce véhicule?</Admin.DelVEhQuest>
+  <Admin.Command>Commande</Admin.Command>
+  <Admin.NoSuccPortVeh>Pas de port de véhicule modifié avec succès</Admin.NoSuccPortVeh>
+  <Admin.SuccPortVeh>Port de véhicule avec succès changé</Admin.SuccPortVeh>
+  <Admin.TempPortTypes>Modèles pour les types de ports</Admin.TempPortTypes>
+  <Admin.PortsOfVeh>Ports du véhicule</Admin.PortsOfVeh>
+  <Admin.ForVehReg>Pour le véhicule avec enregistrement</Admin.ForVehReg>
+  <Admin.ModDataVeh>Modifier véhicule données</Admin.ModDataVeh>
+  <Admin.GeneralSettForVeh>Paramètres généraux du véhicule</Admin.GeneralSettForVeh>
+  <Settings.SchedulerAutomaticSendReport>L''envoi automatique de rapports</Settings.SchedulerAutomaticSendReport>
+  <Admin.vehtype>type de véhicule</Admin.vehtype>
+  <Admin.RegOfVeh>immatriculation du véhicule!</Admin.RegOfVeh>
+  <Admin.ListOfUsers>Liste des utilisateurs</Admin.ListOfUsers>
+  <Admin.SensorFor>Capteur pour</Admin.SensorFor>
+  <Admin.AllowKanbas>Permettre CAN-BUS</Admin.AllowKanbas>
+  <Admin.FuelSensor>Capteur de carburant</Admin.FuelSensor>
+  <Settings.WorkDaysInfoUser>La couleur de fond des cellules est celle qui est la couleur chosen.The pour la lettre pour les jours à partir de (br /) lundi au vendredi est blanche, et pour le week-end jours est rouge.</Settings.WorkDaysInfoUser>
+  <Admin.Device>Appareil</Admin.Device>
+  <Settings.WorkDaysInfoAdmin>La couleur de fond de la cellule sera celui que vous aurez choose.Color des lettres pour les jours à partir de (br /) lundi au vendredi est blanc, pour les jours de week-end sera (br /) rouge. Cliquez sur une date pour l''ajouter comme un nouveau jour chômé</Settings.WorkDaysInfoAdmin>
+  <Admin.MotorNum>Numéro motor</Admin.MotorNum>
+  <Admin.VehType>Type de véhicule</Admin.VehType>
+  <Admin.SelOrg>Sélectionnez organisation</Admin.SelOrg>
+  <Admin.Organisation>Organisation</Admin.Organisation>
+  <Admin.AddNewVehForClient>Ajouter un nouveau véhicule pour le client</Admin.AddNewVehForClient>
+  <Admin.CacheVeh>Cache pour le véhicule</Admin.CacheVeh>
+  <Admin.SendComm>Envoyer commande</Admin.SendComm>
+  <Admin.OfDevices>des dispositifs</Admin.OfDevices>
+  <Admin.Conf>Conf.</Admin.Conf>
+  <Admin.Ports>Ports</Admin.Ports>
+  <Admin.Port>Port</Admin.Port>
+  <Admin.GSMpass>GSM mot de passe</Admin.GSMpass>
+  <Admin.GSMnumber>Numéro de GSM</Admin.GSMnumber>
+  <Admin.Mark>Marquer</Admin.Mark>
+  <Admin.HaveNoVeh>n''ont pas de véhicules!</Admin.HaveNoVeh>
+  <Admin.ListOfClientVeh>Liste des véhicules du client</Admin.ListOfClientVeh>
+  <Settings.PasswordMatchTwo>Match de passe</Settings.PasswordMatchTwo>
+  <Settings.NewPasswordDontMatchTwo>Mot de passe Ne pas correspondre</Settings.NewPasswordDontMatchTwo>
+  <Admin.OverwievUSers>Vue d''ensemble des utilisateurs</Admin.OverwievUSers>
+  <Admin.NoUsers>n''ont pas les utilisateurs!!!</Admin.NoUsers>
+  <Admin.TheClient>Le client</Admin.TheClient>
+  <Admin.Client>Client</Admin.Client>
+  <Settings.DontChangePassword>Ne pas modifier le mot de passe</Settings.DontChangePassword>
+  <Admin.NoSuccChange>Pas de changement réussie</Admin.NoSuccChange>
+  <Settings.ChangePassword>Changer mot de passe</Settings.ChangePassword>
+  <Admin.ModClientData>Modifiez les données des clients</Admin.ModClientData>
+  <Admin.NoSucAddClient>Aucun client ajouté avec succès</Admin.NoSucAddClient>
+  <Admin.SucAddClient>Client ajouté avec succès</Admin.SucAddClient>
+  <Admin.clientype>type de client</Admin.clientype>
+  <Admin.city>ville</Admin.city>
+  <Admin.HaveToEnter>Vous devez entrer</Admin.HaveToEnter>
+  <Admin.HaveToEnterCName>Vous devez entrer le nom du client!!!</Admin.HaveToEnterCName>
+  <Admin.Website>Website</Admin.Website>
+  <Admin.Kesh>Cache</Admin.Kesh>
+  <Admin.PhoneNumber>Numéro de téléphone</Admin.PhoneNumber>
+  <Admin.Active>Actif</Admin.Active>
+  <Admin.SelectCountry>Choisissez le pays</Admin.SelectCountry>
+  <Admin.SelectType>Sélectionnez le type</Admin.SelectType>
+  <Admin.SelectCity>Sélectionnez la ville</Admin.SelectCity>
+  <Admin.NameOfClient>Nom du client</Admin.NameOfClient>
+  <Admin.AddNewClient>Ajouter un nouveau client</Admin.AddNewClient>
+  <Admin.CacheTheClient1>Cache pour le client</Admin.CacheTheClient1>
+  <Admin.CacheTheClient>Cache pour le client</Admin.CacheTheClient>
+  <Admin.Cache>Cache</Admin.Cache>
+  <Admin.AddClient>Ajouter client</Admin.AddClient>
+  <Admin.ReviewClientsUsers>Examen des clients et des utilisateurs</Admin.ReviewClientsUsers>
+  <Admin.RawData>Les données brutes</Admin.RawData>
+  <Admin.PortsAllVehicles>Ports pour tous les véhicules</Admin.PortsAllVehicles>
+  <Admin.Configuration>Configuration</Admin.Configuration>
+  <Admin.SendCommVeh>Envoyer commande pour les véhicules</Admin.SendCommVeh>
+  <Admin.AddAuthorizedVeh>Ajouter véhicules autorisés</Admin.AddAuthorizedVeh>
+  <Admin.AddAuthorizedUser>Ajouter des utilisateurs autorisés</Admin.AddAuthorizedUser>
+  <Admin.SearchVeh>Rechercher véhicule</Admin.SearchVeh>
+  <Admin.Translation>Traduction</Admin.Translation>
+  <Admin.Commands>Commandes</Admin.Commands>
+  <Admin.TemplatePortTypes>Modèles pour les types de ports</Admin.TemplatePortTypes>
+  <Admin.PortTypes>Types de ports</Admin.PortTypes>
+  <Settings.MessagesNew>Messages</Settings.MessagesNew>
+  <Admin.Clients>Clients</Admin.Clients>
+  <Settings.SuccEnteredLicenseUseVehicle>Réussir entré dans une licence d''utilisation d''un autre véhicule.</Settings.SuccEnteredLicenseUseVehicle>
+  <Settings.LicenseAlreadyCreated>Il existe déjà une licence pour ce véhicule pour ce client.</Settings.LicenseAlreadyCreated>
+  <Reports.POInotvisit>pas visité encore une fois</Reports.POInotvisit>
+  <Reports.ThePOI>Point d''intérêt</Reports.ThePOI>
+  <Reports.ChoosePOI>Sélectionnez un point d''intérêt</Reports.ChoosePOI>
+  <Reports.AverageTemp>Température moyenne</Reports.AverageTemp>
+  <Reports.MaxTemp>Température maximale</Reports.MaxTemp>
+  <Routes.SelectUser>Sélectionnez l''utilisateur</Routes.SelectUser>
+  <Routes.UndoChanges>Voulez-vous annuler les modifications?</Routes.UndoChanges>
+  <Routes.MadeChanges>Vous avez apporté des modifications!</Routes.MadeChanges>
+  <Routes.NotCreatedOrder>Vous n''avez pas créé commandes avec les paramètres requis!!!</Routes.NotCreatedOrder>
+  <Routes.StartARoute>Début d''un parcours</Routes.StartARoute>
+  <Routes.AddingNewRoute>Ajout d''un nouvel itinéraire</Routes.AddingNewRoute>
+  <Routes.NotCreatedOrderFutureD>Vous n''avez pas créé commandes avec date ultérieure!!!</Routes.NotCreatedOrderFutureD>
+  <Routes.HaventCreatedOrder>Vous n''avez pas créé commandes aujourd''hui!!!</Routes.HaventCreatedOrder>
+  <Routes.BreaksRoute>Ruptures dans la voie</Routes.BreaksRoute>
+  <Routes.RetainingXminPOI>Retenue sur le point de minutes de x d''intérêt</Routes.RetainingXminPOI>
+  <Routes.RouteTOrderNum>La route avec le numéro de commande de voyage</Routes.RouteTOrderNum>
+  <Routes.UpdateRoute>Update itinéraire</Routes.UpdateRoute>
+  <Routes.Retention>Rétention</Routes.Retention>
+  <Tracking.Enter1>Entrez</Tracking.Enter1>
+  <Routes.NoenteredReqData>Vous n''avez pas entré les données nécessaires pour créer l''ordre!!!</Routes.NoenteredReqData>
+  <Settings.AutomaticSendReports>Automatiques, envoyer périodiquement des rapports</Settings.AutomaticSendReports>
+  <Reports.Alarms>Alarms</Reports.Alarms>
+  <Settings.SuccChangedNonWorkingDay>Réussir changé un jour chômé</Settings.SuccChangedNonWorkingDay>
+  <Settings.NoOrgU>Pas unités organisationnelles</Settings.NoOrgU>
+  <Settings.SuccessChangeNameHol>Vous avez réussi à changer le nom de la fête</Settings.SuccessChangeNameHol>
+  <Settings.CantEraseHoliday>Vous ne pouvez pas effacer ces vacances car il ya des jours chômés entrés par cette fête</Settings.CantEraseHoliday>
+  <Settings.ChangeHolidayName>Changer le nom de la fête</Settings.ChangeHolidayName>
+  <Settings.ChangeNonWorkingDay>Modification d''un jour chômé</Settings.ChangeNonWorkingDay>
+  <Settings.SureDeleteHoliday>Etes-vous sûr que vous voulez supprimer le jour férié?</Settings.SureDeleteHoliday>
+  <Settings.DeletingHoliday>Suppression de vacances</Settings.DeletingHoliday>
+  <Settings.SureDeletingNonWorking>Etes-vous sûr que vous voulez supprimer le jour chômé?</Settings.SureDeletingNonWorking>
+  <Settings.DeletingNonWorkingDay>La suppression d''un jour chômé</Settings.DeletingNonWorkingDay>
+  <Settings.Holidays>Fêtes</Settings.Holidays>
+  <Settings.TypeOfHoliday>Type de vacances</Settings.TypeOfHoliday>
+  <Settings.SquareColor>Carré de couleur</Settings.SquareColor>
+  <Settings.TypeOfDay>Type de jour</Settings.TypeOfDay>
+  <Settings.NameOfTheDay>Nom de la journée</Settings.NameOfTheDay>
+  <Settings.PastKm>Kilomètres passés</Settings.PastKm>
+  <Settings.EnterNameForHoliday>Entrez le nom de vacances</Settings.EnterNameForHoliday>
+  <Settigns.SelectDate>Choisissez une date</Settigns.SelectDate>
+  <Settings.ClickSquareChooseColor>Cliquez sur le carré de choisir la couleur</Settings.ClickSquareChooseColor>
+  <Settings.AddNonWorkingDay>Ajout d''un jour chômé</Settings.AddNonWorkingDay>
+  <Settings.NonWorkingDays>Jours chômés</Settings.NonWorkingDays>
+  <Settings.AddingTypeHoliday>Ajout d''un type de vacances</Settings.AddingTypeHoliday>
+  <Settings.EnterNameHolidayType>Entrez le nom pour le type de vacances</Settings.EnterNameHolidayType>
+  <Settings.TheDayIs>La journée est</Settings.TheDayIs>
+  <Settings.HolidayIs>Vacances est</Settings.HolidayIs>
+  <Settings.Holiday>Fête</Settings.Holiday>
+  <Settings.NonWorkingForCompany>Jour non ouvrable pour l''entreprise</Settings.NonWorkingForCompany>
+  <Settings.EnterThisDateAs>Vous souhaitez entrer cette date comme un</Settings.EnterThisDateAs>
+  <Settings.DayNameEnter>Entrez le nom de la journée</Settings.DayNameEnter>
+  <Settings.DateChooseIs>La date que vous avez choisie est</Settings.DateChooseIs>
+  <Settings.ListOfNonWorkingDays>Liste des jours chômés</Settings.ListOfNonWorkingDays>
+  <Settigns.DaysAddedAdmin>Jours ajoutées à l''administrateur</Settigns.DaysAddedAdmin>
+  <Settings.InsertSpeedOver>Entrer la vitesse à surmonter</Settings.InsertSpeedOver>
+  <Settings.Incorrectpass>Mot de passe incorrect réessayez</Settings.Incorrectpass>
+  <Settings.VaildPassSucAlert>Le mot de passe est valide et l''alerte a été ajouté avec succès</Settings.VaildPassSucAlert>
+  <Settings.InsertRetTime>Insérez le temps de rétention</Settings.InsertRetTime>
+  <Settings.SelectPOI2>Sélectionnez les points d''intérêt</Settings.SelectPOI2>
+  <Settings.SelectAlert1>Vous devez sélectionner ce que vous voulez entrer alarme</Settings.SelectAlert1>
+  <Settings.InsertPass>Insérez votre mot de passe</Settings.InsertPass>
+  <Message>Un message</Message>
+  <Settings.SMS>SMS</Settings.SMS>
+  <Settings.ConfSMS>Confirmation de SMS</Settings.ConfSMS>
+  <Settings.AvailableFor1>Disponible pour</Settings.AvailableFor1>
+  <Settings.InsertAler>Insérez alerte pour</Settings.InsertAler>
+  <Settings.SelectExitGeoF>Sélectionnez geofence de sortie</Settings.SelectExitGeoF>
+  <Settings.SelectEnterGeoF>Sélectionnez entrer geofence</Settings.SelectEnterGeoF>
+  <Settings.minutes>minutes</Settings.minutes>
+  <Settings.ListAlertsVeh>Liste des alertes pour tous les véhicules</Settings.ListAlertsVeh>
+  <Login.PRo>PRO</Login.PRo>
+  <Comming.Soon>Bientôt Disponible</Comming.Soon>
+  <Panorama.VideoPresentation>Vidéo de présentation de votre flotte</Panorama.VideoPresentation>
+  <Panorama.Channel>Canal Panorama</Panorama.Channel>
+  <Tracking.FromUser>à partir de l''utilisateur</Tracking.FromUser>
+  <Tracking.FifthPause>Cinquième pause</Tracking.FifthPause>
+  <Tracking.FourthPause>Quatrième pause</Tracking.FourthPause>
+  <Tracking.ThirdPause>Troisième pause</Tracking.ThirdPause>
+  <Tracking.SecondtPause>Deuxième pause</Tracking.SecondtPause>
+  <Tracking.FirstPause>Première pause</Tracking.FirstPause>
+  <Tracking.ThirdUser>Troisième utilisateur</Tracking.ThirdUser>
+  <Tracking.SecondUser>Deuxièmement utilisateur</Tracking.SecondUser>
+  <Tracking.FirstUser>Premier mode d''</Tracking.FirstUser>
+  <Tracking.RetentionTimeLocation>Temps de rétention par emplacement</Tracking.RetentionTimeLocation>
+  <Tracking.BeginningOrder>Début de l''ordre</Tracking.BeginningOrder>
+  <Report.LostSatelite>perdu satelites</Report.LostSatelite>
+  <Report.InReqDayVehHave>Dans la journée le véhicule ont demandé</Report.InReqDayVehHave>
+  <Reports.TravelDistance>Le véhicule dans le délai requis est de pompiers et a parcouru une distance de</Reports.TravelDistance>
+  <Reports.DRNOSatelite>Pour la journée a prié le véhicule a perdu satellites!!!</Reports.DRNOSatelite>
+  <Reports.BWTime1>Au-delà du temps de travail</Reports.BWTime1>
+  <Reports.InWTime1>Еn temps de travail</Reports.InWTime1>
+  <Tracking.CurrentYear>Année en cours</Tracking.CurrentYear>
+  <Tracking.NoVeh>Vous n''avez pas encore sélectionné des véhicules!!!</Tracking.NoVeh>
+  <Tracking.Emails>E-mails</Tracking.Emails>
+  <Tracking.SelectOrg.Unit>Sélectionnez org. unité</Tracking.SelectOrg.Unit>
+  <Tracking.SelectVeh>Sélectionner véhicule</Tracking.SelectVeh>
+  <Tracking.AllVehCompany>Tous les véhicules de l''entreprise</Tracking.AllVehCompany>
+  <Tracking.VehInOrgU>Véhicules en unité organisationnelle</Tracking.VehInOrgU>
+  <Tracking.OneVehicle>Un véhicule</Tracking.OneVehicle>
+  <Tracking.SelectOption>Sélectionnez l''option</Tracking.SelectOption>
+  <Tracking.GroupOFAlerts>Groupes pour les alertes</Tracking.GroupOFAlerts>
+  <Tracking.Exit>Sortie</Tracking.Exit>
+  <Tracking.AlertFor>Alerte pour</Tracking.AlertFor>
+  <Reports.beyondworktime>au-delà du temps de travail</Reports.beyondworktime>
+  <Reports.inworktime>en temps de travail</Reports.inworktime>
+  <Reports.POINotFound>Aucun élément d''intérêt trouvé</Reports.POINotFound>
+  <Reports.InWTime>en t. de travail</Reports.InWTime>
+  <Reports.UserNotFound>Utilisateur introuvable</Reports.UserNotFound>
+  <Reports.Browser>Explorateur</Reports.Browser>
+  <Reports.BWTime>Au-delà du t.travail</Reports.BWTime>
+  <Reports.IPaddress>IP adresse</Reports.IPaddress>
+  <Reports.DrivingOWK>Fonctionne avec la plupart pendant la conduite hors-temps</Reports.DrivingOWK>
+  <Reports.TotalDrivingOutSideWT>Durée totale de conduite en dehors des heures de travail</Reports.TotalDrivingOutSideWT>
+  <Reports.TotalDriving>Durée totale du temps de conduite</Reports.TotalDriving>
+  <Reports.notVisitedPOI>pas visité encore une fois!!!</Reports.notVisitedPOI>
+  <Reports.Viewed>Consulté</Reports.Viewed>
+  <Reports.Log>Journaux de rapport</Reports.Log>
+  <Chart.Entirely>Entièrement</Chart.Entirely>
+  <Chart.Hours>heures</Chart.Hours>
+  <Chart.Periods>Périodes</Chart.Periods>
+  <stanatvozac>Conducteur</stanatvozac>
+  <zadnavrata>Porte arrière</zadnavrata>
+  <stranicnavrata>Porte latérale</stranicnavrata>
+  <prednadesna>Porte avant droite</prednadesna>
+  <prednaleva>Porte avant gauche</prednaleva>
+  <Settings.AlarmPause>Pause</Settings.AlarmPause>
+  <Settings.AlarmStayOutOfLocation>Rester hors du lieu</Settings.AlarmStayOutOfLocation>
+  <Settings.AlarmUnOrdered>Unordered</Settings.AlarmUnOrdered>
+  <Reports.EnterLeastOthCost>Entrez au moins une composante des autres charges !!!</Reports.EnterLeastOthCost>
+  <Reports.EnterLeastComp>Entrez au moins un composant du service !!!</Reports.EnterLeastComp>
+  <Reports.AlarmReport>Rapport alarmes</Reports.AlarmReport>
+  <Reports.Costs>Coûts</Reports.Costs>
+  <Reports.EnterDescOthCost>Entrez une description du solde du coût !!!</Reports.EnterDescOthCost>
+  <Reports.EnterAmountOthCost>Entrez le montant des autres charges !!!</Reports.EnterAmountOthCost>
+  <Reports.EnterAmount>Entrez le montant du coût !!!</Reports.EnterAmount>
+  <Reports.SuccAddCost>Vous venez d''ajouter le coût !!!</Reports.SuccAddCost>
+  <Reports.SuccAddOthCost>Vous venez d''ajouter d''autres frais !!!</Reports.SuccAddOthCost>
+  <Reports.SuccAddServ>Vous venez d''ajouter le coût des services !!!</Reports.SuccAddServ>
+  <Reports.SuccAddFuel>Coût succès supplémentaire de carburant !!!</Reports.SuccAddFuel>
+  <Reports.NotSelCost>Vous n''avez sélectionné aucun élément de coût !!!</Reports.NotSelCost>
+  <Reports.AlreadyCost>Type déjà entrés de frais</Reports.AlreadyCost>
+  <Reports.EnterNewCostType>Entrez un nouveau type de coût</Reports.EnterNewCostType>
+  <Reports.AddingCost>Ajout coût</Reports.AddingCost>
+  <Reports.AddingNewCost>Ajout d''un nouveau type de coût</Reports.AddingNewCost>
+  <Reports.ChooseCost>Sélectionnez frais</Reports.ChooseCost>
+  <Route.Miles>miles</Route.Miles>
+  <Settings.VehicleAlreadyCode>Il existe déjà un véhicule avec ce code, veuillez saisir un autre code.</Settings.VehicleAlreadyCode>
+  <Settings.AlreadyCodeEmployee>Il ya déjà un employé de ce code, veuillez changer le code.</Settings.AlreadyCodeEmployee>
+  <Reports.CostsFor>Les coûts pour</Reports.CostsFor>
+  <Reports.ReportFor>Rapporter des</Reports.ReportFor>
+  <Reports.EnterAmountCost>Entrez le montant du coût</Reports.EnterAmountCost>
+  <Reports.ChCostFor>Variation du coût</Reports.ChCostFor>
+  <Reports.ChOthCost>Changez le coût restant</Reports.ChOthCost>
+  <Reports.CustomCost>Coût personnalisée</Reports.CustomCost>
+  <Reports.EnterNewComp>Entrez un nouveau composant</Reports.EnterNewComp>
+  <Reports.EnterServCost>Entrez le montant du coût du service !!!</Reports.EnterServCost>
+  <Reports.EnterDescServ>Entrez une description du service !!!</Reports.EnterDescServ>
+  <Reports.ChServCost>Modification du coût des services</Reports.ChServCost>
+  <Reports.AlreadyComponent>Déjà entré composante</Reports.AlreadyComponent>
+  <Reports.AddNewComponent>L''ajout du nouveau composant</Reports.AddNewComponent>
+  <Reports.NoService>Dans la gamme datetime sélectionné le véhicule n''a pas fourni des services !!!</Reports.NoService>
+  <Settings.AlertsEmailHaveTo>Vous devez entrer courriel ou un numéro de téléphone pour le service SMS.</Settings.AlertsEmailHaveTo>
+  <Reports.EnterFuelCost>Entrez le montant du coût du carburant !!!</Reports.EnterFuelCost>
+  <Reports.EnterFuelSupply>Entrez l''alimentation en carburant !!!</Reports.EnterFuelSupply>
+  <Reports.KmDifferent>est radicalement différente de la valeur du compteur kilométrique calculée par GPS</Reports.KmDifferent>
+  <Reports.KmOdometer>La valeur que vous avez entré dans le champ de l'odomètre</Reports.KmOdometer>
+  <Reports.SureKm>Etes-vous sûr que le coût est constitué de</Reports.SureKm>
+  <Reports.Warning>Avertissement</Reports.Warning>
+  <Reports.AlreadyExecutor>Déjà entré exécuteur</Reports.AlreadyExecutor>
+  <Fm.NoFuel>Dans l''intervalle de temps sélectionné dans le véhicule sans le combustible !!!</Fm.NoFuel>
+  <Reports.Invoice>Facture</Reports.Invoice>
+  <Reports.Cash>Argent</Reports.Cash>
+  <Reports.EnterNewExecutor>Entrez nouvel exécutif</Reports.EnterNewExecutor>
+  <Reports.AddNewExecutor>Ajout d''un nouvel exécutif</Reports.AddNewExecutor>
+  <Reports.ReqFields>Les champs obligatoires sont indiqués avec</Reports.ReqFields>
+  <Reports.PrevFuel>État antérieur de carburant</Reports.PrevFuel>
+  <Reports.FuelSupplies>Les réserves de carburant</Reports.FuelSupplies>
+  <Reports.ChFuelCost>Modification du coût du carburant</Reports.ChFuelCost>
+  <Reports.Odometer>Kilométrage</Reports.Odometer>
+  <Reports.OtherCostsReport>Signaler les autres coûts</Reports.OtherCostsReport>
+  <Reports.SummaryCostReport>Résumé du rapport sur ​​les coûts</Reports.SummaryCostReport>
+  <Reports.ServiceReport>Rapport service</Reports.ServiceReport>
+  <Reports.Executor>Acteur</Reports.Executor>
+  <Reports.TermsPayment>Paiement</Reports.TermsPayment>
+  <Reports.Employee>Employé</Reports.Employee>
+  <Reports.Su>Di</Reports.Su>
+  <Reports.Sa>Sa</Reports.Sa>
+  <Reports.Fr>Ve</Reports.Fr>
+  <Reports.Th>Je</Reports.Th>
+  <Reports.We>Me</Reports.We>
+  <Reports.Tu>Ma</Reports.Tu>
+  <Reports.Mo>Lu</Reports.Mo>
+  <Reports.FromPrevRec>de record précédent</Reports.FromPrevRec>
+  <Reports.NoPass>Nombre de passagers</Reports.NoPass>
+  <Reports.TaxiState>Etat de taximètre</Reports.TaxiState>
+  <Reports.TimeFromPT>Temps écoulé depuis la précédente tournée</Reports.TimeFromPT>
+  <Reports.DistanceFromPT>Distance parcourue d'une tournée précédente</Reports.DistanceFromPT>
+  <Reports.DistanceTooltip>Distance parcourue en tournée</Reports.DistanceTooltip>
+  <Reports.DistanceTooltip1>(Total - Y compris taximètre - Hors taximètre)</Reports.DistanceTooltip1>
+  <Reports.DurationTooltip>Durée de la visite</Reports.DurationTooltip>
+  <Reports.DurationTooltip1>(Total - Temps de repos en tournée)</Reports.DurationTooltip1>
+  <Reports.TaximeterTooltip>Changer le taximètre de capteur lors de la tournée</Reports.TaximeterTooltip>
+  <Reports.PassengersTooltip>Modifiez les passagers du capteur lors de la tournée</Reports.PassengersTooltip>
+  <Reports.CostTooltip>Prix ​​de la visite</Reports.CostTooltip>
+  <Reports.CostTooltip1>Prix ​​de la visite en termes de distance à parcourir avec taximètre</Reports.CostTooltip1>
+  <Reports.Tooltip1>Nombre de visites</Reports.Tooltip1>
+  <Reports.Tooltip2>Distance totale parcourue en visites</Reports.Tooltip2>
+  <Reports.Tooltip3>Distance totale passée inclus taximètre</Reports.Tooltip3>
+  <Reports.Tooltip4>Distance totale parcourue à l'exclusion taximètre</Reports.Tooltip4>
+  <Reports.Tooltip5>Distance totale parcourue entre visites</Reports.Tooltip5>
+  <Reports.Tooltip6>Durée totale des visites</Reports.Tooltip6>
+  <Reports.Tooltip7>Durée totale debout dans toutes les visites</Reports.Tooltip7>
+  <Reports.Tooltip8>Le coût total de toutes les visites en fonction de la distance à parcourir avec taximètre</Reports.Tooltip8>
+  <Reports.Tooltip9>Le coût total de toutes les visites en termes de distance parcourue à l'exclusion taximètre</Reports.Tooltip9>
+  <Reports.Tooltip10>Le coût total de toutes les visites en fonction de la distance totale parcourue divisée par la distance totale parcourue</Reports.Tooltip10>
+  <Reports.Tooltip11>Distance totale parcourue aussi occupé passive</Reports.Tooltip11>
+  <Reports.Tooltip12>Le temps total passé passivement occupé</Reports.Tooltip12>
+  <Reports.Tooltip1_>Le temps total passé entre toutes les visites</Reports.Tooltip1_>
+  <Reports.Tooltip2_>Distance totale passé entre toutes les visites</Reports.Tooltip2_>
+  <Reports.Tooltip5_>Le coût total de toutes les visites</Reports.Tooltip5_>
+  <Reports.Tooltip6_>Le coût total de toutes les visites en fonction de la distance totale parcourue, y compris taximètre</Reports.Tooltip6_>
+  <Reports.Tooltip3_>Durée de toutes les visites</Reports.Tooltip3_>
+  <Reports.Tooltip31_>(Total - Temps de repos dans toutes les visites)</Reports.Tooltip31_>
+  <Reports.Tooltip4_>Distance parcourue toutes les visites</Reports.Tooltip4_>
+  <Reports.BetweenTours>entre les deux tours</Reports.BetweenTours>
+  <Reports.InTerms1>en fonction de la distance de passé au total</Reports.InTerms1>
+  <Reports.InTerms2>en termes de distance au-delà totale avec taximètre sur</Reports.InTerms2>
+  <Tracking.rpm>RPM</Tracking.rpm>
+  <Tracking.Temp>Température</Tracking.Temp>
+  <Settings.SuccEditedWorkTime>Réussir changé le temps de travail.</Settings.SuccEditedWorkTime>
+  <Settings.EditTimeAlreadyCombination>Vous ne pouvez pas choisir ce jour et ce changement parce qu''il ya déjà ce genre de temps de travail, veuillez choisir une autre combinaison.</Settings.EditTimeAlreadyCombination>
+  <Settings.ClubCardAlreadyAllowed>Cette carte a déjà été autorisé pour cet employé, veuillez en choisir un autre</Settings.ClubCardAlreadyAllowed>
+  <Settings.DeleteAllowClubCardEmployee>Suppression d''allocation pour carte du club</Settings.DeleteAllowClubCardEmployee>
+  <Settings.NoClubCardForEmployee>Il n''y a pas de clubcards autorisées pour cet employé</Settings.NoClubCardForEmployee>
+  <Settings.ChooseClubCard>Choisissez clubcard</Settings.ChooseClubCard>
+  <Settings.DeleteAllowCardQuestion>tes-vous sûr de vouloir supprimer l''allocation pour cette carte pour cet employé?</Settings.DeleteAllowCardQuestion>
+  <Settings.AddClubCardAllowence>Ajout de la carte du club pour les employés</Settings.AddClubCardAllowence>
+  <Tracking.CodePopUp>Code</Tracking.CodePopUp>
+  <Settings.PasswordMatch>Match de passe</Settings.PasswordMatch>
+  <Settings.EnterLastName>S''il vous plaît entrez le nom de famille!</Settings.EnterLastName>
+  <Settings.EnterName>S''il vous plaît entrer un nom!</Settings.EnterName>
+  <Settings.LastName>Nom de famille</Settings.LastName>
+  <Settings.PasswordNewPasswordNew>Nouveau</Settings.PasswordNewPasswordNew>
+  <Settings.OldPasswordForm>Ancien mot de passe</Settings.OldPasswordForm>
+  <Settings.RepeatPasswordOnce>Répéter</Settings.RepeatPasswordOnce>
+  <Settings.OldPasswordWrong>Ancien mot de passe est erroné</Settings.OldPasswordWrong>
+  <Settings.NewPasswordDontMatch>Champs de mot de passe ne correspondent pas</Settings.NewPasswordDontMatch>
+  <Settings.NewPasswordRepeat>S''il vous plaît répéter le nouveau mot de passe</Settings.NewPasswordRepeat>
+  <Settings.NewPasswordMust>S''il vous plaît entrez le nouveau mot de passe</Settings.NewPasswordMust>
+  <Settings.OldPasswordMust>S''il vous plaît entrez l''ancien mot de passe</Settings.OldPasswordMust>
+  <Settings.SnoozeRepetition>Snooze(répétition du son)</Settings.SnoozeRepetition>
+  <Settings.ChooseZoneOrPoint>Choisissez zone ou le point</Settings.ChooseZoneOrPoint>
+  <acumulatorPowerSupplyInterruption>Batterie interruption de l''alimentation</acumulatorPowerSupplyInterruption>
+  <Settings.ChangeAlert>Changer alerter</Settings.ChangeAlert>
+  <Settings.TypeOfAlert>Type d''alerte</Settings.TypeOfAlert>
+  <Settings.DelAlert>Etes-vous sûr que vous voulez supprimer cette alerte?</Settings.DelAlert>
+  <Settings.AlertDeleteQuestion>Suppression d''alerte</Settings.AlertDeleteQuestion>
+  <Settings.EnterSMS>S''il vous plaît entrez le numéro de sms / numéros</Settings.EnterSMS>
+  <Settings.AlarmDefect>Défaut</Settings.AlarmDefect>
+  <Settings.CommonAlerts>ALERTE général</Settings.CommonAlerts>
+  <Settings.RoutesCombo>Routes</Settings.RoutesCombo>
+  <Settings.NoRepetition>Pas de répétition</Settings.NoRepetition>
+  <HalfHourNoDataIgnON>Plus de 30 minutes sans données et ign = on</HalfHourNoDataIgnON>
+  <VehicleDefect>Défectueuse du véhicule</VehicleDefect>
+  <NoRFIDVehicle>L''''utilisation d''''un véhicule sans RFID</NoRFIDVehicle>
+  <unauthorizedUseVehicle>L''''utilisation non autorisée d''''un véhicule</unauthorizedUseVehicle>
+  <agreement>Accord</agreement>
+  <polnomLicense>Procuration</polnomLicense>
+  <greenCard>Carte verte</greenCard>
+  <service>Service</service>
+  <regExpire>Immatriculation expirée</regExpire>
+  <leaveRoute>En quittant la route</leaveRoute>
+  <stayMoreThanAllow>Rétention supérieure à celle permise</stayMoreThanAllow>
+  <unOrdered>Non ordonnée</unOrdered>
+  <visitPOI>La visite d''''un Point d''''intérêt</visitPOI>
+  <enterZone>Saisie d''''une zone</enterZone>
+  <suddenBraking>Freinage brusque</suddenBraking>
+  <fuelCap>Bouchon de réservoir</fuelCap>
+  <stayOutOfLocat>Rester en dehors de l''''emplacement</stayOutOfLocat>
+  <assistance>Assistance</assistance>
+  <speedExcess>Dépasser la limite de vitesse</speedExcess>
+  <leaveZone>Laissant une zone</leaveZone>
+  <acumulator>Batterie</acumulator>
+  <vehicleAlarm>Alarme du véhicule</vehicleAlarm>
+  <Settings.Sound>Son</Settings.Sound>
+  <Settings.AlarmNoRFIDVehicle>L''utilisation d''un véhicule sans RFID</Settings.AlarmNoRFIDVehicle>
+  <Settings.AlarmUnauthorizedUseVehicle>L''utilisation non autorisée d''un véhicule</Settings.AlarmUnauthorizedUseVehicle>
+  <Settings.AlarmAgreement>Accord</Settings.AlarmAgreement>
+  <Settings.AlarmPolnomLicense>Procuration</Settings.AlarmPolnomLicense>
+  <Settings.AlarmGreenCard>Carte verte</Settings.AlarmGreenCard>
+  <Settings.AlarmService>Service</Settings.AlarmService>
+  <Settings.AlarmRegExpire>Immatriculation expirée</Settings.AlarmRegExpire>
+  <Settings.AlarmLeaveRoute>En quittant la route</Settings.AlarmLeaveRoute>
+  <Settings.AlarmStayMoreThanAllowed>Rétention supérieure à celle permise</Settings.AlarmStayMoreThanAllowed>
+  <Settings.30MinNoDataIgnON>30 minutes pas de données, moteur ON</Settings.30MinNoDataIgnON>
+  <Settings.AlarmVisitPOI>La visite d''un Point d''intérêt</Settings.AlarmVisitPOI>
+  <Settings.AlarmLeaveZone>Laissant une zone</Settings.AlarmLeaveZone>
+  <Settings.AlarmEnterZone>Saisie d''une zone</Settings.AlarmEnterZone>
+  <Settings.AlarmSpeedExcess>Dépasser la limite de vitesse</Settings.AlarmSpeedExcess>
+  <Settings.AlarmSuddenBraking>Freinage brusque</Settings.AlarmSuddenBraking>
+  <Settings.AlarmFuelCap>Bouchon de réservoir</Settings.AlarmFuelCap>
+  <Settings.AlarmVehicle>Alarme du véhicule</Settings.AlarmVehicle>
+  <Settings.AlarmAcumulator>Batterie</Settings.AlarmAcumulator>
+  <Settings.AlarmAssistance>Assistance</Settings.AlarmAssistance>
+  <Settings.AlarmPanic>Bouton de panique</Settings.AlarmPanic>
+  <Settings.Alerts>Alertes</Settings.Alerts>
+  <Settings.AddAlerts>Ajout d''alertes</Settings.AddAlerts>
+  <Settings.EditLicenseSucc>Changé avec succès l''autorisation pour cet utilisateur pour ce véhicule.</Settings.EditLicenseSucc>
+  <Settings.SuccDeletedLicense>Vous avez supprimé avec succès l''autorisation pour cet utilisateur.</Settings.SuccDeletedLicense>
+  <Settings.AlreadyLicenseUsed>Il existe déjà une licence pour ce véhicule et pour cet utilisateur</Settings.AlreadyLicenseUsed>
+  <Settings.LicenseAddedSucc>Entré avec succès l''autorisation d''utiliser le véhicule</Settings.LicenseAddedSucc>
+  <Settings.CurrentSituation>Situation actuelle</Settings.CurrentSituation>
+  <Settings.DeleteClubCard>Suppression de la carte du club</Settings.DeleteClubCard>
+  <Settings.ClubCards>Cartes de club</Settings.ClubCards>
+  <Settings.CardChangeSucc>La carte a été modifié avec succès!</Settings.CardChangeSucc>
+  <Settings.ClubCardSuccAdded>Vous avez ajouté une nouvelle carte!</Settings.ClubCardSuccAdded>
+  <Settings.ClubCardNameInUse>Il existe déjà une carte de ce nom, s''il vous plaît entrez un nom différent!</Settings.ClubCardNameInUse>
+  <Settings.ClubCardNameMust>S''il vous plaît le nom du type de la carte!</Settings.ClubCardNameMust>
+  <Settings.ChangeClubCardTitle>Modification de la carte club</Settings.ChangeClubCardTitle>
+  <Settings.DeleteClubCardQuastion>Êtes-vous sûr de vouloir supprimer cette carte du club?</Settings.DeleteClubCardQuastion>
+  <Settings.NameClubCard>Nom de la carte club</Settings.NameClubCard>
+  <Settings.AddNewClubCard>Ajout de carte de nouveau club</Settings.AddNewClubCard>
+  <Tracking.MsgChancheGFence>Cliquez sur le GeoFence d''apporter des modifications et après ce clic</Tracking.MsgChancheGFence>
+  <Tracking.NotEnteredNotice>Vous n''avez pas entré un avis!!!</Tracking.NotEnteredNotice>
+  <Tracking.Alarm>Alarme</Tracking.Alarm>
+  <Tracking.Unread>Non lus</Tracking.Unread>
+  <Tracking.Read>Lire</Tracking.Read>
+  <Tracking.Administrative>Administratif</Tracking.Administrative>
+  <Tracking.Suburb>Banlieue</Tracking.Suburb>
+  <Tracking.Code>Code</Tracking.Code>
+  <Tracking.City>Ville</Tracking.City>
+  <Tracking.Country>Pays</Tracking.Country>
+  <Tracking.Icon>Icône</Tracking.Icon>
+  <Tracking.Class>Classe</Tracking.Class>
+  <Tracking.Type>Type</Tracking.Type>
+  <Tracking.WrongFormat>Mauvais format!!!</Tracking.WrongFormat>
+  <Tracking.DelGeoFence>Voulez-vous supprimer ce GeoFence?</Tracking.DelGeoFence>
+  <Settings.Gas>Grisou</Settings.Gas>
+  <Settings.Diesel>Diesel</Settings.Diesel>
+  <Settings.Petrol>essence</Settings.Petrol>
+  <alarmpanic>Bouton de panique</alarmpanic>
+  <Fm.Description>Description</Fm.Description>
+  <Settings.CantGroupDelete>Vous ne pouvez pas sélectionner le groupe que vous souhaitez supprimer, s''il vous plaît sélectionner un autre groupe.</Settings.CantGroupDelete>
+  <Reports.UngroupedVehicles>Véhicules non groupés</Reports.UngroupedVehicles>
+  <Settings.ClickToEditZone>Cliquez sur la zone à modifier .</Settings.ClickToEditZone>
+  <Reports.OrgUnit>Unité d''''organisation</Reports.OrgUnit>
+  <Reports.UngroupedVeh>Véhic. non group.</Reports.UngroupedVeh>
+  <Reports.TotalTime>Temps total</Reports.TotalTime>
+  <Reports.AVGSpeed>Vitesse moyenne</Reports.AVGSpeed>
+  <Reports.NOSpeedOver>Il n''ya pas de vitesse sur ce jour-là !!!</Reports.NOSpeedOver>
+  <Reports.Loading1>C H A R G E M E  N T . .</Reports.Loading1>
+  <Settings.MenuLineupQuestion>Êtes-vous sûr de vouloir réinitialiser la programmation du menu dans le suivi en direct?</Settings.MenuLineupQuestion>
+  <Settings.DefaultValuesLTRMenu>Les valeurs par défaut pour le menu</Settings.DefaultValuesLTRMenu>
+  <Settings.ResetLiveMenu>Vous avez réussi à réinitialiser la programmation du menu suivi en direct.</Settings.ResetLiveMenu>
+  <Routes.Today>Aujourd''hui</Routes.Today>
+  <Routes.DeleteOrderQuestion>Voulez-vous supprimer l''ordre?</Routes.DeleteOrderQuestion>
+  <Routes.Select>Sélectionnez</Routes.Select>
+  <Routes.SearchOrdersTitle>Ordres de recherche</Routes.SearchOrdersTitle>
+  <Routes.Search>Rechercher</Routes.Search>
+  <Routes.To>à</Routes.To>
+  <Routes.From>De</Routes.From>
+  <Routes.SearchOrderBy>Ordres de recherche par</Routes.SearchOrderBy>
+  <Routes.OrdersFutureDate>Les ordres avec date ultérieure</Routes.OrdersFutureDate>
+  <Routes.OrdersInProgress>Commandes en cours</Routes.OrdersInProgress>
+  <Routes.NewOrder>Nouvel ordre</Routes.NewOrder>
+  <Routes.Orders>Ordres</Routes.Orders>
+  <Routes.EndOrder>Fin de l''ordre</Routes.EndOrder>
+  <Routes.OrderNumber>Numéro de commande</Routes.OrderNumber>
+  <Routes.Idling>Мarche au ralenti</Routes.Idling>
+  <Routes.Departure>Départ</Routes.Departure>
+  <Routes.AlarmNumber>Le numéro d''alarme</Routes.AlarmNumber>
+  <Routes.NumberOfOrder>Numéro d''ordre</Routes.NumberOfOrder>
+  <Routes.ParametarsFSearch>Paramètres de la recherche</Routes.ParametarsFSearch>
+  <Routes.Overview>Vue d''ensemble</Routes.Overview>
+  <Routes.AllOrders>Toutes les commandes</Routes.AllOrders>
+  <Routes.Searches>Recherches</Routes.Searches>
+  <Routes.Report>Rapport</Routes.Report>
+  <Routes.Message>Message...</Routes.Message>
+  <Routes.CreatedBy>Créé par</Routes.CreatedBy>
+  <Routes.Start>Commencer</Routes.Start>
+  <Routes.Mod>Modifier</Routes.Mod>
+  <Routes.Arrival>Arrivée</Routes.Arrival>
+  <Routes.MOrder>Modifier commande</Routes.MOrder>
+  <Routes.PrintingOrder>l''''ordre d''''impression</Routes.PrintingOrder>
+  <Routes.User>Utilisateur</Routes.User>
+  <Routes.Print>Imprimer</Routes.Print>
+  <Routes.LocationToVisit>Lieux à visiter</Routes.LocationToVisit>
+  <Routes.PreparedBy>Préparé par</Routes.PreparedBy>
+  <Routes.DateOfProduction>Date de production</Routes.DateOfProduction>
+  <Routes.TravelOrderNumber>Numéro de commande voyage</Routes.TravelOrderNumber>
+  <Settings.DeletingAllowedDriverQuestion>Êtes-vous sûr de vouloir supprimer cette allocation pour ce pilote?</Settings.DeletingAllowedDriverQuestion>
+  <Settings.DeletingAllowedDriver>Suppression conducteur du véhicule autorisé</Settings.DeletingAllowedDriver>
+  <Routes.Signature>Signature</Routes.Signature>
+  <Tracking.Start>Commencer</Tracking.Start>
+  <Routes.TodaysOrders>Aujourd''hui commandes</Routes.TodaysOrders>
+  <Routes.Delete>Effacer</Routes.Delete>
+  <Routes.Map>Carte</Routes.Map>
+  <Routes.PredefinedOrders>Commandes prédéfinies</Routes.PredefinedOrders>
+  <Routes.SelectFDriver>Sélectionnez le premier pilote</Routes.SelectFDriver>
+  <Routes.Download>Télécharger</Routes.Download>
+  <Routes.ExportToExcel>Exporter vers Excel</Routes.ExportToExcel>
+  <Routes.DeleteLocationQ>Voulez-vous supprimer l''emplacement</Routes.DeleteLocationQ>
+  <Routes.Poi>Point d`intérêt</Routes.Poi>
+  <Routes.Rbr>Aucun</Routes.Rbr>
+  <Routes.AddNewLocation>Ajouter un nouvel emplacement</Routes.AddNewLocation>
+  <Routes.Add>Ajouter</Routes.Add>
+  <Routes.SelectOne>Sélectionnez l''une</Routes.SelectOne>
+  <Routes.SelectLocation>Sélectionnez l''emplacement</Routes.SelectLocation>
+  <Tracking.ExportToExcel>Exporter vers Excel</Tracking.ExportToExcel>
+  <Tracking.OrgU>Unité d''organisation</Tracking.OrgU>
+  <Tracking.Created>Etabli</Tracking.Created>
+  <Tracking.OrderNum>Numéro de compte</Tracking.OrderNum>
+  <Tracking.Idling>La marche au ralenti</Tracking.Idling>
+  <Tracking.Departure>Départ</Tracking.Departure>
+  <Tracking.Arrival>Arrivée</Tracking.Arrival>
+  <Tracking.ONumber>Nombre ordinal</Tracking.ONumber>
+  <Tracking.Close>Fermer</Tracking.Close>
+  <Tracking.Note>Noter</Tracking.Note>
+  <Tracking.Off>Off</Tracking.Off>
+  <Tracking.On>On</Tracking.On>
+  <Tracking.Engine>Engine</Tracking.Engine>
+  <Tracking.Registration>Inscription</Tracking.Registration>
+  <Tracking.Date>Date</Tracking.Date>
+  <Tracking.BasicInformation>l''information de base</Tracking.BasicInformation>
+  <Tracking.AlarmType>Type d''alarme</Tracking.AlarmType>
+  <Reports.NoDataDay>Aucune donnée sur le jour souhaité !!!</Reports.NoDataDay>
+  <Reports.SelRepName>Vous n''avez pas entrer le nom du rapport</Reports.SelRepName>
+  <Reports.SelNoData>Vous n''avez pas sélectionné de données</Reports.SelNoData>
+  <Reports.SuccGenReport>Votre rapport a été généré avec succès</Reports.SuccGenReport>
+  <Reports.SuccDelReport>Votre rapport a été supprimé avec succès</Reports.SuccDelReport>
+  <Reports.SuccChReport>Votre rapport a été modifié avec succès</Reports.SuccChReport>
+  <Reports.SureDeleteRep>Êtes-vous sûr de vouloir supprimer ce rapport?</Reports.SureDeleteRep>
+  <Reports.DeleteRep>Suppression d''un rapport</Reports.DeleteRep>
+  <Reports.ChangeRep>Changez Rapport</Reports.ChangeRep>
+  <Reports.ChangeRepData>Modifiez les données pour le rapport</Reports.ChangeRepData>
+  <Reports.ChangeRepName>Changer le nom du rapport</Reports.ChangeRepName>
+  <Reports.DataReport>Les données de rapport</Reports.DataReport>
+  <Reports.NameReport>Nom du rapport</Reports.NameReport>
+  <Reports.CreateReport>Création d''un rapport</Reports.CreateReport>
+  <Reports.SpeedOver1>Le dépassement de la vitesse sur</Reports.SpeedOver1>
+  <Report.Create>Créer</Report.Create>
+  <Report.ReportGenerator>Générateur de rapports</Report.ReportGenerator>
+  <Reports5.Days>Les 5 derniers jours</Reports5.Days>
+  <Reports4.Days>Les 4 derniers jours</Reports4.Days>
+  <Reports3.Days>Les 3 derniers jours</Reports3.Days>
+  <Reports2.Days>Les 2 derniers jours</Reports2.Days>
+  <Reports1.Day>Derniers 1 jour</Reports1.Day>
+  <Reports.AnalSpeedEx>Le dépassement de la limite de vitesse</Reports.AnalSpeedEx>
+  <Reports.AnalSpeed>Vitesse de pointe</Reports.AnalSpeed>
+  <Reports.AnalActivity>Activité</Reports.AnalActivity>
+  <Reports.VehiclePOI>Des points d''intérêts visités</Reports.VehiclePOI>
+  <Reports.OverviewV>Examiner</Reports.OverviewV>
+  <Reports.AnalDistance>Distance parcourue</Reports.AnalDistance>
+  <Reports.overview>Tableau de bord</Reports.overview>
+  <Reports.Code>Code</Reports.Code>
+  <Settings.EditLicense>Modification de l''autorisation d''utiliser des véhicules étrangers</Settings.EditLicense>
+  <Settings.DeleteAllowenceSuccess>Vous avez supprimé avec succès l''allocation pour ce véhicule</Settings.DeleteAllowenceSuccess>
+  <Settings.DeleteAllowedVehicleQuestion>Êtes-vous sûr de vouloir effacer le véhicule autorisé pour cet utilisateur?</Settings.DeleteAllowedVehicleQuestion>
+  <Settings.DeleteAllowedVehicle>Suppression véhicule autorisé</Settings.DeleteAllowedVehicle>
+  <Settings.Administrator>Administrateur</Settings.Administrator>
+  <Settings.EditSchedule>Changements Scheduler</Settings.EditSchedule>
+  <Settings.Background>Fond</Settings.Background>
+  <Settings.IdleWorking>Idle travail</Settings.IdleWorking>
+  <Settings.DelSch1>Supprimer Scheduler</Settings.DelSch1>
+  <Settings.DocumentType>Type de document</Settings.DocumentType>
+  <Settings.DelSch>Êtes-vous sûr de vouloir supprimer le planificateur?</Settings.DelSch>
+  <Settings.ArrivalDaySch>Jour d''arrivée</Settings.ArrivalDaySch>
+  <Settings.SucAddWorkTime>Vous avez ajouté avec succès le travail à temps nouveau</Settings.SucAddWorkTime>
+  <Settings.PasswordUser>Il existe déjà un utilisateur avec le même nom! tapez un nouveau nom!</Settings.PasswordUser>
+  <Settings.PasswordLatin>S''il vous plaît entrez seulement avec des alphabets latins</Settings.PasswordLatin>
+  <Settings.WorkTimeCheck>Il ya déjà des données pour ce changement et ce jour-là, s''il vous plaît de les modifier avec le bouton éditer</Settings.WorkTimeCheck>
+  <Reports.Hour>Heure</Reports.Hour>
+  <Reports.Confirm>Confirmer</Reports.Confirm>
+  <Settings.WorkTimeHolidaysCal>Tous les jours non travaillés en 2013 quel que soit leur fondement religieux et nationaux sont colorés avec</Settings.WorkTimeHolidaysCal>
+  <Settings.ChooseButton>Choisir</Settings.ChooseButton>
+  <Settings.EndDateLic>Date de fin de la licence</Settings.EndDateLic>
+  <Settings.BeginDateLic>Date de début de la licence</Settings.BeginDateLic>
+  <Settings.SureToDelete>Êtes-vous sûr de vouloir supprimer à l''aide étrangère d''immatriculation du véhicule automobile pour cet utilisateur</Settings.SureToDelete>
+  <Settings.AddOtherLicense>Ajout de la permission d''utiliser des véhicules étrangers</Settings.AddOtherLicense>
+  <Settings.DeleteOtherLicense>Effacement de licence</Settings.DeleteOtherLicense>
+  <Settings.TitleOrg>Titre</Settings.TitleOrg>
+  <Settings.LastDataGiven>Dernières données</Settings.LastDataGiven>
+  <Settings.PasswordMust>Mot de passe doit comporter au moins 6 caractères, une lettre majuscule et un caractère spécial</Settings.PasswordMust>
+  <Settings.RequiredInfo>Les informations requises sont marquées avec</Settings.RequiredInfo>
+  <Settings.UnitMeasurements>Mesures unitaires</Settings.UnitMeasurements>
+  <Settings.HoldayPrice>Prix du séjour</Settings.HoldayPrice>
+  <Settings.Night>Nuit</Settings.Night>
+  <Settings.Regular>Régulier</Settings.Regular>
+  <Settings.Tarif>Choisissez tarif</Settings.Tarif>
+  <Settings.DefaultValues>Les valeurs par défaut</Settings.DefaultValues>
+  <Settings.MoreThan>Plus que</Settings.MoreThan>
+  <Settings.LiquidUnit>Unité de liquide</Settings.LiquidUnit>
+  <Settings.CanadianDollar>Canadian Dollar, CAD</Settings.CanadianDollar>
+  <Settings.BritishPound>Livre sterling, le GBP</Settings.BritishPound>
+  <Settings.Euro>Euro, EUR</Settings.Euro>
+  <Settings.USDDolar>US dollar, USD</Settings.USDDolar>
+  <Settings.Denar>Denar Macédonien, MKD</Settings.Denar>
+  <Settings.Currency>Monnaie</Settings.Currency>
+  <Reports.Format>Format du rapport</Reports.Format>
+  <Reports.EnterIdleOver>Entrez une valeur pour "Idle" au cours de Paramètres - Paramètres généraux!</Reports.EnterIdleOver>
+  <searchbydriver>Rechercher par le conducteur</searchbydriver>
+  <Reports.NoPoiRange>Pas visité les points d''intérêt de la période en question !!!</Reports.NoPoiRange>
+  <Reports.Alias>D''informations</Reports.Alias>
+  <Settings.UnitMeasurement>Unité de mesure</Settings.UnitMeasurement>
+  <Settings.Gallons>Gallons</Settings.Gallons>
+  <Settings.Litres>Litres</Settings.Litres>
+  <Settings.PersonPhone>Personne-ressource Téléphone</Settings.PersonPhone>
+  <Reports.Weekend>Weekend</Reports.Weekend>
+  <Reports.Weekday>Јour ouvrable</Reports.Weekday>
+  <Settings.Scheduler>Planificateur</Settings.Scheduler>
+  <Settings.LastData>Les dernières données</Settings.LastData>
+  <Settings.Identification>Identification</Settings.Identification>
+  <General.Icon>Icône</General.Icon>
+  <Lang.InsertNew>Ajouter une nouvelle traduction</Lang.InsertNew>
+  <Lang.Edit>Editer</Lang.Edit>
+  <Lang.Deletequestion>Voulez-vous supprimer cette traduction?</Lang.Deletequestion>
+  <Settings.ForUser>pour l''utilisateur</Settings.ForUser>
+  <Settings.UnMarked>Non marqué</Settings.UnMarked>
+  <Settings.Marked>Marqué</Settings.Marked>
+  <Fm.AlertRegistration>Alerte d''inscription</Fm.AlertRegistration>
+  <Settings.ALlWarrants>Toutes les commandes</Settings.ALlWarrants>
+  <Settings.WarrantsFDate>Les ordres avec date ultérieure</Settings.WarrantsFDate>
+  <Settings.WarrantsInProgress>Commandes en cours</Settings.WarrantsInProgress>
+  <Settings.PredefinedWarrants>Bons de souscription prédéfinies</Settings.PredefinedWarrants>
+  <Settings.NewWarrant>Nouveau mandat</Settings.NewWarrant>
+  <Settings.Warrants>Warrants</Settings.Warrants>
+  <Settings.FleetReports1>Rapports de la flotte</Settings.FleetReports1>
+  <Settings.OtherDrivers>D''autres pilotes</Settings.OtherDrivers>
+  <Settings.SuccChanged>Modifié avec succès</Settings.SuccChanged>
+  <Settings.SuccDeleteWT>Le travail à temps supprimé avec succès!!!</Settings.SuccDeleteWT>
+  <Settings.ChangeWorkTime>Modifier le temps de travail</Settings.ChangeWorkTime>
+  <Settings.DeleteWorkTimeQuestion>Êtes-vous sûr de vouloir supprimer le temps de travail?</Settings.DeleteWorkTimeQuestion>
+  <Settings.DeleteWorkTime>Supprimer le travail à temps</Settings.DeleteWorkTime>
+  <Settings.AddWorkTime>Ajouter du temps nouveau</Settings.AddWorkTime>
+  <Settings.Shift>Déplacer</Settings.Shift>
+  <Settings.OtherVehicles>Autres véhicules</Settings.OtherVehicles>
+  <Settings.ExpiryDrivingLicense>Expiration permis de conduire international</Settings.ExpiryDrivingLicense>
+  <Settings.NextService>Intervalle d'entretien</Settings.NextService>
+  <Settings.GreenCard>Carte verte</Settings.GreenCard>
+  <Settings.ChooseToDeletePoints>Sélectionnez les éléments que vous souhaitez supprimer:</Settings.ChooseToDeletePoints>
+  <Settings.SelectPOI>Sélectionnez les éléments et le groupe dans lequel vous voulez transférer:</Settings.SelectPOI>
+  <Settings.NemaPOI>Pas de points d''intérêt pour ce groupe ...</Settings.NemaPOI>
+  <Settings.SuccSwitched>Réussi à passer.</Settings.SuccSwitched>
+  <Settings.SuccDeleted>Supprimé avec succès.</Settings.SuccDeleted>
+  <Settings.DeletedGroup>Supprimé avec succès du groupe.</Settings.DeletedGroup>
+  <Settings.AddedGroup>Vous avez joint le groupe.</Settings.AddedGroup>
+  <Settings.SwitchPOI>Commutateur POI</Settings.SwitchPOI>
+  <Settings.ChooseColor>Choisissez la couleur</Settings.ChooseColor>
+  <Settings.QuestionForDeleteGroup2>Si vous supprimez les éléments qui appartiennent à ce groupe passera automatiquement en des points non regroupés.</Settings.QuestionForDeleteGroup2>
+  <Settings.QuestionForDeleteGroup1>Êtes-vous sûr de vouloir supprimer ce groupe?</Settings.QuestionForDeleteGroup1>
+  <Settings.ChangingGroup>Changement de groupe</Settings.ChangingGroup>
+  <Settings.Action>Action</Settings.Action>
+  <Settings.NotGroupedItems>Eléments ne sont pas regroupés</Settings.NotGroupedItems>
+  <Settings.GroupSuccessfullyChanged>Groupe réussi à changer.</Settings.GroupSuccessfullyChanged>
+  <Settings.noColorName>Entrez le nom de la couleur</Settings.noColorName>
+  <Settings.noGroupName>Entrez le nom du groupe</Settings.noGroupName>
+  <Settings.SelectUser>Sélectionnez l''utilisateur</Settings.SelectUser>
+  <Settings.ThereAreNoResults>Il n''y a pas de résultats...</Settings.ThereAreNoResults>
+  <Settings.Role>Rôle</Settings.Role>
+  <Settings.TimeDisplay>Affichage de l''heure</Settings.TimeDisplay>
+  <Settings.WorkTime>Le temps de travail</Settings.WorkTime>
+  <Kluch.Goran>sdf sdfs</Kluch.Goran>
+  <Language>Langue</Language>
+  <Insert>Insérer</Insert>
+  <Kluch>Clé</Kluch>
+  <Login.Title>Faire plus avec moins</Login.Title>
+  <Login.Description>Gérer vos actifs mobiles</Login.Description>
+  <Login.Username>Nom d`utilisateur</Login.Username>
+  <Login.Password>Mot de passe</Login.Password>
+  <Login.Button>Aller</Login.Button>
+  <Login.Legal>Mentions légales</Login.Legal>
+  <Login.Privacy>Politique de confidentialité</Login.Privacy>
+  <Login.Help>Aide</Login.Help>
+  <Login.Support>Soutien</Login.Support>
+  <Login.WrongPassword>Mauvais nom d`utilisateur ou mot de passe</Login.WrongPassword>
+  <Login.ErrorMessage>Message d`erreur</Login.ErrorMessage>
+  <Login.Panorama>Panorama</Login.Panorama>
+  <Login.PanoramaGPS>Panorama GPS</Login.PanoramaGPS>
+  <Login.keepLogged>Rester connecté 14 jours</Login.keepLogged>
+  <Login.PermMenu>Vous ne disposez pas des autorisations pour ce menu!!!</Login.PermMenu>
+  <Login.BrVer1>La version de votre navigateur est</Login.BrVer1>
+  <Login.BrVer2>Pour éviter les problèmes lors de l'utilisation de notre application, S'il vous plaît mettre à jour.</Login.BrVer2>
+  <Login.BrVer3>Sincèrement, Geonet GPS</Login.BrVer3>
+  <Main.LiveTitle>Suivi en direct</Main.LiveTitle>
+  <Main.ReportsTitle>Rapports</Main.ReportsTitle>
+  <Main.SettingsTitle>Réglages</Main.SettingsTitle>
+  <Main.HelpTitle>Aide</Main.HelpTitle>
+  <Main.FleetManagement>Gestion de flotte</Main.FleetManagement>
+  <Main.FleetManagementTitle>Gestion de flotte</Main.FleetManagementTitle>
+  <Main.Logout>Déconnexion</Main.Logout>
+  <Main.Live>Suivi en direct de vos véhicules</Main.Live>
+  <Main.Reports>Analyses et rapports de vos véhicules</Main.Reports>
+  <Main.Settings>Différents paramètres de l'application du système</Main.Settings>
+  <Main.Help>Aide de l'application</Main.Help>
+  <Main.fm>Fleet Management</Main.fm>
+  <Main.fm1>Gérer votre flotte de véhicules</Main.fm1>
+  <Main.routess>Routes</Main.routess>
+  <Main.routess1>Routes, warrants, optimisation de la flotte</Main.routess1>
+  <Reports.Summary>Les rapports de synthèse</Reports.Summary>
+  <Reports.Overview>Aperçu</Reports.Overview>
+  <Reports.Sending>Envoi...</Reports.Sending>
+  <Reports.PominatoRastojanie>Passez à distance</Reports.PominatoRastojanie>
+  <Reports.PominatoRastojanie1>Distance</Reports.PominatoRastojanie1>
+  <Reports.Aktivnost>Activité</Reports.Aktivnost>
+  <Reports.MaxSpeed>Vitesse max</Reports.MaxSpeed>
+  <Reports.Speed>Vitesse</Reports.Speed>
+  <Reports.TimeMot>Durée totale en mouvement</Reports.TimeMot>
+  <Reports.TimeStand>Temps debout totale</Reports.TimeStand>
+  <Reports.AvgSpeed>Vitesse moyenne</Reports.AvgSpeed>
+  <Reports.From>De</Reports.From>
+  <Reports.To>à</Reports.To>
+  <Reports.NoTours>Nombre de visites</Reports.NoTours>
+  <Reports.DistanceTour>La distance totale dépensée par visites</Reports.DistanceTour>
+  <Reports.DistanceTour1>La distance(br)totale dépensée par visites</Reports.DistanceTour1>
+  <Reports.TotalCost>Coût total</Reports.TotalCost>
+  <Reports.AvgDuration>La durée moyenne par visite</Reports.AvgDuration>
+  <Reports.AvgNo>Nombre moyen de</Reports.AvgNo>
+  <Reports.PerTour>par visite</Reports.PerTour>
+  <Reports.PriceSpent>Prix ​​du passé</Reports.PriceSpent>
+  <Reports.AvgPrice>Prix ​​moyen par visite</Reports.AvgPrice>
+  <Reports.Choose>Choisissez</Reports.Choose>
+  <Reports.Cancel>Annuler</Reports.Cancel>
+  <Reports.ViewOnMap>Voir sur la carte</Reports.ViewOnMap>
+  <Reports.Minutes>Minutes</Reports.Minutes>
+  <Reports.ActivityOn>Activité</Reports.ActivityOn>
+  <Reports.Standing>Debout</Reports.Standing>
+  <Reports.ActivityOff>Ralenti</Reports.ActivityOff>
+  <Reports.ActiveV>Top 5 des véhicules actifs</Reports.ActiveV>
+  <Reports.PassiveV>Top 5 des véhicules passifs</Reports.PassiveV>
+  <Reports.IdlingReport>Ralenti</Reports.IdlingReport>
+  <Reports.Total1>Total des dépenses à distance</Reports.Total1>
+  <Reports.Total1_>Total des dépenses à distance</Reports.Total1_>
+  <Reports.TotalDist>Distance totale</Reports.TotalDist>
+  <Reports.TotalDistForTaxi>Dist. tot.</Reports.TotalDistForTaxi>
+  <Reports.PrivacyPolice>Politique de confidentialité</Reports.PrivacyPolice>
+  <Reports.Total2>Durée totale avec moteur sur</Reports.Total2>
+  <Reports.Total3>Durée totale avec moteur en place</Reports.Total3>
+  <Reports.Total4>Durée totale avec moteur en marche</Reports.Total4>
+  <Reports.Total5>Durée totale avec moteur hors</Reports.Total5>
+  <Reports.TotalIgnOff>D'allumage totale OFF</Reports.TotalIgnOff>
+  <Reports.Other>Autre</Reports.Other>
+  <Reports.Total2_>Durée totale avec moteur sur</Reports.Total2_>
+  <Reports.Total3_>Durée totale avec la marche au ralenti</Reports.Total3_>
+  <Reports.Total4_>Durée totale avec moteur en marche</Reports.Total4_>
+  <Reports.Total5_>Durée totale avec moteur hors</Reports.Total5_>
+  <Reports.Total6>Vitesse maximale</Reports.Total6>
+  <Reports.TotalVehicles>Nombre total de véhicules</Reports.TotalVehicles>
+  <Reports.NumVehicles>Nombre de véhicules</Reports.NumVehicles>
+  <Reports.TotalPerTrack>Nombre total de trackers personnelles</Reports.TotalPerTrack>
+  <Reports.Top10VisitPOI>Top 10 des plus visités des points d`intérêt</Reports.Top10VisitPOI>
+  <Reports.Top10VisitGF>Top 10 les plus visités geofences</Reports.Top10VisitGF>
+  <Reports.Rbr>Aucun</Reports.Rbr>
+  <Reports.POI>Point d`intérêt</Reports.POI>
+  <Reports.NoVisit>Nombre de visites</Reports.NoVisit>
+  <Reports.Registration>Numéro d'enregistrement</Reports.Registration>
+  <Reports.AllPoiVisits>Tous les points d'intérêt en visitant</Reports.AllPoiVisits>
+  <Reports.AllPoiDur>Tous les points d'intérêt selon la durée</Reports.AllPoiDur>
+  <Reports.NoData1>Pas de données</Reports.NoData1>
+  <Reports.IgnitionON>Numéro d`enregistrement</Reports.IgnitionON>
+  <Reports.IgnitionOff>Numéro d`enregistrement</Reports.IgnitionOff>
+  <Reports.StoenjeVoMesto>Permanent mis en place avec le moteur</Reports.StoenjeVoMesto>
+  <Reports.Dvizenje>Mouvement</Reports.Dvizenje>
+  <Reports.Vreme>Temps</Reports.Vreme>
+  <Reports.RecTime>L'heure de réception</Reports.RecTime>
+  <Reports.Datum>date de</Reports.Datum>
+  <Reports.PominatoVreme>durée</Reports.PominatoVreme>
+  <Reports.PominatoVreme1>durée</Reports.PominatoVreme1>
+  <Reports.StatusMotor>le statut d'allumage</Reports.StatusMotor>
+  <Reports.SummData>Les données sommaires</Reports.SummData>
+  <Reports.LoadingData>Chargement des données . . .</Reports.LoadingData>
+  <Reports.Loading>Chargement</Reports.Loading>
+  <Reports.POIs>Points d`intérêt</Reports.POIs>
+  <Reports.ShortReport>Bref rapport</Reports.ShortReport>
+  <Reports.VehcileReport>Rapports d'un véhicule</Reports.VehcileReport>
+  <Reports.ON>Tournée</Reports.ON>
+  <Reports.OFF>OFF</Reports.OFF>
+  <Reports.sDate>Date de début</Reports.sDate>
+  <Reports.eDate>Date de fin</Reports.eDate>
+  <Reports.Vehicle>Véhicule</Reports.Vehicle>
+  <Reports.sTime>l'heure de début</Reports.sTime>
+  <Reports.eTime>Grand temps de</Reports.eTime>
+  <Reports.VisitedPOI>Visité les points d'intérêt</Reports.VisitedPOI>
+  <Reports.VisitedPOIByNumber>Top 5 visité les points d`intérêt par le nombre de visites</Reports.VisitedPOIByNumber>
+  <Reports.VisitedPOIByDuration>Top 5 visité les points d`intérêt par la durée</Reports.VisitedPOIByDuration>
+  <Reports.Detail>Rapport détaillé</Reports.Detail>
+  <Reports.PastDistance>Passé à distance</Reports.PastDistance>
+  <Reports.Summary1>Résumé</Reports.Summary1>
+  <Reports.More>Plus</Reports.More>
+  <Reports.Taxi>Rapports de taxi</Reports.Taxi>
+  <Reports.TaxiTour>Signaler visites</Reports.TaxiTour>
+  <Reports.Step>étape</Reports.Step>
+  <Reports.AvgDist>Distance moyenne passé</Reports.AvgDist>
+  <Reports.EngEngOn>Engagement des véhicules avec le moteur</Reports.EngEngOn>
+  <Reports.Engagement>Engagement</Reports.Engagement>
+  <Reports.LoadPoi>Chargez tous les points d'intérêt</Reports.LoadPoi>
+  <Reports.Visits1>visites</Reports.Visits1>
+  <Reports.ComRes>Résultats de la comparaison</Reports.ComRes>
+  <Reports.Here>ici</Reports.Here>
+  <Reports.Step1>Sélectionnez un intervalle de temps qui s'appliquera à la comparaison</Reports.Step1>
+  <Reports.ComVeh>Choisissez les véhicules que vous souhaitez comparer</Reports.ComVeh>
+  <Reports.ChooseVeh>Choisissez véhicule</Reports.ChooseVeh>
+  <Reports.Step2>Choisissez les catégories sur lesquelles vous souhaitez comparer les véhicules</Reports.Step2>
+  <Reports.ComText>Si vous voulez faire une comparaison entre certains de vos véhicules, s'il vous plaît choisir: (br) ▪ (b) gamme datetime (/b) qui portera sur la comparaison; (br) ▪ Les (b) véhicules (/b) que vous voulez comparer; (br) ▪ (b) catégories (/b) sur lequel les véhicules sélectionnés seront comparés. (br) (br) Pour clic nouvelle comparaison</Reports.ComText>
+  <Reports.GeofenceEmail>le rapport Geofence</Reports.GeofenceEmail>
+  <Reports.TaxiEmail>le rapport de taxi</Reports.TaxiEmail>
+  <Reports.PoiEmail>souligne le rapport visités par ineteres</Reports.PoiEmail>
+  <Reports.ShortEmail>le rapport abrégé</Reports.ShortEmail>
+  <Reports.OverviewEmail>Rapport d'examen</Reports.OverviewEmail>
+  <Reports.DashboardEmail>le rapport de tableau de bord</Reports.DashboardEmail>
+  <Reports.FleetEmail>le rapport de la flotte</Reports.FleetEmail>
+  <Reports.DistEmail>rapport est consacrée à une distance</Reports.DistEmail>
+  <Reports.ActEmail>le rapport d'activité</Reports.ActEmail>
+  <Reports.SpeedEmail>le rapport de vitesse max</Reports.SpeedEmail>
+  <Reports.ExcEmail>rapport à surmonter la limite de vitesse</Reports.ExcEmail>
+  <Reports.IdleEmail>le rapport marche au ralenti</Reports.IdleEmail>
+  <Reports.SummTaxiEmail>le rapport de taxi résumé</Reports.SummTaxiEmail>
+  <Reports.SummTaxi>Rapport de taxi Résumé</Reports.SummTaxi>
+  <Reports.email1>Cher Monsieur ou Madame, (br) l'utilisateur</Reports.email1>
+  <Reports.email2>vous envoie un lien où vous pouvez voir</Reports.email2>
+  <Reports.email3>pour</Reports.email3>
+  <Reports.email4>pour la période allant</Reports.email4>
+  <Reports.email5>à</Reports.email5>
+  <Reports.PanoramaGPS>Panorama GPS</Reports.PanoramaGPS>
+  <Reports.VehicleReports>Rapports des véhicules</Reports.VehicleReports>
+  <Reports.Reconstruction>Reconstruction</Reports.Reconstruction>
+  <Reports.TaxiReport>Rapport taxi</Reports.TaxiReport>
+  <Reports.GeoFenceReport>Rapport GeoFence</Reports.GeoFenceReport>
+  <Reports.Analysis>Analyse</Reports.Analysis>
+  <Reports.StartDatetime>Début datetime</Reports.StartDatetime>
+  <Reports.EndDatetime>Début datetime</Reports.EndDatetime>
+  <Reports.InTime>Dans le temps</Reports.InTime>
+  <Reports.OutTime>Sur le temps</Reports.OutTime>
+  <Reports.Yesterday>Hier</Reports.Yesterday>
+  <Reports.Today>Aujourd'hui</Reports.Today>
+  <Reports.CurrentWeek>Semaine en cours</Reports.CurrentWeek>
+  <Reports.LastWeek>La semaine dernière</Reports.LastWeek>
+  <Reports.Last10Days>10 derniers jours</Reports.Last10Days>
+  <Reports.CurrentMonth>Du mois en cours</Reports.CurrentMonth>
+  <Reports.LastMonth>Mois dernier</Reports.LastMonth>
+  <Reports.Custom>Coutume</Reports.Custom>
+  <Reports.Show>Montrer</Reports.Show>
+  <Reports.Dashboard>Tableau de bord</Reports.Dashboard>
+  <Reports.DashboardExcel>tableau de bord</Reports.DashboardExcel>
+  <Reports.User>Utilisateur</Reports.User>
+  <Reports.Company>Entreprise</Reports.Company>
+  <Reports.CreationDate>Date de création</Reports.CreationDate>
+  <Reports.DateRange>Date de gamme</Reports.DateRange>
+  <Reports.DateTimeRange>Intervalle de temps Date de</Reports.DateTimeRange>
+  <Reports.AllVehicles>Tous les véhicules</Reports.AllVehicles>
+  <Reports.DemoCompany>Entreprise démo</Reports.DemoCompany>
+  <Reports.FleetReport>Flotte rapport</Reports.FleetReport>
+  <Reports.DistanceTravelled>Distance parcourue</Reports.DistanceTravelled>
+  <Reports.Idling>La marche au ralenti</Reports.Idling>
+  <Reports.Parked>Stationné</Reports.Parked>
+  <Reports.TotalParked>Total des stationné</Reports.TotalParked>
+  <Reports.ShutDown>Arrêter</Reports.ShutDown>
+  <Reports.SpeedLimitExcess>Excès de vitesse limite</Reports.SpeedLimitExcess>
+  <Reports.SpeedLimitExcess1>Excès de vitesse limite</Reports.SpeedLimitExcess1>
+  <Reports.SpeedExcess>Excès de vitesse</Reports.SpeedExcess>
+  <Reports.Over>Sur</Reports.Over>
+  <Reports.NoData>Pas de données pour la période demandée!!!</Reports.NoData>
+  <Reports.NoSensor>Ce véhicule n'a pas de capteur de carburant !!!</Reports.NoSensor>
+  <Reports.Top30PoiVisits>TOP 30 par POI visites</Reports.Top30PoiVisits>
+  <Reports.Top30PoiDuration>TOP 30 POI par la durée</Reports.Top30PoiDuration>
+  <Reports.Top30GeoFenceVisits>TOP GeoFence 30 par des visites</Reports.Top30GeoFenceVisits>
+  <Reports.Top20GeoFenceVisits>TOP 20 les plus visités Geofences</Reports.Top20GeoFenceVisits>
+  <Reports.Top30GeoFenceDuration>TOP 30 GeoFence par la durée</Reports.Top30GeoFenceDuration>
+  <Reports.GeoFence>GeoFence</Reports.GeoFence>
+  <Reports.Permission>Vous ne disposez pas des autorisations pour ce rapport!!!</Reports.Permission>
+  <Reports.ReportNotLoaded>Le rapport n'a pas pu être chargé!</Reports.ReportNotLoaded>
+  <Reports.FleetReportExcel>F L E E T     R A P O R T</Reports.FleetReportExcel>
+  <Reports.SpeedExcessOver>Excees vitesse plus</Reports.SpeedExcessOver>
+  <Reports.Description>Description</Reports.Description>
+  <Reports.Value>Valeur</Reports.Value>
+  <Reports.Visits>Visites</Reports.Visits>
+  <Reports.OverviewExcel>UN V E R V I E W</Reports.OverviewExcel>
+  <Reports.Top20VisitedPoi>Top 20 les plus visités points d'intérêt</Reports.Top20VisitedPoi>
+  <Reports.TopVisitedPoi>Les plus visités points d'intérêt</Reports.TopVisitedPoi>
+  <Reports.EngineOn>Moteur ON</Reports.EngineOn>
+  <Reports.EngineOff>Moteur OFF</Reports.EngineOff>
+  <Reports.NoStops>Le nombre d'arrêts</Reports.NoStops>
+  <Reports.StartPosition>Position de départ</Reports.StartPosition>
+  <Reports.EndPosition>Fin de course</Reports.EndPosition>
+  <Reports.Location>Emplacement</Reports.Location>
+  <Reports.DateTime>Datetime</Reports.DateTime>
+  <Reports.TimeParked>Temps de stationnement</Reports.TimeParked>
+  <Reports.Time>Temps</Reports.Time>
+  <Reports.ShortExcel>S H O R T     R E P O R T</Reports.ShortExcel>
+  <Reports.NameGroup>Nom du groupe</Reports.NameGroup>
+  <Reports.ChooseIcon>Choisissez l'icône</Reports.ChooseIcon>
+  <Reports.Color>Couleur</Reports.Color>
+  <Reports.DeletePoi>Etes-vous sûr de vouloir supprimer ce point d'intérêt?</Reports.DeletePoi>
+  <Reports.DeleteGeoFence>Etes-vous sûr de vouloir supprimer ce GeoFence?</Reports.DeleteGeoFence>
+  <Reports.Latitude>Latitude</Reports.Latitude>
+  <Reports.Longitude>Longitude</Reports.Longitude>
+  <Reports.Address>Adresse</Reports.Address>
+  <Reports.NamePoi>Nom du POI</Reports.NamePoi>
+  <Reports.AddInfo>Informations complémentaires</Reports.AddInfo>
+  <Reports.AvailableFor>Disponible pour</Reports.AvailableFor>
+  <Reports.OnlyMe>Seulement moi</Reports.OnlyMe>
+  <Reports.AllUsers>Tous les utilisateurs</Reports.AllUsers>
+  <Reports.CannotChange>Impossible de changer</Reports.CannotChange>
+  <Reports.Group>Groupe</Reports.Group>
+  <Reports.SelectGroup>S'il vous plaît sélectionner le groupe</Reports.SelectGroup>
+  <Reports.GeoFenceName>Nom GeoFence</Reports.GeoFenceName>
+  <Reports.AllowedInGeoFence>Admis dans ce GeoFence</Reports.AllowedInGeoFence>
+  <Reports.AlertEnter>Envoyer alerter lors de la saisie</Reports.AlertEnter>
+  <Reports.AlertExit>Envoyer alerter lorsque vous quittez</Reports.AlertExit>
+  <Reports.AlertAllowEnter>Envoyer une alerte lorsque des véhicules autorisés d'entrer</Reports.AlertAllowEnter>
+  <Reports.AlertAllowExit>Envoyer une alerte lorsque des véhicules autorisés sortie</Reports.AlertAllowExit>
+  <Reports.AlertNotAllowEnter>Envoyer alerter quand un des véhicules non autorisés d'entrer</Reports.AlertNotAllowEnter>
+  <Reports.AlertNotAllowExit>Envoyer alerter quand un des véhicules ne sont pas admis sortant</Reports.AlertNotAllowExit>
+  <Reports.AlertEmail>Envoyer alerter sur ces e-mails</Reports.AlertEmail>
+  <Reports.AlertPhone>Envoyer alerter sur ces numéros de téléphone</Reports.AlertPhone>
+  <Reports.Example>Exemple</Reports.Example>
+  <Reports.MacExample>que, par exemple Macédoine</Reports.MacExample>
+  <Reports.Detail1>Détail</Reports.Detail1>
+  <Reports.SpeedChart>Tableau</Reports.SpeedChart>
+  <Reports.TaxiChart>Tableau taxi</Reports.TaxiChart>
+  <Reports.TaximeterOff>Taximètre OFF</Reports.TaximeterOff>
+  <Reports.Passengers0>Passagers 0</Reports.Passengers0>
+  <Reports.TimeDifference>Décalage horaire</Reports.TimeDifference>
+  <Reports.Distance>Distance</Reports.Distance>
+  <Reports.Dist>Dist.</Reports.Dist>
+  <Reports.Price>​​Prix</Reports.Price>
+  <Reports.Total>Total</Reports.Total>
+  <Reports.Tot>Tot.</Reports.Tot>
+  <Reports.Currency>den</Reports.Currency>
+  <Reports.TaxiReportExcel>T A X I   R A P O R T</Reports.TaxiReportExcel>
+  <Reports.SummTaxiExcel>R A P P O R T   D E   T A X I   R É S U M É</Reports.SummTaxiExcel>
+  <Reports.Duration>Durée</Reports.Duration>
+  <Reports.Allowed>Permis</Reports.Allowed>
+  <Reports.Yes>Oui</Reports.Yes>
+  <Reports.No>Non</Reports.No>
+  <Reports.GeoFenceExcel>G E O F E N C E   R A P O R T</Reports.GeoFenceExcel>
+  <Reports.IdlingExcel>R A P P O R T   D E   S T A N D I N G   E N   P L A C E</Reports.IdlingExcel>
+  <Reports.FuelExcel>R A P P O R T   S U R   L E   C A R B U R A N T</Reports.FuelExcel>
+  <Reports.FleetTotal>Totale de la flotte</Reports.FleetTotal>
+  <Reports.FleetAverage>Moyen de la flotte</Reports.FleetAverage>
+  <Reports.VehicleAverage>Véhicule en moyenne</Reports.VehicleAverage>
+  <Reports.Average>Moyenne</Reports.Average>
+  <Reports.DistTravExcel>D I S A N C E    P A R C O U R U E</Reports.DistTravExcel>
+  <Reports.Date>Date</Reports.Date>
+  <Reports.Liters>Litres</Reports.Liters>
+  <Reports.Iznos>Montant</Reports.Iznos>
+  <Reports.EnOnPassOff>Les passagers le moteur ON</Reports.EnOnPassOff>
+  <Reports.LowSat>Par satellite à faible</Reports.LowSat>
+  <Reports.TaximeterOn>Taximètre ON</Reports.TaximeterOn>
+  <Reports.TaxiOffPassOn>Taximètre les passagers dans</Reports.TaxiOffPassOn>
+  <Reports.Engaged>Occupé</Reports.Engaged>
+  <Reports.Legend>Légende</Reports.Legend>
+  <Reports.ActivityExcel>ACTIVITE</Reports.ActivityExcel>
+  <Reports.MaximumSpeed>Vitesse maximale</Reports.MaximumSpeed>
+  <Reports.MaxSpeedExcel>VITESSE    MAX</Reports.MaxSpeedExcel>
+  <Reports.Recurrence>Récurrence</Reports.Recurrence>
+  <Reports.SpeedOver>Vitesse sur le</Reports.SpeedOver>
+  <Reports.SpeedLimitExcel>LIMITE    DE    VITESSE    EXCESSIVE</Reports.SpeedLimitExcel>
+  <Reports.GeoFenceRecord>GeoFence a été enregistré avec succès.</Reports.GeoFenceRecord>
+  <Reports.GeoFenceModify>GeoFence a été correctement modifié.</Reports.GeoFenceModify>
+  <Reports.Error>Erreur!!!</Reports.Error>
+  <Reports.ThePoi>Le point d'intérêt</Reports.ThePoi>
+  <Reports.SucAdd>a été ajouté avec succès.</Reports.SucAdd>
+  <Reports.TheGroup>Le groupe</Reports.TheGroup>
+  <Reports.WrongPass>Mot de passe incorrect!!!</Reports.WrongPass>
+  <Reports.SucDel>GeoFence a été supprimé avec succès.</Reports.SucDel>
+  <Reports.SucDelPoi>Point d'intérêt a été supprimé avec succès.</Reports.SucDelPoi>
+  <Reports.SucSave>GeoFence a été correctement enregistré.</Reports.SucSave>
+  <Reports.SucUpd>a été mis à jour.</Reports.SucUpd>
+  <Reports.SucSent>Le rapport a été envoyé avec succès à votre adresse e-mail.</Reports.SucSent>
+  <Reports.CorrForm>Entrez une forme correcte de l'e-mail</Reports.CorrForm>
+  <Reports.EnterEmail>Entrez l'adresse e-mail:</Reports.EnterEmail>
+  <Reports.Reports>Rapports</Reports.Reports>
+  <Reports.Report>Rapport</Reports.Report>
+  <Reports.AddSchedule>Ajouter planifier</Reports.AddSchedule>
+  <Reports.SendReport>Envoyer le rapport à l'e-mail</Reports.SendReport>
+  <Reports.Message>Message ...</Reports.Message>
+  <Reports.Period>Période</Reports.Period>
+  <Reports.PeriodRec>Période de réception</Reports.PeriodRec>
+  <Reports.SchNote>* Pour entrer plusieurs adresses e-mails séparés les e-mails par ,(br) Exemple: n1@example.com,n2@example.com,</Reports.SchNote>
+  <Reports.AllCategories>Toutes les catégories</Reports.AllCategories>
+  <Reports.Daily>Quotidien</Reports.Daily>
+  <Reports.Weekly>Semaine</Reports.Weekly>
+  <Reports.Monthly>Mensuel</Reports.Monthly>
+  <Reports.Day>Jour</Reports.Day>
+  <Reports.Monday>Lundi</Reports.Monday>
+  <Reports.Tuesday>Mardi</Reports.Tuesday>
+  <Reports.Wednesday>Mercredi</Reports.Wednesday>
+  <Reports.Thursday>Jeudi</Reports.Thursday>
+  <Reports.Friday>Vendredi</Reports.Friday>
+  <Reports.Saturday>Samedi</Reports.Saturday>
+  <Reports.Sunday>Dimanche</Reports.Sunday>
+  <Reports.Email>E-mail</Reports.Email>
+  <Reports.SucUpdGeoFenceName>Nom GeoFence a été correctement mis à jour.</Reports.SucUpdGeoFenceName>
+  <Reports.DrawingAreas>Zones de dessin</Reports.DrawingAreas>
+  <Reports.VisitedPoiExcel>POINTS     D'INTÉRÊT     VISITÉS</Reports.VisitedPoiExcel>
+  <Reports.TotalIdle>Le temps total au ralenti</Reports.TotalIdle>
+  <Reports.EnterCorrForm>Entrez une forme correcte de l'e-mail</Reports.EnterCorrForm>
+  <Reports.Comparison>Comparaison</Reports.Comparison>
+  <Reports.Red>Rouge</Reports.Red>
+  <Reports.Gray>Pris</Reports.Gray>
+  <Reports.Green>Vert</Reports.Green>
+  <Reports.Yellow>Jaune</Reports.Yellow>
+  <Reports.FuelReport>Rapport sur ​​le carburant</Reports.FuelReport>
+  <Reports.Driver>Conducteur</Reports.Driver>
+  <Reports.TotalForAll>Total pour tous les véhicules</Reports.TotalForAll>
+  <Reports.AvgPriceTour>Prix ​​moyen par visite</Reports.AvgPriceTour>
+  <Reports.AvgPriceTour1>Prix ​​moyen(br)par visite</Reports.AvgPriceTour1>
+  <Reports.AvgDurTour>La durée moyenne par visite</Reports.AvgDurTour>
+  <Reports.AvgDurTour1>La durée(br)moyenne par visite</Reports.AvgDurTour1>
+  <Reports.AvgNoOf>Nombre moyen de</Reports.AvgNoOf>
+  <Reports.AddGroup>Ajouter un groupe</Reports.AddGroup>
+  <Reports.ExportPDF>exporter au format PDF</Reports.ExportPDF>
+  <Reports.ExportExcel>exporter vers Excel</Reports.ExportExcel>
+  <Reports.AddScheduler>ajouter ordonnanceur</Reports.AddScheduler>
+  <Reports.SendToMail>envoyer un e-mail</Reports.SendToMail>
+  <Reports.NoPermiss>Vous n'avez pas la permission d'</Reports.NoPermiss>
+  <Reports.Shift>Changer</Reports.Shift>
+  <Reports.WorktimeRep>Temps de travail</Reports.WorktimeRep>
+  <Reports.Taximeter>Taximètre</Reports.Taximeter>
+  <Reports.Passengers>Passagers</Reports.Passengers>
+  <Reports.Last1>Dernier</Reports.Last1>
+  <Reports.LastMore>Dernier</Reports.LastMore>
+  <Reports.Day_>jour</Reports.Day_>
+  <Reports.Days_>journées</Reports.Days_>
+  <Reports.January>Janvier</Reports.January>
+  <Reports.February>Février</Reports.February>
+  <Reports.March>Mars</Reports.March>
+  <Reports.April>Avril</Reports.April>
+  <Reports.May>Mai</Reports.May>
+  <Reports.June>Juin</Reports.June>
+  <Reports.July>Juillet</Reports.July>
+  <Reports.August>Août</Reports.August>
+  <Reports.September>Septembre</Reports.September>
+  <Reports.October>Octobre</Reports.October>
+  <Reports.November>Novembre</Reports.November>
+  <Reports.December>Décembre</Reports.December>
+  <Reports.January1>Jan</Reports.January1>
+  <Reports.February1>Fév</Reports.February1>
+  <Reports.March1>Mar</Reports.March1>
+  <Reports.April1>Avr</Reports.April1>
+  <Reports.May1>Mai</Reports.May1>
+  <Reports.June1>Juin</Reports.June1>
+  <Reports.July1>Juil</Reports.July1>
+  <Reports.August1>Août</Reports.August1>
+  <Reports.September1>Sep</Reports.September1>
+  <Reports.October1>Oct</Reports.October1>
+  <Reports.November1>Nov</Reports.November1>
+  <Reports.December1>Déc</Reports.December1>
+  <Reports.Meters>mètres</Reports.Meters>
+  <Reports.Past>Passé</Reports.Past>
+  <Reports.EngineON1>Moteur ON</Reports.EngineON1>
+  <Reports.EngineOFF1>Moteur OFF</Reports.EngineOFF1>
+  <Reports.SpentFuel>Du combustible usé</Reports.SpentFuel>
+  <Reports.AvgConFuel>Consommation</Reports.AvgConFuel>
+  <Reports.AddedFuel>Ajouté carburant</Reports.AddedFuel>
+  <Reports.Fuel>Carburant</Reports.Fuel>
+  <Reports.Engine>Moteur</Reports.Engine>
+  <Tracking.GeoFenceRecord>GeoFence a été enregistré avec succès.</Tracking.GeoFenceRecord>
+  <Tracking.Color>Couleur</Tracking.Color>
+  <Tracking.Legend>Légende</Tracking.Legend>
+  <Tracking.Message>Message ...</Tracking.Message>
+  <Tracking.GroupName>Nom du groupe</Tracking.GroupName>
+  <Tracking.ChooseIcon>Choisissez l'icône</Tracking.ChooseIcon>
+  <Tracking.DeleteThisPoi>Etes-vous sûr de vouloir supprimer ce point d'intérêt?</Tracking.DeleteThisPoi>
+  <Tracking.DeleteThisGeoFence>Etes-vous sûr de vouloir supprimer ce GeoFence?</Tracking.DeleteThisGeoFence>
+  <Tracking.Latitude>Latitude</Tracking.Latitude>
+  <Tracking.Longitude>Longitude</Tracking.Longitude>
+  <Tracking.Address>Adresse</Tracking.Address>
+  <Tracking.NamePoi>Nom du POI</Tracking.NamePoi>
+  <Tracking.AddInfo>Informations complémentaires</Tracking.AddInfo>
+  <Tracking.AvailableFor>Disponible pour</Tracking.AvailableFor>
+  <Tracking.OnlyMe>Seulement moi</Tracking.OnlyMe>
+  <Tracking.AllUsers>Tous les utilisateurs</Tracking.AllUsers>
+  <Tracking.CannotChange>Impossible de changer</Tracking.CannotChange>
+  <Tracking.Group>Groupe</Tracking.Group>
+  <Tracking.SelectGroup>S'il vous plaît sélectionner le groupe</Tracking.SelectGroup>
+  <Tracking.Delete>Effacer</Tracking.Delete>
+  <Tracking.GFName>Nom GeoFence</Tracking.GFName>
+  <Tracking.AllowedInGeoFence>Admis dans ce GeoFence</Tracking.AllowedInGeoFence>
+  <Tracking.AlertEnter>Envoyer alerter lors de la saisie</Tracking.AlertEnter>
+  <Tracking.AlertExit>Envoyer alerter lorsque vous quittez</Tracking.AlertExit>
+  <Tracking.AlertAllowEnter>Envoyer une alerte lorsque des véhicules autorisés d'entrer</Tracking.AlertAllowEnter>
+  <Tracking.AlertAllowExit>Envoyer une alerte lorsque des véhicules autorisés sortie</Tracking.AlertAllowExit>
+  <Tracking.AlertNotAllowEnter>Envoyer alerter quand un des véhicules non autorisés d'entrer</Tracking.AlertNotAllowEnter>
+  <Tracking.AlertNotAllowExit>Envoyer alerter quand un des véhicules ne sont pas admis sortant</Tracking.AlertNotAllowExit>
+  <Tracking.AlertEmail>Envoyer alerter sur ces e-mails</Tracking.AlertEmail>
+  <Tracking.AlertPhone>Envoyer alerter sur ces numéros de téléphone</Tracking.AlertPhone>
+  <Tracking.Example>Exemple</Tracking.Example>
+  <Tracking.MacExample>par exemple pour Macedoina que</Tracking.MacExample>
+  <Tracking.Company>Entreprise</Tracking.Company>
+  <Tracking.User>Utilisateur</Tracking.User>
+  <Tracking.GeoFenceModify>GeoFence a été correctement modifié.</Tracking.GeoFenceModify>
+  <Tracking.EngineOn>Moteur ON</Tracking.EngineOn>
+  <Tracking.EngineOff>Moteur OFF</Tracking.EngineOff>
+  <Tracking.EngineOffPassOn>Les passagers le moteur ON</Tracking.EngineOffPassOn>
+  <Tracking.LowSat>Par satellite à faible</Tracking.LowSat>
+  <Tracking.Engaged>Occupé</Tracking.Engaged>
+  <Tracking.TaxOffPassOn>Taximètre les passagers dans</Tracking.TaxOffPassOn>
+  <Tracking.TaxOn>Taximètre ON</Tracking.TaxOn>
+  <Tracking.Engaged1>Ocuppe</Tracking.Engaged1>
+  <Tracking.ShowHideAllVeh>Afficher / Masquer la trajectoire pour tous les véhicules</Tracking.ShowHideAllVeh>
+  <Tracking.ShowHideVeh>Afficher / Masquer la trajectoire pour les véhicules</Tracking.ShowHideVeh>
+  <Tracking.QuickView>Vue rapide</Tracking.QuickView>
+  <Tracking.VehDetails>Véhicules de détails</Tracking.VehDetails>
+  <Tracking.Passengers>Passagers</Tracking.Passengers>
+  <Tracking.Taximeter>Taximètre</Tracking.Taximeter>
+  <Tracking.Speed>Vitesse</Tracking.Speed>
+  <Tracking.AddGroup>Ajouter un groupe</Tracking.AddGroup>
+  <Tracking.DeletePoi>Supprimer POI</Tracking.DeletePoi>
+  <Tracking.DrawArea>Zones de dessin</Tracking.DrawArea>
+  <Tracking.DeleteGF>Supprimer GeoFence</Tracking.DeleteGF>
+  <Tracking.Add>Ajouter</Tracking.Add>
+  <Tracking.Cancel>Annuler</Tracking.Cancel>
+  <Tracking.ClickToChange>Cliquez ici pour changer le statut de véhicule engagés</Tracking.ClickToChange>
+  <Tracking.ClickToFind>Cliquez pour trouver le numéro du véhicule</Tracking.ClickToFind>
+  <Tracking.geofence>GeoFence</Tracking.geofence>
+  <Tracking.Yes>Oui</Tracking.Yes>
+  <Tracking.No>Non</Tracking.No>
+  <Tracking.Inactive>Véhicules inactifs</Tracking.Inactive>
+  <Tracking.Deactive>Désactiver</Tracking.Deactive>
+  <Tracking.Active>Activer</Tracking.Active>
+  <Tracking.Fuel>Carburant</Tracking.Fuel>
+  <Tracking.Driver>Conducteur</Tracking.Driver>
+  <Tracking.Enter>Entrer</Tracking.Enter>
+  <Tracking.ComingSoon>Bientôt...</Tracking.ComingSoon>
+  <Tracking.Litres>Litres</Tracking.Litres>
+  <Tracking.Amount>Montant</Tracking.Amount>
+  <Tracking.SelectDriver>Sélectionnez le pilote</Tracking.SelectDriver>
+  <Tracking.InsertFuel>Des données entré avec succès sur le carburant!!!</Tracking.InsertFuel>
+  <Tracking.Error>Erreur!!!</Tracking.Error>
+  <Tracking.ThePoi>Le point d'intérêt</Tracking.ThePoi>
+  <Tracking.SucAdd>a été ajouté avec succès!!!</Tracking.SucAdd>
+  <Tracking.SucUpd>a été correctement mis à jour!!!</Tracking.SucUpd>
+  <Tracking.TheGroup>Le groupe</Tracking.TheGroup>
+  <Tracking.WrongPass>Mot de passe incorrect!!!</Tracking.WrongPass>
+  <Tracking.SucDelPoi>Le point d'intérêt a été supprimé avec succès!</Tracking.SucDelPoi>
+  <Tracking.Radius>Rayon </Tracking.Radius>
+  <Tracking.SelectRadius>S'il vous plaît sélectionner le rayon</Tracking.SelectRadius>
+  <Tracking.Meters>mètres</Tracking.Meters>
+  <Tracking.Settings>Paramètres</Tracking.Settings>
+  <Tracking.POI>Point d`intérêt</Tracking.POI>
+  <Tracking.Street>Rue</Tracking.Street>
+  <Tracking.GFVeh>Zone dans laquelle le véhicule est</Tracking.GFVeh>
+  <Tracking.InfoMsg>Ne plus afficher ce message!</Tracking.InfoMsg>
+  <Tracking.BusyDriver>Driver est déjà occupé!!!</Tracking.BusyDriver>
+  <Settings.Reports>Raports</Settings.Reports>
+  <Settings.NoVeh>Nombre de véhicule</Settings.NoVeh>
+  <Settings.DeleteSch>Supprimer ce calendrier!!!</Settings.DeleteSch>
+  <Settings.DeleteAllSch>Supprimer toutes les annexes pour l'utilisateur!</Settings.DeleteAllSch>
+  <Settings.SpeedLimitExcess>Excès de vitesse limite</Settings.SpeedLimitExcess>
+  <Settings.Delete>Effacer</Settings.Delete>
+  <Settings.DelAllAlarms>Supprimer toutes les alarmes pour ce véhicule!!!</Settings.DelAllAlarms>
+  <Settings.DelSpeedLimit>Supprimer la limite de vitesse pour ce véhicule!!!</Settings.DelSpeedLimit>
+  <Settings.Registration>Inscription</Settings.Registration>
+  <Settings.AddPoi>Ajouter POI</Settings.AddPoi>
+  <Settings.ViewPoi>Voir POI</Settings.ViewPoi>
+  <Settings.AddGeoFence>Ajouter GeoFence</Settings.AddGeoFence>
+  <Settings.ViewGeoFence>Voir Geofence</Settings.ViewGeoFence>
+  <Settings.LiveTracking>Live de suivi</Settings.LiveTracking>
+  <Settings.AddSpeedLimit>Ajouter la limite de vitesse !</Settings.AddSpeedLimit>
+  <Settings.DelAlarm>Supprimer cette alarme GeoFence pour ce véhicule!!!</Settings.DelAlarm>
+  <Settings.MustSel>Vous devez sélectionner IN ou OUT GeoFence !!!</Settings.MustSel>
+  <Settings.SummReports>Les rapports de synthèse</Settings.SummReports>
+  <Settings.Dashboard>Tableau de bord</Settings.Dashboard>
+  <Settings.FleetReport>Flotte rapport</Settings.FleetReport>
+  <Settings.VehicleReports>Rapports des véhicules</Settings.VehicleReports>
+  <Settings.Overview>Vue d'ensemble</Settings.Overview>
+  <Settings.ShortReport>Bref rapport</Settings.ShortReport>
+  <Settings.DetailReport>Rapport détaillé</Settings.DetailReport>
+  <Settings.VisitedPoi>POI visité</Settings.VisitedPoi>
+  <Settings.Reconstruction>La reconstruction</Settings.Reconstruction>
+  <Settings.TaxiReport>Rapport Taxi</Settings.TaxiReport>
+  <Settings.GeoFenceReport>Rapport GeoFence</Settings.GeoFenceReport>
+  <Settings.Analysis>Analyse</Settings.Analysis>
+  <Settings.DistTrav>Distance parcourue</Settings.DistTrav>
+  <Settings.Activity>Activité</Settings.Activity>
+  <Settings.MaxSpeed>Vitesse maxi</Settings.MaxSpeed>
+  <Settings.Export>Exporter</Settings.Export>
+  <Settings.ExportExcel>Exporter vers Excel</Settings.ExportExcel>
+  <Settings.ExportPdf>Exporter vers PDF</Settings.ExportPdf>
+  <Settings.SendMail>Envoyer un e-mail</Settings.SendMail>
+  <Settings.ScheduleRep>L'annexe du rapport</Settings.ScheduleRep>
+  <Settings.Settings>Paramètres</Settings.Settings>
+  <Settings.GeneralSett>Paramètres généraux</Settings.GeneralSett>
+  <Settings.Privileges>Privilèges</Settings.Privileges>
+  <Settings.Poi>Point d'intérêt</Settings.Poi>
+  <Settings.GeoFence>GeoFence</Settings.GeoFence>
+  <Settings.TaxiPrice>Tarif taxi</Settings.TaxiPrice>
+  <Settings.Start>Maison</Settings.Start>
+  <Settings.InStart>à démarrer</Settings.InStart>
+  <Settings.Price>Tarif</Settings.Price>
+  <Settings.InGeoFence>En GeoFence</Settings.InGeoFence>
+  <Settings.OutGeoFence>Out GeoFence</Settings.OutGeoFence>
+  <Settings.AddSchedule>Ajouter planifier</Settings.AddSchedule>
+  <Settings.SaveSettings>Enregistrer les paramètres</Settings.SaveSettings>
+  <Settings.Note>Noter</Settings.Note>
+  <Settings.SetPriv>Privilège peut être réglé uniquement aux utilisateurs qui ont (rôle d'utilisateur)!!!</Settings.SetPriv>
+  <Settings.Vehicle>Véhicule</Settings.Vehicle>
+  <Settings.AllVehicles>Tous les véhicules</Settings.AllVehicles>
+  <Settings.Period>Période</Settings.Period>
+  <Settings.Daily>Quotidien</Settings.Daily>
+  <Settings.Weekly>Hebdomadaire</Settings.Weekly>
+  <Settings.Monthly>Mensuel</Settings.Monthly>
+  <Settings.Day>Jour</Settings.Day>
+  <Settings.Monday>Lundi</Settings.Monday>
+  <Settings.Tuesday>Mardi</Settings.Tuesday>
+  <Settings.Wednesday>Mercredi</Settings.Wednesday>
+  <Settings.Thursday>Jeudi</Settings.Thursday>
+  <Settings.Friday>Vendredi</Settings.Friday>
+  <Settings.Saturday>Samedi</Settings.Saturday>
+  <Settings.Sunday>Dimanche</Settings.Sunday>
+  <Settings.Time>Temps</Settings.Time>
+  <Settings.Email>E-mail</Settings.Email>
+  <Settings.Area>Zone</Settings.Area>
+  <Settings.AlertInGeoFence>Alertez EN GeoFence</Settings.AlertInGeoFence>
+  <Settings.AlertOutGeoFence>Alertez OUT GeoFence</Settings.AlertOutGeoFence>
+  <Settings.SuccAdd>Vous avez joint l'</Settings.SuccAdd>
+  <Settings.SuccMod>GeoFence a été modifié avec succès</Settings.SuccMod>
+  <Settings.Error>Erreur !!!</Settings.Error>
+  <Settings.ThePoi>Le point d'intérêt </Settings.ThePoi>
+  <Settings.SucAdd>a été ajouté avec succès.</Settings.SucAdd>
+  <Settings.SucUpd> a été mis à jour.</Settings.SucUpd>
+  <Settings.TheGroup>Le groupe </Settings.TheGroup>
+  <Settings.WrongPass>Mot de passe incorrect !!!</Settings.WrongPass>
+  <Settings.Group>Groupe </Settings.Group>
+  <Settings.ChangeVehSett>Changer de véhicule</Settings.ChangeVehSett>
+  <Settings.UserSett>Les paramètres utilisateur</Settings.UserSett>
+  <Settings.ClientType>Type de client</Settings.ClientType>
+  <Settings.HomeCity>Accueil ville</Settings.HomeCity>
+  <Settings.Users>Utilisateurs</Settings.Users>
+  <Settings.EditVeh>Modifier véhicule</Settings.EditVeh>
+  <Settings.SuccUpd>Véhicule modifié avec succès !</Settings.SuccUpd>
+  <Settings.SpeedLimit>Limitation de vitesse</Settings.SpeedLimit>
+  <Settings.GeoFenceExceed>L'abandon geofence</Settings.GeoFenceExceed>
+  <Settings.Add>Ajouter</Settings.Add>
+  <Settings.Close>Fermer</Settings.Close>
+  <Settings.Edit>Editer</Settings.Edit>
+  <Settings.Vehicles>Véhicules</Settings.Vehicles>
+  <Settings.DelUser>Voulez-vous supprimer cet utilisateur</Settings.DelUser>
+  <Settings.VehicleSettings>Paramètres pour les véhicules</Settings.VehicleSettings>
+  <Settings.CannotDelUser>Cet utilisateur ne peut pas être supprimé!!!</Settings.CannotDelUser>
+  <Settings.EditUser>Modifier l'utilisateur</Settings.EditUser>
+  <Settings.FullName>Nom et prénom</Settings.FullName>
+  <Settings.UserName>Nom d'utilisateur</Settings.UserName>
+  <Settings.Password>Mot de passe</Settings.Password>
+  <Settings.AddUser>Ajouter un utilisateur</Settings.AddUser>
+  <Settings.PanoramaGPS>Panorama GPS</Settings.PanoramaGPS>
+  <Settings.User>Utilisateur</Settings.User>
+  <Settings.Company>Entreprise</Settings.Company>
+  <Settings.Phone>Téléphone</Settings.Phone>
+  <Settings.Loading>Chargement</Settings.Loading>
+  <Settings.SucDel>GeoFence a été supprimé avec succès.</Settings.SucDel>
+  <Settings.SucDelPoi>Point d'intérêt a été supprimé avec succès.</Settings.SucDelPoi>
+  <Settings.SucSave>GeoFence a été correctement enregistré.</Settings.SucSave>
+  <Settings.NameGroup>Nom du groupe</Settings.NameGroup>
+  <Settings.Color>Couleur</Settings.Color>
+  <Settings.NameGeoFence>Nom de GeoFence</Settings.NameGeoFence>
+  <Settings.ChangeName>Changer le nom</Settings.ChangeName>
+  <Settings.DrawingAreas>Zones de dessin</Settings.DrawingAreas>
+  <Settings.ChooseIcon>Choisissez l'icône</Settings.ChooseIcon>
+  <Settings.AddGroup>Ajouter un groupe</Settings.AddGroup>
+  <Settings.DeleteThisPoi>Etes-vous sûr de vouloir supprimer ce point d'intérêt?</Settings.DeleteThisPoi>
+  <Settings.DeleteThisGeoFence>Etes-vous sûr de vouloir supprimer ce GeoFence?</Settings.DeleteThisGeoFence>
+  <Settings.Latitude>Latitude</Settings.Latitude>
+  <Settings.Longitude>Longitude</Settings.Longitude>
+  <Settings.Address>Adresse</Settings.Address>
+  <Settings.NamePoi>Nom du POI</Settings.NamePoi>
+  <Settings.AddInfo>Informations complémentaires</Settings.AddInfo>
+  <Settings.AvailableFor>Disponible pour</Settings.AvailableFor>
+  <Settings.OnlyMe>Seulement moi</Settings.OnlyMe>
+  <Settings.AllUsers>Tous les utilisateurs</Settings.AllUsers>
+  <Settings.CannotChange>Impossible de changer</Settings.CannotChange>
+  <Settings.SelectGroup>S'il vous plaît sélectionner le groupe</Settings.SelectGroup>
+  <Settings.GeoFenceName>Nom GeoFence</Settings.GeoFenceName>
+  <Settings.AllowedInGeoFence>Admis dans ce GeoFence</Settings.AllowedInGeoFence>
+  <Settings.AlertEnter>Envoyer alerter lors de la saisie</Settings.AlertEnter>
+  <Settings.AlertExit>Envoyer alerter lorsque vous quittez</Settings.AlertExit>
+  <Settings.AlertAllowEnter>Envoyer une alerte lorsque des véhicules autorisés d'entrer</Settings.AlertAllowEnter>
+  <Settings.AlertAllowExit>Envoyer une alerte lorsque des véhicules autorisés sortie</Settings.AlertAllowExit>
+  <Settings.AlertNotAllowEnter>Envoyer alerter quand un des véhicules non autorisés d'entrer</Settings.AlertNotAllowEnter>
+  <Settings.AlertNotAllowExit>Envoyer alerter quand un des véhicules ne sont pas admis sortant</Settings.AlertNotAllowExit>
+  <Settings.AlertEmail>Envoyer alerter sur ces e-mails</Settings.AlertEmail>
+  <Settings.AlertPhone>Envoyer alerter sur ces numéros de téléphone</Settings.AlertPhone>
+  <Settings.Example>exemple</Settings.Example>
+  <Settings.MacExample>Par exemple pour la Macédoine ne</Settings.MacExample>
+  <Settings.SpeedLimitExceed>La limite de vitesse dépasse</Settings.SpeedLimitExceed>
+  <Settings.SelectAll>Sélectionnez tous les</Settings.SelectAll>
+  <Settings.Groups>Groupes</Settings.Groups>
+  <Settings.GeneralGroup>Générale du groupe</Settings.GeneralGroup>
+  <Settings.View>Voir</Settings.View>
+  <Settings.ChangeGroup>Changement de groupe</Settings.ChangeGroup>
+  <Settings.EditGroup>Modifier le groupe</Settings.EditGroup>
+  <Settings.EditPoi>Modifier point d'intérêt</Settings.EditPoi>
+  <Settings.Change>Changer</Settings.Change>
+  <Settings.Yes>Oui</Settings.Yes>
+  <Settings.No>Non</Settings.No>
+  <Settings.ShowGeoFence>Afficher GeoFence</Settings.ShowGeoFence>
+  <Settings.EditGeoFence>Modifier GeoFence</Settings.EditGeoFence>
+  <Settings.DeleteGroup>Voulez-vous supprimer ce groupe?</Settings.DeleteGroup>
+  <Settings.ShowPoi>Afficher les points d'intérêt</Settings.ShowPoi>
+  <Settings.AllowedVeh>Véhicules autorisés</Settings.AllowedVeh>
+  <Settings.SucUpdGeoFenceName>Nom GeoFence a été correctement mis à jour.</Settings.SucUpdGeoFenceName>
+  <Settings.SaveAppSett>Enregistrer app. paramètres</Settings.SaveAppSett>
+  <Settings.Local>Local</Settings.Local>
+  <Settings.Global>Mondial</Settings.Global>
+  <Settings.None>Absolument pas</Settings.None>
+  <Settings.AvailableMaps>Les cartes disponibles</Settings.AvailableMaps>
+  <Settings.DefLang>La langue par défaut</Settings.DefLang>
+  <Settings.En>Anglais</Settings.En>
+  <Settings.Mk>Macédonienne</Settings.Mk>
+  <Settings.Fr>Français</Settings.Fr>
+  <Settings.DefMap>La carte par défaut</Settings.DefMap>
+  <Settings.DateFormat>Le format de date</Settings.DateFormat>
+  <Settings.TimeFormat>Format de l'heure</Settings.TimeFormat>
+  <Settings.24Time>24 Temps Heure</Settings.24Time>
+  <Settings.12Time>12 Temps Heure</Settings.12Time>
+  <Settings.ShowInfoMess>Voir le message d'info</Settings.ShowInfoMess>
+  <Settings.OnOff>marche / arrêt</Settings.OnOff>
+  <Settings.DateTime>Date et heure</Settings.DateTime>
+  <Settings.Speed>Vitesse</Settings.Speed>
+  <Settings.Location>Emplacement</Settings.Location>
+  <Settings.Trace>Tracer</Settings.Trace>
+  <Settings.Min>Ma</Settings.Min>
+  <Settings.Zone>Zone</Settings.Zone>
+  <Settings.Passengers>Passagers</Settings.Passengers>
+  <Settings.Taximeter>Taximètre</Settings.Taximeter>
+  <Settings.Fuel>Carburant</Settings.Fuel>
+  <Settings.DistRep>Distance représentent</Settings.DistRep>
+  <Settings.Metric>Métrique</Settings.Metric>
+  <Settings.Imperial>Impérial</Settings.Imperial>
+  <Settings.VehColors>Véhicules couleurs</Settings.VehColors>
+  <Settings.EngineOn>Moteur ON</Settings.EngineOn>
+  <Settings.EngineOff>Moteur OFF</Settings.EngineOff>
+  <Settings.EngineOffPassOn>Les passagers le moteur ON</Settings.EngineOffPassOn>
+  <Settings.LowSat>Par satellite à faible</Settings.LowSat>
+  <Settings.Engaged>Occupé</Settings.Engaged>
+  <Settings.TaxOffPassOn>Taximètre les passagers dans</Settings.TaxOffPassOn>
+  <Settings.TaxOn>Taximètre ON</Settings.TaxOn>
+  <Settings.LightBlue>Lumière bleue</Settings.LightBlue>
+  <Settings.Red>Rouge</Settings.Red>
+  <Settings.DarkBlue>Le bleu foncé</Settings.DarkBlue>
+  <Settings.Green>Vert</Settings.Green>
+  <Settings.Yellow>Jaune</Settings.Yellow>
+  <Settings.Gray>Gris</Settings.Gray>
+  <Settings.Black>Noir</Settings.Black>
+  <Settings.Orange>Orange</Settings.Orange>
+  <Settings.RedBlue>Rouge bleu</Settings.RedBlue>
+  <Settings.GeoFences>GeoFence</Settings.GeoFences>
+  <Settings.Pois>Points d'intérêt</Settings.Pois>
+  <Settings.Poi1>POI</Settings.Poi1>
+  <Routes.GetRoutes>Obtenir</Routes.GetRoutes>
+  <Routes.AddNewRoute>Ajouter nouvel itinéraire</Routes.AddNewRoute>
+  <Routes.Name>Nom</Routes.Name>
+  <Routes.Predefined>Prédéfinie</Routes.Predefined>
+  <Routes.SelectDriver>Sélectionnez le pilote</Routes.SelectDriver>
+  <Routes.SelectVeh>Sélectionnez un véhicule</Routes.SelectVeh>
+  <Routes.SelectRoute>Sélectionnez un itinéraire</Routes.SelectRoute>
+  <Routes.NewRoute>Nouvel itinéraire</Routes.NewRoute>
+  <Routes.Order>Ordre</Routes.Order>
+  <Routes.Optimal>Optimal</Routes.Optimal>
+  <Routes.Alarms>Alarmes</Routes.Alarms>
+  <Routes.Radius>Rayon</Routes.Radius>
+  <Routes.Trajectory>Trajectoire</Routes.Trajectory>
+  <Routes.RetentionTime>Temps de rétention</Routes.RetentionTime>
+  <Routes.Save>Sauver</Routes.Save>
+  <Routes.RoutesReport>Rapport sur les routes</Routes.RoutesReport>
+  <Routes.SuccUpdRoute>La route a été mis à jour avec succès!!!</Routes.SuccUpdRoute>
+  <Routes.SuccAddRoute>L'itinéraire a été ajouté avec succès!!!</Routes.SuccAddRoute>
+  <Routes.BIAO>Informations de base sur l'ordre</Routes.BIAO>
+  <Routes.CNRoute>Créer un nouveau compte</Routes.CNRoute>
+  <Routes.NName>Nom de l'ordre</Routes.NName>
+  <Routes.CreationDate>Date de création</Routes.CreationDate>
+  <Routes.First>Première</Routes.First>
+  <Routes.Second>Deuxième</Routes.Second>
+  <Routes.Third>Troisième</Routes.Third>
+  <Routes.Driver>Conducteur</Routes.Driver>
+  <Routes.Choose>Choisissez</Routes.Choose>
+  <Routes.StartDatetime>Début</Routes.StartDatetime>
+  <Routes.Vehicle>Véhicule</Routes.Vehicle>
+  <Routes.LTBV>Sites à visiter</Routes.LTBV>
+  <Routes.DL>Sites à visiter</Routes.DL>
+  <Routes.Pois>Points d'intérêt</Routes.Pois>
+  <Routes.Normal>Normal</Routes.Normal>
+  <Routes.Fast>Rapide</Routes.Fast>
+  <Routes.Clear>Supprimer les données saisies</Routes.Clear>
+  <Routes.Distance>Distance</Routes.Distance>
+  <Routes.Time>Temps</Routes.Time>
+  <Routes.Operations>Opérations</Routes.Operations>
+  <Routes.Minutes>Minute(s)</Routes.Minutes>
+  <Routes.Alarm>Alarme</Routes.Alarm>
+  <Fm.ChangeTires>Changement de pneus</Fm.ChangeTires>
+  <Fm.Refueling>Ravitaillement</Fm.Refueling>
+  <Fm.AddTires>Ajouter changer</Fm.AddTires>
+  <Fm.NewTires>Nouveau changement de pneus</Fm.NewTires>
+  <Fm.NewService>Nouveau service</Fm.NewService>
+  <Fm.NewCost>Nouveau coût</Fm.NewCost>
+  <Fm.NewFuel>Nouveau ravitaillement</Fm.NewFuel>
+  <Fm.DateLastFuel>Date de la dernière ravitaillement</Fm.DateLastFuel>
+  <Fm.LastFuel>Dernière ravitaillement</Fm.LastFuel>
+  <Fm.AvgFuel>La consommation de carburant</Fm.AvgFuel>
+  <Fm.DateFuel>Date de ravitaillement en carburant</Fm.DateFuel>
+  <Fm.Driver>Conducteur</Fm.Driver>
+  <Fm.Liters>Litres</Fm.Liters>
+  <Fm.TotalDen>Total (den)</Fm.TotalDen>
+  <Fm.Refuel>Ravitailler</Fm.Refuel>
+  <Fm.Overview>Aperçu</Fm.Overview>
+  <Fm.CostsReport1>Rapports des frais de</Fm.CostsReport1>
+  <Fm.NotPut>Vous n'avez pas roulés</Fm.NotPut>
+  <Fm.SummReport>Résumé du rapport</Fm.SummReport>
+  <Fm.Delete>Effacer</Fm.Delete>
+  <Fm.Currency>den</Fm.Currency>
+  <Fm.DeletedVeh>Le véhicule a été supprimé</Fm.DeletedVeh>
+  <Fm.DeletedVeh1>Le véhicule est supprimée de la liste des véhicules</Fm.DeletedVeh1>
+  <Fm.Save>Sauver</Fm.Save>
+  <Fm.Components>Composants</Fm.Components>
+  <Fm.Regular>Ordinaire</Fm.Regular>
+  <Fm.Associate>Associer</Fm.Associate>
+  <Fm.Vehicle>Véhicule</Fm.Vehicle>
+  <Fm.Sifrarnici>-</Fm.Sifrarnici>
+  <Fm.Desc>Description</Fm.Desc>
+  <Fm.OrgUnits>Les unités organisationnelles</Fm.OrgUnits>
+  <Fm.OrgUnit>Unité d'organisation</Fm.OrgUnit>
+  <Fm.Price>​​Prix</Fm.Price>
+  <Fm.UngroupedVeh>Véhicules non groupées</Fm.UngroupedVeh>
+  <Fm.UngroupedDri>Les conducteurs non groupées</Fm.UngroupedDri>
+  <Fm.OperPerf>La performance opérationnelle</Fm.OperPerf>
+  <Fm.Reports>Rapports</Fm.Reports>
+  <Fm.Vehicles>Véhicules</Fm.Vehicles>
+  <Fm.Employees>Employés</Fm.Employees>
+  <Fm.DownloadVeh>Télécharger les véhicules</Fm.DownloadVeh>
+  <Fm.OtherSett>d'autres paramètres</Fm.OtherSett>
+  <Fm.ChTires>Changer des pneus</Fm.ChTires>
+  <Fm.Service>Service</Fm.Service>
+  <Fm.AddFuel>Mettre du carburant</Fm.AddFuel>
+  <Fm.BorrDriver>Empruntant le conducteur avec le véhicule</Fm.BorrDriver>
+  <Fm.ModOrgUnit>Modifier l'unité d'organisation</Fm.ModOrgUnit>
+  <Fm.OthCosts>D'autres coûts</Fm.OthCosts>
+  <Fm.CurrKm>Kilométrage du courant d'entrée</Fm.CurrKm>
+  <Fm.PrevStateDate>Date de l'état précédent</Fm.PrevStateDate>
+  <Fm.PrevState>état antérieur</Fm.PrevState>
+  <Fm.CurrState>Statut actuel</Fm.CurrState>
+  <Fm.CurrDate>Date de l'état actuel</Fm.CurrDate>
+  <Fm.Note>Noter</Fm.Note>
+  <Fm.Km>Kilométrage</Fm.Km>
+  <Fm.NoAllDrivers>Ce véhicule n'a pas permis à des pilotes.</Fm.NoAllDrivers>
+  <Fm.NoAllVehicles>Cet employé n'a pas permis à des véhicules.</Fm.NoAllVehicles>
+  <Fm.AddCosts>Ajouter les autres coûts</Fm.AddCosts>
+  <Fm.TotalCost>Total</Fm.TotalCost>
+  <Fm.AddService>Ajouter le service</Fm.AddService>
+  <Fm.ModCosts>Modifier les autres frais</Fm.ModCosts>
+  <Fm.Rbr>Aucun</Fm.Rbr>
+  <Fm.AddOrgUnit>Ajouter l'unité d'organisation</Fm.AddOrgUnit>
+  <Fm.Registration>Inscription</Fm.Registration>
+  <Fm.Code>Code</Fm.Code>
+  <Fm.Marka>Marquer</Fm.Marka>
+  <Fm.Model>Modèle</Fm.Model>
+  <Fm.Total>Total</Fm.Total>
+  <Fm.Tip>Type</Fm.Tip>
+  <Fm.Sasija>Châssis</Fm.Sasija>
+  <Fm.Motor>Moteur</Fm.Motor>
+  <Fm.FuelType>Type de carburant</Fm.FuelType>
+  <Fm.FirstReg>Première immatriculation</Fm.FirstReg>
+  <Fm.LastReg>Dernier enregistrement</Fm.LastReg>
+  <Fm.Active>Activité</Fm.Active>
+  <Fm.HaveGps>GPS</Fm.HaveGps>
+  <Fm.SureDel>Etes-vous sûr de vouloir supprimer cette entrée?</Fm.SureDel>
+  <Fm.FullName>Nom et prénom</Fm.FullName>
+  <Fm.DateBorn>Date de naissance</Fm.DateBorn>
+  <Fm.Gender>Sexe</Fm.Gender>
+  <Fm.StartCom>Date de début dans la société</Fm.StartCom>
+  <Fm.IstekVoz>Expiration du permis de conduire</Fm.IstekVoz>
+  <Fm.AddVeh>Ajouter des véhicules</Fm.AddVeh>
+  <Fm.ModVeh>Modifier véhicule</Fm.ModVeh>
+  <Fm.Mod>Modifier</Fm.Mod>
+  <Fm.ModDri>Changer employé</Fm.ModDri>
+  <Fm.Datetime>Datetime</Fm.Datetime>
+  <Fm.Date>Date</Fm.Date>
+  <Fm.Costs>Frais</Fm.Costs>
+  <Fm.StartUse>Début de</Fm.StartUse>
+  <Fm.DurUser>Durée d'utilisation</Fm.DurUser>
+  <Fm.YearKm>Annuellement permis Km</Fm.YearKm>
+  <Fm.TotKm>Km total autorisé</Fm.TotKm>
+  <Fm.FuelCap>Capacité de carburant</Fm.FuelCap>
+  <Fm.SummTir>Pneus d'été kilomètres prévus</Fm.SummTir>
+  <Fm.WinTir>Pneus d'hiver kilomètres prévus</Fm.WinTir>
+  <Fm.ServYear>Service tous les X km</Fm.ServYear>
+  <Fm.Add>Ajouter</Fm.Add>
+  <Fm.Cancel>Annuler</Fm.Cancel>
+  <Fm.Name>Nom</Fm.Name>
+  <Fm.ReportTires>Rapport pour le changement de pneus</Fm.ReportTires>
+  <Fm.ReportServices>Rapport pour les services rendus</Fm.ReportServices>
+  <Fm.ReportCosts>Rapport pour les autres coûts</Fm.ReportCosts>
+  <Fm.ReportFuel>Rapport pour le carburant</Fm.ReportFuel>
+  <Fm.Yes>Oui</Fm.Yes>
+  <Fm.No>Aucun</Fm.No>
+  <Fm.Start>Commencer</Fm.Start>
+  <Fm.End>Fin</Fm.End>
+  <Fm.Alerts>Alertes</Fm.Alerts>
+  <Fm.AlertTires>Alerte pour les pneus</Fm.AlertTires>
+  <Fm.AlertService>Alerte pour le service</Fm.AlertService>
+  <Fm.Show>Montrer</Fm.Show>
+  <Fm.AllVehicles>Véhicules autorisés</Fm.AllVehicles>
+  <Fm.AllVehicles1>Tous les véhicules</Fm.AllVehicles1>
+  <Fm.AllDrivers>Les conducteurs autorisés</Fm.AllDrivers>
+  <Fm.LicenceType>Catégorie de licence</Fm.LicenceType>
+  <Fm.AddDri>Ajouter employé</Fm.AddDri>
+  <Fm.FirstLicence>Date de première licence</Fm.FirstLicence>
+  <Fm.IntLicence>Permis de conduire international</Fm.IntLicence>
+  <Fm.DurContract>Durée du contrat</Fm.DurContract>
+  <Fm.OtherLicences>Permis de conduire d'autres</Fm.OtherLicences>
+  <Fm.Male>Мâle</Fm.Male>
+  <Fm.Female>Femelle</Fm.Female>
+  <Fm.Months>mois</Fm.Months>
+  <Fm.Month>mois</Fm.Month>
+  <Fm.Year>année</Fm.Year>
+  <Fm.Indef>indéfini</Fm.Indef>
+  <Fm.Location>Emplacement</Fm.Location>
+  <Fm.SearchName>Recherche par nom et prénom</Fm.SearchName>
+  <Fm.SearchCode>Recherche par code</Fm.SearchCode>
+  <Fm.SearchReg>Rechercher par l'enregistrement</Fm.SearchReg>
+  <Fm.AddAllDriver>Ajout d'un pilote a permis</Fm.AddAllDriver>
+  <Fm.AddAllVehicle>Ajouter des véhicules autorisés</Fm.AddAllVehicle>
+  <Fm.AddServ>Ajouter le service</Fm.AddServ>
+  <Fm.ModServ>Modifier un service</Fm.ModServ>
+  <Fm.PastKmWith>Km passé avec</Fm.PastKmWith>
+  <Fm.WinTires>pneus d'hiver</Fm.WinTires>
+  <Fm.SummTires>pneus d'été</Fm.SummTires>
+  <Fm.WinTires1>Pneus d'hiver</Fm.WinTires1>
+  <Fm.SummTires1>Pneus d'été</Fm.SummTires1>
+  <Fm.WinT>Hiver</Fm.WinT>
+  <Fm.SummT>Vacances</Fm.SummT>
+  <Fm.DateAdd>Date de mise</Fm.DateAdd>
+  <Fm.CurrTires>Pneus actuels</Fm.CurrTires>
+  <Fm.NewSumm>Nouveau jour férié</Fm.NewSumm>
+  <Fm.NewWin>Nouvelle hiver</Fm.NewWin>
+  <Fm.Change>Changer</Fm.Change>
+  <Fm.HaveLess>Vous avez passé</Fm.HaveLess>
+  <Fm.HaveMore>Vous avez plus de</Fm.HaveMore>
+  <Fm.KmMore>Km de plus que prévu au Km</Fm.KmMore>
+  <Fm.KmLess>Km pour se rendre au Km prévue</Fm.KmLess>
+  <Fm.ServMore>Km du service attendu</Fm.ServMore>
+  <Fm.ServLess>Km après le service attendu</Fm.ServLess>
+  <Fm.CostServ>Coût du service</Fm.CostServ>
+  <Fm.CostFuel>Coût du carburant</Fm.CostFuel>
+  <Fm.TotalCosts>Les coûts totaux</Fm.TotalCosts>
+  <Fm.DateAddNew>Date de mise nouvel</Fm.DateAddNew>
+  <Fm.CurrKmNew>Km actuel en mettant nouvelle</Fm.CurrKmNew>
+  <Fm.SureAdd>Etes-vous sûr que vous voulez mettre de nouveaux</Fm.SureAdd>
+  <Fm.CurrKmSwitch>Km actuel lors de la commutation</Fm.CurrKmSwitch>
+  <Fm.With>avec</Fm.With>
+  <Fm.CurrDrive>Vous êtes actuellement en train de conduire avec</Fm.CurrDrive>
+  <Fm.DateSwitch>Date du changement</Fm.DateSwitch>
+  <Fm.SureSwitch>Etes-vous sûr de vouloir passer</Fm.SureSwitch>
+  <Fm.PrevStateFuel>État antérieur de carburant</Fm.PrevStateFuel>
+  <Fm.Dotur>Ravitailler</Fm.Dotur>
+  <Fm.Extraordinary>Extraordinaire</Fm.Extraordinary>
+  <Fm.LastServ>Dernier service</Fm.LastServ>
+  <Fm.Activity>Activité</Fm.Activity>
+  <Fm.CurrKm1>Kilométrage actuel</Fm.CurrKm1>
+  <Fm.PrevKm>Kilométrage précédente</Fm.PrevKm>
+  <Fm.PrevTires>Pneus précédents</Fm.PrevTires>
+  <Fm.NoChTires>Dans le véhicule de temps sélectionné gamme a ajouté / modifié les pneus !!!</Fm.NoChTires>
+  <Fm.NoServ>Dans la gamme datetime sélectionné le véhicule n'a pas fourni des services !!!</Fm.NoServ>
+  <Fm.NoOthCosts>Dans la gamme datetime sélectionné le véhicule n'a pas d'autres coûts !!!</Fm.NoOthCosts>
+  <Fm.KmLastServ>Km sur le dernier service</Fm.KmLastServ>
+  <Fm.UpdateKm>Mettre à jour le kilométrage actuel</Fm.UpdateKm>
+  <Fm.AlertReg>Alerte d'inscription</Fm.AlertReg>
+  <Fm.VehMore>Le véhicule a </Fm.VehMore>
+  <Fm.DaysReg> jours de plus pour vous inscrire.</Fm.DaysReg>
+  <Fm.EnterLastReg>Entrez la date de la dernière inscription.</Fm.EnterLastReg>
+  <Fm.RegToday>Le véhicule doit être immatriculé aujourd'hui.</Fm.RegToday>
+  <Fm.Days_>journées</Fm.Days_>
+  <Fm.RegLess>D'immatriculation du véhicule expire avant</Fm.RegLess>
+  <Fm.Enter>Entrer</Fm.Enter>
+  <Fm.SelectCost>Sélectionnez coût que vous voulez entrer</Fm.SelectCost>
+  <Fm.ExpIntLic>Expiration permis de conduire international</Fm.ExpIntLic>
+  <Fm.GreenCard>Carte verte</Fm.GreenCard>
+  <Fm.NextService>Prochain service</Fm.NextService>
+  <Fm.OthDrivers>D'autres pilotes</Fm.OthDrivers>
+  <Main.SessionExpired>Session a été expirée</Main.SessionExpired>
+  <Main.ClickLogin>Cliquez ici pour vous connecter à nouveau</Main.ClickLogin>
+  <succSaved>sauvegardé avec succès</succSaved>
+  <select>Sélectionner</select>
+  <send>Envoyer</send>
+  <en>Anglais</en>
+  <fr>France</fr>
+  <logout>Déconnexion</logout>
+  <home>Maison</home>
+  <reports>Rapports</reports>
+  <live>Suivi en direct</live>
+  <sett>Réglages</sett>
+  <help>Aider</help>
+  <resSett>Restaurer les paramètres</resSett>
+  <sepScreen>Ecran séparé</sepScreen>
+  <addPoi1>Ajouter POI</addPoi1>
+  <splitScr>L'écran partagé</splitScr>
+  <chooseGroupPoi>Choisissez le groupe (s) pour le point d'intérêt</chooseGroupPoi>
+  <showGeoFence>Afficher la zone</showGeoFence>
+  <chooseGroupGF>Choisissez le groupe (s) pour la zone</chooseGroupGF>
+  <actScr>Choisissez l'écran actif</actScr>
+  <enterUser>Entrez le nom !</enterUser>
+  <enterFull>Entrez le nom complet !</enterFull>
+  <enterPass>Entrez le mot de passe !</enterPass>
+  <enterEmail>Entrez l'adresse e-mail !</enterEmail>
+  <selectUserDel>Sélectionnez l'utilisateur à supprimer !</selectUserDel>
+  <selUser>Sélectionnez l'utilisateur !</selUser>
+  <wait>S'il vous plaît patienter. . .</wait>
+  <EnterGroupName>Entrez le nom du groupe !</EnterGroupName>
+  <selGroupEdit>Sélectionnez le groupe pour l'édition !</selGroupEdit>
+  <groupCannotMod>Ce groupe ne peut pas être modifié !</groupCannotMod>
+  <selGroupDel>Sélectionnez le groupe à supprimer !</selGroupDel>
+  <delGroup>Supprimer le groupe uniquement</delGroup>
+  <delWithPoi>Supprimer avec POI</delWithPoi>
+  <No>Pas</No>
+  <mustOnePoiMod>Vous devez sélectionner un point d'intérêt à modifier !</mustOnePoiMod>
+  <cancel>Annuler</cancel>
+  <enterPoi>Entrez un point d'intérêt !</enterPoi>
+  <mustPoiDel>Vous devez sélectionner un point d'intérêt à supprimer !</mustPoiDel>
+  <yes>Oui</yes>
+  <mustPoi>Vous devez sélectionner Point d'intérêt !</mustPoi>
+  <mustGeoFenceMod>Devez en sélectionner un GeoFence modifier !</mustGeoFenceMod>
+  <enterGFName>Entrez le nom GeoFence !</enterGFName>
+  <MustGFDel>Vous devez sélectionner GeoFence à supprimer !</MustGFDel>
+  <MustGF>Vous devez sélectionner GeoFence!</MustGF>
+  <SelGrDel>Sélectionnez le groupe à supprimer !</SelGrDel>
+  <DelWithGF>Supprimer avec GeoFence</DelWithGF>
+  <MustSelGFAdd>Devez en sélectionner un GeoFence d'ajouter des véhicules !</MustSelGFAdd>
+  <showPoi>Afficher point d'intérêt</showPoi>
+  <selUserEdit>Sélectionnez l'utilisateur pour l'édition!</selUserEdit>
+  <OneClick>Il faut un seul clic sur une carte pour ajouter un POI (Points d'intérêt).</OneClick>
+  <Poi>Point d'intérêt</Poi>
+  <initialView>Vue initiale</initialView>
+  <switchMap>Changer de carte</switchMap>
+  <switchTypeMap>Mettez le type de carte</switchTypeMap>
+  <add>Аjouter</add>
+  <GeoFence>GeoFence</GeoFence>
+  <Save>Sauver</Save>
+  <AddGFPoi>GeoFence Ajout ou Point d'intérêt</AddGFPoi>
+  <AddGF>Ajouter GeoFence nouvelle</AddGF>
+  <Ruler>Règle</Ruler>
+  <Measure>Mesurer</Measure>
+  <RulerMeasure>Règle pour mesurer la distance</RulerMeasure>
+  <search>Rechercher</search>
+  <searchByName>Rues de la recherche, les points d'intérêt</searchByName>
+  <Vehicles>Véhicules</Vehicles>
+  <ListVehicles>Liste des véhicules</ListVehicles>
+  <ChooseVehicles>Choisissez les véhicules visibles sur la carte</ChooseVehicles>
+  <allVehicles>Tous les véhicules</allVehicles>
+  <all>Tous</all>
+  <symbol>Symbole</symbol>
+  <group>Groupe</group>
+  <selGroup>S'il vous plaît sélectionner le groupe</selGroup>
+  <ClickDraw>Cliquez sur la carte pour commencer à dessiner GeoFence nouvelle !</ClickDraw>
+  <EndDraw>Pour terminer le tracé de presse clic double.</EndDraw>
+  <NoGF>Il n'y a pas GeoFence pour économiser!!!</NoGF>
+  <ChooseActScr>Choisissez l'écran actif</ChooseActScr>
+  <CurrTimeDate>Date et heure actuelles</CurrTimeDate>
+  <Name>Nom</Name>
+  <Edit>Editer</Edit>
+  <Delete>Effacer</Delete>
+  <updateGF>Mise à jour GeoFence</updateGF>
+  <EnterGFName>Entrez le nom GeoFence!!!</EnterGFName>
+  <SelectGroup>Sélectionnez un groupe pour ce GeoFence!!!</SelectGroup>
+  <ReqFields>S'il vous plaît entrer les champs requis ...</ReqFields>
+  <AddInfo>Informations complémentaires</AddInfo>
+  <Group>Groupe</Group>
+  <EditPoi>Modifier POI</EditPoi>
+  <Update>Mettre à jour</Update>
+  <Error>Erreur</Error>
+  <dinara5>Cette option est facturée 5 dinars par message, (br /) si vous souhaitez activer, entrez le mot de passe!</dinara5>
+  <EnterPass>Entrez le mot de passe:</EnterPass>
+  <alerttGF>GeoFence alerte</alerttGF>
+  <WrongPass>Mot de passe incorrect!!!</WrongPass>
+  <GFWSD>GeoFence a été supprimé avec succès!!!</GFWSD>
+  <mesec>, Janvier, Février, Mars, Avril, Mai, Juin, Juillet, Août, Septembre, Octobre, Novembre, Décembre</mesec>
+  <vehToFollow>Suivre</vehToFollow>
+  <FollowVehicles>Sélectionnez véhicules pour le suivi en direct</FollowVehicles>
+  <cancelOper>Annulez l'opération</cancelOper>
+  <SucAddSch>Vous avez joint l'ordonnanceur!</SucAddSch>
+  <NoData>Pas de données pour la période demandée</NoData>
+  <Only7Days>Vous pouvez choisir jusqu'à 7 jours!!!</Only7Days>
+  <StartEnd>Le datetime de début doit être inférieure ou égale à la valeur datetime fin!!!</StartEnd>
+  <EndToday>Le datetime de fin doit être inférieure ou égale à datetime aujourd'hui!</EndToday>
+  <CancelOper>Annulez l'opération</CancelOper>
+  <biggerThan1>S'il vous plaît choisir une portée supérieure à 1 heure !!!</biggerThan1>
+  <validSFormat>S'il vous plaît entrez format valide de la date initiale et le temps !!!</validSFormat>
+  <validEFormat>S'il vous plaît entrez le format valide de la date et l'heure !!!</validEFormat>
+  <selRadius>S'il vous plaît sélectionner le rayon</selRadius>
+  <spleetScreenInfo>Le Split screen module raison de sa complexité exige une meilleure configuration. (br /) Sinon, vous pouvez avoir de la difficulté pendant le chargement!!!</spleetScreenInfo>
+  <Street>Rue:</Street>
+  <GFVeh>Zone dans laquelle le véhicule est:</GFVeh>
+  <RouteForV>Chemin de véhicule:</RouteForV>
+  <Number>Nombre</Number>
+  <From>De</From>
+  <To>à</To>
+  <Route>Route</Route>
+  <EmailSucSend>Le rapport est envoyé avec succès à votre e-mail.</EmailSucSend>
+  <EmailNotSend>L'e-mail ne peut pas être envoyé.</EmailNotSend>
+  <Sending>Еnvoi...</Sending>
+  <SelectDriver>Sélectionnez le pilote</SelectDriver>
+  <CantModifyPOI>Vous ne disposez pas des privilèges pour modifier ce point d'intérêt</CantModifyPOI>
+  <CantModifyGF>Vous ne disposez pas des privilèges pour modifier cette zone</CantModifyGF>
+  <next>Prochain</next>
+  <back>Dos</back>
+  <show>Montrer</show>
+  <newCom>Pour un clic nouvelle comparaison</newCom>
+  <here>ici</here>
+  <ResLoading>Résultats de récupération des comparaison...</ResLoading>
+  <twoVeh>Choisissez au moins deux véhicules pour la comparaison !!!</twoVeh>
+  <oneCat>Choisissez au moins une catégorie de comparaison !!!</oneCat>
+  <showPOIbtn>Afficher PDI</showPOIbtn>
+  <Streets>Rues</Streets>
+  <Pois>Points d'intérêt</Pois>
+  <searchStreetsByName>Rues de la recherche par nom</searchStreetsByName>
+  <Registration>Inscription</Registration>
+  <Date>Date</Date>
+  <Time>Тemps</Time>
+  <Speed>Vitesse</Speed>
+  <SelectRoute>Sélectionnez un itinéraire</SelectRoute>
+  <SelectVeh>Sélectionnez un véhicule</SelectVeh>
+  <InfoRoute1>Remplissez les informations demandées, l'entrée d'une route!!!</InfoRoute1>
+  <InfoRoute2>Pas de données pour le jour sélectionné!!!</InfoRoute2>
+  <InfoRoute3>Erreur, s'il vous plaît essayer à nouveau!!!</InfoRoute3>
+  <Start>Commencer</Start>
+  <InfoRoute4>Pas de données pour le jour sélectionné!!!</InfoRoute4>
+  <Welcome>Bienvenue à votre destination.</Welcome>
+  <Distance>Distance</Distance>
+  <Narrative>Récit</Narrative>
+  <YourTrip>Votre voyage est </YourTrip>
+  <forward>Avant</forward>
+  <pause>Pause</pause>
+  <no>Aucun</no>
+  <End>Fin</End>
+  <addAllDriver>Ajout d'un pilote a permis</addAllDriver>
+  <addAllVehicle>Ajouter des véhicules autorisés</addAllVehicle>
+  <addOrgUnit>Ajouter l`unité d'organisation</addOrgUnit>
+  <modOrgUnit>Modifier l'unité d'organisation</modOrgUnit>
+  <change>Changer</change>
+  <delEnt>Effacer l`entrée</delEnt>
+  <STOS>Heure de début de l`arrêt</STOS>
+  <ETOS>Heure de fin de l`arrêt</ETOS>
+  <TTOS>La durée totale de debout</TTOS>
+  <hide>Cacher</hide>
+  <alarm>Arrêt d'alarme en dehors de la route plus de x minutes</alarm>
+  <print>Imprimer</print>
+  <noEmail>* Vous n'avez pas entrer dans un e-mail !</noEmail>
+  <uncorrEmail>* Vous avez entré un format email invalide !</uncorrEmail>
+  <SchNote>* Pour entrer plusieurs adresses e-mails séparés les e-mails par ,(br /) Exemple: n1@example.com,n2@example.com,</SchNote>
+  <noEmail1>* Vous n'avez pas entré e-mail !</noEmail1>
+</note>

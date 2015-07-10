@@ -1,0 +1,58 @@
+-------------------------------------------
+| 		[CHANGELOG]		  |
+-------------------------------------------
+
+Promeni:
+
+   [USettings.php]
+	- dodadeno ../css/bootstrap.css
+	- ne se koristi ON/OFF
+	- funkcija scrolify() za tabelite 
+	- temperatura (C;F)
+	- DelItem(), EditItem(), AddItem()
+	- 
+   [js/settings.js]
+	- dodadena funcija getCheckedRadio()
+	- AddUserSettings() nekoi promeni
+
+   [SaveUserSettings.php]
+	- ne se koristi $show (greska so active vo users)
+	- timezone od tabela
+
+   [baza]
+	- dodadeno tempunit kolona vo users
+	- currency tabela
+	- colors tabela
+	- dodadeno timezone vo cities (se koristi timezone.php)
+
+   [prevodi]
+	- dodadeni se prevodi (mk,al,en,fr)
+	
+Dodadeni:
+	
+   - EditItem.php (za promeni na tabelite + clubcards)
+   - AddItem.php (za dodavanje vo tabelite + clubcards)
+
+NE SE KORISTAT:
+
+__DeleteClubCard.php *
+__DeleteRouteCulture.php *
+__DeleteRouteMaterial.php *
+__DeleteRouteMechanisation.php *
+__DeleteRouteOperation.php *
+__EditClubCard.php *
+__EditCultureName.php *
+__EditMaterialName.php *
+__EditMechanisationName.php *
+__EditOperationName.php *
+__InsertCultureName.php *
+__InsertMaterialName.php *
+__InsertMechanisationName.php *
+__InsertOperationName.php *
+__SaveClubCard.php *
+__UpdateCultureName.php *
+__UpdateClubCard.php *
+__UpdateMaterialName.php *
+__UpdateMechanisationName.php *
+__UpdateOperationName.php *
+

@@ -1,0 +1,2225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<note>
+<Login.UserIsNotActive>Ky përdorues ka qenë i çaktivizuar. Ju lutemi të na kontaktoni përmes emailit:</Login.UserIsNotActive>
+<Settings.InsertValidLength>Shkruani kilometrazhin vlefshme</Settings.InsertValidLength>
+<Settings.InvalidPhoneFormat>Formati numër i gabuar</Settings.InvalidPhoneFormat>
+<Tracking.MobileOperator>Rrjeti i Mobile</Tracking.MobileOperator>
+<Tracking.SMSNumber>Numri i SMS</Tracking.SMSNumber>
+<Settings.SendviaEmail>SMS/email</Settings.SendviaEmail>
+<Settings.MobileOperator>Zgjidhni një operator celular</Settings.MobileOperator>
+<Settings.MobileOperatorMust>Ju lutem, përzgjidhni një operator celular</Settings.MobileOperatorMust>
+<Settings.InsertValidTime>Shkruani një kohë të vlefshme</Settings.InsertValidTime>
+<Settings.FleetManagement>Fleet management</Settings.FleetManagement>
+<Settings.RFID>RFID</Settings.RFID>
+<odlozenablokada>bllokohet vonuar</odlozenablokada>
+<zadenpanik>butoni panik pasme</zadenpanik>
+<zadenaodlozenablokada>pasme vonuar bllokoj</zadenaodlozenablokada>
+<granicaobrtai>kapërcim kufiri çift rrotullues</granicaobrtai>
+<nacionalnamreza>Rrjeti kombëtar pas roaming</nacionalnamreza>
+<taxioffpasson>Taksimetri off me pasagjerë në</taxioffpasson>
+<Settings.ClubCardsName>kartë klub</Settings.ClubCardsName>
+<Settings.Temperature>Temperaturë</Settings.Temperature>
+<Login.ActProfile>Aktivizimi Profilin</Login.ActProfile>
+<Reports.ModalInfo>Ju duhet të ndryshoni emrin tuaj me një adresë e vlefshme email. Kjo do të shërbejë si kredenciale tuaj të re login.</Reports.ModalInfo>
+<Reports.ModalInfoAlertT1>Ju keni</Reports.ModalInfoAlertT1>
+<Reports.ModalInfoAlertT2>dJu keni 10 ditë që kanë mbetur për të bërë ndryshimin.</Reports.ModalInfoAlertT2>
+<Reports.ModalInfoAlertLastDay>Ju keni një ditë u largua për të bërë ndryshimin!</Reports.ModalInfoAlertLastDay>
+<Reports.PasswordChange>Ju lutem ndryshoni fjalëkalimin tuaj. Fjalëkalimi juaj duhet të jetë më shumë se 6 karaktere i gjatë.</Reports.PasswordChange>
+<Reports.NotificationEmail>Ju duhet të shkruani një adresë e-mail!</Reports.NotificationEmail>
+<Reports.NotificationEmailSuccess>Një lidhje konfirmim është dërguar tek adresa juaj e postës elektronike. Ju lutemi ndiqni udhëzimet në email konfirmimi.</Reports.NotificationEmailSuccess>
+<Reports.NotificationEmailValid>Shkruani një adresë e vlefshme email!</Reports.NotificationEmailValid>
+<Settings.EmailValidationFailed>Email nuk ekziston! Ju lutemi provoni përsëri.</Settings.EmailValidationFailed>
+<Settings.EmailChangeSuccess>Faleminderit për ndryshimin e emrin e përdoruesit.</Settings.EmailChangeSuccess>
+<Settings.EmailBodyLink>Ju lutem klikoni lidhjen më poshtë për të konfirmuar se ju keni marrë këtë mesazh, dhe për të aktivizuar llogarinë tuaj.</Settings.EmailBodyLink>
+<Settings.ModalButtonChange>Modifikoj</Settings.ModalButtonChange>
+<Reports.WithIgnOn>motor të përfshira</Reports.WithIgnOn>   
+<Settings.MustReg>Shkruani një regjistrim të automjetit !!!</Settings.MustReg>
+<Settings.MustCode>Të hyjë në një kod të automjetit !!!</Settings.MustCode>
+<Tracking.FuelDown>Drop në karburant</Tracking.FuelDown>
+<Tracking.FuelDownDetails>Detajet bjerë në karburant</Tracking.FuelDownDetails>
+<Tracking.Hoist>Ngritje</Tracking.Hoist>
+<Tracking.DetailNewTab>Detajet e hapur për automjetet në një skedë të re</Tracking.DetailNewTab>
+<Tracking.OrdersNewTab>Urdhra të hapur sot në një skedë të re</Tracking.OrdersNewTab>
+<Routes.NotCreatedPreOrders>A nuk e kemi urdhër krijuar paracaktuara!!!</Routes.NotCreatedPreOrders>
+<Settings.PeriodFrom>Periudhë</Settings.PeriodFrom>
+<Settings.ForVeh>automjetet</Settings.ForVeh>
+<Settings.CurrYearAllVeh>Vit për të gjitha automjetet</Settings.CurrYearAllVeh>
+<Settings.ForAllVeh>për të gjitha automjetet</Settings.ForAllVeh>
+<Reports.LastPhoto>Image fundit</Reports.LastPhoto>
+<Reports.ClickNewPhoto>Kliko për imazh të ri</Reports.ClickNewPhoto>
+<Reports.VehNoPhoto>Ky automjet nuk ka ndonjë foto...</Reports.VehNoPhoto>
+<Reports.Max3Photos>Në baza ditore, ju mund të dorë izgenerirate maksimum prej tre fotot për automjet.</Reports.Max3Photos>
+<Reports.LimitPhotos>Për këtë automjet, ju keni arritur kufirin e tre imazheve dorë gjeneruar të ditës.</Reports.LimitPhotos>
+<Reports.PreviewLastPhoto>Shiko foton e fundit</Reports.PreviewLastPhoto>
+<Reports.PhotoName>Emri imazhin</Reports.PhotoName>
+<Reports.NewPhoto>Nju imazhin</Reports.NewPhoto>
+<Reports.TimeFirstIgnOn>Gjatë motorit të parë ndezjen</Reports.TimeFirstIgnOn>
+<Reports.TimeLastData>Gjatë të dhënave të fundit të marra</Reports.TimeLastData>
+<Reports.TotalTimeBetween>Koha totale midis pari të fillojë motor dhe të dhënat e fundit të marra</Reports.TotalTimeBetween>
+<Reports.OdometerStart>Vlera fillestare e rrugëmatës</Reports.OdometerStart>
+<Reports.CurrSpeed>Shpejtësia aktuale</Reports.CurrSpeed>
+<Reports.MaxSpeedDay>Shpejtësia maksimale e arritur gjatë ditës</Reports.MaxSpeedDay>
+<Reports.TotalToursDay>Numri i përgjithshëm i turistëve gjatë ditës</Reports.TotalToursDay>
+<Reports.TotalPriceDay>Kostoja totale e të gjitha turne gjatë ditës</Reports.TotalPriceDay>
+<Reports.TotalPriceDayTaxi>Kostoja totale e të gjitha turne të përfshira taksimetër</Reports.TotalPriceDayTaxi>
+<Reports.TotalPriceDayWithout>Kostoja totale e të gjitha turne përjashtuar taksimetër</Reports.TotalPriceDayWithout>
+<Reports.CurrTaximeter>Gjendja aktuale e taksimetër</Reports.CurrTaximeter>
+<Reports.CurrPassengers>Numri aktual i udhëtarëve</Reports.CurrPassengers>
+<Reports.CurrOdometer>Vlera aktuale e rrugëmatës</Reports.CurrOdometer>
+<Reports.PastDistDay>Largësia udhëtuar gjatë ditës</Reports.PastDistDay>
+<Reports.CurrLocation>Current Vendndodhja</Reports.CurrLocation>
+<Reports.CurrPoi>Pika aktuale arrihen me interes</Reports.CurrPoi>
+<Reports.CurrZone>Zona Instant vizituara</Reports.CurrZone>
+<Reports.CameraReport>Raporti Camera</Reports.CameraReport>
+<Reports.VehNotCam>Ky automjet nuk ka ndërtuar në kamera !!!</Reports.VehNotCam>
+<Reports.CameraImg>Foto</Reports.CameraImg>
+<Reports.ViewCameraImg>Paraparje Pamjeje</Reports.ViewCameraImg>
+<hideColVehDetails>Kjo kolonë do të gjendet në rubrikën Detajet automjeteve. Shfaqja e saj përsëri ju mund të mundësojë atë nëpërmjet Paneli i.</hideColVehDetails>
+	<currdataweather>Kohës</currdataweather>
+	<garmin>Garmin</garmin>
+	<fueldown>Rënie e papritur e karburantit!</fueldown>
+<Settings.FallFuel>Rënie e papritur e karburantit</Settings.FallFuel>
+	<Reports.NoTours1>Turne</Reports.NoTours1>
+	<tow>Lëvizja e paautorizuar</tow>
+	<weakAccumulator>Akumulator i dobët</weakAccumulator>
+	<geolock>Paautorizuar e lënë zonën e parkimit</geolock>
+	<changelocation>Ndrysho vendndodhjen</changelocation>
+	<geolockasset>Zona e paautorizuar dalje</geolockasset>
+	<weakbattery>Bateri të dobët</weakbattery>
+	<mainpoweroff>Pajisja është unplugged</mainpoweroff>
+	<mainpoweron>Pajisja është e lidhur</mainpoweron>
+<Reports.Fast>I shpejtë</Reports.Fast>
+<Reports.Short>I shkurtër</Reports.Short>	
+<Reports.StartPoi>Filluar nga pika</Reports.StartPoi>	
+<Reports.Destination>Destinacion</Reports.Destination>		
+<Reports.SavedDirections>llogaritjet regjistruara</Reports.SavedDirections>
+	<incorrectcalculation>Ju nuk do të bëjë një llogaritje të saktë!</incorrectcalculation>
+	<invalidendposition>Pozicioni Invalid destinacion!</invalidendposition>
+	<invalidstartposition>Pozicioni Invalid e fillimit!</invalidstartposition>
+	<invaliddestination>Pika e fillimit të pavlefshme dhe destinacion!</invaliddestination>
+	<directionsaved>Llogaritja e suksesshme regjistruar</directionsaved>
+	<OneClickDirection>Kërkon një klik në një hartë për të zgjedhur pozicionin</OneClickDirection>
+	<clickforendpoint>Zgjedhja e një destinacion duke klikuar në hartë</clickforendpoint>
+	<clickforstartpoint>Përzgjedhja pozicionin e fillimit duke klikuar në hartë</clickforstartpoint>
+<Routes.OptimizedTooltip>Rruga me makinë kohe sa më të shkurtër/kohë më të optimizuar distancë/këmbë që përfshin të gjitha lokacionet e ndërmjetme (origjinës dhe e destinacionit vende të mbeten të fiksuara).</Routes.OptimizedTooltip>
+<Routes.ShortestTooltip>Më të shkurtër rrugë distancë ngarje.</Routes.ShortestTooltip>
+<Routes.FastestTooltip>Më e shpejtë rrugë Ora makinë.</Routes.FastestTooltip>	
+	<WeatherForecast>Parashikim i kohës</WeatherForecast>
+	<directlive>Drejtpërdrejt në monitorimin jetoj</directlive>
+	<Reports.Tooltip13>Kostoja totale e të gjitha turne në kuptimin e distancës udhëtuar përfshira taksimetër i ndarë nga distanca totale udhëtuar</Reports.Tooltip13>
+	<Reports.Productivity>Prodhimtari</Reports.Productivity>
+	<feelslike>Ndjehet si</feelslike>
+	<lastupdate>Përditësimi i fundit nga</lastupdate>
+	<wind>Erë</wind>
+	<humidity>Lagështi</humidity>
+	<weather>Weather</weather>
+	<ReverseDestinationa>Ndrysho pikënisje dhe destinacion</ReverseDestinationa>
+	<ChooseStartingPoint>Zgjidhni një pikënisje</ChooseStartingPoint>
+	<ChooseDestination>Zgjidhni një destinacion</ChooseDestination>
+	<FastRoute>Rrugë të shpejta</FastRoute>
+	<ShortRoute>Rrugë e shkurtër</ShortRoute>
+	<calculate>Llogarit</calculate>
+	<CalculatingDistance>Llogaritja distancë</CalculatingDistance>
+	<directions>Llogaritjet</directions>
+<Routes.OldRoute>Ju nuk mund të hyjë në një rrugë në të kaluarën !!!</Routes.OldRoute>	
+<Reports.Active>Aktiv</Reports.Active>	
+<Reports.Completed>Përfunduar</Reports.Completed>	
+<Reports.Unread>Palexuar</Reports.Unread>	
+<Reports.Read>Lexoj</Reports.Read>	
+<Reports.Deleted>Fshihet</Reports.Deleted>	
+<Reports.MessNotDel>Mesazhi nuk është dorëzuar !!!</Reports.MessNotDel>	
+<Reports.DtDelete>Fshirje kohë</Reports.DtDelete>		
+<Reports.DtEnd>Përfundimi</Reports.DtEnd>		
+<Reports.DtStart>Koha e aktivizimit</Reports.DtStart>		
+<Reports.Checked>Kontrollohet</Reports.Checked>			
+<Reports.DtSeen>Koha e leximit</Reports.DtSeen>		
+<Reports.DtDelivery>Kohë post</Reports.DtDelivery>
+<Reports.Messages>Posts</Reports.Messages>	
+<Reports.StopStatus>Statusi stop</Reports.StopStatus>
+  <person>Person</person>
+  <sosalarm>SOS Alarm</sosalarm>
+<mandown>Njeri poshtë!</mandown>
+<Routes.NotSelOpt>Ju nuk keni zgjedhur asnjë opsion !!!</Routes.NotSelOpt>	
+<Routes.OrdinalNumber>Numër</Routes.OrdinalNumber>	
+<Routes.TotalArea>Sipërfaqja e përgjithshme</Routes.TotalArea>
+<Routes.DoneArea>Sipërfaqe mbarova</Routes.DoneArea>
+<Routes.TotWorkTime>Koha totale e punës</Routes.TotWorkTime>
+<Routes.Downtime>Kohë joproduktive</Routes.Downtime>	
+<Routes.SelectCulture>Select culture</Routes.SelectCulture>		
+<Routes.RouteAct>Activities according to order</Routes.RouteAct>		
+<Routes.AddedMechanisation>Added mechanis.</Routes.AddedMechanisation>	
+<Routes.PopupDO>Download predefined orders</Routes.PopupDO>
+<Routes.Optimized>Optimizuar</Routes.Optimized>
+<Routes.Short>Shkurtër</Routes.Short>	
+<Routes.DownloadOrder>Shkarko urdhër</Routes.DownloadOrder>		
+<Routes.EnterStartEnd>Input fillim dhe fund pikë të rrugës</Routes.EnterStartEnd>	
+<Routes.ToBeEntered>A doni këtë artikull që do të lidhet si</Routes.ToBeEntered>
+<Routes.StartPoiRoute>pikënisje</Routes.StartPoiRoute>
+<Routes.And>dhe</Routes.And>
+<Routes.EndPoiRoute>pika fundi i rrugës?</Routes.EndPoiRoute>
+<Routes.NoSEPoi>Ju nuk keni futur fillimit dhe në fund pikë të rrugës !!!</Routes.NoSEPoi>
+<Routes.NoSPoi>Ju nuk keni futur pika e fillimit të rrugës !!!</Routes.NoSPoi>
+<Routes.NoEPoi>Ju nuk keni futur në pikën e fundit të rrugës !!!</Routes.NoEPoi>	
+  <Settings.WaitPrice>Kosto e pritjes</Settings.WaitPrice>
+  <Admin.FuelTankHeight>Lartësia Tank</Admin.FuelTankHeight>
+  <Admin.Allow>Lejoj</Admin.Allow>
+  <Admin.AllowFuel>Lejo sensor karburantit</Admin.AllowFuel>
+  <Admin.AllowTemp>Lejo sensor temperature</Admin.AllowTemp>
+  <Admin.AllowRfid>Lejojnë rfid</Admin.AllowRfid>
+  <Admin.AllowInputVoltage>Lejojnë akumulator</Admin.AllowInputVoltage>
+  <Admin.AllowGarmin>Lejojnë garmin</Admin.AllowGarmin>
+  <Admin.AllowRpm>Lejojnë rpm</Admin.AllowRpm>
+  <Admin.AllowMotoBlock>Lejojnë moto-bllok</Admin.AllowMotoBlock>
+  <Admin.AllowMotoAlarm>Lejojnë moto-alarmi</Admin.AllowMotoAlarm>
+  <Admin.AllowBattery>Lejojnë bateria</Admin.AllowBattery>
+  <Admin.AllowGeoLock>Lejojnë geo-lock</Admin.AllowGeoLock>
+  <Admin.AddCountry>Shto shtetit</Admin.AddCountry>
+  <Admin.AddCity>Shto qytet</Admin.AddCity>
+  <Settings.MotoAlarms>Alarmet motor</Settings.MotoAlarms>
+  <Settings.Tow>Tërheqje</Settings.Tow>
+  <Settings.WeakAcc>Akumulator dobët</Settings.WeakAcc>
+  <Settings.PoiGroups>Grupet e pikat e interesit</Settings.PoiGroups>
+  <Reports.NoPerm>Ju nuk keni leje për të parë këtë meny !!!</Reports.NoPerm>
+  <Settings.AutomResetDriver>Kontrolli automatik i shoferëve të caktuara në automjete</Settings.AutomResetDriver>
+  <Settings.OptionsResetDriver>Opsionet për logout automatike</Settings.OptionsResetDriver>
+  <Settings.ResetDriver1>Çdo motor zjarri</Settings.ResetDriver1>
+  <Settings.ResetDriver2>Çdo ditë në 00:00</Settings.ResetDriver2>
+  <Settings.ResetDriver3>Detyra e ardhshme e shoferit</Settings.ResetDriver3>
+  <Settings.FmAlarmInfo1>Ardhja e këtij alarmi është e nevojshme që të ketë hyrë në regjistrimin e fundit të këtij automjeti.</Settings.FmAlarmInfo1>
+  <Settings.FmAlarmInfo2>Ardhja e këtij alarmi është një duhet të ketë hyrë të paktën një kosto të shërbimit në këtë automjet.</Settings.FmAlarmInfo2>
+  <Settings.FmAlarmInfo3>Ardhja e këtij alarmi është një proxy duhet të keni hyrë të paktën një nga shoferët e drejtë të këtij automjeti.</Settings.FmAlarmInfo3>
+  <Settings.MustServiceInterval>Ju duhet të hyjë në një interval të shërbimit për automjet !!!</Settings.MustServiceInterval>
+  <Settings.Months>muaj</Settings.Months>
+  <Settings.RemindMeMustOne>Ju duhet të hyjë në të paktën një mundësi për "Kujtoj mua më parë"</Settings.RemindMeMustOne>
+  <Reports.FrontPassenger>Pasagjerëve para</Reports.FrontPassenger>
+  <Reports.Yes1>po</Reports.Yes1>
+  <Reports.No1>jo</Reports.No1>
+  <Admin.VehiclePutRight>Automjeteve në ndërkohë është vënë drejtë</Admin.VehiclePutRight>
+  <Admin.ChooseFilter>Zgjidhni filtër për të shfaqur automjetet!</Admin.ChooseFilter>
+  <Admin.Valid>i vlefshëm</Admin.Valid>
+  <Admin.Invalid>e pavlefshme</Admin.Invalid>
+  <Admin.Satellites>Satellites</Admin.Satellites>
+  <Admin.MarkAsInactive>Mark joaktiv</Admin.MarkAsInactive>
+  <Admin.AllClients>Të gjithë Konsumatorët</Admin.AllClients>
+  <Admin.History>Histori</Admin.History>
+  <Admin.CurrentStatus>Statusi aktual i automjeteve nga statusi i</Admin.CurrentStatus>
+  <Admin.IgnOnMore2>Motor drejtimin, të dhënat më të vjetër se 5 min</Admin.IgnOnMore2>
+  <Admin.More2>Të dhënat më të vjetër se 2 ditë</Admin.More2>
+  <Settings.AlreadyFuelCost>Tashmë kanë hyrë në koston e karburantit !!!</Settings.AlreadyFuelCost>
+  <Settings.AlreadyServiceCost>Tashmë kanë hyrë në koston e shërbimit të !!!</Settings.AlreadyServiceCost>
+  <Settings.AlreadyOthCost>Tashmë kemi hyrë në këtë kosto !!!</Settings.AlreadyOthCost>
+  <Settings.AlreadyCost>Tashmë kemi hyrë në këtë kosto !!!</Settings.AlreadyCost>
+  <Settings.SuccDownloadHolidays1>Festat publike u shkarkuar me sukses dhe automatikisht të gjitha llogaritjet në aplikimin do të bëhet për ta përsëri !!!</Settings.SuccDownloadHolidays1>
+  <Settings.SuccRemoveHolidays1>Festat publike u hoqën me sukses dhe të gjitha llogaritjet automatikisht në aplikimin do të bëhet për ta përsëri !!!</Settings.SuccRemoveHolidays1>
+  <Settings.RemoveHolidays>Hiq pushimet publike</Settings.RemoveHolidays>
+  <Settings.SuccRemoveHolidays>Pushimet publike u hoqën me sukses</Settings.SuccRemoveHolidays>
+  <Settings.AlertRegTitle>Shto skadimit alarm të regjistrimit</Settings.AlertRegTitle>
+  <Settings.AlertServiceTitle>Shto shërbimi alarm</Settings.AlertServiceTitle>
+  <Settings.AlertGreenCardTitle>Shto alert për kartën e gjelbër</Settings.AlertGreenCardTitle>
+  <Settings.RemindMe>Kujtoj mua</Settings.RemindMe>
+  <Settings.Before>para</Settings.Before>
+  <Settings.AddShift>Pezullimi u shtua me sukses automatikisht dhe të gjitha llogaritjet në aplikimin do të bëhet përsëri për të gjitha ditët e një muaj më parë në të cilën ndryshimi !!!</Settings.AddShift>
+  <Settings.ModifyShift>Pezullimi u modifikua me sukses dhe aplikimi automatik në të gjitha llogaritjet do të kryhet përsëri në të gjitha ditët e një muaj më parë në të cilën ndryshimi !!!</Settings.ModifyShift>
+  <Settings.DeleteShift>Pezullimi u fshi me sukses automatikisht dhe të gjitha llogaritjet në aplikimin do të bëhet përsëri për të gjitha ditët e një muaj më parë në të cilën ndryshimi !!!</Settings.DeleteShift>
+  <Settings.1>i parë</Settings.1>
+  <Settings.2>i dytë</Settings.2>
+  <Settings.3>i tretë</Settings.3>
+  <Settings.4>i katërt</Settings.4>
+  <Settings.DeleteRecache>Dita u fshi me sukses si festë dhe të gjitha llogaritjet automatikisht në aplikimin do të bëhet përsëri për të njëjtën !!!</Settings.DeleteRecache>
+  <Settings.AddRecache>Dita u shtua me sukses si një festë dhe të gjitha llogaritjet automatikisht në aplikim do të bëhet përsëri për të njëjtën !!!</Settings.AddRecache>
+  <Settings.Play>Luaj</Settings.Play>
+  <Settings.Stop>Ndaluar</Settings.Stop>
+  <Settings.Louder>Fort</Settings.Louder>
+  <Settings.Quieter>Qetë</Settings.Quieter>
+  <Settings.SuccDownloadHolidays>Janë ndërmarrë me sukses ditët e festave</Settings.SuccDownloadHolidays>
+  <Settings.NameHoliday>Emri i pushimeve</Settings.NameHoliday>
+  <Settings.DownloadHolidays>Shkarko festat publike</Settings.DownloadHolidays>
+  <Settings.Last>I fundit</Settings.Last>
+  <Settings.Next>Tjetër</Settings.Next>
+  <Reports.NoDataDayAct>Dita e kërkuar nuk ka klasa aktive. Orë pasive:</Reports.NoDataDayAct>
+  <Reports.NoCalcActOption>Ky automjet ka mundësinë e llogaritjes së orëve aktive !!!</Reports.NoCalcActOption>
+  <Reports.DeleteCostType>Lloji fshirjen e shpenzimeve të</Reports.DeleteCostType>
+  <Reports.DelExecutor>Fshij ekzekutues</Reports.DelExecutor>
+  <Reports.DelCostType>Fshij lloj shpenzime</Reports.DelCostType>
+  <Reports.SureDelComp>Jeni te sigurte qe doni te fshini komponent</Reports.SureDelComp>
+  <Reports.DelComp>Fshij komponent</Reports.DelComp>
+  <Reports.DelComp1>Fshij komponent</Reports.DelComp1>
+  <Reports.DelListComp>Merrni listën e komponentëve të zgjedhura</Reports.DelListComp>
+  <Admin.SelectCalc>Zgjidh metodën e llogaritjes së klasave aktive</Admin.SelectCalc>
+  <Admin.SelectShowRpm>Zgjidhni ekran të shkuar</Admin.SelectShowRpm>
+  <Admin.SelectRpmLimit>Zgjidhni kufirin e kontaktit</Admin.SelectRpmLimit>
+  <Admin.SelectMinRpm>Zgjidh një numër minimal të kontaktit</Admin.SelectMinRpm>
+  <Admin.SelectMaxRpm>Zgjidhni numrin maksimal të kontaktit</Admin.SelectMaxRpm>
+  <Admin.SelectSpeedLimit>Zgjidhni kufiri i shpejtësisë</Admin.SelectSpeedLimit>
+  <Admin.Limit>Kufi</Admin.Limit>
+  <Admin.NoRPM>Num. rpm</Admin.NoRPM>
+  <Admin.RpmSpeed>RPM dhe shpejtësi</Admin.RpmSpeed>
+  <Admin.ShowRPM>Trego RPM</Admin.ShowRPM>
+  <Admin.CalculateActiveH>Llogaritja e klasave aktive sipas afatit</Admin.CalculateActiveH>
+  <Admin.VehicleStatus>Statusi automjeteve</Admin.VehicleStatus>
+  <Reports.TheRPMLimit>Kufiri RPM është</Reports.TheRPMLimit>
+  <Reports.Obrtai>rpm</Reports.Obrtai>
+  <Reports.Obrtai1>RPM</Reports.Obrtai1>
+  <Reports.MinRPM>Numri minimal i rpm</Reports.MinRPM>
+  <Reports.MaxRPM>Numri maksimal i rpm</Reports.MaxRPM>
+  <Reports.SpeedLimit>Shpejtësia kufizim</Reports.SpeedLimit>
+  <Reports.RpmLimit>Kufiri RPM</Reports.RpmLimit>
+  <Reports.Load>Ngarkesë</Reports.Load>
+  <Reports.LockPass>Fjalëkalimi lock</Reports.LockPass>
+  <Reports.ActiveHours>Orë aktive</Reports.ActiveHours>
+  <Reports.PassiveHours>Orë pasiv</Reports.PassiveHours>
+  <Reports.TotalActiveHours>Gjithsej orë aktivë</Reports.TotalActiveHours>
+  <Reports.TotalPassiveHours>Gjithsej orë e pasiv</Reports.TotalPassiveHours>
+  <Reports.UnauthUse>Paautorizuar të përdorni të</Reports.UnauthUse>
+  <Reports.Range>Varg</Reports.Range>
+  <Settings.VisibleLive>Dukshmëria Live monitorimit</Settings.VisibleLive>
+  <Reports.DailyFuel>Të dhënat për karburant janë llogaritur në baza ditore.</Reports.DailyFuel>
+  <Reports.TotalDistance>Distanca totale</Reports.TotalDistance>
+  <Reports.Intervention>Ndërhyrje</Reports.Intervention>
+  <Reports.Pump>Pompë</Reports.Pump>
+  <Reports.Caps>Mbulon</Reports.Caps>
+  <Reports.Opened>hapur</Reports.Opened>
+  <Reports.Closed>mbyllur</Reports.Closed>
+  <Reports.PCReport>Pompë Kushti/Mbulon</Reports.PCReport>
+  <Reports.ActivePump>aktiv</Reports.ActivePump>
+  <Reports.InactivePump>joaktiv</Reports.InactivePump>
+  <Tracking.LostComm>Komunikimi i humbur</Tracking.LostComm>
+  <Reports.Tours1>turne</Reports.Tours1>
+  <Reports.TaxiActivity>Aktiviteti taxi</Reports.TaxiActivity>
+  <Reports.TaxiReport2>Tarifat raportojnë 2</Reports.TaxiReport2>
+  <Reports.TaxiReport1>Tarifat raportojnë 1</Reports.TaxiReport1>
+  <Reports.IntervReport>Report intervention</Reports.IntervReport>
+  <Reports.TimePI>Koha nga NP</Reports.TimePI>
+  <Reports.TimePITooltip>Koha nga ndërhyrje previous</Reports.TimePITooltip>
+  <Admin.NumberSensorsPassengers>Numri i sensorë për pasagjerë</Admin.NumberSensorsPassengers>
+  <Reports.Tours>Turne</Reports.Tours>
+  <Reports.Times>kohët</Reports.Times>
+  <Reports.CostTour>Kostoja e turneut</Reports.CostTour>
+  <Reports.CostTour1>Coût des visites</Reports.CostTour1>
+  <Reports.DistanceInTour>Larg. në turne</Reports.DistanceInTour>
+  <Reports.DistanceInTour1>Largësia në turne</Reports.DistanceInTour1>
+  <Reports.OutOfTours>nga turne</Reports.OutOfTours>
+  <Reports.InTours>në turne</Reports.InTours>
+  <Reports.Loss>Asnjë taksimetër</Reports.Loss>
+  <Reports.Profit>Me taksimetër</Reports.Profit>
+  <Reports.Effectiveness>Efektshmëri</Reports.Effectiveness>
+  <Reports.TempCargo>Ngarkesave temperatura kupeja</Reports.TempCargo>
+  <Reports.FuelLevel>Niveli Karburanti</Reports.FuelLevel>
+  <Reports.DistCum>Largësia kumulative</Reports.DistCum>
+  <Reports.EndOdometer>Kilometrat fundi</Reports.EndOdometer>
+  <Reports.StartOdometer>Filloni rrugëmatës</Reports.StartOdometer>
+  <Reports.AvgEngTemp>Temperatura mesatare e motorit</Reports.AvgEngTemp>
+  <Reports.MaxEngTemp>Temperatura maksimale e motorit</Reports.MaxEngTemp>
+  <Reports.EngTemp>temperatura motor</Reports.EngTemp>
+  <Reports.RPM>RPM</Reports.RPM>
+  <Reports.PZ>PZ</Reports.PZ>
+  <Reports.FirstIgnOn>Ndezjen e parë</Reports.FirstIgnOn>
+  <Reports.LastIgnOff>Zjarr e fundit</Reports.LastIgnOff>
+  <Reports.TimePZ>Të dorës së dytë kohë e zënë</Reports.TimePZ>
+  <Reports.DistPZ>Largësia zënë me pasiv</Reports.DistPZ>
+  <Reports.TimePZAll>Të dorës së dytë Koha zënë mesin e të gjitha turne</Reports.TimePZAll>
+  <Reports.DistPZAll>Distanca mes pasiv zënë të gjitha turne</Reports.DistPZAll>
+  <Reports.DeletedPoi>POI fshirë</Reports.DeletedPoi>
+  <temporaryNonUse>Përkohshëm jo-përdorimi i automjetit</temporaryNonUse>
+  <iconCosts>Shpenzimet e hyrjes</iconCosts>
+  <iconMail>Moduli Komunikimi</iconMail>
+  <iconAlert>Alarmet dhe njoftimet</iconAlert>
+  <Reports.Drivers>Drivers</Reports.Drivers>
+  <Reports.GeonetTeam>Geonet GPS ekipi</Reports.GeonetTeam>
+  <Reports.ContactMail>Për më shumë informacion na kontaktoni në</Reports.ContactMail>
+  <Reports.DontReply>Mos "Përgjigju" për këtë e-mail.</Reports.DontReply>
+  <Reports.Format1>format</Reports.Format1>
+  <Reports.InAttach>Në kërkesën tuaj, unë bashkangjitni dërgoj raportin e</Reports.InAttach>
+  <Reports.MailAutoSend>Ky mesazh automatikisht do të merrni për të monitoruar sistemin automjetet tuaja</Reports.MailAutoSend>
+  <deletePolygon>Poligonin është fshirë me sukses!</deletePolygon>
+  <successfullyPolygon>Poligonin është shtuar me sukses!</successfullyPolygon>
+  <updatePolygon>Update poligonin</updatePolygon>
+  <AddPolygon>Shto poligonin e ri</AddPolygon>
+  <Settings.Polygon>Shumëkëndësh</Settings.Polygon>
+  <Main.Alarms>Alarmet</Main.Alarms>
+  <Main.Messaging>Mesazhimi</Main.Messaging>
+  <al>Shqiptar</al>
+  <Settings.InactivePOIHeader>POI joaktiv</Settings.InactivePOIHeader>
+  <Settings.ActivateMultiplePOI>Aktivizoni pikat e interesit</Settings.ActivateMultiplePOI>
+  <Settings.DeactivateMultiplePOI>Çaktivizoni pikat e interesit</Settings.DeactivateMultiplePOI>
+  <Settings.TransferMultiplePOI>Pikat e transferimit të interesit</Settings.TransferMultiplePOI>
+  <Settings.DeleteMultiplePOI>Fshij pikat e interesit</Settings.DeleteMultiplePOI>
+  <Settings.ActivateMarkers>Jeni te sigurte qe doni te aktivizoni përsëri shënuesit e zgjedhura? Nëse ju zgjidhni Po ne do të vënë përsëri shënuesve në grupin ku ata ishin para se.</Settings.ActivateMarkers>
+  <Settings.SuccActivatedMarkers>Ju keni aktivizuar me sukses shënuesit përzgjedhura.</Settings.SuccActivatedMarkers>
+  <Settings.SuccMadeInactive>Ju keni bërë me sukses këtë pikë me interes joaktiv.</Settings.SuccMadeInactive>
+  <Settings.MakeInactiveQuestion>Jeni te sigurte qe doni te bëni këto shënuesit joaktiv? Nëse ju bëni, ju do të krijojë një tabelë që do të strehojë të gjithë shënuesit aktive dhe nga atje ju mund të shkoni përsëri në çdo grup.</Settings.MakeInactiveQuestion>
+  <Reports.DeletePoiMultiple>Jeni te sigurte qe doni te fshini artikujt e zgjedhur?</Reports.DeletePoiMultiple>
+  <Settings.TransferPOI>Kërcej</Settings.TransferPOI>
+  <Settings.LatitudeName>Gjeografik</Settings.LatitudeName>
+  <Settings.LongitudeName>Gjatësi</Settings.LongitudeName>
+  <Settings.POI>Artikull</Settings.POI>
+  <Settings.TypeOfPoi>Lloji i marker</Settings.TypeOfPoi>
+  <Settings.MechanisationAlreadyUsedName>Makineri tashmë me këtë emër ekziston, ju lutem zgjidhni një emër tjetër.</Settings.MechanisationAlreadyUsedName>
+  <Settings.MaterialAlreadyUsedName>Për një material me të tillë një emër, zgjidhni një emër tjetër.</Settings.MaterialAlreadyUsedName>
+  <Settings.OperationAlreadyUsedName>Tashmë një operacioni të tillë me një emër, zgjidhni një emër tjetër</Settings.OperationAlreadyUsedName>
+  <Settings.CultureAlreadyUsedName>Nuk është tashmë një kulturë me një emër të tillë, zgjidhni një emër tjetër</Settings.CultureAlreadyUsedName>
+  <Settings.DeleteMechanisationSure>Jeni te sigurte qe doni te fshini kete makineri?</Settings.DeleteMechanisationSure>
+  <Settings.DeleteMaterialSure>Jeni te sigurte qe doni te fshini këtë material?</Settings.DeleteMaterialSure>
+  <Settings.DeleteOperationSure>Jeni te sigurte qe doni te fshini këtë operacion?</Settings.DeleteOperationSure>
+  <Settings.DeleteCultureSure>Jeni te sigurte qe doni te fshini këtë kulturë?</Settings.DeleteCultureSure>
+  <Settings.NameOfThe>Emër </Settings.NameOfThe>
+  <Settings.MechanisationName>Emri i makinerisë</Settings.MechanisationName>
+  <Settings.CultureTemplate>Kultura shifrarnik</Settings.CultureTemplate>
+  <Settings.AddedMechanisation>Makinat bujqësore</Settings.AddedMechanisation>
+  <Settings.Material>Material</Settings.Material>
+  <Settings.Operation>Operacion</Settings.Operation>
+  <Settings.Culture>Kulturë</Settings.Culture>
+  <Settings.NewCulture>Kultura e re</Settings.NewCulture>
+  <Admin.DeleteUserQuestion>Jeni te sigurte qe doni te fshini përdorues </Admin.DeleteUserQuestion>
+  <Reports.WithoutPass>pa pasagjerë</Reports.WithoutPass>
+  <Reports.WithPass>me pasagjerë</Reports.WithPass>
+  <Reports.TaxiOFF>Off taksi.</Reports.TaxiOFF>
+  <Reports.TaxiON>Taksi. përfshirë</Reports.TaxiON>
+  <Reports.DiffIn>Dallimi në</Reports.DiffIn>
+  <Reports.ON1>përfshirë</Reports.ON1>
+  <Reports.OFF1>larg</Reports.OFF1>
+  <Reports.DistWithTaxi>Taksimetër Total</Reports.DistWithTaxi>
+  <Reports.DistWithoutTaxi>Gjithsej asnjë taksimetër</Reports.DistWithoutTaxi>
+  <Reports.TotalIdleTour>Këmbë tot. në turne</Reports.TotalIdleTour>
+  <Reports.TotalTourTime>Turne totali kohë</Reports.TotalTourTime>
+  <Reports.WithoutTaxi>Pa taks.</Reports.WithoutTaxi>
+  <Reports.WithTaxi>Me taks.</Reports.WithTaxi>
+  <Reports.FromPT>Nga TK</Reports.FromPT>
+  <Reports.TourTime>Gjatë turneut</Reports.TourTime>
+  <Reports.TourTime1>Gjatë turne</Reports.TourTime1>
+  <Reports.DistancePT>Distanca në mes turne</Reports.DistancePT>
+  <Reports.TimePT>Koha midis turne</Reports.TimePT>
+  <Reports.NoExceed>Asnjë exceedances e shpejtësisë në këtë ditë !!! </Reports.NoExceed>
+  <Reports.NoEmployeeAss>Asnjë punonjës i caktuar</Reports.NoEmployeeAss>
+  <Admin.HaveNoVehSelClient>nuk ka mjete, zgjidhni një tjetër klient!</Admin.HaveNoVehSelClient>
+  <Reports.NoReply>Mos përgjigju me këtë email. Për më shumë informacion na kontaktoni në</Reports.NoReply>
+  <Reports.Regards>Të fala</Reports.Regards>
+  <Reports.AttachMess>Përveç dërgimit të raportit në formatin PDF.</Reports.AttachMess>
+  <Reports.AutMess>Ky mesazh automatikisht do të merrni sistemin për monitorimin e automjeteve tuaja.</Reports.AutMess>
+  <Reports.Dear>Të dashur</Reports.Dear>
+  <Reports.GeneratePDF>Gjenerimi PDF dhe dërguar një e-mail...</Reports.GeneratePDF>
+  <Reports.EnterNameComp>Futni emrin e komponentit të ri</Reports.EnterNameComp>
+  <Reports.EnterNameExe>Shkruani një agjent i ri</Reports.EnterNameExe>
+  <Reports.EnterNameCost>Shkruani një lloj të ri të kostos</Reports.EnterNameCost>
+  <Reports.DelExe>Rub ekzekutues</Reports.DelExe>
+  <Reports.SureDelExe>Jeni te sigurte qe doni te fshini agjent</Reports.SureDelExe>
+  <Reports.SuccDelCost>është fshirë me sukses</Reports.SuccDelCost>
+  <Reports.TheCost>Kosto</Reports.TheCost>
+  <Reports.DefCosts>Kostot e albumit nuk mund të fshini</Reports.DefCosts>
+  <Reports.SelectCost>Zgjidhni shpenzim që ju dëshironi të fshini</Reports.SelectCost>
+  <Reports.SureDelCost>Jeni te sigurte qe doni te fshini koston</Reports.SureDelCost>
+  <Reports.DelCost>Fshij shpenzim</Reports.DelCost>
+  <Reports.NotReceiver>Zgjidhni marrësin e mesazhit</Reports.NotReceiver>
+  <Reports.NotMessage>Shkruani mesazhin shkrimor</Reports.NotMessage>
+  <Admin.SearchByKye>Shfleto sipas kyçe</Admin.SearchByKye>
+  <Reports.Choose3VehCompare>Ju mund të zgjidhni vetëm 3 automjete për të krahasuar!</Reports.Choose3VehCompare>
+  <Reports.ChooseExecutor>Zgjidhni një ekzekutues</Reports.ChooseExecutor>
+  <Routes.ShowMessages>Shiko mesazhet</Routes.ShowMessages>
+  <Routes.AllOrdersInPeriod>Të gjitha urdhërat brenda:</Routes.AllOrdersInPeriod>
+  <Routes.NewOrderWithNumber>Me numër të ri llogari</Routes.NewOrderWithNumber>
+  <Admin.completeAllfiels>Unë nuk e plotësoni të gjitha fushat!</Admin.completeAllfiels>
+  <Admin.SameKey>Nuk është e tillë një kyç</Admin.SameKey>
+  <Admin.SucChangedTran>Përkthimi modifikuar me sukses</Admin.SucChangedTran>
+  <Admin.UnSucChangedTran>Përkthimi ngarkimi ndryshuar</Admin.UnSucChangedTran>
+  <Admin.NoSuchVehSearch>Nuk ka të dhëna të tilla të automjeteve!!!</Admin.NoSuchVehSearch>
+  <Admin.NameOfPort>Emri i portit</Admin.NameOfPort>
+  <Reports.SuccMess>Mesazhi juaj është dërguar me sukses</Reports.SuccMess>
+  <Reports.ComposeMess>Krijo mesazh</Reports.ComposeMess>
+  <Reports.Empty>Bosh</Reports.Empty>
+  <Reports.Sentbox>Mesazhet jashtë</Reports.Sentbox>
+  <Reports.Inbox>Inbox</Reports.Inbox>
+  <reports.Compose>Krijoj</reports.Compose>
+  <Settings.CantAddThisDay>Ju nuk mund të shtoni këtë ditë, sepse nuk ka asnjë ditë e tillë, për të ndryshuar një pjesë të administratorit shtuar Ditë .</Settings.CantAddThisDay>
+  <Admin.NotSelectedTemp>Ju keni treguar template</Admin.NotSelectedTemp>
+  <Admin.AlreadyExsistPortname>Nuk është tashmë një port me emrin</Admin.AlreadyExsistPortname>
+  <Admin.portName>Emri port</Admin.portName>
+  <Admin.SenCover>Mbuluar sensor</Admin.SenCover>
+  <Admin.Seats>Vende</Admin.Seats>
+  <Admin.ConfDevices>Konfigurimi i pajisjeve</Admin.ConfDevices>
+  <Admin.poiids>poiids</Admin.poiids>
+  <Admin.poiNames>Pikat e interesit</Admin.poiNames>
+  <Admin.Text>Tekst</Admin.Text>
+  <Ai>Ia</Ai>
+  <Admin.Ignition>Drejtimin e motorit</Admin.Ignition>
+  <Do>Në</Do>
+  <Admin.SucCaching>Caching i suksesshëm!!!</Admin.SucCaching>
+  <Admin.InSucCaching>Caching ngarkimi!!!</Admin.InSucCaching>
+  <Admin.StartDateSameAsFinal>Data e fillimit është njëjtë si finale</Admin.StartDateSameAsFinal>
+  <Admin.IncorrectRange>Varg i pasaktë</Admin.IncorrectRange>
+  <Admin.Di>Id</Admin.Di>
+  <Admin.InputVoltage>Tensionit input</Admin.InputVoltage>
+  <Admin.Battery>Bateri</Admin.Battery>
+  <Admin.Status>Status</Admin.Status>
+  <Admin.Reload>Freskoj</Admin.Reload>
+  <Admin.EnterEndDate>Fut datën e përfundimit</Admin.EnterEndDate>
+  <Admin.EnterStartDate>Shkruani një datë nisjeje</Admin.EnterStartDate>
+  <Admin.ModCommand>Ndryshimi i komandës</Admin.ModCommand>
+  <Admin.NoResultsNoDataForVehicle>Nëse ju nuk tregojnë ndonjë rezultat nuk ka të dhëna të automjeteve për periudhën</Admin.NoResultsNoDataForVehicle>
+  <Admin.ClickViewDataPeriod>shiko dhe klikoni për të parë të dhënat në atë periudhë</Admin.ClickViewDataPeriod>
+  <Admin.AddingComm>Shtimi komandën</Admin.AddingComm>
+  <Admin.SelectClientVehicleDate>Zgjidh një klient nga automjeti klientit, data e fillimit dhe fundi</Admin.SelectClientVehicleDate>
+  <Admin.AlredyExsistTempName>Template tashmë ekziston me këtë emër!</Admin.AlredyExsistTempName>
+  <Admin.ModTempPort>Ndrysho tempejtot portat</Admin.ModTempPort>
+  <Admin.EnterKeywordToSearch>Shkruani fjalë kyçe për të kërkuar!</Admin.EnterKeywordToSearch>
+  <Admin.CommandName>Emri i komandës</Admin.CommandName>
+  <Admin.TempExisistNewName>Template tashmë ekziston me këtë emër! Emri Vnsete ri.</Admin.TempExisistNewName>
+  <Admin.NoDataCommands>Asnjë komandat dhënat</Admin.NoDataCommands>
+  <Admin.EnterTempName>Shkruani emrin e template!</Admin.EnterTempName>
+  <Admin.AddNewCommand>Shto komandë të re</Admin.AddNewCommand>
+  <Admin.RevTypeCommands>Rishikimi llojet e komandave</Admin.RevTypeCommands>
+  <Admin.AnalogInput>Input analog</Admin.AnalogInput>
+  <Admin.AddNewTemplate>Shto template të ri</Admin.AddNewTemplate>
+  <Admin.DigitalOutput>Output analog</Admin.DigitalOutput>
+  <Admin.RevTypePortTemplates>Rishikimi llojet e porteve templates</Admin.RevTypePortTemplates>
+  <Admin.DigitalInput>Input dixhitale</Admin.DigitalInput>
+  <Admin.NameOfTemp>Emri i template</Admin.NameOfTemp>
+  <Admin.AddNewPort>Shto port të ri</Admin.AddNewPort>
+  <Admin.ModPort>Ndrysho port</Admin.ModPort>
+  <Admin.RevTypePort>Rishikimi llojet e porteve</Admin.RevTypePort>
+  <Admin.AddPort>Shto port</Admin.AddPort>
+  <Admin.SuccUpdate>Ndryshuar me sukses</Admin.SuccUpdate>
+  <Admin.TheUser>Përdorues</Admin.TheUser>
+  <Admin.GeneralSettUser>Konfigurimet e përgjithshme për përdorues</Admin.GeneralSettUser>
+  <Admin.ChangeUserData>Ndryshimi i të dhënave të përdoruesve</Admin.ChangeUserData>
+  <Admin.AlredyAUserNewUN>Nuk është tashmë një përdorues me atë emër përdoruesi! Futni një emër përdoruesi të re!</Admin.AlredyAUserNewUN>
+  <Admin.onecapitalLetter>të paktën një letër kapitale</Admin.onecapitalLetter>
+  <Admin.SixChar>Ajo nuk duhet të përmbajë më shumë se 6 karaktere</Admin.SixChar>
+  <Admin.OneSpecChar>të paktën një karakter të veçantë</Admin.OneSpecChar>
+  <Admin.Notification>Raportimi</Admin.Notification>
+  <Admin.Timezone>Zona koha</Admin.Timezone>
+  <Admin.AddnewuserForClient>Shto përdorues të ri për klientin</Admin.AddnewuserForClient>
+  <Admin.SelAll>Shënoji gjithë</Admin.SelAll>
+  <Admin.Porttype>Lloji i portit</Admin.Porttype>
+  <Admin.SelVehCom>Ju nuk keni zgjedhur automjet!</Admin.SelVehCom>
+  <Admin.SelComm>Zgjidhni komandën</Admin.SelComm>
+  <Admin.SelCommandQ>Ju keni zgjedhur komandën</Admin.SelCommandQ>
+  <Admin.DelVEhQuest>A doni të hiqni automjetin?</Admin.DelVEhQuest>
+  <Admin.Command>Komandë</Admin.Command>
+  <Admin.NoSuccPortVeh>Kjo ndryshoi me sukses port makinë</Admin.NoSuccPortVeh>
+  <Admin.SuccPortVeh>Automjeti ndryshuar me sukses port</Admin.SuccPortVeh>
+  <Admin.TempPortTypes>Llojet template të porteve</Admin.TempPortTypes>
+  <Admin.PortsOfVeh>Dyert e automjetit</Admin.PortsOfVeh>
+  <Admin.ForVehReg>Për regjistrimin e automjeteve</Admin.ForVehReg>
+  <Admin.ModDataVeh>Ndryshimet në të dhënat e automjeteve</Admin.ModDataVeh>
+  <Admin.GeneralSettForVeh>Konfigurimet e përgjithshme për automjetin</Admin.GeneralSettForVeh>
+  <Settings.SchedulerAutomaticSendReport>Automatik periodike dërgojnë raportet</Settings.SchedulerAutomaticSendReport>
+  <Admin.vehtype>lloji i automjetit</Admin.vehtype>
+  <Admin.RegOfVeh>regjistrimin e automjeteve!!!</Admin.RegOfVeh>
+  <Admin.ListOfUsers>Lista e përdoruesve</Admin.ListOfUsers>
+  <Admin.SensorFor>Sensor për</Admin.SensorFor>
+  <Admin.AllowKanbas>Lejo CAN-BUS</Admin.AllowKanbas>
+  <Admin.FuelSensor>Karburanti sensor</Admin.FuelSensor>
+  <Settings.WorkDaysInfoUser>Kutitë do të ngjyrosen me ngjyrë është odbrana.Bojata numrat për ditë (br /) e hëna deri të premten është e bardhë, ndërsa ditët e shtuna dhe e diela, ngjyra e numrave (br /) është e kuqe</Settings.WorkDaysInfoUser>
+  <Admin.Device>Pajisje</Admin.Device>
+  <Settings.WorkDaysInfoAdmin>Kutitë do të ngjyrosen me ngjyrë që do të odberete.Bojata numrin e ditëve nga (br /) hëna deri të premten është e bardhë, ndërsa ditët e shtuna dhe e diela, ngjyra e numrave (br /) është crvena.Kliknete në çdo datë për të shtuar një ditë jo-pune</Settings.WorkDaysInfoAdmin>
+  <Admin.MotorNum>Numri i motorit</Admin.MotorNum>
+  <Admin.VehType>Lloji i automjetit</Admin.VehType>
+  <Admin.SelOrg>Zgjidh organizimin</Admin.SelOrg>
+  <Admin.Organisation>Organizatë</Admin.Organisation>
+  <Admin.AddNewVehForClient>Shto automjet të ri për klientin</Admin.AddNewVehForClient>
+  <Admin.CacheVeh>Caching i automjetit</Admin.CacheVeh>
+  <Admin.SendComm>Lahen ekip</Admin.SendComm>
+  <Admin.OfDevices>i pajisjeve</Admin.OfDevices>
+  <Admin.Conf>Konf.</Admin.Conf>
+  <Admin.Ports>Portet</Admin.Ports>
+  <Admin.Port>Port</Admin.Port>
+  <Admin.GSMpass>GSM fjalëkalimi</Admin.GSMpass>
+  <Admin.GSMnumber>numri GSM</Admin.GSMnumber>
+  <Admin.Mark>Mjete</Admin.Mark>
+  <Admin.HaveNoVeh>nuk ka mjete!!!</Admin.HaveNoVeh>
+  <Admin.ListOfClientVeh>Lista e automjeteve për klientin</Admin.ListOfClientVeh>
+  <Settings.PasswordMatchTwo>Fjalëkalimet nuk përputhen</Settings.PasswordMatchTwo>
+  <Settings.NewPasswordDontMatchTwo>Fjalëkalimet nuk përputhen</Settings.NewPasswordDontMatchTwo>
+  <Admin.OverwievUSers>Vështrim i përdoruesit</Admin.OverwievUSers>
+  <Admin.NoUsers>asnjë përdorues!!!</Admin.NoUsers>
+  <Admin.TheClient>Klienti</Admin.TheClient>
+  <Admin.Client>Klient</Admin.Client>
+  <Settings.DontChangePassword>Mos e ndryshoni një fjalëkalim</Settings.DontChangePassword>
+  <Admin.NoSuccChange>Asnjë ndryshim i suksesshëm</Admin.NoSuccChange>
+  <Settings.ChangePassword>Ndryshoni fjalëkalimin</Settings.ChangePassword>
+  <Admin.ModClientData>Ndryshimi i të dhënave të konsumatorëve</Admin.ModClientData>
+  <Admin.NoSucAddClient>Shtuar asnjë klient sukses</Admin.NoSucAddClient>
+  <Admin.SucAddClient>Konsumatori shtua me sukses</Admin.SucAddClient>
+  <Admin.clientype>nga lloji i klientit</Admin.clientype>
+  <Admin.city> qytet</Admin.city>
+  <Admin.HaveToEnter>Ju mund të hyjë</Admin.HaveToEnter>
+  <Admin.HaveToEnterCName>Ju mund të shkruani emrin e klientit!!!</Admin.HaveToEnterCName>
+  <Admin.Website>Vendi Internet</Admin.Website>
+  <Admin.Kesh>Para</Admin.Kesh>
+  <Admin.PhoneNumber>Numri i telefonit</Admin.PhoneNumber>
+  <Admin.Active>Aktiv</Admin.Active>
+  <Admin.SelectCountry>Zgjidh një vend</Admin.SelectCountry>
+  <Admin.SelectType>Zgjidhni një lloj</Admin.SelectType>
+  <Admin.SelectCity>Zgjidhni një qytet</Admin.SelectCity>
+  <Admin.NameOfClient>Emri i klientit</Admin.NameOfClient>
+  <Admin.AddNewClient>Shto klient të ri</Admin.AddNewClient>
+  <Admin.CacheTheClient1>Caching i klientit</Admin.CacheTheClient1>
+  <Admin.CacheTheClient>Caching për klientin</Admin.CacheTheClient>
+  <Admin.Cache>Depo e fshehtë</Admin.Cache>
+  <Admin.AddClient>Shto klientin</Admin.AddClient>
+  <Admin.ReviewClientsUsers>Rishikimi i klientëve dhe përdoruesve</Admin.ReviewClientsUsers>
+  <Admin.RawData>Dhënat e papërpunuara </Admin.RawData>
+  <Admin.PortsAllVehicles>Gates për të gjitha automjetet</Admin.PortsAllVehicles>
+  <Admin.Configuration>Konfiguracion</Admin.Configuration>
+  <Admin.SendCommVeh>Dërgo automjet komandues</Admin.SendCommVeh>
+  <Admin.AddAuthorizedVeh>Shto automjete të lejuara</Admin.AddAuthorizedVeh>
+  <Admin.AddAuthorizedUser>Shto shfrytëzuesve të autorizuar</Admin.AddAuthorizedUser>
+  <Admin.SearchVeh>Kërko për automjetet</Admin.SearchVeh>
+  <Admin.Translation>Titra</Admin.Translation>
+  <Admin.Commands>Komandat</Admin.Commands>
+  <Admin.TemplatePortTypes>Templates për llojet e porteve</Admin.TemplatePortTypes>
+  <Admin.PortTypes>Llojet e dyerve</Admin.PortTypes>
+  <Settings.MessagesNew>Postime</Settings.MessagesNew>
+  <Admin.Clients>Konsumatorët</Admin.Clients>
+  <Settings.SuccEnteredLicenseUseVehicle>Leja prezantuar me sukses të përdorë automjetin huaj</Settings.SuccEnteredLicenseUseVehicle>
+  <Settings.LicenseAlreadyCreated>Tashmë një leje për atë mjet për këtë klient.</Settings.LicenseAlreadyCreated>
+  <Reports.POInotvisit>nuk vizitoi as edhe një herë</Reports.POInotvisit>
+  <Reports.ThePOI>Pika e interesaveс</Reports.ThePOI>
+  <Reports.ChoosePOI>Zgjidh një pikën e interesit</Reports.ChoosePOI>
+  <Reports.AverageTemp>Temperatura mesatare</Reports.AverageTemp>
+  <Reports.MaxTemp>Temperatura aksimalna</Reports.MaxTemp>
+  <Routes.SelectUser>Zgjidhni një përdorues</Routes.SelectUser>
+  <Routes.UndoChanges>A doni për të ndrequr ndryshime?</Routes.UndoChanges>
+  <Routes.MadeChanges>Ju keni bërë ndryshime!</Routes.MadeChanges>
+  <Routes.NotCreatedOrder>Ju keni krijuar urdhra me parametrat e kërkuara!!!</Routes.NotCreatedOrder>
+  <Routes.StartARoute>Fillimi i rrugës</Routes.StartARoute>
+  <Routes.AddingNewRoute>Shtimi rrugë të re</Routes.AddingNewRoute>
+  <Routes.NotCreatedOrderFutureD>Ju keni krijuar një urdhër të ardhmen datë!!!</Routes.NotCreatedOrderFutureD>
+  <Routes.HaventCreatedOrder>Ju keni krijuar urdhra sot!!!</Routes.HaventCreatedOrder>
+  <Routes.BreaksRoute>Breaks në tubacion</Routes.BreaksRoute>
+  <Routes.RetainingXminPOI>Mbajtja pikën e interesit minuta x</Routes.RetainingXminPOI>
+  <Routes.RouteTOrderNum>Rruga me numrin e rendit të udhëtimit</Routes.RouteTOrderNum>
+  <Routes.UpdateRoute>Update rrugë</Routes.UpdateRoute>
+  <Routes.Retention>Mbajtje</Routes.Retention>
+  <Tracking.Enter1>Të dhëna</Tracking.Enter1>
+  <Routes.NoenteredReqData>Ju nuk keni futur të dhënat e nevojshme për të krijuar rend !!!</Routes.NoenteredReqData>
+  <Settings.AutomaticSendReports>Automatik periodike dërgojnë raportet</Settings.AutomaticSendReports>
+  <Reports.Alarms>Alarmet</Reports.Alarms>
+  <Settings.SuccChangedNonWorkingDay>Ditë ndryshuar me sukses të punës</Settings.SuccChangedNonWorkingDay>
+  <Settings.NoOrgU>Asnjë njësi</Settings.NoOrgU>
+  <Settings.SuccessChangeNameHol>Ndryshimi i suksesshëm emri i festës</Settings.SuccessChangeNameHol>
+  <Settings.CantEraseHoliday>Ju nuk mund të fshini festë si ditë jo pune janë të përfshira në këtë festë</Settings.CantEraseHoliday>
+  <Settings.ChangeHolidayName>Ndryshimi i emrit të festës</Settings.ChangeHolidayName>
+  <Settings.ChangeNonWorkingDay>Ndryshimi pushime</Settings.ChangeNonWorkingDay>
+  <Settings.SureDeleteHoliday>Jeni te sigurte qe doni te fshini pushim?</Settings.SureDeleteHoliday>
+  <Settings.DeletingHoliday>Rub pushime</Settings.DeletingHoliday>
+  <Settings.SureDeletingNonWorking>Jeni te sigurte qe doni te fshini ditë pushimi?</Settings.SureDeletingNonWorking>
+  <Settings.DeletingNonWorkingDay>Rub pushime</Settings.DeletingNonWorkingDay>
+  <Settings.Holidays>Pushime</Settings.Holidays>
+  <Settings.TypeOfHoliday>Lloji i festës</Settings.TypeOfHoliday>
+  <Settings.SquareColor>Kuti me bojra</Settings.SquareColor>
+  <Settings.TypeOfDay>Lloji dita</Settings.TypeOfDay>
+  <Settings.NameOfTheDay>Emri i ditës</Settings.NameOfTheDay>
+  <Settings.PastKm>Kilometra të kaluara</Settings.PastKm>
+  <Settings.EnterNameForHoliday>Futni një emër për pushime</Settings.EnterNameForHoliday>
+  <Settigns.SelectDate>Zgjidhni një datë</Settigns.SelectDate>
+  <Settings.ClickSquareChooseColor>Kliko checkbox për të zgjedhur ngjyra</Settings.ClickSquareChooseColor>
+  <Settings.AddNonWorkingDay>Shtimi pushime</Settings.AddNonWorkingDay>
+  <Settings.NonWorkingDays>Jo-pune dite</Settings.NonWorkingDays>
+  <Settings.AddingTypeHoliday>Lloji shtimi i festës</Settings.AddingTypeHoliday>
+  <Settings.EnterNameHolidayType>Futni një emër për llojin e pushimeve</Settings.EnterNameHolidayType>
+  <Settings.TheDayIs>Ditë është</Settings.TheDayIs>
+  <Settings.HolidayIs>Festë</Settings.HolidayIs>
+  <Settings.Holiday>Festë</Settings.Holiday>
+  <Settings.NonWorkingForCompany>Kompania Holiday</Settings.NonWorkingForCompany>
+  <Settings.EnterThisDateAs>Dëshironi për të hyrë në këtë datë si</Settings.EnterThisDateAs>
+  <Settings.DayNameEnter>Futni emrin e dite</Settings.DayNameEnter>
+  <Settings.DateChooseIs>Data e keni zgjedhur është </Settings.DateChooseIs>
+  <Settings.ListOfNonWorkingDays>Lista e jo-ditë pune</Settings.ListOfNonWorkingDays>
+  <Settigns.DaysAddedAdmin>Ditët e shtuar nga administratori</Settigns.DaysAddedAdmin>
+  <Settings.InsertSpeedOver>Shkruani shpejtësinë për të kapërcyer</Settings.InsertSpeedOver>
+  <Settings.Incorrectpass>Fjalëkalimi është i gabuar, provoni përsëri</Settings.Incorrectpass>
+  <Settings.VaildPassSucAlert>Fjalëkalimi është i vlefshëm dhe vigjilent u shtua me sukses</Settings.VaildPassSucAlert>
+  <Settings.InsertRetTime>Shkruani kohën e mbajtjes</Settings.InsertRetTime>
+  <Settings.SelectPOI2>Zgjidhni pikën e interesit</Settings.SelectPOI2>
+  <Settings.SelectAlert1>Ju mund të zgjidhni atë që ju dëshironi për të hyrë në alarm</Settings.SelectAlert1>
+  <Settings.InsertPass>Fusni fjalëkalimin tuaj</Settings.InsertPass>
+  <Message>Mesazh</Message>
+  <Settings.SMS>SMS</Settings.SMS>
+  <Settings.ConfSMS>SMS konfirmues</Settings.ConfSMS>
+  <Settings.AvailableFor1>Affordable</Settings.AvailableFor1>
+  <Settings.InsertAler>Shtoni në të lajmërojnë</Settings.InsertAler>
+  <Settings.SelectExitGeoF>Zgjidh zonën jashtë</Settings.SelectExitGeoF>
+  <Settings.SelectEnterGeoF>Zgjidhni një hyrje zonë</Settings.SelectEnterGeoF>
+  <Settings.minutes>minuta</Settings.minutes>
+  <Settings.ListAlertsVeh>Listoni alarm për të gjitha automjetet</Settings.ListAlertsVeh>
+  <Login.PRo>PRO</Login.PRo>
+  <Comming.Soon>SË SHPEJTI</Comming.Soon>
+  <Panorama.VideoPresentation>Video prezantim i flotës tuaj</Panorama.VideoPresentation>
+  <Panorama.Channel>Panorama Channel</Panorama.Channel>
+  <Tracking.FromUser>nga përdoruesi</Tracking.FromUser>
+  <Tracking.FifthPause>Pushim i pestë</Tracking.FifthPause>
+  <Tracking.FourthPause>Pushim katërt</Tracking.FourthPause>
+  <Tracking.ThirdPause>Pushim tretë</Tracking.ThirdPause>
+  <Tracking.SecondtPause>Pushim i dytë</Tracking.SecondtPause>
+  <Tracking.FirstPause>Pushim i parë</Tracking.FirstPause>
+  <Tracking.ThirdUser>Së treti përdorues</Tracking.ThirdUser>
+  <Tracking.SecondUser>Shfrytëzuesi i dytë</Tracking.SecondUser>
+  <Tracking.FirstUser>Getting përdorues</Tracking.FirstUser>
+  <Tracking.RetentionTimeLocation>Ora ruajtja nga lokacioni</Tracking.RetentionTimeLocation>
+  <Tracking.BeginningOrder>Kreu i renditт</Tracking.BeginningOrder>
+  <Report.LostSatelite>Satelitët humbur</Report.LostSatelite>
+  <Report.InReqDayVehHave>Automjeti ka kërkuar ditë</Report.InReqDayVehHave>
+  <Reports.TravelDistance>Automjeti në periudhën e kërkuar ka motor zjarr dhe ka udhëtuar një distancë prej</Reports.TravelDistance>
+  <Reports.DRNOSatelite>Automjeti ditë kërkoi ka humbur satelitë !!!</Reports.DRNOSatelite>
+  <Reports.BWTime1>Pas orëve</Reports.BWTime1>
+  <Reports.InWTime1>Në kohë</Reports.InWTime1>
+  <Tracking.CurrentYear>Viti aktual</Tracking.CurrentYear>
+  <Tracking.NoVeh>Ju nuk keni zgjedhur asnjë i automjetit !!!</Tracking.NoVeh>
+  <Tracking.Emails>E-mail</Tracking.Emails>
+  <Tracking.SelectOrg.Unit>Zgjidh një njësi organiz.</Tracking.SelectOrg.Unit>
+  <Tracking.SelectVeh>Zgjidh automjetin</Tracking.SelectVeh>
+  <Tracking.AllVehCompany>Të gjitha automjetet në kompani</Tracking.AllVehCompany>
+  <Tracking.VehInOrgU>Automjetet në njësinë organizative</Tracking.VehInOrgU>
+  <Tracking.OneVehicle>Një makinë</Tracking.OneVehicle>
+  <Tracking.SelectOption>Përzgjidhni një mundësi shtesë</Tracking.SelectOption>
+  <Tracking.GroupOFAlerts>Grupi i gatishmërie</Tracking.GroupOFAlerts>
+  <Tracking.Exit>Prodhim</Tracking.Exit>
+  <Tracking.AlertFor>Alert për</Tracking.AlertFor>
+  <Reports.beyondworktime>pas orëve</Reports.beyondworktime>
+  <Reports.inworktime>në kohë</Reports.inworktime>
+  <Reports.POINotFound>Asnjë send e interesit gjetur</Reports.POINotFound>
+  <Reports.InWTime>Në kohë</Reports.InWTime>
+  <Reports.UserNotFound>Përdoruesi nuk u gjet</Reports.UserNotFound>
+  <Reports.Browser>Browser</Reports.Browser>
+  <Reports.BWTime>Pas orëve</Reports.BWTime>
+  <Reports.IPaddress>IP adresa</Reports.IPaddress>
+  <Reports.DrivingOWK>Funksionon me shumicën ndërsa ngarje off-koha</Reports.DrivingOWK>
+  <Reports.TotalDrivingOutSideWT>Koha totale ngarje jashtë orarit të punës</Reports.TotalDrivingOutSideWT>
+  <Reports.TotalDriving>Gjithsej koha ngarje koha</Reports.TotalDriving>
+  <Reports.notVisitedPOI>nuk vizitoi as edhe një herë !!!</Reports.notVisitedPOI>
+  <Reports.Viewed>Shikime</Reports.Viewed>
+  <Reports.Log>Raporti shkrimet</Reports.Log>
+  <Chart.Entirely>I plotë</Chart.Entirely>
+  <Chart.Hours>orë</Chart.Hours>
+  <Chart.Periods>Periudhat</Chart.Periods>
+  <stanatvozac>Shofer</stanatvozac>
+  <zadnavrata>Derë e pasme</zadnavrata>
+  <stranicnavrata>Derë anësore</stranicnavrata>
+  <prednadesna>Dera e përparme të drejtë</prednadesna>
+  <prednaleva>Dera e përparme të majtë</prednaleva>
+  <Settings.AlarmPause>Pushim</Settings.AlarmPause>
+  <Settings.AlarmStayOutOfLocation>Mbajtja jashtë vendndodhjes</Settings.AlarmStayOutOfLocation>
+  <Settings.AlarmUnOrdered>Parenditur</Settings.AlarmUnOrdered>
+  <Reports.EnterLeastOthCost>Hyjë në të paktën një përbërës i kurriz tjera !!!</Reports.EnterLeastOthCost>
+  <Reports.EnterLeastComp>Shkruani të paktën një përbërës i shërbimit !!!</Reports.EnterLeastComp>
+  <Reports.AlarmReport>Raporti alarme</Reports.AlarmReport>
+  <Reports.Costs>Shpenzimet</Reports.Costs>
+  <Reports.EnterDescOthCost>Shkruani një përshkrim të kostos së mbetur !!!</Reports.EnterDescOthCost>
+  <Reports.EnterAmountOthCost>Shkruani shumën e shpenzimeve të tjera !!!</Reports.EnterAmountOthCost>
+  <Reports.EnterAmount>Shkruani shumën e kostos !!!</Reports.EnterAmount>
+  <Reports.SuccAddCost>Shpenzim shtua me sukses !!!</Reports.SuccAddCost>
+  <Reports.SuccAddOthCost>Kostot shtua me sukses të mbeten !!!</Reports.SuccAddOthCost>
+  <Reports.SuccAddServ>Kostoja shtua me sukses i shërbimit !!!</Reports.SuccAddServ>
+  <Reports.SuccAddFuel>Kostoja shtua me sukses e karburantit !!!</Reports.SuccAddFuel>
+  <Reports.NotSelCost>Ju nuk keni zgjedhur ndonjë kontribut të kostos !!!</Reports.NotSelCost>
+  <Reports.AlreadyCost>Lloji tashmë kanë hyrë në kurriz të</Reports.AlreadyCost>
+  <Reports.EnterNewCostType>Shkruani një lloj të ri të kostos</Reports.EnterNewCostType>
+  <Reports.AddingCost>Shtimi i kostos</Reports.AddingCost>
+  <Reports.AddingNewCost>Shtimi i një lloj të ri të kostos</Reports.AddingNewCost>
+  <Reports.ChooseCost>Zgjidh shpenzim</Reports.ChooseCost>
+  <Route.Miles>milje</Route.Miles>
+  <Settings.VehicleAlreadyCode>Për një makinë me një kod të tillë, ju lutem shkruani një kod tjetër.</Settings.VehicleAlreadyCode>
+  <Settings.AlreadyCodeEmployee>Nuk është i punësuar tashmë nga atë kod, ju lutem shkruani një kod tjetër.</Settings.AlreadyCodeEmployee>
+  <Reports.CostsFor>Shpenzimet</Reports.CostsFor>
+  <Reports.ReportFor>Raport</Reports.ReportFor>
+  <Reports.EnterAmountCost>Shkruani shumën e kostos</Reports.EnterAmountCost>
+  <Reports.ChCostFor>Ndryshimi në kosto</Reports.ChCostFor>
+  <Reports.ChOthCost>Ndrysho koston e mbetur</Reports.ChOthCost>
+  <Reports.CustomCost>Kostoja axhustuara</Reports.CustomCost>
+  <Reports.EnterNewComp>Shkruani një komponentë të re</Reports.EnterNewComp>
+  <Reports.EnterServCost>Shkruani shumën e kostos së shërbimit !!!</Reports.EnterServCost>
+  <Reports.EnterDescServ>Shkruani një përshkrim të shërbimit !!!</Reports.EnterDescServ>
+  <Reports.ChServCost>Ndryshimi në koston e shërbimit</Reports.ChServCost>
+  <Reports.AlreadyComponent>Tashmë kanë hyrë komponent</Reports.AlreadyComponent>
+  <Reports.AddNewComponent>Shto komponentë të re</Reports.AddNewComponent>
+  <Reports.NoService>Përzgjedhur varg ora automjeti ka kryer shërbime !!!</Reports.NoService>
+  <Settings.AlertsEmailHaveTo>u duhet të hyjë ose një email ose numrin e telefonit për SMS </Settings.AlertsEmailHaveTo>
+  <Reports.EnterFuelCost>Shkruani shumën e kostos së karburantit !!!</Reports.EnterFuelCost>
+  <Reports.EnterFuelSupply>Shkruani furnizimit me karburant !!!</Reports.EnterFuelSupply>
+  <Reports.KmDifferent>mënyrë drastike të ndryshme nga vlera e llogaritur nga rrugëmatës GPS</Reports.KmDifferent>
+  <Reports.KmOdometer>Vlera keni hyrë në Rrugëmatës</Reports.KmOdometer>
+  <Reports.SureKm>Jeni i sigurt se kostoja është e përbërë nga</Reports.SureKm>
+  <Reports.Warning>Paralajmërim</Reports.Warning>
+  <Reports.AlreadyExecutor>Tashmë kanë hyrë ekzekutuesi</Reports.AlreadyExecutor>
+  <Fm.NoFuel>Varg përzgjedhur koha do të vënë karburantit automjeteve !!!</Fm.NoFuel>
+  <Reports.Invoice>Faturë</Reports.Invoice>
+  <Reports.Cash>Dha</Reports.Cash>
+  <Reports.EnterNewExecutor>Shkruani ekzekutivin e ri</Reports.EnterNewExecutor>
+  <Reports.AddNewExecutor>Shtimi i ekzekutivit të ri</Reports.AddNewExecutor>
+  <Reports.ReqFields>Fusha e kërkuar janë shënuar me</Reports.ReqFields>
+  <Reports.PrevFuel>Karburantit historiku</Reports.PrevFuel>
+  <Reports.FuelSupplies>Furnizimet e karburantit</Reports.FuelSupplies>
+  <Reports.ChFuelCost>Ndryshimi koston e karburantit</Reports.ChFuelCost>
+  <Reports.Odometer>Rrugëmatës</Reports.Odometer>
+  <Reports.OtherCostsReport>Njoftimin kostot tjera</Reports.OtherCostsReport>
+  <Reports.SummaryCostReport>Raport përmbledhës mbi kostot</Reports.SummaryCostReport>
+  <Reports.ServiceReport>Deklarata e shërbimeve</Reports.ServiceReport>
+  <Reports.Executor>Aktor</Reports.Executor>
+  <Reports.TermsPayment>Pagesë</Reports.TermsPayment>
+  <Reports.Employee>Punonjës</Reports.Employee>
+  <Reports.Su>E di.</Reports.Su>
+  <Reports.Sa>E sh.</Reports.Sa>
+  <Reports.Fr>E pr.</Reports.Fr>
+  <Reports.Th>E en.</Reports.Th>
+  <Reports.We>E më.</Reports.We>
+  <Reports.Tu>E ma.</Reports.Tu>
+  <Reports.Mo>E hë.</Reports.Mo>
+  <Reports.FromPrevRec>nga të dhënat e mëparshme</Reports.FromPrevRec>
+  <Reports.NoPass>Numri i udhëtarëve</Reports.NoPass>
+  <Reports.TaxiState>Gjendja e taksimetër</Reports.TaxiState>
+  <Reports.TimeFromPT>Koha e kaluar nga turne të mëparshëm</Reports.TimeFromPT>
+  <Reports.DistanceFromPT>Largësia udhëtuar nga një turne të mëparshëm</Reports.DistanceFromPT>
+  <Reports.DistanceTooltip>Largësia udhëtoi në turne</Reports.DistanceTooltip>
+  <Reports.DistanceTooltip1>(Total - Duke përfshirë taksimetër - Duke përjashtuar taksimetër)</Reports.DistanceTooltip1>
+  <Reports.DurationTooltip>Kohëzgjatja e Tour</Reports.DurationTooltip>
+  <Reports.DurationTooltip1>(Total - Duke qëndruar Koha në turne)</Reports.DurationTooltip1>
+  <Reports.TaximeterTooltip>Ndrysho taksimetër sensor gjatë turneut</Reports.TaximeterTooltip>
+  <Reports.PassengersTooltip>Ndryshimi pasagjerët sensor gjatë turneut</Reports.PassengersTooltip>
+  <Reports.CostTooltip>Çmimi i turneut </Reports.CostTooltip>
+  <Reports.CostTooltip1>Çmimi i udhëtimit në drejtim të distancës të përfshirë me taksimetër</Reports.CostTooltip1>
+  <Reports.Tooltip1>Numri i turne</Reports.Tooltip1>
+  <Reports.Tooltip2>Distanca totale udhëtoi në turne</Reports.Tooltip2>
+  <Reports.Tooltip3>Gjithsej distanca kaloi përfshirë taksimetër</Reports.Tooltip3>
+  <Reports.Tooltip4>Distanca totale udhëtoi përjashtuar taksimetër</Reports.Tooltip4>
+  <Reports.Tooltip5>Distanca totale të udhëtuar në mes turne</Reports.Tooltip5>
+  <Reports.Tooltip6>Kohëzgjatja e përgjithshme e të gjitha turne</Reports.Tooltip6>
+  <Reports.Tooltip7>Koha totale në këmbë në të gjitha turne</Reports.Tooltip7>
+  <Reports.Tooltip8>Kostoja totale e të gjitha turne në drejtim të distancës të përfshirë me taksimetër</Reports.Tooltip8>
+  <Reports.Tooltip9>Kostoja totale e të gjitha turne në aspektin e distancë udhëtoi përjashtuar taksimetër</Reports.Tooltip9>
+  <Reports.Tooltip10>Kostoja totale e të gjitha turne në drejtim të përgjithshëm distancë udhëtuar ndahet nga distanca totale udhëtuar</Reports.Tooltip10>
+  <Reports.Tooltip11>Distanca totale të udhëtuar si pasiv zënë</Reports.Tooltip11>
+  <Reports.Tooltip12>Koha totale që shpenzonin në mënyrë pasive si zënë</Reports.Tooltip12>
+  <Reports.Tooltip1_>Koha totale që shpenzonin në mesin e të gjitha turne</Reports.Tooltip1_>
+  <Reports.Tooltip2_>Distanca totale e shpenzuar në mes të të gjitha turne</Reports.Tooltip2_>
+  <Reports.Tooltip5_>Kostoja totale e të gjitha turne</Reports.Tooltip5_>
+  <Reports.Tooltip6_>Kostoja totale e të gjitha turne në drejtim të përgjithshëm distancë udhëtoi përfshirë taksimetër</Reports.Tooltip6_>
+  <Reports.Tooltip3_>Kohëzgjatja e të gjitha turne</Reports.Tooltip3_>
+  <Reports.Tooltip31_>(Total - Koha në këmbë në të gjitha turne)</Reports.Tooltip31_>
+  <Reports.Tooltip4_>Largësia udhëtuar të gjitha turne</Reports.Tooltip4_>
+  <Reports.BetweenTours>midis turne</Reports.BetweenTours>
+  <Reports.InTerms1>në drejtim të përgjithshëm distancë të kaluar</Reports.InTerms1>
+  <Reports.InTerms2>në drejtim të distancës së përgjithshme kaluar me taksimetër në</Reports.InTerms2>
+  <Tracking.rpm>Revolucionet</Tracking.rpm>
+  <Tracking.Temp>Temperaturë</Tracking.Temp>
+  <Settings.SuccEditedWorkTime>Ora ndryshuar me sukses duke punuarе.</Settings.SuccEditedWorkTime>
+  <Settings.EditTimeAlreadyCombination>Ju nuk mund të zgjedhin ditën dhe kjo zhvendosje për shkak se nuk ka të dhëna të tilla nuk ekzistojnë, ju lutem, përzgjidhni një kombinim të ndryshëm.</Settings.EditTimeAlreadyCombination>
+  <Settings.ClubCardAlreadyAllowed>Për këtë kartë është shpërblyer për këtë punëtor, ju lutem zgjidhni një tjetër .</Settings.ClubCardAlreadyAllowed>
+  <Settings.DeleteAllowClubCardEmployee>Fshij leje për klubin kartë</Settings.DeleteAllowClubCardEmployee>
+  <Settings.NoClubCardForEmployee>Për këtë punonjësi ka lejuar kartat e klubit</Settings.NoClubCardForEmployee>
+  <Settings.ChooseClubCard>Zgjidhni kartën club</Settings.ChooseClubCard>
+  <Settings.DeleteAllowCardQuestion>Jeni te sigurte qe doni te fshini licencën për të përdorur këtë kartë për të punësuarit?</Settings.DeleteAllowCardQuestion>
+  <Settings.AddClubCardAllowence>Shtimi i një kartë klubit për punëtor</Settings.AddClubCardAllowence>
+  <Tracking.CodePopUp>Kod</Tracking.CodePopUp>
+  <Settings.PasswordMatch>Fjalëkalimet nuk përputhen</Settings.PasswordMatch>
+  <Settings.EnterLastName>Ju lutemi shkruani një mbiemër !</Settings.EnterLastName>
+  <Settings.EnterName>Ju lutem shkruani një emër !</Settings.EnterName>
+  <Settings.LastName>I fundit</Settings.LastName>
+  <Settings.PasswordNewPasswordNew>I ri</Settings.PasswordNewPasswordNew>
+  <Settings.OldPasswordForm>Fjalëkalim</Settings.OldPasswordForm>
+  <Settings.RepeatPasswordOnce>Përsëris</Settings.RepeatPasswordOnce>
+  <Settings.OldPasswordWrong>Fjalëkalimi i vjetër është i gabuar</Settings.OldPasswordWrong>
+  <Settings.NewPasswordDontMatch>Fjalëkalimet nuk përputhen</Settings.NewPasswordDontMatch>
+  <Settings.NewPasswordRepeat>Përsëriteni fjalëkalim të ri</Settings.NewPasswordRepeat>
+  <Settings.NewPasswordMust>Shkruani fjalëkalimin e ri</Settings.NewPasswordMust>
+  <Settings.OldPasswordMust>Futni fjalëkalimin tuaj të vjetër</Settings.OldPasswordMust>
+  <Settings.SnoozeRepetition>Një sy gjumë (shëndoshë përsëritjen)</Settings.SnoozeRepetition>
+  <Settings.ChooseZoneOrPoint>Zgjidh zona ose pika</Settings.ChooseZoneOrPoint>
+  <acumulatorPowerSupplyInterruption>Ndërprerja e energjisë baterisë</acumulatorPowerSupplyInterruption>
+  <Settings.ChangeAlert>Ndryshimet në alarm</Settings.ChangeAlert>
+  <Settings.TypeOfAlert>Lloji i vëmendshëm</Settings.TypeOfAlert>
+  <Settings.DelAlert>Jeni te sigurte qe doni te fshini kete alarm?</Settings.DelAlert>
+  <Settings.AlertDeleteQuestion>Fshirja alarm</Settings.AlertDeleteQuestion>
+  <Settings.EnterSMS>Ju lutem shkruani numrin e SMS/numrat</Settings.EnterSMS>
+  <Settings.AlarmDefect>Faj</Settings.AlarmDefect>
+  <Settings.CommonAlerts>Përgjithshëm vigjilent</Settings.CommonAlerts>
+  <Settings.RoutesCombo>Rrugët</Settings.RoutesCombo>
+  <Settings.NoRepetition>Mos përsëritni</Settings.NoRepetition>
+  <HalfHourNoDataIgnON>Më shumë se 30 minuta dhe nuk ka të dhëna IGN = ON</HalfHourNoDataIgnON>
+  <VehicleDefect>Defekt automjeteve</VehicleDefect>
+  <NoRFIDVehicle>Duke përdorur automjetin pa RFID</NoRFIDVehicle>
+  <unauthorizedUseVehicle>Përdorimi i paautorizuar i një automjeti</unauthorizedUseVehicle>
+  <agreement>Marrëveshje</agreement>
+  <polnomLicense>Fuqia e prokurorit</polnomLicense>
+  <greenCard>Green card</greenCard>
+  <service>Shërbim</service>
+  <regExpire>Përfundimi i regjistrimit</regExpire>
+  <leaveRoute>Lënë gjurmë</leaveRoute>
+  <stayMoreThanAllow>Mbajtja shumë se lejohet</stayMoreThanAllow>
+  <unOrdered>Parenditur</unOrdered>
+  <visitPOI>Vizitoni POI</visitPOI>
+  <enterZone>Hyrja zonë</enterZone>
+  <suddenBraking>Frenim i menjëhershëm</suddenBraking>
+  <fuelCap>Karburanti cap</fuelCap>
+  <stayOutOfLocat>Mbajtja jashtë vendndodhjes</stayOutOfLocat>
+  <assistance>Ndihmoj</assistance>
+  <speedExcess>Tejkalon shpejtësinë</speedExcess>
+  <leaveZone>Exit zona</leaveZone>
+  <acumulator>Bateri</acumulator>
+  <vehicleAlarm>Alarm nga automjeti</vehicleAlarm>
+  <Settings.Sound>Zë</Settings.Sound>
+  <Settings.AlarmNoRFIDVehicle>Duke përdorur automjetin pa RFID</Settings.AlarmNoRFIDVehicle>
+  <Settings.AlarmUnauthorizedUseVehicle>Përdorimi i paautorizuar i një automjeti</Settings.AlarmUnauthorizedUseVehicle>
+  <Settings.AlarmAgreement>Marrëveshje</Settings.AlarmAgreement>
+  <Settings.AlarmPolnomLicense>Fuqia e prokurorit</Settings.AlarmPolnomLicense>
+  <Settings.AlarmGreenCard>Green card</Settings.AlarmGreenCard>
+  <Settings.AlarmService>Shërbim</Settings.AlarmService>
+  <Settings.AlarmRegExpire>Përfundimi i regjistrimit</Settings.AlarmRegExpire>
+  <Settings.AlarmLeaveRoute>Shpëtojnë nga rruga</Settings.AlarmLeaveRoute>
+  <Settings.AlarmStayMoreThanAllowed>Mbajtja shumë se lejohet</Settings.AlarmStayMoreThanAllowed>
+  <Settings.30MinNoDataIgnON>30 minuta Nuk ka të dhëna, motor në</Settings.30MinNoDataIgnON>
+  <Settings.AlarmVisitPOI>Vizitoni POI</Settings.AlarmVisitPOI>
+  <Settings.AlarmLeaveZone>Exit zona</Settings.AlarmLeaveZone>
+  <Settings.AlarmEnterZone>Hyrja zonë</Settings.AlarmEnterZone>
+  <Settings.AlarmSpeedExcess>Tejkalon shpejtësinë</Settings.AlarmSpeedExcess>
+  <Settings.AlarmSuddenBraking>Frenim i menjëhershëm</Settings.AlarmSuddenBraking>
+  <Settings.AlarmFuelCap>Karburanti cap</Settings.AlarmFuelCap>
+  <Settings.AlarmVehicle>Alarmi automjeteveо</Settings.AlarmVehicle>
+  <Settings.AlarmAcumulator>Bateri</Settings.AlarmAcumulator>
+  <Settings.AlarmAssistance>Ndihmoj</Settings.AlarmAssistance>
+  <Settings.AlarmPanic>Panic button</Settings.AlarmPanic>
+  <Settings.Alerts>Alert</Settings.Alerts>
+  <Settings.AddAlerts>Shtimi alarm</Settings.AddAlerts>
+  <Settings.EditLicenseSucc>Ndryshuar me sukses autorizimin për ky përdorues për këtë automjet.</Settings.EditLicenseSucc>
+  <Settings.SuccDeletedLicense>Autorizimi i suksesshëm për të uninstall ky përdorues.</Settings.SuccDeletedLicense>
+  <Settings.AlreadyLicenseUsed>Tashmë një prokurë për këtë automjet dhe përdorues</Settings.AlreadyLicenseUsed>
+  <Settings.LicenseAddedSucc>Autorizimi hyrë me sukses të përdorë automjetin</Settings.LicenseAddedSucc>
+  <Settings.CurrentSituation>Statusi aktual</Settings.CurrentSituation>
+  <Settings.DeleteClubCard>Fshij club kartela</Settings.DeleteClubCard>
+  <Settings.ClubCards>Card club për karburant</Settings.ClubCards>
+  <Settings.CardChangeSucc>Kartë është ndryshuar me sukses !</Settings.CardChangeSucc>
+  <Settings.ClubCardSuccAdded>Kartë shtua me sukses !</Settings.ClubCardSuccAdded>
+  <Settings.ClubCardNameInUse>Nuk është tashmë një kartë me një emër të tillë, ju lutem shkruani një emër të ndryshëm !</Settings.ClubCardNameInUse>
+  <Settings.ClubCardNameMust>Ju lutemi shkruani një kartë emrin !</Settings.ClubCardNameMust>
+  <Settings.ChangeClubCardTitle>Ndrysho card club</Settings.ChangeClubCardTitle>
+  <Settings.DeleteClubCardQuastion>Jeni te sigurte qe doni te fshini kartën e klubit?</Settings.DeleteClubCardQuastion>
+  <Settings.NameClubCard>Emri i klubit kartë</Settings.NameClubCard>
+  <Settings.AddNewClubCard>Shtimi kartë të re të klubit</Settings.AddNewClubCard>
+  <Tracking.MsgChancheGFence>Kliko zonë për të bërë ndryshime dhe në fund klikoni</Tracking.MsgChancheGFence>
+  <Tracking.NotEnteredNotice>Ju keni hyrë shënim!!!</Tracking.NotEnteredNotice>
+  <Tracking.Alarm>Alarm</Tracking.Alarm>
+  <Tracking.Unread>I palexuar</Tracking.Unread>
+  <Tracking.Read>Lexoj</Tracking.Read>
+  <Tracking.Administrative>Administrativ</Tracking.Administrative>
+  <Tracking.Suburb>Periferi</Tracking.Suburb>
+  <Tracking.Code>Kod</Tracking.Code>
+  <Tracking.City>Qytet</Tracking.City>
+  <Tracking.Country>Vend</Tracking.Country>
+  <Tracking.Icon>Ikonë</Tracking.Icon>
+  <Tracking.Class>Klasë</Tracking.Class>
+  <Tracking.Type>Lloj</Tracking.Type>
+  <Tracking.WrongFormat>Formati i gabuar!!!</Tracking.WrongFormat>
+  <Tracking.DelGeoFence>A doni ta fshini këtë zonë?</Tracking.DelGeoFence>
+  <Settings.Gas>Gaz</Settings.Gas>
+  <Settings.Diesel>Naftë</Settings.Diesel>
+  <Settings.Petrol>Benzinë</Settings.Petrol>
+  <alarmpanic>Panic button</alarmpanic>
+  <Fm.Description>Përshkrim</Fm.Description>
+  <Settings.CantGroupDelete>Ju nuk mund të zgjidhni grupin që dëshironi të fshini, ju lutem zgjidhni një grup të ndryshme të.</Settings.CantGroupDelete>
+  <Reports.UngroupedVehicles>Ungrouped automjetet</Reports.UngroupedVehicles>
+  <Settings.ClickToEditZone>Kliko zonë për të ndryshuar .</Settings.ClickToEditZone>
+  <Reports.OrgUnit>Njësia organizative</Reports.OrgUnit>
+  <Reports.UngroupedVeh>Automjetet ungroup.</Reports.UngroupedVeh>
+  <Reports.TotalTime>Koha totale</Reports.TotalTime>
+  <Reports.AVGSpeed>Shpejtësia mesatare</Reports.AVGSpeed>
+  <Reports.NOSpeedOver>Asnjë exceedances e shpejtësisë në këtë ditë !!!</Reports.NOSpeedOver>
+  <Reports.Loading1>N G A R K I M . .</Reports.Loading1>
+  <Settings.MenuLineupQuestion>Jeni te sigurte qe doni te rivendosur vlerat e prezgjedhura për menynë në mënyrë që të monitorojë të jetuar?</Settings.MenuLineupQuestion>
+  <Settings.DefaultValuesLTRMenu>Vlerat fillestare e menysë</Settings.DefaultValuesLTRMenu>
+  <Settings.ResetLiveMenu>Me sukses të rivendosur menu settings në mënyrë që të monitorojë të jetuar .</Settings.ResetLiveMenu>
+  <Routes.Today>Sot</Routes.Today>
+  <Routes.DeleteOrderQuestion>A doni të fshini rendin?</Routes.DeleteOrderQuestion>
+  <Routes.Select>Zgjedh</Routes.Select>
+  <Routes.SearchOrdersTitle>Kërko sipas urdhrave</Routes.SearchOrdersTitle>
+  <Routes.Search>Kërko</Routes.Search>
+  <Routes.To>Në</Routes.To>
+  <Routes.From>Nga</Routes.From>
+  <Routes.SearchOrderBy>Garanton kërko sipas</Routes.SearchOrderBy>
+  <Routes.OrdersFutureDate>Urdhrat me datë të ardhshme</Routes.OrdersFutureDate>
+  <Routes.OrdersInProgress>Urdhëron në progres</Routes.OrdersInProgress>
+  <Routes.NewOrder>Llogari e re</Routes.NewOrder>
+  <Routes.Orders>Urdhërat</Routes.Orders>
+  <Routes.EndOrder>Fundi i rendit</Routes.EndOrder>
+  <Routes.OrderNumber>Numri i order</Routes.OrderNumber>
+  <Routes.Idling>Qëndrimi</Routes.Idling>
+  <Routes.Departure>Largim</Routes.Departure>
+  <Routes.AlarmNumber>Numri alarm</Routes.AlarmNumber>
+  <Routes.NumberOfOrder>Numri i rendit</Routes.NumberOfOrder>
+  <Routes.ParametarsFSearch>Parametrat për kërkim</Routes.ParametarsFSearch>
+  <Routes.Overview>Rishikimi</Routes.Overview>
+  <Routes.AllOrders>Të gjitha urdhërat</Routes.AllOrders>
+  <Routes.Searches>Kërko</Routes.Searches>
+  <Routes.Report>Raport</Routes.Report>
+  <Routes.Message>Mesazh...</Routes.Message>
+  <Routes.CreatedBy>Krijuar nga</Routes.CreatedBy>
+  <Routes.Start>Krijuar shtëpi</Routes.Start>
+  <Routes.Mod>Ndryshimet</Routes.Mod>
+  <Routes.Arrival>Mbërritje</Routes.Arrival>
+  <Routes.MOrder>Ndrysho rendin</Routes.MOrder>
+  <Routes.PrintingOrder>Për shtypi</Routes.PrintingOrder>
+  <Routes.User>Përdorues</Routes.User>
+  <Routes.Print>Shtyp</Routes.Print>
+  <Routes.LocationToVisit>Vende për të vizituar</Routes.LocationToVisit>
+  <Routes.PreparedBy>I përgatitur</Routes.PreparedBy>
+  <Routes.DateOfProduction>Data e përgatitjes</Routes.DateOfProduction>
+  <Routes.TravelOrderNumber>Mënyrë travel numër</Routes.TravelOrderNumber>
+  <Settings.DeletingAllowedDriverQuestion>Jeni te sigurte qe doni te fshini këtë licencë shofer për këtë automjet?</Settings.DeletingAllowedDriverQuestion>
+  <Settings.DeletingAllowedDriver>Rub lejuar shoferin e mjetit</Settings.DeletingAllowedDriver>
+  <Routes.Signature>Nënshkrim</Routes.Signature>
+  <Tracking.Start>Shtëpi</Tracking.Start>
+  <Routes.TodaysOrders>Urdhërat e sotme</Routes.TodaysOrders>
+  <Routes.Delete>Fshij</Routes.Delete>
+  <Routes.Map>Site</Routes.Map>
+  <Routes.PredefinedOrders>Urdhëron paracaktuara</Routes.PredefinedOrders>
+  <Routes.SelectFDriver>Zgjidhni shofer parë</Routes.SelectFDriver>
+  <Routes.Download>Shkarko</Routes.Download>
+  <Routes.ExportToExcel>Eksporti në Excel</Routes.ExportToExcel>
+  <Routes.DeleteLocationQ>A doni të otsrtanite vendndodhjen</Routes.DeleteLocationQ>
+  <Routes.Poi>Pika e interesit</Routes.Poi>
+  <Routes.Rbr>N.ren.</Routes.Rbr>
+  <Routes.AddNewLocation>Shto vendndodhje të re</Routes.AddNewLocation>
+  <Routes.Add>Shtoj</Routes.Add>
+  <Routes.SelectOne>Zgjidhni një</Routes.SelectOne>
+  <Routes.SelectLocation>Zgjedhja e një vend</Routes.SelectLocation>
+  <Tracking.ExportToExcel>Transferimi në Excel</Tracking.ExportToExcel>
+  <Tracking.OrgU>Njësia organizative</Tracking.OrgU>
+  <Tracking.Created>Krijuar ne</Tracking.Created>
+  <Tracking.OrderNum>Numri i Order</Tracking.OrderNum>
+  <Tracking.Idling>Qëndrimi</Tracking.Idling>
+  <Tracking.Departure>Largim</Tracking.Departure>
+  <Tracking.Arrival>Mbërritje</Tracking.Arrival>
+  <Tracking.ONumber>Numri i artikullit</Tracking.ONumber>
+  <Tracking.Close>Afër</Tracking.Close>
+  <Tracking.Note>Shënim</Tracking.Note>
+  <Tracking.Off>Larg</Tracking.Off>
+  <Tracking.On>Përfshirë</Tracking.On>
+  <Tracking.Engine>Motor</Tracking.Engine>
+  <Tracking.Registration>Regjistrohem</Tracking.Registration>
+  <Tracking.Date>Data</Tracking.Date>
+  <Tracking.BasicInformation>Sfond</Tracking.BasicInformation>
+  <Tracking.AlarmType>Lloji i alarmit</Tracking.AlarmType>
+  <Reports.NoDataDay>Nuk ka të dhëna kërkuar ditë !!!</Reports.NoDataDay>
+  <Reports.SelRepName>Ju keni hyrë në emrin e raportit</Reports.SelRepName>
+  <Reports.SelNoData>Ju nuk keni zgjedhur asnjë të dhënë</Reports.SelNoData>
+  <Reports.SuccGenReport>Raporti juaj ka qenë e gjeneruar me sukses</Reports.SuccGenReport>
+  <Reports.SuccDelReport>Raporti juaj u fshi me sukses</Reports.SuccDelReport>
+  <Reports.SuccChReport>Raporti juaj është ndryshuar me sukses</Reports.SuccChReport>
+  <Reports.SureDeleteRep>Jeni te sigurte qe doni te fshini këtë raport?</Reports.SureDeleteRep>
+  <Reports.DeleteRep>Fshirja e një raport</Reports.DeleteRep>
+  <Reports.ChangeRep>Ndrysho raportin</Reports.ChangeRep>
+  <Reports.ChangeRepData>Ndrysho të dhënat për raportin</Reports.ChangeRepData>
+  <Reports.ChangeRepName>Ndrysho emrin e raportit</Reports.ChangeRepName>
+  <Reports.DataReport>Raporti i të dhënave</Reports.DataReport>
+  <Reports.NameReport>Emri i raportit</Reports.NameReport>
+  <Reports.CreateReport>Krijimi i një Raport</Reports.CreateReport>
+  <Reports.SpeedOver1>Tejkalon shpejtësinë mbi</Reports.SpeedOver1>
+  <Report.Create>Krijoj</Report.Create>
+  <Report.ReportGenerator>Gjenerator Raporti</Report.ReportGenerator>
+  <Reports5.Days>5 Ditë më të fundit</Reports5.Days>
+  <Reports4.Days>4 Ditë më të fundit</Reports4.Days>
+  <Reports3.Days>3 Ditë më të fundit</Reports3.Days>
+  <Reports2.Days>2 Ditë më të fundit</Reports2.Days>
+  <Reports1.Day>Fundit 1 ditë</Reports1.Day>
+  <Reports.AnalSpeedEx>Tejkaluar kufiri i shpejtësisë</Reports.AnalSpeedEx>
+  <Reports.AnalSpeed>Shpejtësi maksimale</Reports.AnalSpeed>
+  <Reports.AnalActivity>Aktivitet</Reports.AnalActivity>
+  <Reports.VehiclePOI>Pikat e interesit të vizituara</Reports.VehiclePOI>
+  <Reports.OverviewV>Rishikimi</Reports.OverviewV>
+  <Reports.AnalDistance>Largësia udhëtuar</Reports.AnalDistance>
+  <Reports.overview>Kabinë</Reports.overview>
+  <Reports.Code>Kod</Reports.Code>
+  <Settings.EditLicense>Ndryshimi autorizimin për automjetin</Settings.EditLicense>
+  <Settings.DeleteAllowenceSuccess>Automjeti fshi me sukses leje </Settings.DeleteAllowenceSuccess>
+  <Settings.DeleteAllowedVehicleQuestion>Jeni te sigurte qe doni te fshini automjetin e lejuar per kete përdorues?</Settings.DeleteAllowedVehicleQuestion>
+  <Settings.DeleteAllowedVehicle>Rub automjetin lejuar</Settings.DeleteAllowedVehicle>
+  <Settings.Administrator>Administrator</Settings.Administrator>
+  <Settings.EditSchedule>Ndrysho Planner</Settings.EditSchedule>
+  <Settings.Background>sfond</Settings.Background>
+  <Settings.IdleWorking>Përtaci</Settings.IdleWorking>
+  <Settings.DelSch1>Rub projektues</Settings.DelSch1>
+  <Settings.DocumentType>Lloji i dokumentit</Settings.DocumentType>
+  <Settings.DelSch>Jeni te sigurte qe doni te fshini projektues?</Settings.DelSch>
+  <Settings.ArrivalDaySch>Dita e mbërritjes</Settings.ArrivalDaySch>
+  <Settings.SucAddWorkTime>Prezantua me sukses kohë e re të punës</Settings.SucAddWorkTime>
+  <Settings.PasswordUser>Nuk është tashmë një përdorues me emrin të tillë! Futni një emër të ri.</Settings.PasswordUser>
+  <Settings.PasswordLatin>Ju lutem jepini mbështetjen latine</Settings.PasswordLatin>
+  <Settings.WorkTimeCheck>Ka tashmë ndryshim të dhëna të tilla për ditën, për të ndryshuar butonin për të ndryshuar kohën</Settings.WorkTimeCheck>
+  <Reports.Hour>Orë</Reports.Hour>
+  <Reports.Confirm>Verifikoj</Reports.Confirm>
+  <Settings.WorkTimeHolidaysCal>Të gjithë jo-ditë pune brenda 2013 pavarësisht nga feja dhe kombësia pikturuar </Settings.WorkTimeHolidaysCal>
+  <Settings.ChooseButton>Zgjedh</Settings.ChooseButton>
+  <Settings.EndDateLic>Data e fundit për licencë</Settings.EndDateLic>
+  <Settings.BeginDateLic>Duke filluar nga data e licencës</Settings.BeginDateLic>
+  <Settings.SureToDelete>Jeni te sigurte qe doni te fshini autorizimin për përdorimin e automjetit për përdorues?</Settings.SureToDelete>
+  <Settings.AddOtherLicense>Shtimi i një proxy për automjetin</Settings.AddOtherLicense>
+  <Settings.DeleteOtherLicense>Fshij leje</Settings.DeleteOtherLicense>
+  <Settings.TitleOrg>Titull</Settings.TitleOrg>
+  <Settings.LastDataGiven>Të dhënat e fundit</Settings.LastDataGiven>
+  <Settings.PasswordMust>Fjalëkalimi duhet të jetë të paktën 6 karaktere, 1 uppercase dhe 1 karakter të veçantë</Settings.PasswordMust>
+  <Settings.RequiredInfo>Të dhënat e kërkuara janë të shënuara me</Settings.RequiredInfo>
+  <Settings.UnitMeasurements>Njësitë</Settings.UnitMeasurements>
+  <Settings.HoldayPrice>Festiv</Settings.HoldayPrice>
+  <Settings.Night>Mbrëmje</Settings.Night>
+  <Settings.Regular>I rregullt</Settings.Regular>
+  <Settings.Tarif>Zgjedhja e një Tarifës</Settings.Tarif>
+  <Settings.DefaultValues>Vlerat fillestare</Settings.DefaultValues>
+  <Settings.MoreThan>Më shumë nga</Settings.MoreThan>
+  <Settings.LiquidUnit>Njësia për të lëngshme</Settings.LiquidUnit>
+  <Settings.CanadianDollar>Dollar Kanadez, CAD</Settings.CanadianDollar>
+  <Settings.BritishPound>Pound Sterling, GBP</Settings.BritishPound>
+  <Settings.Euro>Euro, EUR</Settings.Euro>
+  <Settings.USDDolar>US Dollar, USD</Settings.USDDolar>
+  <Settings.Denar>Denari maqedonas, MKD</Settings.Denar>
+  <Settings.Currency>Monedhë</Settings.Currency>
+  <Reports.Format>Formati i raportit</Reports.Format>
+  <Reports.EnterIdleOver> Shkruani një vlerë për "shkeli" në Settings - Vetit e prgjithshme t !!!</Reports.EnterIdleOver>
+  <searchbydriver>Kërko për shofer</searchbydriver>
+  <Reports.NoPoiRange>Asnjë pikë vizituan të interesit në periudhën e kërkuar !!!</Reports.NoPoiRange>
+  <Reports.Alias>Info</Reports.Alias>
+  <Settings.UnitMeasurement>Njësia e matjes</Settings.UnitMeasurement>
+  <Settings.Gallons>Gallons</Settings.Gallons>
+  <Settings.Litres>Litra</Settings.Litres>
+  <Settings.PersonPhone>Telefon i personit të kontaktit  </Settings.PersonPhone>
+  <Reports.Weekend>Fundjavë</Reports.Weekend>
+  <Reports.Weekday>Ditë pune</Reports.Weekday>
+  <Settings.Scheduler>Projektues</Settings.Scheduler>
+  <Settings.LastData>Të dhënat e fundit</Settings.LastData>
+  <Settings.Identification>Kod</Settings.Identification>
+  <General.Icon>Ikonë</General.Icon>
+  <Lang.InsertNew>Shto përkthim të ri</Lang.InsertNew>
+  <Lang.Edit>Ndryshimet</Lang.Edit>
+  <Lang.Deletequestion>A doni të fshini këtë përkthim?</Lang.Deletequestion>
+  <Settings.ForUser>përdorues</Settings.ForUser>
+  <Settings.UnMarked>Paspecifikuara</Settings.UnMarked>
+  <Settings.Marked>Theksoj</Settings.Marked>
+  <Fm.AlertRegistration>Alert për regjistrim</Fm.AlertRegistration>
+  <Settings.ALlWarrants>Të gjitha urdhërat</Settings.ALlWarrants>
+  <Settings.WarrantsFDate>Urdhrat me datë të ardhshme</Settings.WarrantsFDate>
+  <Settings.WarrantsInProgress>Urdhëron në progres</Settings.WarrantsInProgress>
+  <Settings.PredefinedWarrants>Urdhëron paracaktuara</Settings.PredefinedWarrants>
+  <Settings.NewWarrant>Llogari e re</Settings.NewWarrant>
+  <Settings.Warrants>Urdhërat</Settings.Warrants>
+  <Settings.FleetReports1>Raportet fleet</Settings.FleetReports1>
+  <Settings.OtherDrivers> Shoferët e tjerë</Settings.OtherDrivers>
+  <Settings.SuccChanged>Ndryshimi i suksesshëm</Settings.SuccChanged>
+  <Settings.SuccDeleteWT>Hoq me sukses një herë!!!</Settings.SuccDeleteWT>
+  <Settings.ChangeWorkTime>Ndrysho kohë</Settings.ChangeWorkTime>
+  <Settings.DeleteWorkTimeQuestion>Jeni te sigurte qe doni te fshini orarin e punës?</Settings.DeleteWorkTimeQuestion>
+  <Settings.DeleteWorkTime>Rub-koha</Settings.DeleteWorkTime>
+  <Settings.AddWorkTime>Shto kohë të re</Settings.AddWorkTime>
+  <Settings.Shift>Ndryshim</Settings.Shift>
+  <Settings.OtherVehicles>Automjetet tjera</Settings.OtherVehicles>
+  <Settings.ExpiryDrivingLicense>Skadimi i një patentë shoferi ndërkombëtar</Settings.ExpiryDrivingLicense>
+  <Settings.NextService>Intervali i shërbimit</Settings.NextService>
+  <Settings.GreenCard>Green card</Settings.GreenCard>
+  <Settings.ChooseToDeletePoints>Nëse ju do të hiqni fshini elementin e zgjedhur</Settings.ChooseToDeletePoints>
+  <Settings.SelectPOI>Zgjidhni grupin që dëshironi të kaloni pikë dhe klikoni Change:</Settings.SelectPOI>
+  <Settings.NemaPOI>Asnjë pikat e interesit në grupin e...</Settings.NemaPOI>
+  <Settings.SuccSwitched>Transferimi i suksesshëm.</Settings.SuccSwitched>
+  <Settings.SuccDeleted>Fshirjen e suksesshme</Settings.SuccDeleted>
+  <Settings.DeletedGroup>Suksesshëm grup delete</Settings.DeletedGroup>
+  <Settings.AddedGroup>Prezantua me sukses grup.</Settings.AddedGroup>
+  <Settings.SwitchPOI>Shko POI</Settings.SwitchPOI>
+  <Settings.ChooseColor>Select color</Settings.ChooseColor>
+  <Settings.QuestionForDeleteGroup2>Zgjidhni grupin që dëshironi të kaloni në pikat e interesit që janë në grupin që dëshironi të fshini:</Settings.QuestionForDeleteGroup2>
+  <Settings.QuestionForDeleteGroup1>Jeni te sigurte qe doni te fshini grupin?</Settings.QuestionForDeleteGroup1>
+  <Settings.ChangingGroup>Ndryshimi grup</Settings.ChangingGroup>
+  <Settings.Action>Veprim</Settings.Action>
+  <Settings.NotGroupedItems>Pikat ungrouped</Settings.NotGroupedItems>
+  <Settings.GroupSuccessfullyChanged>Ndryshuar me sukses grupin.</Settings.GroupSuccessfullyChanged>
+  <Settings.noColorName>Shkruani një ngjyrë</Settings.noColorName>
+  <Settings.noGroupName>Futni emrin e grupit</Settings.noGroupName>
+  <Settings.SelectUser>Zgjidhni një përdorues</Settings.SelectUser>
+  <Settings.ThereAreNoResults>Nuk ka rezultate...</Settings.ThereAreNoResults>
+  <Settings.Role>Lloji i përdoruesit</Settings.Role>
+  <Settings.TimeDisplay>Ekran koha</Settings.TimeDisplay>
+  <Settings.WorkTime>Orë</Settings.WorkTime>
+  <Kluch.Goran>Test përkthim</Kluch.Goran>
+  <Language>Titra</Language>
+  <Insert>Ngarko</Insert>
+  <Kluch>Kyç</Kluch>
+  <Login.Title>Të bëjë më shumë me më pak</Login.Title>
+  <Login.Description>Menaxhuar mirë tuaj celular</Login.Description>
+  <Login.Username>Emri i përdoruesit</Login.Username>
+  <Login.Password>Fjalëkalim</Login.Password>
+  <Login.Button>Hyrje</Login.Button>
+  <Login.Legal>Njoftim ligjor</Login.Legal>
+  <Login.Privacy>Politika e privatësisë</Login.Privacy>
+  <Login.Help>Ndihmë</Login.Help>
+  <Login.Support>Mbështetje</Login.Support>
+  <Login.WrongPassword>Emrin e përdoruesit apo fjalëkalimin e gabuar</Login.WrongPassword>
+  <Login.ErrorMessage>Gabim</Login.ErrorMessage>
+  <Login.Panorama>Panoramë</Login.Panorama>
+  <Login.PanoramaGPS>Panorama GPS</Login.PanoramaGPS>
+  <Login.keepLogged>Më mbaj të kyçur në 14 ditë</Login.keepLogged>
+  <Login.PermMenu>Ju nuk keni leje menu !!!</Login.PermMenu>
+  <Login.BrVer1>Version shfletuesi juaj është</Login.BrVer1>
+  <Login.BrVer2>Për të shmangur problemet, kur duke përdorur kërkesën tonë, ju lutem update it.</Login.BrVer2>
+  <Login.BrVer3>Sinqerisht, Geonet GPS</Login.BrVer3>
+  <Main.LiveTitle>Ndjekja jetojnë</Main.LiveTitle>
+  <Main.ReportsTitle>Raportet</Main.ReportsTitle>
+  <Main.SettingsTitle>Cilësimet</Main.SettingsTitle>
+  <Main.HelpTitle>Ndihmë</Main.HelpTitle>
+  <Main.FleetManagement>Fleet management</Main.FleetManagement>
+  <Main.FleetManagementTitle>Fleet management</Main.FleetManagementTitle>
+  <Main.Logout>Sign out</Main.Logout>
+  <Main.Live>Jetojnë ndjekja e automjeteve tuaja</Main.Live>
+  <Main.Reports>Analizon dhe raporton mbi automjetin tuaj</Main.Reports>
+  <Main.Settings>Cilësimet sistemi i aplikimit</Main.Settings>
+  <Main.Help>Asistencë në aplikimin</Main.Help>
+  <Main.fm>Fleet management</Main.fm>
+  <Main.fm1>Menaxhimi flotën tuaj të automjeteve</Main.fm1>
+  <Main.routess>Rrugë</Main.routess>
+  <Main.routess1>Urdhëron rutinë, optimization flotë</Main.routess1>
+  <Reports.Summary>Raporte përmbledhëse</Reports.Summary>
+  <Reports.Overview>Rishikimi</Reports.Overview>
+  <Reports.Sending>Dërgimi i...</Reports.Sending>
+  <Reports.PominatoRastojanie>Largësia udhëtuar</Reports.PominatoRastojanie>
+  <Reports.PominatoRastojanie1>Distancë</Reports.PominatoRastojanie1>
+  <Reports.Aktivnost>Aktivitet</Reports.Aktivnost>
+  <Reports.MaxSpeed>Shpejtësi maksimale</Reports.MaxSpeed>
+  <Reports.Speed>Shpejtësi</Reports.Speed>
+  <Reports.TimeMot>Koha totale në lëvizje</Reports.TimeMot>
+  <Reports.TimeStand>Këmbë gjithsej koha</Reports.TimeStand>
+  <Reports.AvgSpeed>Shpejtësitë mesatare</Reports.AvgSpeed>
+  <Reports.From>Nga</Reports.From>
+  <Reports.To>Në</Reports.To>
+  <Reports.NoTours>Numri i turne</Reports.NoTours>
+  <Reports.DistanceTour>Largësia Gjithsej udhëtoi për turne</Reports.DistanceTour>
+  <Reports.DistanceTour1>Totale e shpenzuar (br) distanca nga turnetë</Reports.DistanceTour1>
+  <Reports.TotalCost>Xhiro</Reports.TotalCost>
+  <Reports.AvgDuration>Koha mesatare për turneun</Reports.AvgDuration>
+  <Reports.AvgNo>Numri mesatar i</Reports.AvgNo>
+  <Reports.PerTour>në turne</Reports.PerTour>
+  <Reports.PriceSpent>Kostoja e kaluar</Reports.PriceSpent>
+  <Reports.AvgPrice>Çmimi mesatar për turneun</Reports.AvgPrice>
+  <Reports.Choose>Zgjedh</Reports.Choose>
+  <Reports.Cancel>Anuloj</Reports.Cancel>
+  <Reports.ViewOnMap>Harta shiko</Reports.ViewOnMap>
+  <Reports.Minutes>Procesverbalet</Reports.Minutes>
+  <Reports.ActivityOn>Ngarje</Reports.ActivityOn>
+  <Reports.Standing>Qëndrimi</Reports.Standing>
+  <Reports.ActivityOff>Qëndrimi</Reports.ActivityOff>
+  <Reports.ActiveV>Top 5 automjete aktive</Reports.ActiveV>
+  <Reports.PassiveV>Top 5 automjete pasive</Reports.PassiveV>
+  <Reports.IdlingReport>Qëndrimi</Reports.IdlingReport>
+  <Reports.Total1>Largësia gjithsej udhëtoi</Reports.Total1>
+  <Reports.Total1_>Totale e shpenzuar (br) distancë</Reports.Total1_>
+  <Reports.TotalDist>Distanca totale</Reports.TotalDist>
+  <Reports.TotalDistForTaxi>Dist. tot.</Reports.TotalDistForTaxi>
+  <Reports.PrivacyPolice>Politika e privatësisë</Reports.PrivacyPolice>
+  <Reports.Total2>Gjithsej operativ me motor running</Reports.Total2>
+  <Reports.Total3>Gjithsej operacion me motor në vend</Reports.Total3>
+  <Reports.Total4>Gjithsej operacion me motor në lëvizje</Reports.Total4>
+  <Reports.Total5>Operativ gjithsej landfill off motor</Reports.Total5>
+  <Reports.TotalIgnOff>Operativ gjithsej landfill off motor</Reports.TotalIgnOff>
+  <Reports.Other>Tjetër</Reports.Other>
+  <Reports.Total2_>Gjithsej operativ me motor running</Reports.Total2_>
+  <Reports.Total3_>Gjithsej operacion me motor në vend</Reports.Total3_>
+  <Reports.Total4_>Gjithsej operacion me motor në lëvizje</Reports.Total4_>
+  <Reports.Total5_>Operativ gjithsej landfill off motor</Reports.Total5_>
+  <Reports.Total6>Shpejtësia maksimale</Reports.Total6>
+  <Reports.TotalVehicles>Numri i përgjithshëm i automjeteve</Reports.TotalVehicles>
+  <Reports.NumVehicles>Numri i automjeteve</Reports.NumVehicles>
+  <Reports.TotalPerTrack>Numri total i trackers personale</Reports.TotalPerTrack>
+  <Reports.Top10VisitPOI>Top 10 më të vizituara pikat e interesit</Reports.Top10VisitPOI>
+  <Reports.Top10VisitGF>Top 10 më të vizituara zonat</Reports.Top10VisitGF>
+  <Reports.Rbr>N.ren.</Reports.Rbr>
+  <Reports.POI>Pika e interesit</Reports.POI>
+  <Reports.NoVisit>Numri i vizitave</Reports.NoVisit>
+  <Reports.Registration>Numri i regjistrimit</Reports.Registration>
+  <Reports.AllPoiVisits>Të gjitha pikat e interesit duke vizituar</Reports.AllPoiVisits>
+  <Reports.AllPoiDur>Të gjitha pikat e interesit sipas kohëzgjatjes</Reports.AllPoiDur>
+  <Reports.NoData1>Nuk ka të dhëna</Reports.NoData1>
+  <Reports.IgnitionON>Motor kthyer</Reports.IgnitionON>
+  <Reports.IgnitionOff>Off engine</Reports.IgnitionOff>
+  <Reports.StoenjeVoMesto>Duke qëndruar në vend me motor u kthye</Reports.StoenjeVoMesto>
+  <Reports.Dvizenje>Lëvizje</Reports.Dvizenje>
+  <Reports.Vreme>Kohë</Reports.Vreme>
+  <Reports.RecTime>Koha e mbërritjes</Reports.RecTime>
+  <Reports.Datum>Data</Reports.Datum>
+  <Reports.PominatoVreme>Kohëzgjatje</Reports.PominatoVreme>
+  <Reports.PominatoVreme1>Kohëzgjatje</Reports.PominatoVreme1>
+  <Reports.StatusMotor>Statusi i motorit</Reports.StatusMotor>
+  <Reports.SummData>Të dhënat përmbledhëse</Reports.SummData>
+  <Reports.LoadingData>Të dhënave është ngarkuar . . .</Reports.LoadingData>
+  <Reports.Loading>Ngarkim</Reports.Loading>
+  <Reports.POIs>Pikat e interesit</Reports.POIs>
+  <Reports.ShortReport>Raport i shkurtër</Reports.ShortReport>
+  <Reports.VehcileReport>Raportet e një automjeti</Reports.VehcileReport>
+  <Reports.ON>Përfshirë</Reports.ON>
+  <Reports.OFF>Larg</Reports.OFF>
+  <Reports.sDate>Data e fillimit</Reports.sDate>
+  <Reports.eDate>Data e fundit</Reports.eDate>
+  <Reports.Vehicle>Automjet</Reports.Vehicle>
+  <Reports.sTime>Kohën e fillimit</Reports.sTime>
+  <Reports.eTime>Ora fundi</Reports.eTime>
+  <Reports.VisitedPOI>Pikat e interesit të vizituara</Reports.VisitedPOI>
+  <Reports.VisitedPOIByNumber>Top 5 më të vizituara pikat e interesit për vizitat</Reports.VisitedPOIByNumber>
+  <Reports.VisitedPOIByDuration>Top 5 më të vizituara pikat e interesit në kohë tretur</Reports.VisitedPOIByDuration>
+  <Reports.Detail>Raporti i detajuar</Reports.Detail>
+  <Reports.PastDistance>Largësia udhëtuar</Reports.PastDistance>
+  <Reports.Summary1>Taken</Reports.Summary1>
+  <Reports.More>Më shumë</Reports.More>
+  <Reports.Taxi>Raportet për kompanitë e taksive</Reports.Taxi>
+  <Reports.TaxiTour>Turne raport</Reports.TaxiTour>
+  <Reports.Step>Hap</Reports.Step>
+  <Reports.AvgDist>Mesatarja e kaloi në distancë</Reports.AvgDist>
+  <Reports.EngEngOn>Angazhimi i automjeteve me motor running</Reports.EngEngOn>
+  <Reports.Engagement>Angazhim</Reports.Engagement>
+  <Reports.LoadPoi>Ngarkesës të gjitha pikat e interesit</Reports.LoadPoi>
+  <Reports.Visits1>vizita</Reports.Visits1>
+  <Reports.ComRes>Rezultatet e krahasimit</Reports.ComRes>
+  <Reports.Here>këtu</Reports.Here>
+  <Reports.Step1>Zgjidh gamë kohë për të aplikuar krahasimin</Reports.Step1>
+  <Reports.ComVeh>Zgjidhni automjetet që ju dëshironi për të krahasuar</Reports.ComVeh>
+  <Reports.ChooseVeh>Zgjidh automjetin</Reports.ChooseVeh>
+  <Reports.Step2>Zgjidhni kategoritë që ju doni të krahasoni automjetet</Reports.Step2>
+  <Reports.ComText>Nëse ju doni të bëni një krahasim në mes disa nga automjetit tuaj, ju lutem zgjidhni: (br) ▪ (b) gamë kohë (/ b), i cili i referohet krahasimit; (br) ▪ (b) automjetet (/ b) të cilët duan të krahasoni;. (br) ▪ (b) kategoritë (/ b), për të cilën ju jeni të krahasuar automjeteve të selektuara (br) (br) për klik krahasim</Reports.ComText>
+  <Reports.GeofenceEmail>zonat raport</Reports.GeofenceEmail>
+  <Reports.TaxiEmail>tarifat raportojnë</Reports.TaxiEmail>
+  <Reports.PoiEmail>raporto vizituar pikat e ineteres</Reports.PoiEmail>
+  <Reports.ShortEmail>raporti shkurtër</Reports.ShortEmail>
+  <Reports.OverviewEmail>raportin shqyrtues të</Reports.OverviewEmail>
+  <Reports.DashboardEmail>raporti kabinë</Reports.DashboardEmail>
+  <Reports.FleetEmail>njoftimin një flotë të automjeteve</Reports.FleetEmail>
+  <Reports.DistEmail>raporti shpenzuar distancë</Reports.DistEmail>
+  <Reports.ActEmail>raporti aktivitet</Reports.ActEmail>
+  <Reports.SpeedEmail>njoftimin shpejtësi maksimale</Reports.SpeedEmail>
+  <Reports.ExcEmail>raporti mbi tejkalimin kufiri i shpejtësisë</Reports.ExcEmail>
+  <Reports.IdleEmail>raporti qëndruar në vendin e</Reports.IdleEmail>
+  <Reports.SummTaxiEmail>tarifat raporti përmbledhës</Reports.SummTaxiEmail>
+  <Reports.SummTaxi>tarifat raporti përmbledhës</Reports.SummTaxi>
+  <Reports.email1>I dashur, (br) përdorues</Reports.email1>
+  <Reports.email2>përveç kësaj ne të dërgoni linkun ku ju mund të shikoni</Reports.email2>
+  <Reports.email3>për</Reports.email3>
+  <Reports.email4>për periudhën</Reports.email4>
+  <Reports.email5>në</Reports.email5>
+  <Reports.PanoramaGPS>Panorama GPS</Reports.PanoramaGPS>
+  <Reports.VehicleReports>Raportet për automjetet</Reports.VehicleReports>
+  <Reports.Reconstruction>Rindërtim</Reports.Reconstruction>
+  <Reports.TaxiReport>Raporti taxi</Reports.TaxiReport>
+  <Reports.GeoFenceReport>Zonat raport</Reports.GeoFenceReport>
+  <Reports.Analysis>Analizat</Reports.Analysis>
+  <Reports.StartDatetime>Shtëpi</Reports.StartDatetime>
+  <Reports.EndDatetime>Fund</Reports.EndDatetime>
+  <Reports.InTime>Ora input</Reports.InTime>
+  <Reports.OutTime>Ora output</Reports.OutTime>
+  <Reports.Yesterday>Dje</Reports.Yesterday>
+  <Reports.Today>Sot</Reports.Today>
+  <Reports.CurrentWeek>Java e tanishme</Reports.CurrentWeek>
+  <Reports.LastWeek>Të dielën e kaluar</Reports.LastWeek>
+  <Reports.Last10Days>Të fundit 10 ditë</Reports.Last10Days>
+  <Reports.CurrentMonth>Muaji aktual</Reports.CurrentMonth>
+  <Reports.LastMonth>Muajin e kaluar</Reports.LastMonth>
+  <Reports.Custom>Me porosi</Reports.Custom>
+  <Reports.Show>Pamje</Reports.Show>
+  <Reports.Dashboard>Kabinë</Reports.Dashboard>
+  <Reports.DashboardExcel>K A B I N Ë</Reports.DashboardExcel>
+  <Reports.User>Përdorues</Reports.User>
+  <Reports.Company>Kompani</Reports.Company>
+  <Reports.CreationDate>Data e krijimit</Reports.CreationDate>
+  <Reports.DateRange>Fushë</Reports.DateRange>
+  <Reports.DateTimeRange>Varg koha</Reports.DateTimeRange>
+  <Reports.AllVehicles>Të gjitha automjetet</Reports.AllVehicles>
+  <Reports.DemoCompany>Kompania Demo</Reports.DemoCompany>
+  <Reports.FleetReport>Raporti për automjetet flotës</Reports.FleetReport>
+  <Reports.DistanceTravelled>Largësia udhëtuar</Reports.DistanceTravelled>
+  <Reports.Idling>Qëndrimi</Reports.Idling>
+  <Reports.Parked>Park</Reports.Parked>
+  <Reports.TotalParked>Koha totale parkimi</Reports.TotalParked>
+  <Reports.ShutDown>Afër</Reports.ShutDown>
+  <Reports.SpeedLimitExcess>Tejkaluar kufiri i shpejtësisë</Reports.SpeedLimitExcess>
+  <Reports.SpeedLimitExcess1>Tejkaluar kufiri i shpejtësisë</Reports.SpeedLimitExcess1>
+  <Reports.SpeedExcess>Tejkalon shpejtësinë</Reports.SpeedExcess>
+  <Reports.Over>Mbi</Reports.Over>
+  <Reports.NoData>Nuk ka të dhëna për periudhën e kërkuar !!!</Reports.NoData>
+  <Reports.NoSensor>Ky automjet ka sensorin e karburantit !!!</Reports.NoSensor>
+  <Reports.Top30PoiVisits>E para 30 pikat e interesit duke vizituar</Reports.Top30PoiVisits>
+  <Reports.Top30PoiDuration>E para 30 pikat e interesit sipas kohëzgjatjes</Reports.Top30PoiDuration>
+  <Reports.Top30GeoFenceVisits>E para 30 Zonat sipas vizita</Reports.Top30GeoFenceVisits>
+  <Reports.Top20GeoFenceVisits>Top 20 më të vizituara zonat</Reports.Top20GeoFenceVisits>
+  <Reports.Top30GeoFenceDuration>E para 30 Zonat sipas kohëzgjatjes</Reports.Top30GeoFenceDuration>
+  <Reports.GeoFence>Zonë</Reports.GeoFence>
+  <Reports.Permission>Ju nuk keni leje për të raportuar këtë !!!</Reports.Permission>
+  <Reports.ReportNotLoaded>Raporti nuk mund të ngarkohet !!!</Reports.ReportNotLoaded>
+  <Reports.FleetReportExcel>R A P O R T O   F L O T Ë N   E   A U T O M J E T E V E</Reports.FleetReportExcel>
+  <Reports.SpeedExcessOver>Tejkalon shpejtësinë maksimale të lejueshme</Reports.SpeedExcessOver>
+  <Reports.Description>Përshkrim</Reports.Description>
+  <Reports.Value>Vlerë</Reports.Value>
+  <Reports.Visits>Vizitë</Reports.Visits>
+  <Reports.OverviewExcel>S H Q Y R T I M I</Reports.OverviewExcel>
+  <Reports.Top20VisitedPoi>Top 20 më të vizituara pikat e interesit</Reports.Top20VisitedPoi>
+  <Reports.TopVisitedPoi>Pikat më të vizituara të interesit</Reports.TopVisitedPoi>
+  <Reports.EngineOn>Motori përfshirë</Reports.EngineOn>
+  <Reports.EngineOff>Off engine</Reports.EngineOff>
+  <Reports.NoStops>Numri i ndalon</Reports.NoStops>
+  <Reports.StartPosition>Pozicioni kryesore</Reports.StartPosition>
+  <Reports.EndPosition>Pozicioni bottom</Reports.EndPosition>
+  <Reports.Location>Vend</Reports.Location>
+  <Reports.DateTime>Data dhe koha </Reports.DateTime>
+  <Reports.TimeParked>Ora parking </Reports.TimeParked>
+  <Reports.Time>Kohë</Reports.Time>
+  <Reports.ShortExcel>R A P O R T I   I   S H K U R T E R </Reports.ShortExcel>
+  <Reports.NameGroup>Emri i grupit</Reports.NameGroup>
+  <Reports.ChooseIcon>Zgjidh një ikonë</Reports.ChooseIcon>
+  <Reports.Color>Ngjyrë</Reports.Color>
+  <Reports.DeletePoi>Jeni te sigurte qe doni te fshini kete artikull të interesit?</Reports.DeletePoi>
+  <Reports.DeleteGeoFence>Jeni te sigurte qe doni te fshini kete zone?</Reports.DeleteGeoFence>
+  <Reports.Latitude>Gjerësi</Reports.Latitude>
+  <Reports.Longitude>Gjatësi</Reports.Longitude>
+  <Reports.Address>Аdresë</Reports.Address>
+  <Reports.NamePoi>Emri i pikën e interesit</Reports.NamePoi>
+  <Reports.AddInfo>Informacione Shtese</Reports.AddInfo>
+  <Reports.AvailableFor>Në dispozicion për</Reports.AvailableFor>
+  <Reports.OnlyMe>Vetëm mua</Reports.OnlyMe>
+  <Reports.AllUsers>Të gjithë përdoruesit</Reports.AllUsers>
+  <Reports.CannotChange>Pa ndryshim</Reports.CannotChange>
+  <Reports.Group>Grup</Reports.Group>
+  <Reports.SelectGroup>Ju lutem zgjidhni një grup</Reports.SelectGroup>
+  <Reports.GeoFenceName>Emri i zonës</Reports.GeoFenceName>
+  <Reports.AllowedInGeoFence>Lejuar në këtë zonë</Reports.AllowedInGeoFence>
+  <Reports.AlertEnter>Dërgo alarm të hyrjes</Reports.AlertEnter>
+  <Reports.AlertExit>Dërgo jashtë alarm</Reports.AlertExit>
+  <Reports.AlertAllowEnter>Dërgo lajmërojnë kur hyjnë në ndonjë prej mjeteve të lejuara</Reports.AlertAllowEnter>
+  <Reports.AlertAllowExit>Dërgo vigjilent kur ndonjë i automjeteve të lejuara daljes</Reports.AlertAllowExit>
+  <Reports.AlertNotAllowEnter>Dërgo vigjilent kur ndonjë i automjeteve nuk lejohet hyrja</Reports.AlertNotAllowEnter>
+  <Reports.AlertNotAllowExit>Send nga vigjilent kur ndonjë prej automjeteve të ndaluara</Reports.AlertNotAllowExit>
+  <Reports.AlertEmail>Dërgo vigjilent për këto e-mail</Reports.AlertEmail>
+  <Reports.AlertPhone>Dërgo vigjilent për këto numra</Reports.AlertPhone>
+  <Reports.Example>Shembull</Reports.Example>
+  <Reports.MacExample>shembull për Maqedoninë</Reports.MacExample>
+  <Reports.Detail1>I detajuar</Reports.Detail1>
+  <Reports.SpeedChart>Hartës</Reports.SpeedChart>
+  <Reports.TaxiChart>Grafiku Taxi</Reports.TaxiChart>
+  <Reports.TaximeterOff>Off taksimetër</Reports.TaximeterOff>
+  <Reports.Passengers0>Udhëtarët 0</Reports.Passengers0>
+  <Reports.TimeDifference>Diferenca në kohë</Reports.TimeDifference>
+  <Reports.Distance>Distancë</Reports.Distance>
+  <Reports.Dist>Dist.</Reports.Dist>
+  <Reports.Price>Cmim</Reports.Price>
+  <Reports.Total>Total</Reports.Total>
+  <Reports.Tot>Tot.</Reports.Tot>
+  <Reports.Currency>ditë</Reports.Currency>
+  <Reports.TaxiReportExcel>R A P O R T I  T A X I</Reports.TaxiReportExcel>
+  <Reports.SummTaxiExcel>P Ë R M B L E D H J E  T A X I  R A P O R T</Reports.SummTaxiExcel>
+  <Reports.Duration>Kohëzgjatje</Reports.Duration>
+  <Reports.Allowed>I lejuar</Reports.Allowed>
+  <Reports.Yes>Në</Reports.Yes>
+  <Reports.No>Jo</Reports.No>
+  <Reports.GeoFenceExcel>D E K L A R A T A  E  Z O N A V E</Reports.GeoFenceExcel>
+  <Reports.IdlingExcel>R A P O R T  M B I  S P O T  K E M B E</Reports.IdlingExcel>
+  <Reports.FuelExcel>D E K L A R A T A   E   K A R B U R A N T</Reports.FuelExcel>
+  <Reports.FleetTotal>Flota Total</Reports.FleetTotal>
+  <Reports.FleetAverage>Flota Mesatare</Reports.FleetAverage>
+  <Reports.VehicleAverage>Automjet mesatare</Reports.VehicleAverage>
+  <Reports.Average>Mesatar</Reports.Average>
+  <Reports.DistTravExcel>LARGESIA UDHETUAR</Reports.DistTravExcel>
+  <Reports.Date>Data</Reports.Date>
+  <Reports.Liters>L</Reports.Liters>
+  <Reports.Iznos>Sasi</Reports.Iznos>
+  <Reports.EnOnPassOff>Udhëtarët OFF Motor ON</Reports.EnOnPassOff>
+  <Reports.LowSat>Satelitët e dobëta</Reports.LowSat>
+  <Reports.TaximeterOn>Meter ON</Reports.TaximeterOn>
+  <Reports.TaxiOffPassOn>Udhëtarët metër OFF ON</Reports.TaxiOffPassOn>
+  <Reports.Engaged>Angazhuar</Reports.Engaged>
+  <Reports.Legend>Legjendë</Reports.Legend>
+  <Reports.ActivityExcel>A K T I V I T E T I</Reports.ActivityExcel>
+  <Reports.MaximumSpeed>Shpejtësia maksimale</Reports.MaximumSpeed>
+  <Reports.MaxSpeedExcel>S H P E J T E S I A   M A K S I M A L E</Reports.MaxSpeedExcel>
+  <Reports.Recurrence>Përsëris</Reports.Recurrence>
+  <Reports.SpeedOver>Shpejtësi ​​mbi </Reports.SpeedOver>
+  <Reports.SpeedLimitExcel>TEJKALIMI LIMIT SHPEJTESIE</Reports.SpeedLimitExcel>
+  <Reports.GeoFenceRecord>Zona u ruajt me sukses.</Reports.GeoFenceRecord>
+  <Reports.GeoFenceModify>Zona u ndryshua me sukses.</Reports.GeoFenceModify>
+  <Reports.Error>Gabim !!!</Reports.Error>
+  <Reports.ThePoi>Pika e interesit </Reports.ThePoi>
+  <Reports.SucAdd> u shtua me sukses.</Reports.SucAdd>
+  <Reports.TheGroup>Grup </Reports.TheGroup>
+  <Reports.WrongPass>Fjalëkalim të gabuar !!! </Reports.WrongPass>
+  <Reports.SucDel>Zona u fshi me sukses.</Reports.SucDel>
+  <Reports.SucDelPoi>Pika e interesit u fshi me sukses.</Reports.SucDelPoi>
+  <Reports.SucSave>Zona u ruajt me sukses.</Reports.SucSave>
+  <Reports.SucUpd> u rifreskua me sukses.</Reports.SucUpd>
+  <Reports.SucSent>Raporti i është dërguar me sukses në e-mailin tuaj</Reports.SucSent>
+  <Reports.CorrForm>Shkruani saktë formën e e-mailit</Reports.CorrForm>
+  <Reports.EnterEmail>Shkruani sistemin e e-mail:</Reports.EnterEmail>
+  <Reports.Reports>Raportet</Reports.Reports>
+  <Reports.Report>Raport</Reports.Report>
+  <Reports.AddSchedule>Shto projektues</Reports.AddSchedule>
+  <Reports.SendReport>Dërgoje Njoftimin për email</Reports.SendReport>
+  <Reports.Message>Mesazh...</Reports.Message>
+  <Reports.Period>Periudhë</Reports.Period>
+  <Reports.PeriodRec>Periudha e mbërritjes</Reports.PeriodRec>
+  <Reports.SchNote>* Për të hyrë të shumta e-maile të veçanta nga ,(br)ex: n1@example.com,n2@example.com,</Reports.SchNote>
+  <Reports.AllCategories>Të Gjitha Kategoritë</Reports.AllCategories>
+  <Reports.Daily>Përditë</Reports.Daily>
+  <Reports.Weekly>Javor</Reports.Weekly>
+  <Reports.Monthly>Mujor</Reports.Monthly>
+  <Reports.Day>Ditë</Reports.Day>
+  <Reports.Monday>Hene</Reports.Monday>
+  <Reports.Tuesday>Martë</Reports.Tuesday>
+  <Reports.Wednesday>Mërkurë</Reports.Wednesday>
+  <Reports.Thursday>Enjte</Reports.Thursday>
+  <Reports.Friday>Premte</Reports.Friday>
+  <Reports.Saturday>Shtunë</Reports.Saturday>
+  <Reports.Sunday>Diel</Reports.Sunday>
+  <Reports.Email>E-mail</Reports.Email>
+  <Reports.SucUpdGeoFenceName>Emri i zonës u rifreskua me sukses.</Reports.SucUpdGeoFenceName>
+  <Reports.DrawingAreas>Draw zonave</Reports.DrawingAreas>
+  <Reports.VisitedPoiExcel>P O I   V I Z I T O I</Reports.VisitedPoiExcel>
+  <Reports.TotalIdle>Këmbë gjithsej në vend</Reports.TotalIdle>
+  <Reports.EnterCorrForm>Fut formatin e saktë të një email!</Reports.EnterCorrForm>
+  <Reports.Comparison>Krahasoj</Reports.Comparison>
+  <Reports.Red>I kuq</Reports.Red>
+  <Reports.Gray>Gri</Reports.Gray>
+  <Reports.Green>E gjelbër</Reports.Green>
+  <Reports.Yellow>I verdhë</Reports.Yellow>
+  <Reports.FuelReport>Raport mbi Karburantit</Reports.FuelReport>
+  <Reports.Driver>Shofer</Reports.Driver>
+  <Reports.TotalForAll>Totali i të gjitha automjeteve</Reports.TotalForAll>
+  <Reports.AvgPriceTour>Çmimi mesatar për turneun</Reports.AvgPriceTour>
+  <Reports.AvgPriceTour1>Çmimi mesatar(br)në turne</Reports.AvgPriceTour1>
+  <Reports.AvgDurTour>Koha mesatare për turneun</Reports.AvgDurTour>
+  <Reports.AvgDurTour1>Koha mesatare(br)në turne</Reports.AvgDurTour1>
+  <Reports.AvgNoOf>Numri mesatar i</Reports.AvgNoOf>
+  <Reports.AddGroup>Shto një grup</Reports.AddGroup>
+  <Reports.ExportPDF>transferimi PDF</Reports.ExportPDF>
+  <Reports.ExportExcel>transferimi excel</Reports.ExportExcel>
+  <Reports.AddScheduler>shto projektues</Reports.AddScheduler>
+  <Reports.SendToMail>dërgo e-mail</Reports.SendToMail>
+  <Reports.NoPermiss>Ju nuk keni leje për të</Reports.NoPermiss>
+  <Reports.Shift>Ndryshim</Reports.Shift>
+  <Reports.WorktimeRep>Orë</Reports.WorktimeRep>
+  <Reports.Taximeter>Metër</Reports.Taximeter>
+  <Reports.Passengers>Udhëtarët</Reports.Passengers>
+  <Reports.Last1>I fundit</Reports.Last1>
+  <Reports.LastMore>I fundit</Reports.LastMore>
+  <Reports.Day_>ditë</Reports.Day_>
+  <Reports.Days_>ditë</Reports.Days_>
+  <Reports.January>Janar</Reports.January>
+  <Reports.February>Shkurt</Reports.February>
+  <Reports.March>Mars</Reports.March>
+  <Reports.April>Prill</Reports.April>
+  <Reports.May>Maj</Reports.May>
+  <Reports.June>Qershor</Reports.June>
+  <Reports.July>Korrik</Reports.July>
+  <Reports.August>Gusht</Reports.August>
+  <Reports.September>Shtator</Reports.September>
+  <Reports.October>Tetor</Reports.October>
+  <Reports.November>Nëntor</Reports.November>
+  <Reports.December>Dhjetor</Reports.December>
+  <Reports.January1>Jan</Reports.January1>
+  <Reports.February1>Shk</Reports.February1>
+  <Reports.March1>Mar</Reports.March1>
+  <Reports.April1>Pri</Reports.April1>
+  <Reports.May1>Maj</Reports.May1>
+  <Reports.June1>Yoo</Reports.June1>
+  <Reports.July1>Kor</Reports.July1>
+  <Reports.August1>Gus</Reports.August1>
+  <Reports.September1>Sht</Reports.September1>
+  <Reports.October1>Jas</Reports.October1>
+  <Reports.November1>Nën</Reports.November1>
+  <Reports.December1>Dhj</Reports.December1>
+  <Reports.Meters>m</Reports.Meters>
+  <Reports.Past>Kaloi</Reports.Past>
+  <Reports.EngineON1>Motor djegur</Reports.EngineON1>
+  <Reports.EngineOFF1>Motor shuhet</Reports.EngineOFF1>
+  <Reports.SpentFuel>Karburant</Reports.SpentFuel>
+  <Reports.AvgConFuel>Konsum</Reports.AvgConFuel>
+  <Reports.AddedFuel>Shtuar karburantit</Reports.AddedFuel>
+  <Reports.Fuel>Karburant</Reports.Fuel>
+  <Reports.Engine>Motor</Reports.Engine>
+  <Tracking.GeoFenceRecord>Zona ka qenë e regjistruar me sukses.</Tracking.GeoFenceRecord>
+  <Tracking.Color>Ngjyrë</Tracking.Color>
+  <Tracking.Legend>Legjendë</Tracking.Legend>
+  <Tracking.Message>Mesazh...</Tracking.Message>
+  <Tracking.GroupName>Emri i grupit</Tracking.GroupName>
+  <Tracking.ChooseIcon>Zgjidh një ikonë</Tracking.ChooseIcon>
+  <Tracking.DeleteThisPoi>Jeni te sigurte qe doni te fshini kete artikull nga ineteres?</Tracking.DeleteThisPoi>
+  <Tracking.DeleteThisGeoFence>Jeni te sigurte qe doni te fshini kete zone?</Tracking.DeleteThisGeoFence>
+  <Tracking.Latitude>Gjerësi</Tracking.Latitude>
+  <Tracking.Longitude>Gjatësi</Tracking.Longitude>
+  <Tracking.Address>Adresë</Tracking.Address>
+  <Tracking.NamePoi>Emri i pikën e interesit</Tracking.NamePoi>
+  <Tracking.AddInfo>Informacione Shtese</Tracking.AddInfo>
+  <Tracking.AvailableFor>Në dispozicion për</Tracking.AvailableFor>
+  <Tracking.OnlyMe>Vetëm mua</Tracking.OnlyMe>
+  <Tracking.AllUsers>Të gjithë përdoruesit</Tracking.AllUsers>
+  <Tracking.CannotChange>Pa ndryshim</Tracking.CannotChange>
+  <Tracking.Group>Grup</Tracking.Group>
+  <Tracking.SelectGroup>Ju lutem zgjidhni një grup</Tracking.SelectGroup>
+  <Tracking.Delete>Fshij</Tracking.Delete>
+  <Tracking.GFName>Emri i zonës</Tracking.GFName>
+  <Tracking.AllowedInGeoFence>Lejuar në këtë zonë</Tracking.AllowedInGeoFence>
+  <Tracking.AlertEnter>Dërgo alarm të hyrjes</Tracking.AlertEnter>
+  <Tracking.AlertExit>Dërgo jashtë alarm</Tracking.AlertExit>
+  <Tracking.AlertAllowEnter>Dërgo lajmërojnë kur hyjnë në ndonjë prej mjeteve të lejuara</Tracking.AlertAllowEnter>
+  <Tracking.AlertAllowExit>Send nga vigjilent kur ndonjë prej automjeteve të lejuara</Tracking.AlertAllowExit>
+  <Tracking.AlertNotAllowEnter>Dërgo lajmërojnë kur hyjnë në ndonjë prej automjeteve të ndaluara</Tracking.AlertNotAllowEnter>
+  <Tracking.AlertNotAllowExit>Send nga vigjilent kur ndonjë prej automjeteve të ndaluara</Tracking.AlertNotAllowExit>
+  <Tracking.AlertEmail>Dërgo vigjilent për këto e-mail</Tracking.AlertEmail>
+  <Tracking.AlertPhone>Dërgo vigjilent për këto numra</Tracking.AlertPhone>
+  <Tracking.Example>Shembull</Tracking.Example>
+  <Tracking.MacExample>shembull për Maqedoninë</Tracking.MacExample>
+  <Tracking.Company>Kompani</Tracking.Company>
+  <Tracking.User>Përdorues</Tracking.User>
+  <Tracking.GeoFenceModify>Zona u ndryshua me sukses.</Tracking.GeoFenceModify>
+  <Tracking.EngineOn>Motor ON</Tracking.EngineOn>
+  <Tracking.EngineOff>Motor OFF</Tracking.EngineOff>
+  <Tracking.EngineOffPassOn>Motor OFF Udhëtarët ON</Tracking.EngineOffPassOn>
+  <Tracking.LowSat>Satelitët e dobëta</Tracking.LowSat>
+  <Tracking.Engaged>Angazhuar</Tracking.Engaged>
+  <Tracking.TaxOffPassOn>Udhëtarët metër OFF ON</Tracking.TaxOffPassOn>
+  <Tracking.TaxOn>Meter ON</Tracking.TaxOn>
+  <Tracking.Engaged1>Angazhuar</Tracking.Engaged1>
+  <Tracking.ShowHideAllVeh>Trego / Fshih trajektoren për të gjitha automjetet</Tracking.ShowHideAllVeh>
+  <Tracking.ShowHideVeh>Trego / Fshih trajektoren e automjeteve</Tracking.ShowHideVeh>
+  <Tracking.QuickView>Quick Look</Tracking.QuickView>
+  <Tracking.VehDetails>Detajet e automjetit</Tracking.VehDetails>
+  <Tracking.Passengers>Udhëtarët</Tracking.Passengers>
+  <Tracking.Taximeter>Metër</Tracking.Taximeter>
+  <Tracking.Speed>Shpejtësi</Tracking.Speed>
+  <Tracking.AddGroup>Shto një grup</Tracking.AddGroup>
+  <Tracking.DeletePoi>Fshij pikën e interesit</Tracking.DeletePoi>
+  <Tracking.DrawArea>Draw zonave</Tracking.DrawArea>
+  <Tracking.DeleteGF>Zonat Fshirja</Tracking.DeleteGF>
+  <Tracking.Add>Shtoj</Tracking.Add>
+  <Tracking.Cancel>Anuloj</Tracking.Cancel>
+  <Tracking.ClickToChange>Kliko për angazhimin / automjetin neangazhiranje</Tracking.ClickToChange>
+  <Tracking.ClickToFind>Kliko për të gjetur numrin e automjeteve</Tracking.ClickToFind>
+  <Tracking.geofence>Zonë</Tracking.geofence>
+  <Tracking.Yes>Në</Tracking.Yes>
+  <Tracking.No>Jo</Tracking.No>
+  <Tracking.Inactive>Automjetet joaktiv</Tracking.Inactive>
+  <Tracking.Deactive>Transferoj në rezervë</Tracking.Deactive>
+  <Tracking.Active>Aktivizoj</Tracking.Active>
+  <Tracking.Fuel>Karburant</Tracking.Fuel>
+  <Tracking.Driver>Shofer</Tracking.Driver>
+  <Tracking.Enter>Hyj</Tracking.Enter>
+  <Tracking.ComingSoon>Shpejt...</Tracking.ComingSoon>
+  <Tracking.Litres>L</Tracking.Litres>
+  <Tracking.Amount>Sasi</Tracking.Amount>
+  <Tracking.SelectDriver>Zgjidhni Driver</Tracking.SelectDriver>
+  <Tracking.InsertFuel>Hyrë me sukses në karburant!!!</Tracking.InsertFuel>
+  <Tracking.Error>Gabim !!!</Tracking.Error>
+  <Tracking.ThePoi>Pika e interesit </Tracking.ThePoi>
+  <Tracking.SucAdd> u shtua me sukses!!!</Tracking.SucAdd>
+  <Tracking.SucUpd> u rifreskua me sukses!!!</Tracking.SucUpd>
+  <Tracking.TheGroup>Grup </Tracking.TheGroup>
+  <Tracking.WrongPass>Fjalëkalim të gabuar !!! </Tracking.WrongPass>
+  <Tracking.SucDelPoi>Pika e interesit u fshi me sukses!!!</Tracking.SucDelPoi>
+  <Tracking.Radius>Rreze </Tracking.Radius>
+  <Tracking.SelectRadius>Zgjidh rrezen</Tracking.SelectRadius>
+  <Tracking.Meters>m</Tracking.Meters>
+  <Tracking.Settings>Cilësimet</Tracking.Settings>
+  <Tracking.POI>Pika e interesit</Tracking.POI>
+  <Tracking.Street>Rrugë</Tracking.Street>
+  <Tracking.GFVeh>Zone në të cilin mjeti eshte</Tracking.GFVeh>
+  <Tracking.InfoMsg>A nuk Mesazhi prokazhuvaj përsëri!</Tracking.InfoMsg>
+  <Tracking.BusyDriver>Shoferi është tashmë i zënë!!!</Tracking.BusyDriver>
+  <Settings.Reports>Raportet</Settings.Reports>
+  <Settings.NoVeh>Numri i automjetit</Settings.NoVeh>
+  <Settings.DeleteSch>Fshije këtë projektues !!!</Settings.DeleteSch>
+  <Settings.DeleteAllSch>Fshij të gjithë planifikuesit përdoruesin !!!</Settings.DeleteAllSch>
+  <Settings.SpeedLimitExcess>Tejkaluar kufiri i shpejtësisë</Settings.SpeedLimitExcess>
+  <Settings.Delete>Fshij</Settings.Delete>
+  <Settings.DelAllAlarms>Fshij të gjitha alarmet për këtë automjet !!!</Settings.DelAllAlarms>
+  <Settings.DelSpeedLimit>Fshij kufiri i shpejtësisë për automjet !!!</Settings.DelSpeedLimit>
+  <Settings.Registration>Regjistrohem</Settings.Registration>
+  <Settings.AddPoi>Shto pikën e interesit</Settings.AddPoi>
+  <Settings.ViewPoi>Shih pikën e interesit</Settings.ViewPoi>
+  <Settings.AddGeoFence>Shto zonë</Settings.AddGeoFence>
+  <Settings.ViewGeoFence>Shih Zona</Settings.ViewGeoFence>
+  <Settings.LiveTracking>Ndjekja jetojnë</Settings.LiveTracking>
+  <Settings.AddSpeedLimit>Shto kufijtë e shpejtësisë !</Settings.AddSpeedLimit>
+  <Settings.DelAlarm>Fshije këtë zonë alarmi për këtë automjet !!!</Settings.DelAlarm>
+  <Settings.MustSel>Ju mund të zgjidhni në ose jashtë zonës së !!!</Settings.MustSel>
+  <Settings.SummReports>Raporte përmbledhëse</Settings.SummReports>
+  <Settings.Dashboard>Kabinë</Settings.Dashboard>
+  <Settings.FleetReport>Raporti për automjetet flotës</Settings.FleetReport>
+  <Settings.VehicleReports>Raportet për automjetet</Settings.VehicleReports>
+  <Settings.Overview>Rishikimi</Settings.Overview>
+  <Settings.ShortReport>Raport i shkurtër</Settings.ShortReport>
+  <Settings.DetailReport>Raporti i detajuar</Settings.DetailReport>
+  <Settings.VisitedPoi>Pikat e interesit të vizituara</Settings.VisitedPoi>
+  <Settings.Reconstruction>Rindërtim</Settings.Reconstruction>
+  <Settings.TaxiReport>Raporti Taxi</Settings.TaxiReport>
+  <Settings.GeoFenceReport>Zonat Raport</Settings.GeoFenceReport>
+  <Settings.Analysis>Futboll</Settings.Analysis>
+  <Settings.DistTrav>Largësia udhëtuar</Settings.DistTrav>
+  <Settings.Activity>Aktivitet</Settings.Activity>
+  <Settings.MaxSpeed>Shpejtësia maksimale</Settings.MaxSpeed>
+  <Settings.Export>Transmetim</Settings.Export>
+  <Settings.ExportExcel>Transferimi në Excel</Settings.ExportExcel>
+  <Settings.ExportPdf>Transferimi PDF</Settings.ExportPdf>
+  <Settings.SendMail>Dërgo e-mail</Settings.SendMail>
+  <Settings.ScheduleRep>Raporti Planifikues</Settings.ScheduleRep>
+  <Settings.Settings>Cilësimet</Settings.Settings>
+  <Settings.GeneralSett>Cilësimet e përgjithshme</Settings.GeneralSett>
+  <Settings.Privileges>Privilegjet</Settings.Privileges>
+  <Settings.Poi>Pika e interesit</Settings.Poi>
+  <Settings.GeoFence>Zonë</Settings.GeoFence>
+  <Settings.TaxiPrice>Cmimi Taxi</Settings.TaxiPrice>
+  <Settings.Start>Shtëpi</Settings.Start>
+  <Settings.InStart>në shtëpi</Settings.InStart>
+  <Settings.Price>Cmim</Settings.Price>
+  <Settings.InGeoFence>në Zonën</Settings.InGeoFence>
+  <Settings.OutGeoFence>Përtej Zonën</Settings.OutGeoFence>
+  <Settings.AddSchedule>Shto projektues</Settings.AddSchedule>
+  <Settings.SaveSettings>Ruaj Cilësimet</Settings.SaveSettings>
+  <Settings.Note>Shënim</Settings.Note>
+  <Settings.SetPriv>Privilegji mund të rregullohen për përdoruesit të cilët kanë (USER ROLI)!!!</Settings.SetPriv>
+  <Settings.Vehicle>Automjet</Settings.Vehicle>
+  <Settings.AllVehicles>Të gjitha automjetet</Settings.AllVehicles>
+  <Settings.Period>Periudhë</Settings.Period>
+  <Settings.Daily>Përditë</Settings.Daily>
+  <Settings.Weekly>Javor</Settings.Weekly>
+  <Settings.Monthly>Mujor</Settings.Monthly>
+  <Settings.Day>Ditë</Settings.Day>
+  <Settings.Monday>E hënë</Settings.Monday>
+  <Settings.Tuesday>E martë</Settings.Tuesday>
+  <Settings.Wednesday>E mërkurë</Settings.Wednesday>
+  <Settings.Thursday>E enjte</Settings.Thursday>
+  <Settings.Friday>E premte</Settings.Friday>
+  <Settings.Saturday>E shtunë</Settings.Saturday>
+  <Settings.Sunday>E diel</Settings.Sunday>
+  <Settings.Time>Kohë</Settings.Time>
+  <Settings.Email>E-mail</Settings.Email>
+  <Settings.Area>Zonë</Settings.Area>
+  <Settings.AlertInGeoFence>Alert kur në zonën e</Settings.AlertInGeoFence>
+  <Settings.AlertOutGeoFence>Alert kur ajo është jashtë zonës së</Settings.AlertOutGeoFence>
+  <Settings.SuccAdd>Shtua me sukses</Settings.SuccAdd>
+  <Settings.SuccMod>Zona u ndryshua me sukses</Settings.SuccMod>
+  <Settings.Error>Gabim !!!</Settings.Error>
+  <Settings.ThePoi>Pika e interesit </Settings.ThePoi>
+  <Settings.SucAdd> u shtua me sukses.</Settings.SucAdd>
+  <Settings.SucUpd> u rifreskua me sukses.</Settings.SucUpd>
+  <Settings.TheGroup>Grup </Settings.TheGroup>
+  <Settings.WrongPass>Fjalëkalim të gabuar !!! </Settings.WrongPass>
+  <Settings.Group>Grup </Settings.Group>
+  <Settings.ChangeVehSett>Ndryshimi i automjetit</Settings.ChangeVehSett>
+  <Settings.UserSett>Cilësimet përdorues</Settings.UserSett>
+  <Settings.ClientType>Lloji i klientit</Settings.ClientType>
+  <Settings.HomeCity>Qyteti i banimit</Settings.HomeCity>
+  <Settings.Users>Përdoruesit</Settings.Users>
+  <Settings.EditVeh>Ndrysho automjetin</Settings.EditVeh>
+  <Settings.SuccUpd>Automjeti ndryshuar me sukses !</Settings.SuccUpd>
+  <Settings.SpeedLimit>Kufijtë e shpejtësisë</Settings.SpeedLimit>
+  <Settings.GeoFenceExceed>Lënia Area</Settings.GeoFenceExceed>
+  <Settings.Add>Shtoj</Settings.Add>
+  <Settings.Close>Afër</Settings.Close>
+  <Settings.Edit>Redaktoj</Settings.Edit>
+  <Settings.Vehicles>Automjetet</Settings.Vehicles>
+  <Settings.DelUser>A doni të fshini këtë përdorues?</Settings.DelUser>
+  <Settings.VehicleSettings>Cilësimet për automjetet</Settings.VehicleSettings>
+  <Settings.CannotDelUser>Ky përdorues nuk mund të fshihet !!!</Settings.CannotDelUser>
+  <Settings.EditUser>Edit përdorues</Settings.EditUser>
+  <Settings.FullName>Emri i plotë</Settings.FullName>
+  <Settings.UserName>Emri i përdoruesit</Settings.UserName>
+  <Settings.Password>Fjalëkalim</Settings.Password>
+  <Settings.AddUser>Shto përdorues</Settings.AddUser>
+  <Settings.PanoramaGPS>Panorama GPS</Settings.PanoramaGPS>
+  <Settings.User>Përdorues</Settings.User>
+  <Settings.Company>Kompani</Settings.Company>
+  <Settings.Phone>Telefon</Settings.Phone>
+  <Settings.Loading>Ngarkim</Settings.Loading>
+  <Settings.SucDel>Zona u fshi me sukses.</Settings.SucDel>
+  <Settings.SucDelPoi>Pika e interesit u fshi me sukses.</Settings.SucDelPoi>
+  <Settings.SucSave>Zona u ruajt me sukses.</Settings.SucSave>
+  <Settings.NameGroup>Emri i grupit</Settings.NameGroup>
+  <Settings.Color>Ngjyrë</Settings.Color>
+  <Settings.NameGeoFence>Emri i zonës</Settings.NameGeoFence>
+  <Settings.ChangeName>Riemërtoj</Settings.ChangeName>
+  <Settings.DrawingAreas>Draw zonave</Settings.DrawingAreas>
+  <Settings.ChooseIcon>Zgjidh një ikonë</Settings.ChooseIcon>
+  <Settings.AddGroup>Shto një grup</Settings.AddGroup>
+  <Settings.DeleteThisPoi>Jeni te sigurte qe doni te fshini kete artikull nga ineteres?</Settings.DeleteThisPoi>
+  <Settings.DeleteThisGeoFence>Jeni te sigurte qe doni te fshini kete zone?</Settings.DeleteThisGeoFence>
+  <Settings.Latitude>Gjerësi</Settings.Latitude>
+  <Settings.Longitude>Gjatësi</Settings.Longitude>
+  <Settings.Address>Adresë</Settings.Address>
+  <Settings.NamePoi>Emri i pikën e interesit</Settings.NamePoi>
+  <Settings.AddInfo>Informacione Shtese</Settings.AddInfo>
+  <Settings.AvailableFor>Në dispozicion për</Settings.AvailableFor>
+  <Settings.OnlyMe>Vetëm mua</Settings.OnlyMe>
+  <Settings.AllUsers>Të gjithë përdoruesit</Settings.AllUsers>
+  <Settings.CannotChange>Pa ndryshim</Settings.CannotChange>
+  <Settings.SelectGroup>Ju lutem zgjidhni një grup</Settings.SelectGroup>
+  <Settings.GeoFenceName>Emri i zonës</Settings.GeoFenceName>
+  <Settings.AllowedInGeoFence>Lejuar në këtë zonë</Settings.AllowedInGeoFence>
+  <Settings.AlertEnter>Dërgo alarm të hyrjes</Settings.AlertEnter>
+  <Settings.AlertExit>Dërgo jashtë alarm</Settings.AlertExit>
+  <Settings.AlertAllowEnter>Dërgo lajmërojnë kur hyjnë në ndonjë prej mjeteve të lejuara</Settings.AlertAllowEnter>
+  <Settings.AlertAllowExit>Send nga vigjilent kur ndonjë prej automjeteve të lejuara</Settings.AlertAllowExit>
+  <Settings.AlertNotAllowEnter>Dërgo lajmërojnë kur hyjnë në ndonjë prej automjeteve të ndaluara</Settings.AlertNotAllowEnter>
+  <Settings.AlertNotAllowExit>Send nga vigjilent kur ndonjë prej automjeteve të ndaluara</Settings.AlertNotAllowExit>
+  <Settings.AlertEmail>Dërgo vigjilent për këto e-mail</Settings.AlertEmail>
+  <Settings.AlertPhone>Dërgo vigjilent për këto numra</Settings.AlertPhone>
+  <Settings.Example>Shembull</Settings.Example>
+  <Settings.MacExample>shembull për Maqedoninë</Settings.MacExample>
+  <Settings.SpeedLimitExceed>Tejkaluar kufiri i shpejtësisë</Settings.SpeedLimitExceed>
+  <Settings.SelectAll>Zgjidh gjithë</Settings.SelectAll>
+  <Settings.Groups>Grupet</Settings.Groups>
+  <Settings.GeneralGroup>përgjithshëm group</Settings.GeneralGroup>
+  <Settings.View>Pamje</Settings.View>
+  <Settings.ChangeGroup>Ndrysho group</Settings.ChangeGroup>
+  <Settings.EditGroup>Ndryshimet Group</Settings.EditGroup>
+  <Settings.EditPoi>Ndryshimet pikën e interesit</Settings.EditPoi>
+  <Settings.Change>Ndryshimet</Settings.Change>
+  <Settings.Yes>Në</Settings.Yes>
+  <Settings.No>Jo</Settings.No>
+  <Settings.ShowGeoFence>Shiko zona</Settings.ShowGeoFence>
+  <Settings.EditGeoFence>Ndryshimet Zone</Settings.EditGeoFence>
+  <Settings.DeleteGroup>A doni ta fshini këtë grup?</Settings.DeleteGroup>
+  <Settings.ShowPoi>Trego pikat e interesit</Settings.ShowPoi>
+  <Settings.AllowedVeh>Automjetet e lejuara</Settings.AllowedVeh>
+  <Settings.SucUpdGeoFenceName>Emri i zonës u rifreskua me sukses.</Settings.SucUpdGeoFenceName>
+  <Settings.SaveAppSett>Save Settings app.</Settings.SaveAppSett>
+  <Settings.Local>Lokal</Settings.Local>
+  <Settings.Global>Global</Settings.Global>
+  <Settings.None>A</Settings.None>
+  <Settings.AvailableMaps>Hartat në dispozicion</Settings.AvailableMaps>
+  <Settings.DefLang>Gjuha Standard</Settings.DefLang>
+  <Settings.En>Anglisht</Settings.En>
+  <Settings.Mk>Maqedonas</Settings.Mk>
+  <Settings.Fr>Frëngjisht</Settings.Fr>
+  <Settings.DefMap>Site kryesore</Settings.DefMap>
+  <Settings.DateFormat>Formati Data</Settings.DateFormat>
+  <Settings.TimeFormat>Formati Koha</Settings.TimeFormat>
+  <Settings.24Time>24 orë</Settings.24Time>
+  <Settings.12Time>12 orë</Settings.12Time>
+  <Settings.ShowInfoMess>Trego mesazh info</Settings.ShowInfoMess>
+  <Settings.OnOff>ON/OFF</Settings.OnOff>
+  <Settings.DateTime>Data dhe koha</Settings.DateTime>
+  <Settings.Speed>Shpejtësi</Settings.Speed>
+  <Settings.Location>Vend</Settings.Location>
+  <Settings.Trace>Shteg</Settings.Trace>
+  <Settings.Min>Min</Settings.Min>
+  <Settings.Zone>Zonë</Settings.Zone>
+  <Settings.Passengers>Udhëtarët</Settings.Passengers>
+  <Settings.Taximeter>Metër</Settings.Taximeter>
+  <Settings.Fuel>Karburant</Settings.Fuel>
+  <Settings.DistRep>Prezantimi i distancë</Settings.DistRep>
+  <Settings.Metric>Metrik</Settings.Metric>
+  <Settings.Imperial>Perandorak</Settings.Imperial>
+  <Settings.VehColors>Paint statusin e automjeteve</Settings.VehColors>
+  <Settings.EngineOn>Motor ON</Settings.EngineOn>
+  <Settings.EngineOff>Motor OFF</Settings.EngineOff>
+  <Settings.EngineOffPassOn>Motor OFF Udhëtarët ON</Settings.EngineOffPassOn>
+  <Settings.LowSat>Satelitët e dobëta</Settings.LowSat>
+  <Settings.Engaged>Angazhuar</Settings.Engaged>
+  <Settings.TaxOffPassOn>metër OFF Udhëtarët ON</Settings.TaxOffPassOn>
+  <Settings.TaxOn>Meter ON</Settings.TaxOn>
+  <Settings.LightBlue>Light Blue</Settings.LightBlue>
+  <Settings.Red>I kuq</Settings.Red>
+  <Settings.DarkBlue>Blu të errët</Settings.DarkBlue>
+  <Settings.Green>E gjelbër</Settings.Green>
+  <Settings.Yellow>I verdhë</Settings.Yellow>
+  <Settings.Gray>Gri</Settings.Gray>
+  <Settings.Black>E zezë</Settings.Black>
+  <Settings.Orange>Portokall</Settings.Orange>
+  <Settings.RedBlue>Red Blue</Settings.RedBlue>
+  <Settings.GeoFences>Zonat</Settings.GeoFences>
+  <Settings.Pois>Pikat e interesit</Settings.Pois>
+  <Settings.Poi1>TOI</Settings.Poi1>
+  <Routes.GetRoutes>shkoj</Routes.GetRoutes>
+  <Routes.AddNewRoute>Shto rrugë të re</Routes.AddNewRoute>
+  <Routes.Name>Emër</Routes.Name>
+  <Routes.Predefined>Gati</Routes.Predefined>
+  <Routes.SelectDriver>Zgjidhni Driver</Routes.SelectDriver>
+  <Routes.SelectVeh>Zgjidh automjetin</Routes.SelectVeh>
+  <Routes.SelectRoute>Zgjidhni një rrugë</Routes.SelectRoute>
+  <Routes.NewRoute>Route New</Routes.NewRoute>
+  <Routes.Order>Lloj</Routes.Order>
+  <Routes.Optimal>Optimale</Routes.Optimal>
+  <Routes.Alarms>Alarmet</Routes.Alarms>
+  <Routes.Radius>Radiusen</Routes.Radius>
+  <Routes.Trajectory>Trajektore</Routes.Trajectory>
+  <Routes.RetentionTime>Koha e mbajtjes</Routes.RetentionTime>
+  <Routes.Save>Ruaj</Routes.Save>
+  <Routes.RoutesReport>Rrugët Raport</Routes.RoutesReport>
+  <Routes.SuccUpdRoute>Rruga u rifreskua me sukses!!!</Routes.SuccUpdRoute>
+  <Routes.SuccAddRoute>Rruga ishte sukses shtuar!!!</Routes.SuccAddRoute>
+  <Routes.BIAO>HISTORIKU I URDHRIT</Routes.BIAO>
+  <Routes.CNRoute>Krijo llogari të re</Routes.CNRoute>
+  <Routes.NName>Emri rendin</Routes.NName>
+  <Routes.CreationDate>Data e krijimit</Routes.CreationDate>
+  <Routes.First>I parë</Routes.First>
+  <Routes.Second>I dytë</Routes.Second>
+  <Routes.Third>I tretë</Routes.Third>
+  <Routes.Driver>Shofer</Routes.Driver>
+  <Routes.Choose>Zgjedh</Routes.Choose>
+  <Routes.StartDatetime>Shtëpi</Routes.StartDatetime>
+  <Routes.Vehicle>Automjet</Routes.Vehicle>
+  <Routes.LTBV>Vende për të vizituar</Routes.LTBV>
+  <Routes.DL>Shkarko vende</Routes.DL>
+  <Routes.Pois>Pikat e interesit</Routes.Pois>
+  <Routes.Normal>Normal</Routes.Normal>
+  <Routes.Fast>Shpejt</Routes.Fast>
+  <Routes.Clear>Fshini hyrjen e</Routes.Clear>
+  <Routes.Distance>Distancë</Routes.Distance>
+  <Routes.Time>Kohë</Routes.Time>
+  <Routes.Operations>Operacionet</Routes.Operations>
+  <Routes.Minutes>Minutë(s)</Routes.Minutes>
+  <Routes.Alarm>Alarm</Routes.Alarm>
+  <Fm.ChangeTires>Ndryshimi gomat</Fm.ChangeTires>
+  <Fm.Refueling>Vendosja e karburantit</Fm.Refueling>
+  <Fm.AddTires>Shto ndryshojë</Fm.AddTires>
+  <Fm.NewTires>Ndryshimi i ri i gomave</Fm.NewTires>
+  <Fm.NewService>Shërbimi i ri</Fm.NewService>
+  <Fm.NewCost>Kostoja e Re</Fm.NewCost>
+  <Fm.NewFuel>Vendosja e karburantit të ri</Fm.NewFuel>
+  <Fm.DateLastFuel>Data e fundit e karburantit vënë</Fm.DateLastFuel>
+  <Fm.LastFuel>Karburantit Fundit vënë</Fm.LastFuel>
+  <Fm.AvgFuel>Konsumi i karburantit</Fm.AvgFuel>
+  <Fm.DateFuel>Data e vënë karburant</Fm.DateFuel>
+  <Fm.Driver>Shofer</Fm.Driver>
+  <Fm.Liters>Litra</Fm.Liters>
+  <Fm.TotalDen>Sasi </Fm.TotalDen>
+  <Fm.Refuel> Vendos karburant</Fm.Refuel>
+  <Fm.Overview>Rishikimi</Fm.Overview>
+  <Fm.CostsReport1>Raport mbi kostot</Fm.CostsReport1>
+  <Fm.NotPut>A nuk e vënë</Fm.NotPut>
+  <Fm.SummReport>Raport përmbledhës</Fm.SummReport>
+  <Fm.Delete>Fshij</Fm.Delete>
+  <Fm.Currency>Den</Fm.Currency>
+  <Fm.DeletedVeh>Automjeti është fshirë</Fm.DeletedVeh>
+  <Fm.DeletedVeh1>Automjeti është fshirë nga lista e automjeteve</Fm.DeletedVeh1>
+  <Fm.Save>Ruaj</Fm.Save>
+  <Fm.Components>Komponentet</Fm.Components>
+  <Fm.Regular>I rregullt</Fm.Regular>
+  <Fm.Associate>Shoqërohem</Fm.Associate>
+  <Fm.Vehicle>Automjet</Fm.Vehicle>
+  <Fm.Sifrarnici>Shifrarnici</Fm.Sifrarnici>
+  <Fm.Desc>Përshkrim</Fm.Desc>
+  <Fm.OrgUnits>Njësitë</Fm.OrgUnits>
+  <Fm.OrgUnit>Njësia organizative</Fm.OrgUnit>
+  <Fm.Price>Sasi</Fm.Price>
+  <Fm.UngroupedVeh>Ungrouped automjetet</Fm.UngroupedVeh>
+  <Fm.UngroupedDri>Shoferët ungrouped</Fm.UngroupedDri>
+  <Fm.OperPerf>Performanca operacionale</Fm.OperPerf>
+  <Fm.Reports>Raportet</Fm.Reports>
+  <Fm.Vehicles>Automjetet</Fm.Vehicles>
+  <Fm.Employees>Punonjësit</Fm.Employees>
+  <Fm.DownloadVeh>Shkarko automjeteve</Fm.DownloadVeh>
+  <Fm.OtherSett>Cilësimet e tjera</Fm.OtherSett>
+  <Fm.ChTires>Ndryshimi gomat</Fm.ChTires>
+  <Fm.Service>Shërbim</Fm.Service>
+  <Fm.AddFuel>Vendosja e karburantit</Fm.AddFuel>
+  <Fm.BorrDriver>Huamarrja shoferin me automjet</Fm.BorrDriver>
+  <Fm.ModOrgUnit>Ndryshimet njësi organizative</Fm.ModOrgUnit>
+  <Fm.OthCosts>Shpenzime të tjera</Fm.OthCosts>
+  <Fm.CurrKm>Kilometrazhin Input tanishme</Fm.CurrKm>
+  <Fm.PrevStateDate>Data e gjendjen e mëparshme</Fm.PrevStateDate>
+  <Fm.PrevState>Sfond</Fm.PrevState>
+  <Fm.CurrState>Shkruani situatën aktuale</Fm.CurrState>
+  <Fm.CurrDate>Shkruani datën e situatës aktuale</Fm.CurrDate>
+  <Fm.Note>Shënim</Fm.Note>
+  <Fm.Km>Largësi</Fm.Km>
+  <Fm.NoAllDrivers>Ky automjet ka lejuar shoferëve.</Fm.NoAllDrivers>
+  <Fm.NoAllVehicles>Punonjësi nuk ka mjete të lejuara.</Fm.NoAllVehicles>
+  <Fm.AddCosts>Shto kostoja e mbetur</Fm.AddCosts>
+  <Fm.TotalCost>Total</Fm.TotalCost>
+  <Fm.AddService>Shto Shërbimi</Fm.AddService>
+  <Fm.ModCosts>Ndryshimet mbetet kostoja</Fm.ModCosts>
+  <Fm.Rbr>N.ren.</Fm.Rbr>
+  <Fm.AddOrgUnit>Shto një njësi organizative</Fm.AddOrgUnit>
+  <Fm.Registration>Regjistrohem</Fm.Registration>
+  <Fm.Code>Kod</Fm.Code>
+  <Fm.Marka>Markë</Fm.Marka>
+  <Fm.Model>Model</Fm.Model>
+  <Fm.Total>Total</Fm.Total>
+  <Fm.Tip>Lloj</Fm.Tip>
+  <Fm.Sasija>Shasi</Fm.Sasija>
+  <Fm.Motor>Motor</Fm.Motor>
+  <Fm.FuelType>Lloji i karburantit</Fm.FuelType>
+  <Fm.FirstReg>Regjistrimi i parë</Fm.FirstReg>
+  <Fm.LastReg>Regjistrimi i fundit</Fm.LastReg>
+  <Fm.Active>Aktivitet</Fm.Active>
+  <Fm.HaveGps>GPS</Fm.HaveGps>
+  <Fm.SureDel>Jeni te sigurte qe doni te fshini këtë term?</Fm.SureDel>
+  <Fm.FullName>Emri dhe mbiemri</Fm.FullName>
+  <Fm.DateBorn>Data e lindjes</Fm.DateBorn>
+  <Fm.Gender>Paul</Fm.Gender>
+  <Fm.StartCom>Data e fillimit të kompanisë</Fm.StartCom>
+  <Fm.IstekVoz>Skadimi i lejes</Fm.IstekVoz>
+  <Fm.AddVeh>Shto automjetin</Fm.AddVeh>
+  <Fm.ModVeh>Ndrysho automjetin</Fm.ModVeh>
+  <Fm.Mod>Ndryshimet</Fm.Mod>
+  <Fm.ModDri>Ndryshimet punonjës</Fm.ModDri>
+  <Fm.Datetime>Data dhe koha </Fm.Datetime>
+  <Fm.Date>Data </Fm.Date>
+  <Fm.Costs>Shpenzimet </Fm.Costs>
+  <Fm.StartUse>Fillimi i përdorimit të</Fm.StartUse>
+  <Fm.DurUser>Koha e përdorimit</Fm.DurUser>
+  <Fm.YearKm>Km lejohet vit</Fm.YearKm>
+  <Fm.TotKm>Gjithsej Km lejohen</Fm.TotKm>
+  <Fm.FuelCap>Kapaciteti i karburantit</Fm.FuelCap>
+  <Fm.SummTir>Ofruara goma verore Km</Fm.SummTir>
+  <Fm.WinTir>Me kusht Km prej gomave të dimrit</Fm.WinTir>
+  <Fm.ServYear>Shërbimi çdo Km X</Fm.ServYear>
+  <Fm.Add>shtoj</Fm.Add>
+  <Fm.Cancel>Anuloj</Fm.Cancel>
+  <Fm.Name>Emër</Fm.Name>
+  <Fm.ReportTires>Njoftimin një ndryshim të gomave</Fm.ReportTires>
+  <Fm.ReportServices>Raport mbi Shërbimin Ekzekutiv</Fm.ReportServices>
+  <Fm.ReportCosts>Njoftimin kostot tjera</Fm.ReportCosts>
+  <Fm.ReportFuel>Raport mbi Karburantit</Fm.ReportFuel>
+  <Fm.Yes>Në</Fm.Yes>
+  <Fm.No>Jo</Fm.No>
+  <Fm.Start>Shtëpi</Fm.Start>
+  <Fm.End>Fund</Fm.End>
+  <Fm.Alerts>Alert</Fm.Alerts>
+  <Fm.AlertTires>Alert për gomat</Fm.AlertTires>
+  <Fm.AlertService>Shërbimi Alert</Fm.AlertService>
+  <Fm.Show>Pamje</Fm.Show>
+  <Fm.AllVehicles>Automjetet e lejuara</Fm.AllVehicles>
+  <Fm.AllVehicles1>Të gjitha automjetet</Fm.AllVehicles1>
+  <Fm.AllDrivers>Shoferët e Lejuara</Fm.AllDrivers>
+  <Fm.LicenceType>Kategoria e licencës</Fm.LicenceType>
+  <Fm.AddDri>Shto një punonjës</Fm.AddDri>
+  <Fm.FirstLicence>Data e licencës së parë</Fm.FirstLicence>
+  <Fm.IntLicence>Patentë shoferi ndërkombëtar</Fm.IntLicence>
+  <Fm.DurContract>Kohëzgjatja e kontratës</Fm.DurContract>
+  <Fm.OtherLicences>Licencat e tjera</Fm.OtherLicences>
+  <Fm.Male>Mashkull</Fm.Male>
+  <Fm.Female>Femër</Fm.Female>
+  <Fm.Months>Muaj</Fm.Months>
+  <Fm.Month>Muaj</Fm.Month>
+  <Fm.Year>Vit</Fm.Year>
+  <Fm.Indef>I papërcaktuar</Fm.Indef>
+  <Fm.Location>Vend</Fm.Location>
+  <Fm.SearchName>Kërko sipas emrit</Fm.SearchName>
+  <Fm.SearchCode>Kërko sipas kodit</Fm.SearchCode>
+  <Fm.SearchReg>Kërko për regjistrim</Fm.SearchReg>
+  <Fm.AddAllDriver>Shto Shofer lejuar</Fm.AddAllDriver>
+  <Fm.AddAllVehicle>Shto automjetin lejuar</Fm.AddAllVehicle>
+  <Fm.AddServ>Shto Shërbimi</Fm.AddServ>
+  <Fm.ModServ>Ndryshimet e shërbimit</Fm.ModServ>
+  <Fm.PastKmWith>Km kaluar me</Fm.PastKmWith>
+  <Fm.WinTires>gomat e dimrit</Fm.WinTires>
+  <Fm.SummTires>goma verore</Fm.SummTires>
+  <Fm.WinTires1>Gomat e dimrit</Fm.WinTires1>
+  <Fm.SummTires1>Goma verore</Fm.SummTires1>
+  <Fm.WinT>Dimër</Fm.WinT>
+  <Fm.SummT>Verë</Fm.SummT>
+  <Fm.DateAdd>Data e vënë</Fm.DateAdd>
+  <Fm.CurrTires>Gomat e tanishme</Fm.CurrTires>
+  <Fm.NewSumm>verë të re</Fm.NewSumm>
+  <Fm.NewWin>dimri i ri</Fm.NewWin>
+  <Fm.Change>ndryshimet</Fm.Change>
+  <Fm.HaveLess>ju keni shpenzuar</Fm.HaveLess>
+  <Fm.HaveMore>ju keni</Fm.HaveMore>
+  <Fm.KmMore>KM më shumë se parashikoi Km</Fm.KmMore>
+  <Fm.KmLess>Km ngarje në Km parashikuar</Fm.KmLess>
+  <Fm.ServMore>Km në shërbim të parashikuar</Fm.ServMore>
+  <Fm.ServLess>Km pas shërbimit të parashikuar</Fm.ServLess>
+  <Fm.CostServ>Kostoja e shërbimit të</Fm.CostServ>
+  <Fm.CostFuel>Kostoja e karburantit</Fm.CostFuel>
+  <Fm.TotalCosts>Kosto Totale</Fm.TotalCosts>
+  <Fm.DateAddNew>Data e vendosjes së re</Fm.DateAddNew>
+  <Fm.CurrKmNew>Kilometrazhin aktual në vënien e re</Fm.CurrKmNew>
+  <Fm.SureAdd>Jeni te sigurte qe doni për të vënë re</Fm.SureAdd>
+  <Fm.CurrKmSwitch>Kilometrazhin aktual kur ndryshon</Fm.CurrKmSwitch>
+  <Fm.With>me</Fm.With>
+  <Fm.CurrDrive>Aktualisht ngarje një</Fm.CurrDrive>
+  <Fm.DateSwitch>Data e ndryshimit</Fm.DateSwitch>
+  <Fm.SureSwitch>Jeni te sigurte qe doni te kaloni</Fm.SureSwitch>
+  <Fm.PrevStateFuel>Karburantit Historiku </Fm.PrevStateFuel>
+  <Fm.Dotur>Furnizimet e karburantit</Fm.Dotur>
+  <Fm.Extraordinary>Shoqërohem</Fm.Extraordinary>
+  <Fm.LastServ>Shërbimi i Fundit</Fm.LastServ>
+  <Fm.Activity>Aktivitet</Fm.Activity>
+  <Fm.CurrKm1>Kilometrazhin aktual</Fm.CurrKm1>
+  <Fm.PrevKm>Kilometrazhin e mëparshme</Fm.PrevKm>
+  <Fm.PrevTires>Gomat e mëparshme</Fm.PrevTires>
+  <Fm.NoChTires>Përzgjedhur varg Ora automjeti ka shtuar / ndryshuar gomat !!!</Fm.NoChTires>
+  <Fm.NoServ>Përzgjedhur varg Ora automjeti ka kryer shërbime !!!</Fm.NoServ>
+  <Fm.NoOthCosts>Ora zgjedhur nuk shkojnë shpenzimet e tjera të automjeteve !!!</Fm.NoOthCosts>
+  <Fm.KmLastServ>Kilometra në shërbimin e fundit</Fm.KmLastServ>
+  <Fm.UpdateKm>Update kilometrazhin e tanishme</Fm.UpdateKm>
+  <Fm.AlertReg>Alert regjistrimin</Fm.AlertReg>
+  <Fm.VehMore>Automjeti është ende </Fm.VehMore>
+  <Fm.DaysReg> Ditë për të regjistruar. </Fm.DaysReg>
+  <Fm.EnterLastReg>Shkruani datën e regjistrimit të fundit.</Fm.EnterLastReg>
+  <Fm.RegToday>Automjeti duhet të regjistrohen sot.</Fm.RegToday>
+  <Fm.Days_>Ditë</Fm.Days_>
+  <Fm.RegLess>Regjistrimi i automjeteve skaduar</Fm.RegLess>
+  <Fm.Enter>Ngarko</Fm.Enter>
+  <Fm.SelectCost>Zgjidhni shpenzim që ju dëshironi për të hyrë</Fm.SelectCost>
+  <Fm.ExpIntLic>Skadimi i një patentë shoferi ndërkombëtar</Fm.ExpIntLic>
+  <Fm.GreenCard>Green Card</Fm.GreenCard>
+  <Fm.NextService>Shërbimi tjetër</Fm.NextService>
+  <Fm.OthDrivers>Shoferët e tjerë</Fm.OthDrivers>
+  <Main.SessionExpired>Seancë i plotë</Main.SessionExpired>
+  <Main.ClickLogin>Kliko këtu për të hyni brënda përsëri</Main.ClickLogin>
+  <succSaved>Ruajtur me sukses !</succSaved>
+  <select>Zgjedh</select>
+  <send>Dërgoj</send>
+  <en>Anglisht</en>
+  <fr>Frëngjisht</fr>
+  <logout>Logout</logout>
+  <home>Shtëpi</home>
+  <reports>Raportet</reports>
+  <live>Ndjekja jetojnë</live>
+  <sett>Cilësimet</sett>
+  <help>Ndihmë</help>
+  <resSett>Rivendosur parametrat e</resSett>
+  <sepScreen>Ekran i veçantë</sepScreen>
+  <addPoi1>Shto pikën e interesit</addPoi1>
+  <splitScr>Ekran ndarja</splitScr>
+  <chooseGroupPoi>Përzgjedhur grupi (et) tek te pikën e interesit</chooseGroupPoi>
+  <showGeoFence>Shiko Zona</showGeoFence>
+  <chooseGroupGF>Zgjidhni grupi (et) per zone</chooseGroupGF>
+  <actScr>Zgjidh ekran aktiv</actScr>
+  <enterUser>Futni emrin e përdoruesit !</enterUser>
+  <enterFull>Futni emrin e plotë !</enterFull>
+  <enterPass>Ngarko fjalëkalimin tuaj !</enterPass>
+  <enterEmail>Fut një email !</enterEmail>
+  <selectUserDel>Zgjidh përdorues të fshini !</selectUserDel>
+  <selUser>Zgjidhni një përdorues !</selUser>
+  <wait>Ju lutem prisni . . . </wait>
+  <EnterGroupName>Futni një emër grup !</EnterGroupName>
+  <selGroupEdit>Zgjidh grupin për të ndryshuar !</selGroupEdit>
+  <groupCannotMod>Ky grup nuk mund të ndryshohet !</groupCannotMod>
+  <selGroupDel>Zgjidh grupin për të fshirë !</selGroupDel>
+  <delGroup>Fshij vetmin grup</delGroup>
+  <delWithPoi>Fshij pikën e interesit</delWithPoi>
+  <No>Jo</No>
+  <mustOnePoiMod>Ju duhet të zgjidhni një pikë e interesit për ndryshim !</mustOnePoiMod>
+  <cancel>Anuloj</cancel>
+  <enterPoi>Shto pikën e interesit !</enterPoi>
+  <mustPoiDel>Ju duhet të zgjidhni një pikë me interes për fshirje !</mustPoiDel>
+  <yes>Në</yes>
+  <mustPoi>Ju duhet të zgjidhni një pikë të interesit !</mustPoi>
+  <mustGeoFenceMod>Ju mund të zgjidhni një ndryshim zonë !</mustGeoFenceMod>
+  <enterGFName>Futni emrin e zonës !</enterGFName>
+  <MustGFDel>Ju mund të zgjidhni për të fshini zonë !</MustGFDel>
+  <MustGF>Ju duhet të zgjidhni një zonë të !</MustGF>
+  <SelGrDel>Zgjidhni të fshini grupin !</SelGrDel>
+  <DelWithGF>Fshij zonën</DelWithGF>
+  <MustSelGFAdd>Ju mund të zgjidhni një zonë të shtuar automjetet</MustSelGFAdd>
+  <showPoi>Trego pikat e interesit</showPoi>
+  <selUserEdit>Zgjidhni përdoruesin të ndryshojë !</selUserEdit>
+  <OneClick>Ajo merr një klik të vetëm për çdo hartë për të shtuar toi (POI).</OneClick>
+  <Poi>Pika e interesit</Poi>
+  <initialView>Shtëpi pamje</initialView>
+  <switchMap>Ndrysho hartë</switchMap>
+  <switchTypeMap>Ndrysho llojin e hartë</switchTypeMap>
+  <add>Shtoj</add>
+  <GeoFence>Zonë</GeoFence>
+  <Save>Ruaj</Save>
+  <AddGFPoi>Shtimi zonë ose Pika e interesit</AddGFPoi>
+  <AddGF>Shto një zone të re</AddGF>
+  <Ruler>Sundimtar</Ruler>
+  <Measure>Matje</Measure>
+  <RulerMeasure>Sundimtar për matje  distancë</RulerMeasure>
+  <search>Kërko</search>
+  <searchByName>Kërko rrugët, pikat e interesit</searchByName>
+  <Vehicles>Automjetet</Vehicles>
+  <ListVehicles>Listë  automjetet</ListVehicles>
+  <ChooseVehicles>Zgjidh automjete të dukshme në hartë</ChooseVehicles>
+  <allVehicles>Të gjitha automjetet</allVehicles>
+  <all>Të gjithë</all>
+  <symbol>Simbol</symbol>
+  <group>Grup</group>
+  <selGroup>Zgjidh Group</selGroup>
+  <ClickDraw>Kliko në hartë për të filluar tërhequr një zone të re !</ClickDraw>
+  <EndDraw>Për të ndaluar tërhequr klikoni dyfishtë.</EndDraw>
+  <NoGF>Asnjë zonë për ruajtjen !!!</NoGF>
+  <ChooseActScr>Zgjidh ekran aktiv</ChooseActScr>
+  <CurrTimeDate>Datën dhe kohën e tanishme</CurrTimeDate>
+  <Name>Emër</Name>
+  <Edit>Redaktoj</Edit>
+  <Delete>Fshij</Delete>
+  <updateGF>Update  zonë</updateGF>
+  <EnterGFName>Futni emrin e zonës !!!</EnterGFName>
+  <SelectGroup>Zgjidh grupin për këtë zonë !!!</SelectGroup>
+  <ReqFields>Ju lutem, jepini fushat e kërkuara...</ReqFields>
+  <AddInfo>Plotësues informacion</AddInfo>
+  <Group>Grup</Group>
+  <EditPoi>Redaktoj Pika e interesit</EditPoi>
+  <Update>Update</Update>
+  <Error>Gabim</Error>
+  <dinara5>Ky opsion është akuzuar për 5 denarë për mesazhin, (br /) në qoftë se ju doni të aktivizoni futur fjalëkalimin!!!</dinara5>
+  <EnterPass>Shkruani fjalëkalimin: </EnterPass>
+  <alerttGF>Komunikimi Informacione</alerttGF>
+  <WrongPass>Fjalëkalim të gabuar !!!</WrongPass>
+  <GFWSD>Zonë është fshirë me sukses !!!</GFWSD>
+  <mesec>,Jan, Shk, Mar, Pri, Maj, Qer, Kor, Gus, Sht, Tet, Nën, Dhj</mesec>
+  <vehToFollow>Ndjek</vehToFollow>
+  <FollowVehicles>Zgjedhja e një automjet Harta ndjekja</FollowVehicles>
+  <cancelOper>Anuloj operacion</cancelOper>
+  <SucAddSch>Shtua me sukses për projektues !!!</SucAddSch>
+  <NoData>Nuk ka të dhëna për periudhën e kërkuar !!!</NoData>
+  <Only7Days>Ju mund të zgjidhni një maksimum prej 7 ditësh !!!</Only7Days>
+  <StartEnd>Data e fillimit dhe koha duhet të jetë më pak ose e barabartë me datën dhe kohën fund !!!</StartEnd>
+  <EndToday>Data e fundit dhe koha duhet të jetë më pak se ose e barabartë me datën e sotme !!!</EndToday>
+  <CancelOper>Anuloj operacion</CancelOper>
+  <biggerThan1>Ju lutem, përzgjidhni një gamë të madhe se 1 orë !!!</biggerThan1>
+  <validSFormat>Ju lutem shkruani formatin e saktë të datës fillestare dhe koha !!!</validSFormat>
+  <validEFormat>Ju lutem shkruani formatin e saktë të datës së fundit dhe kohën !!!</validEFormat>
+  <selRadius>Zgjidh rrezen</selRadius>
+  <spleetScreenInfo>Split modul ekran, për shkak të kompleksitetit të tij ka nevojë për konfigurimin më të mirë. (br /), përndryshe ju mund të përjetojnë probleme ngarkimit!!!</spleetScreenInfo>
+  <Street>Rrugë:</Street>
+  <GFVeh>Zone në të cilin mjeti eshte:</GFVeh>
+  <RouteForV>Shtegu i automjetit:</RouteForV>
+  <Number>Numër</Number>
+  <From>Nga</From>
+  <To>Në</To>
+  <Route>Gjurmë</Route>
+  <EmailSucSend>Raporti i është dërguar me sukses në e-mailin tuaj.</EmailSucSend>
+  <EmailNotSend>E-mail mund të dërgohet.</EmailNotSend>
+  <Sending>Dërgim...</Sending>
+  <SelectDriver>Zgjidh Shofer</SelectDriver>
+  <CantModifyPOI>Ju nuk keni privilegje për të modifikuar këtë pikën e interesit</CantModifyPOI>
+  <CantModifyGF>Ju nuk keni leje për të ndryshuar zonën</CantModifyGF>
+  <next>Tjetër</next>
+  <back>Prapa</back>
+  <show>Pamje</show>
+  <newCom>Klikoni Krahasimi i ri</newCom>
+  <here>këtu</here>
+  <ResLoading>ngarkim rezultatet e krahasimit...</ResLoading>
+  <twoVeh>Zgjidhni të paktën dy automjete për krahasim !!!</twoVeh>
+  <oneCat>Zgjedhur paktën një kategorisë per krahasim !!!</oneCat>
+  <showPOIbtn>Shiko TOI</showPOIbtn>
+  <Streets>Rrugët</Streets>
+  <Pois>Pikat e interesit</Pois>
+  <searchStreetsByName> Rrugët Kërko sipas emrit</searchStreetsByName>
+  <Registration>Regjistrohem</Registration>
+  <Date>Дata</Date>
+  <Time>Kohë</Time>
+  <Speed>Shpejtësi</Speed>
+  <SelectRoute>Zgjidhni një rrugë</SelectRoute>
+  <SelectVeh>Zgjidh automjetin</SelectVeh>
+  <InfoRoute1>Plotësoni informacionin e kërkuar për të hyrë në një rrugë!!!</InfoRoute1>
+  <InfoRoute2>Nuk ka të dhëna për ditën e përzgjedhur!!!</InfoRoute2>
+  <InfoRoute3>Gabim, ju lutem provoni përsëri!!!</InfoRoute3>
+  <Start>Shtëpi</Start>
+  <InfoRoute4>Rrugët e Panjohur!!!</InfoRoute4>
+  <Welcome>Mirë se vini në destinacionin tuaj.</Welcome>
+  <Distance>Distancë</Distance>
+  <Narrative>Narrative</Narrative>
+  <YourTrip>Udhëtimi juaj është: </YourTrip>
+  <forward>Tjetër</forward>
+  <pause>Pushim</pause>
+  <no>Jo</no>
+  <End>Fund</End>
+  <addAllDriver>Shto Shofer lejuar</addAllDriver>
+  <addAllVehicle>Shto automjetin lejuar</addAllVehicle>
+  <addOrgUnit>Shto një njësi organizative</addOrgUnit>
+  <modOrgUnit>Ndryshimet njësi organizative</modOrgUnit>
+  <change>Ndryshimet</change>
+  <delEnt>Fshini hyrjen e</delEnt>
+  <STOS>Fillimi i kohës së ndalimit</STOS>
+  <ETOS>Është koha për të ndaluar</ETOS>
+  <TTOS>Koha totale e në këmbë</TTOS>
+  <hide>Fsheh</hide>
+  <alarm>Alarm ndaluar jashtë rrugës më të gjatë se sa minuta x</alarm>
+  <print>Shtyp</print>
+  <noEmail>* Ti nuk ke shtuar asnjë email !</noEmail>
+  <uncorrEmail>* Ju keni hyrë në një format të pavlefshëm e-mail !</uncorrEmail>
+  <SchNote>* Për input oddeluvajte shumëfishtë me email, (br /) Shembull: n1@example.com, n2@example.com,</SchNote>
+  <noEmail1>* Ju keni hyrë në një email !</noEmail1>
+</note>

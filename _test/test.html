@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+     <div id="div-add-alerts" style="display:none" title="<?php dic("Settings.AddAlerts") ?>">
+     <div align = "center">
+     <table cellpadding="3" width="100%" style="padding-top: 25px;">
+     <tr>
+     <td width = "25%" style="font-weight:bold" class ="text2" align="left"><?php dic("Settings.TypeOfAlert") ?></td>
+     <td width = "75%">
+     <select id = "TipNaAlarm" style="font-size: 11px; width:365px; position: relative; top: 0px ;visibility: visible;" onchange="OptionsChangeAlarmType()" class="combobox text2">
+      				<option disabled="disabled">----------------------<?php dic("Settings.CommonAlerts")?>----------------------</option>
+   					<option value="01" selected="selected" <?php echo $t1?>><?php dic("Settings.AlarmPanic")?></option>
+		            <option value="02" <?php echo $t2?>><?php dic("Settings.AlarmAssistance")?></option>
+		            <option value="03" <?php echo $t3?>><?php dic("Settings.AlarmAcumulator")?></option>
+		            <option value="25" <?php echo $t25?>><?php dic("acumulatorPowerSupplyInterruption")?></option>
+		            <option value="24" <?php echo $t24?>><?php dic("Settings.AlarmDefect")?></option>
+                    <option value="04" <?php echo $t4?>><?php dic("Settings.AlarmVehicle")?></option>
+                    <option value="05" <?php echo $t5?>><?php dic("Settings.AlarmFuelCap")?></option>
+                    <option value="48" <?php if($allowFuel==0){ ?>disabled="disabled" <?php }?>><?php dic("Settings.FallFuel")?></option>
+                    <option value="06" <?php echo $t6?>><?php dic("Settings.AlarmSuddenBraking")?></option>
+                    <option value="07" <?php echo $t7?>><?php dic("Settings.AlarmSpeedExcess")?></option>
+                    <option value="08" <?php echo $t8?>><?php dic("Settings.AlarmEnterZone")?></option>
+                    <option value="09" <?php echo $t9?>><?php dic("Settings.AlarmLeaveZone")?></option>
+                    <option value="10" <?php echo $t10?>><?php dic("Settings.AlarmVisitPOI")?></option>
+		    <!--zakomentirano na 29.08.2014 - poradi zabelska od polyesterday-->
+                    <option value="11" <?php echo $t11?> style="display: none"><?php dic("Settings.30MinNoDataIgnON")?></option>
+                    <option value="26" style="display: none"><?php dic("prednaleva")?></option>
+                    <option value="27" style="display: none"><?php dic("prednadesna")?></option>
+                    <option value="28" style="display: none"><?php dic("stranicnavrata")?></option>
+                    <option value="29" style="display: none"><?php dic("zadnavrata")?></option>
+                    <option value="30" style="display: none"><?php dic("stanatvozac")?></option>
+                 	<option disabled="disabled">-----------------------------<?php dic("Settings.RoutesCombo")?>---------------------------</option>
+		            <option value="12" <?php if($allowedrouting==0){ ?>disabled="disabled" <?php }?> <?php echo $t12?>><?php dic("Settings.AlarmUnOrdered")?></option>
+		            <option value="13" <?php if($allowedrouting==0){ ?>disabled="disabled" <?php }?> <?php echo $t13?>><?php dic("Settings.AlarmStayMoreThanAllowed")?></option>
+                    <option value="14" <?php if($allowedrouting==0){ ?>disabled="disabled" <?php }?> <?php echo $t14?>><?php dic("Settings.AlarmStayOutOfLocation")?></option>
+                    <option value="15" <?php if($allowedrouting==0){ ?>disabled="disabled" <?php }?> <?php echo $t15?>><?php dic("Settings.AlarmLeaveRoute")?></option>
+                    <option value="16" <?php if($allowedrouting==0){ ?>disabled="disabled" <?php }?> <?php echo $t16?>><?php dic("Settings.AlarmPause")?></option>
+                    <option disabled="disabled">-----------------<?php dic("Main.FleetManagement")?>-----------------</option>
+                    <option value="17" <?php if($allowedfm==0){ ?>disabled="disabled" <?php }?> <?php echo $t17?>><?php dic("Settings.AlarmRegExpire")?></option>
+                    <option value="18" <?php if($allowedfm==0){ ?>disabled="disabled" <?php }?> <?php echo $t18?>><?php dic("Settings.AlarmService")?></option>
+                    <!--option value="19" <?php if($allowedfm==0){ ?>disabled="disabled" <?php }?> <?php echo $t19?>><?php dic("Settings.AlarmGreenCard")?></option-->
+                    <option value="20" <?php if($allowedfm==0){ ?>disabled="disabled" <?php }?> <?php echo $t20?>><?php dic("Settings.AlarmPolnomLicense")?></option>
+		            <option disabled="disabled">-----------------------------RFID-----------------------------</option>
+		            <option value="22" <?php echo $t22?>><?php dic("Settings.AlarmUnauthorizedUseVehicle")?></option> 
+		            <option value="23" <?php echo $t23?>><?php dic("Settings.AlarmNoRFIDVehicle")?></option>
+		            <option disabled="disabled">-------------------------<?php dic("Settings.MotoAlarms")?>-----------------------</option>
+		            <option value="37" <?php if($clienttypeid!=6){ ?>disabled="disabled" <?php }?> <?php echo $t37?>><?php dic("Settings.Tow")?></option> 
+		            <option value="38" <?php if($clienttypeid!=6){ ?>disabled="disabled" <?php }?> <?php echo $t38?>><?php dic("Settings.WeakAcc")?></option>
+     </select>
+     </td>
+     </tr>
+     <tr id="zonataTockata" style="display:none;">
+     <td width = "25%" style="font-weight:bold" class ="text2" align="left"><?php echo dic_("select")?> <?php echo dic_("Tracking.POI")?></td>
+     <td width = "75%" style="font-weight:bold" class ="text2">
+     <div class="ui-widget" style="height: 25px; width: 100%;">
+     <select id="combobox" style="width: 370px;">
+        <?php
+        	$str1 = "";
+			$str1 .= "select * from pointsofinterest where clientid=" . session("client_id") ." and type=1 and active = '1' ORDER BY name";
+			$dsPP = query($str1);
+            while($row = pg_fetch_array($dsPP)) 
+            {
+        	?>
+            <option value="<?php echo $row["id"] ?>"><?php echo $row["name"]?></option>
+        	<?
+            }
+        	?>
+     </select>
+	 </div>
+	 </td>
+     </tr>
+     <tr id="zonataTockata2" style="display:none;">
+     <td style="font-weight:bold" class ="text2" width="25%" align="left"><?php dic("Routes.RetentionTime")?></td>
+     <td style="font-weight:bold" class ="text2" width="75%">
+     <input id = "vreme" class="textboxcalender corner5 text5" type="text" size="5"></input>&nbsp;<?php echo dic("Reports.Minutes")?></td>
+     </tr>
+     <tr id="zonaVlez" style="display:none;">
+     <td width = "25%" style="font-weight:bold" class ="text2" align="left"><?php echo dic_("Settings.SelectEnterGeoF")?></td>
+     <td width = "75%" style="font-weight:bold" class ="text2">
+     <div class="ui-widget" style="height: 25px; width: 100%;">
+     <select id="comboboxVlez" style="width: 365px">
+        <?php
+        	$str2 = "";
+			$str2 .= "select * from pointsofinterest where clientid=" . session("client_id") ." and type=2 and active = '1' ORDER BY name";
+			$dsPP2 = query($str2);
+            while($row2 = pg_fetch_array($dsPP2)) {
+        ?>
+            <option value="<?php echo $row2["id"] ?>"><?php echo $row2["name"]?></option>
+        <?
+            }
+        ?>
+     </select>
+	 </div>
+	 </td>
+     </tr>
+     <tr id="zonaIzlez" style="display:none;">
+     <td width = "25%" style="font-weight:bold" class ="text2" align="left"><?php echo dic_("Settings.SelectExitGeoF")?></td>
+     <td width = "75%" style="font-weight:bold" class ="text2">
+     <div class="ui-widget" style="height: 25px; width: 100%;">
+     <select id="comboboxIzlez" style="width: 370px">
+        <?php
+        	$str3 = "";
+			$str3 .= "select * from pointsofinterest where clientid=" . session("client_id") ." and type=2 and active = '1' ORDER BY name";
+			$dsPP3 = query($str3);
+            while($row3 = pg_fetch_array($dsPP3)) {
+        ?>
+            <option value="<?php echo $row3["id"] ?>"><?php echo $row3["name"]?></option>
+        <?
+            }
+        ?>
+     </select>
+	 </div>
+	 </td>
+     </tr>
+     <tr id="nadminuvanjeBrzina" style="display:none;">
+     <td width = "25%" style="font-weight:bold" class ="text2"  align="left"><?php echo dic("Reports.Speed")?></td>
+     <td width = "75%" style="font-weight:bold" class ="text2"><input id = "brzinata" class="textboxcalender corner5 text5" type="text" size="10"></input>&nbsp;kmh</td>
+     </tr>
+     <tr>
+     <td width = "25%" style="font-weight:bold" class ="text2" align="left"><?php echo dic_("Settings.InsertAler")?>:</td>
+     <td width = "75%" style="font-weight:bold" class ="text2">
+     <div class="ui-widget" style="height: 25px; width: 100%;">
+     <select id="vozila" style="width: 365px;" class="combobox text2" onchange="OptionsChangeVehicle()">
+     	<option value="0"><?php echo dic_("Tracking.SelectOption")?></option>
+        <option value="1"><?php echo dic_("Tracking.OneVehicle")?></option>
+<?php
+	
+	
+	if (pg_num_rows(query($strOrg)) > 0) {
+
+?>
+        <option value="2"><?php echo dic_("Tracking.VehInOrgU")?></option>
+
+	<?php
+	}
+
+	
+	if ((dlookup("select count(*) from vehicles where clientID=" . session("client_id") . " and active='1'")) == pg_num_rows(query($strCom))) {
+
+	?>
+        <option value="3"><?php echo dic_("Tracking.AllVehCompany") ?></option>
+
+	<?php
+	}
+	?>
+     </select>
+	 </div>
+	 </td>
+     </tr>
+ 
+     <tr id="ednoVozilo" style="display:none;">
+     <td width = "25%" style="font-weight:bold" class ="text2" align="left"><?php echo dic_("Tracking.SelectVeh")?>:</td>
+     <td width = "75%" style="font-weight:bold" class ="text2">
+     <div class="ui-widget" style="height: 25px; width: 100%;">
+     <select id="voziloOdbrano" style="width: 365px;" class="combobox text2">
+     	<?php
+		
+        	//$str1 = "";
+		//$str1 .= "select * from vehicles where clientid=" . session("client_id") ." ORDER BY code::INTEGER";
+		$dsPP = query($strCom);
+            while($row = pg_fetch_array($dsPP)) {
+        ?>
+            <option value="<?php echo $row["id"] ?>"><?php echo $row["registration"]?>&nbsp;(<?php echo $row["code"]?>)</option>
+        <?
+            }
+        ?>
+     </select>
+	 </div>
+	 </td>   
+     </tr>
+     
+     <tr id="OrganizacionaEdinica" style="display:none;">
+     <td width = "25%" style="font-weight:bold" class ="text2" align="left"><?php echo dic_("Tracking.SelectOrg.Unit")?>:</td>
+     <td width = "75%" style="font-weight:bold" class ="text2">
+     <div class="ui-widget" style="height: 25px; width: 100%">
+     <select id="oEdinica" style="width: 365px;" class="combobox text2">
+     	<?php
+	
+        	//$str2 = "";
+		//$str2 .= "select * from organisation where clientid=" . session("client_id") ." order by code::INTEGER";
+		$dsPP2 = query($strOrg);
+		//$brojRedovi = dlookup("select count(*) from organisation where clientid=" . session("client_id"));
+		$brojRedovi = pg_num_rows($dsPP2);
+            while($row2 = pg_fetch_array($dsPP2)) {
+        ?>
+            <option value="<?php echo $row2["id"] ?>"><?php if ($brojRedovi>0){ echo $row2["name"]?>&nbsp;(<?php echo $row2["code"]?><?php }else{ echo "Нема организациони единици.";}?>)</option>
+        <?
+            }
+        ?>
+     </select>
+	 </div>
+	 </td>
+     </tr>
+
+     <tr id="fm" style="display:none;">
+	     <td width = "27%" style="font-weight:bold" class ="text2"  align="left"><?= dic_("Settings.RemindMe")?> <?= dic_("Settings.Before")?>:</td>
+	     <td width = "73%" style="" class ="text2">
+	     	<span id="rmdD">
+	     	 <input id="remindDays" type="checkbox" name="remindme" value="days" style="position: relative; top:4px; display:none" checked /> 
+	     	 <input id = "fmvalueDays" class="textboxCalender corner5 text5" type="text" style="width:40px" value="5"> <?= dic_("Reports.Days_")?>
+	     	</span>
+	     	<span id="rmdKm" style="display: none"> 
+	     	 <input id="remindKm" type="checkbox" name="remindme" value="Km" style="position: relative; top:4px; margin-left: 15px" /> 
+	     	 <input id = "fmvalueKm" class="textboxCalender corner5 text5" type="text" style="width:40px" value="0"> <?= $metric?>
+	     	</span> 	     	
+	     </td>
+     </tr>
+     
+     <tr id="noteFmAlarm" style="display:none">
+	     <td width = "27%"></td>	
+	     <td id="textFmAlarm" width = "73%" class="text2" style="color:#ff0000; font-size: 10px"></td>
+     </tr>
+
+     <tr>
+     <td width = "25%" style="font-weight:bold" class ="text2"  align="left"><?php echo dic_("Tracking.Emails")?></td>
+     <td width = "75%" style="font-weight:bold" class ="text2"><input id = "emails" class="textboxcalender corner5 text5" type="text" style = "width:365px"></input></td>
+     </tr>
+     <tr>
+     <td width = "25%"></td>	
+     <td width = "75%" class ="text2" style="font-size:10px"><font color = "red" ><?php echo dic_("Reports.SchNote")?></font></td>
+     </tr>
+     
+     <?php
+     if($clienttypeid == 6) {
+     ?>
+     	<tr>
+	    	<td width = "25%" style="font-weight:bold" class ="text2"  align="left"><?php echo dic_("Settings.SMS")?></td>
+	    	<td width = "75%" style="font-weight:bold" class ="text2"><input id = "sms" class="textboxcalender corner5 text5" type="text" style = "width:365px"></input></td>
+	     </tr>
+     <?php	
+     }
+     ?>
+     <tr>
+     <td width = "25%" valign="middle" style="font-weight:bold" class ="text2" align="left"><?php dic("Settings.Sound")?></td>
+     <td width = "75%" valign="middle">
+     <select id = "zvukot" style="font-size: 11px; position: relative; top: 0px ;visibility: visible; float:left" class="combobox text2">
+     <option value = "1"><?php dic("Settings.Sound")?> 1</option>
+     <!--
+     <option value = "2"><?php dic("Settings.Sound")?> 2</option>
+     <option value = "3"><?php dic("Settings.Sound")?> 3</option>
+     <option value = "4"><?php dic("Settings.Sound")?> 4</option>
+     <option value = "5"><?php dic("Settings.Sound")?> 5</option>
+     -->
+     </select>
+     <audio id="demo" src="../tracking/sound/bells_alarm.ogg"></audio>
+	 <button id="play" onclick="document.getElementById('demo').play()" style="position: relative; width: 35px;height: 28px; margin-left:10px;"></button>
+     <button id="pause" onclick="document.getElementById('demo').pause()" style="position: relative; width: 35px;height: 28px;"></button>
+     <button id="poglasno" onclick="document.getElementById('demo').volume+=0.1" style="position: relative; width: 35px;height: 28px;"></button>
+     <button id="potivko" onclick="document.getElementById('demo').volume-=0.1" style="position: relative; width: 35px;height: 28px;"></button>
+	 </td>
+	 </tr>
+	 <tr>
+     <td width = "25%" style="font-weight:bold" class ="text2"  align="left"><?php echo dic_("Settings.AvailableFor1")?>:</td>
+     <td width = "75%" style="font-weight:bold" class ="text2"><div id="gfAvail" class="corner5">
+        <input type="radio" id="GFcheck1" name="radio" checked="checked" /><label for="GFcheck1"><?php echo dic_("Settings.User")?></label>
+        <input type="radio" id="GFcheck2" name="radio" /><label for="GFcheck2"><?php echo dic_("Reports.OrgUnit")?></label>
+        <input type="radio" id="GFcheck3" name="radio" /><label for="GFcheck3"><?php echo dic_("Settings.Company")?></label>
+     </div>
+     </td>
+     </tr>
+   	 </table> 	
+     </div>
+   	 </div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,195 @@
+.mapControl .panControl, .mapControl .sliderWrapper, .mapControl .slider, .mapControl .zoomin, .mapControl .zoomout {
+    -moz-user-select: none;
+    background-image: url("./Images/navigator.png");
+    background-repeat: no-repeat;
+}
+.mapControl.largeZoom {
+    position: absolute;
+    z-index: 100;
+}
+.mapControl .panControl {
+    background-position: -90px -180px;
+    cursor: pointer;
+    height: 58px;
+    width: 57px;
+}
+.mapControl .bestfit {
+    background-position: -90px -240px;
+}
+.mapControl .panright {
+    background-position: -210px -180px;
+}
+.mapControl .panleft {
+    background-position: -210px -240px;
+}
+.mapControl .panup {
+    background-position: -150px -180px;
+}
+.mapControl .pandown {
+    background-position: -150px -240px;
+}
+.mapControl.hyb .panControl, .mapControl.sat .panControl {
+    background-position: -90px -400px;
+}
+.mapControl.hyb .bestfit, .mapControl.sat .bestfit {
+    background-position: -90px -460px;
+}
+.mapControl.hyb .panright, .mapControl.sat .panright {
+    background-position: -210px -400px;
+}
+.mapControl.hyb .panleft, .mapControl.sat .panleft {
+    background-position: -210px -460px;
+}
+.mapControl.hyb .panup, .mapControl.sat .panup {
+    background-position: -150px -400px;
+}
+.mapControl.hyb .pandown, .mapControl.sat .pandown {
+    background-position: -150px -460px;
+}
+.mapControl area {
+    background: none repeat scroll 0 0 #CCCCCC;
+}
+.mapControl .sliderWrapper {
+    background-position: left -180px;
+    cursor: pointer;
+    height: 132px;
+    left: 13px;
+    position: absolute;
+    top: 60px;
+    width: 30px;
+}
+.mapControl .slideTrack {
+    height: 70px;
+    position: absolute;
+    top: 29px;
+    width: 29px;
+}
+.mapControl .slider {
+    background-position: -50px -300px;
+    cursor: -moz-grab;
+    height: 11px;
+    position: absolute;
+    top: 55px;
+    width: 28px;
+}
+.mapControl.hyb .sliderWrapper, .mapControl.sat .sliderWrapper {
+    background-position: left -400px;
+}
+.mapControl .zoomin, .mapControl .zoomout {
+    background-position: -50px -180px;
+    cursor: pointer;
+    height: 27px;
+    left: 16px;
+    position: absolute;
+    top: 60px;
+    width: 25px;
+}
+.mapControl .zoomout {
+    background-position: -50px -210px;
+    bottom: 3px;
+    top: 90px;
+}
+.mapControl .zoominover {
+    background-position: -50px -240px;
+}
+.mapControl .zoomoutover {
+    background-position: -50px -270px;
+}
+.mapControl.hyb .zoomin, .mapControl.sat .zoomin {
+    background-position: -50px -400px;
+}
+.mapControl.hyb .zoomout, .mapControl.sat .zoomout {
+    background-position: -50px -430px;
+}
+.mapControl.hyb .zoominover, .mapControl.sat .zoominover {
+    background-position: -50px -460px;
+}
+.mapControl.hyb .zoomoutover, .mapControl.sat .zoomoutover {
+    background-position: -50px -490px;
+}
+.ie6 .mapControl .panControl, .ie6 .mapControl .sliderWrapper, .ie6 .mapControl .slider, .ie6 .mapControl .zoomin, .ie6 .mapControl .zoomout {
+    background-image: url("http://new.mapquest.com/cdn/dotcom3/images/sprite_map_controls_ie6.gif");
+    background-repeat: no-repeat;
+}
+.ie6 .mapControl .panControl {
+    background-position: -90px 0;
+}
+.ie6 .mapControl .bestfit {
+    background-position: -90px -60px;
+}
+.ie6 .mapControl .panright {
+    background-position: -210px 0;
+}
+.ie6 .mapControl .panleft {
+    background-position: -210px -60px;
+}
+.ie6 .mapControl .panup {
+    background-position: -150px 0;
+}
+.ie6 .mapControl .pandown {
+    background-position: -150px -60px;
+}
+.ie6 .mapControl.hyb .panControl, .ie6 .mapControl.sat .panControl {
+    background-position: -90px -120px;
+}
+.ie6 .mapControl.hyb .bestfit, .ie6 .mapControl.sat .bestfit {
+    background-position: -90px -180px;
+}
+.ie6 .mapControl.hyb .panright, .ie6 .mapControl.sat .panright {
+    background-position: -210px -120px;
+}
+.ie6 .mapControl.hyb .panleft, .ie6 .mapControl.sat .panleft {
+    background-position: -210px -180px;
+}
+.ie6 .mapControl.hyb .panup, .ie6 .mapControl.sat .panup {
+    background-position: -150px -120px;
+}
+.ie6 .mapControl.hyb .pandown, .ie6 .mapControl.sat .pandown {
+    background-position: -150px -180px;
+}
+.ie6 .mapControl .zoomin, .ie6 .mapControl .zoomout {
+    background-position: -60px 0;
+    cursor: pointer;
+    height: 16px;
+    left: 4px;
+    position: absolute;
+    top: 4px;
+    width: 16px;
+}
+.ie6 .mapControl .zoomout {
+    background-position: -60px -20px;
+    bottom: 4px;
+    top: auto;
+}
+.ie6 .mapControl .zoominover {
+    background-position: -60px -40px;
+}
+.ie6 .mapControl .zoomoutover {
+    background-position: -60px -60px;
+}
+.ie6 .mapControl.hyb .zoomin, .ie6 .mapControl.sat .zoomin {
+    background-position: -60px -80px;
+}
+.ie6 .mapControl.hyb .zoomout, .ie6 .mapControl.sat .zoomout {
+    background-position: -60px -100px;
+}
+.ie6 .mapControl.hyb .zoominover, .ie6 .mapControl.sat .zoominover {
+    background-position: -60px -40px;
+}
+.ie6 .mapControl.hyb .zoomoutover, .ie6 .mapControl.sat .zoomoutover {
+    background-position: -60px -60px;
+}
+.ie6 .mapControl .slider {
+    background-position: -60px -120px;
+    height: 8px;
+    left: 2px;
+    width: 20px;
+}
+.ie6 .mapControl .sliderWrapper {
+    background-position: -30px 0;
+    height: 125px;
+    left: 15px;
+}
+.ie6 .mapControl.hyb .sliderWrapper, .ie6 .mapControl.sat .sliderWrapper {
+    background-position: -30px -130px;
+}

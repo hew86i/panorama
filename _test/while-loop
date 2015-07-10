@@ -1,0 +1,400 @@
+<?php
+// -------------------------------- WHILE LOOP za generirawe na redovite ----------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------------
+while($alertrow = pg_fetch_array($all_alerts,$rn))
+{
+echo "row number: " . $rn . " od $RowsNumber <br>";
+if($alertrow["vid"] <> ""){  // gi otfrla site koi imaat prazni vid
+// -------------------------------------------------- boja na vozilata i check --------------------------------------------
+	
+// --------------------------------------------------[END] boja na vozilata i check ----------------------------------------
+
+
+	if($lastrow	=== "") $lastrow = $alertrow;
+	echo "lastrow <br>";
+	pp($lastrow);
+	if($lastrow["uniqid"] == "") {	// ako se raboti za obicen red
+		echo "obicen red id: " . $lastrow["id"] . "<br>";
+		$vehReg .= '<span style="color:'.$fontVeh.'">'.$lastrow["registration"]. ' ('.$lastrow["code"].') </span> ';
+		array_push($alarmRowInfo, array(
+			'data' => $lastrow,
+			'vreg'	=> $vehReg
+		));
+		$vehReg="";
+
+	} else {	// redovi kade uniqid <> ""
+
+		if ($lastrow["uniqid"] == $alertrow["uniqid"]){		// redovi so isti uniqid
+
+			$vehReg .= formatRegistration($fontVeh, $lastrow);
+
+			if($RowsNumber == $rn+2){		// vazi samo za posledniot red
+				echo "posleden red... $rn <br>";
+				$last = true;
+				$vehFlag = true;
+				$vehRegLast .= $vehReg . formatRegistration($fontVeh, $alertrow);
+				if($lastrow["typeofgroup"] == 2) $TitleLast = dlookup("select name from organisation where id=" . $lastrow["settings"]);
+				if($lastrow["typeofgroup"] == 3) $TitleLast = dic_("Tracking.AllVehCompany");
+
+				// $vehRegTemp = $Title . "<br>" . $vehReg;
+			}
+
+		}
+		if(($lastrow["uniqid"] != $alertrow["uniqid"]) or $last) {	// ako uniqid na naredniot red ne e ist so prethodniot
+			$vehReg .= formatRegistration($fontVeh, $lastrow);
+
+			// --------------------------------------------------  [END] organisation i check  ----------------------------------
+			if($last) {
+				$vehRegTemp = formatvehicles($TitleLast, $cntAllowVeh, $vehRegLast);
+
+			} else {
+				$vehRegTemp = formatvehicles($Title, $cntAllowVeh, $vehReg);
+
+			}
+			$vehFlag = true;
+			$vehReg="";
+
+		}
+	}
+
+	if($vehFlag) {	// ako e setiran ovoj flag toa znaci deka cela grupa so ist uniqid e ischitana ($vehRegTemp)
+
+		array_push($alarmRowInfo, array(
+			'data' => $lastrow,
+			'vreg'	=> $vehRegTemp
+		));
+		$vehFlag = false;
+	}
+
+	$lastrow = $alertrow;
+
+	}
+$rn++;
+}
+
+
+
+
+
+
+/ -------------------------------------- LOOP za generirawe na redovite ----------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------------
+	# code...
+while($alertrow = pg_fetch_array($all_alerts,$rn))
+{
+if($alertrow["vid"] <> ""){  // gi otfrla site koi imaat prazni vid
+pp($alertrow);
+// -------------------------------------------------- boja na vozilata i check --------------------------------------------
+	if ($roleID == "2") {
+			$checkVeh = dlookup("select count(*) from vehicles where clientID=" . $clientID . " and active='1' and id=". $alertrow["vid"]);
+		}
+		else {
+			$checkVeh = dlookup("select count(*) from vehicles where id in (select vehicleid from uservehicles where vehicleid=" .  $alertrow["vid"] . " and userid=" . $userID . ") and active='1'");
+		}
+		($checkVeh == 0) ? $fontVeh = "red" : $fontVeh="";
+// --------------------------------------------------[END] boja na vozilata i check ----------------------------------------
+
+	if($lastrow["uniqid"] == "") {	// ako se raboti za obicen red
+
+		$vehReg .= '<span style="color:'.$fontVeh.'">'.$lastrow["registration"]. ' ('.$lastrow["code"].') </span> ';
+		array_push($alarmRowInfo, array(
+			'data' => $lastrow,
+			'vreg'	=> $vehReg
+		));
+		$vehReg="";
+
+	} else {	// redovi kade uniqid <> ""
+
+		if ($lastrow["uniqid"] == $alertrow["uniqid"]){		// redovi so isti uniqid
+
+			$vehReg .= formatRegistration($fontVeh, $lastrow);
+
+			if($RowsNumber == $rn+2){		// vazi samo za posledniot red
+
+				$last = true;
+				$vehFlag = true;
+				$vehRegLast .= $vehReg . formatRegistration($fontVeh, $alertrow);
+				if($lastrow["typeofgroup"] == 2) $TitleLast = dlookup("select name from organisation where id=" . $lastrow["settings"]);
+				if($lastrow["typeofgroup"] == 3) $TitleLast = dic_("Tracking.AllVehCompany");
+
+				// $vehRegTemp = $Title . "<br>" . $vehReg;
+			}
+
+		}
+		if(($lastrow["uniqid"] != $alertrow["uniqid"]) or $last) {	// ako uniqid na naredniot red ne e ist so prethodniot
+
+			$vehReg .= formatRegistration($fontVeh, $lastrow);
+			// --------------------------------------------------- organisation i check -------------------------------------------
+			if ($lastrow["typeofgroup"] == 2) {
+				$Title = dlookup("select name from organisation where id=" . $lastrow["settings"]);
+
+				if ($roleID == "2") {
+					$cntAllowVeh = dlookup("select count(*) from vehicles where clientID=" . $clientID . " and organisationid = " . $lastrow["settings"] . " and active='1'") ;
+				} else {
+					$cntAllowVeh = dlookup("select count(*) from vehicles where id in (select vehicleid from uservehicles where userid=" . $userID . ") and organisationid = " . $lastrow["settings"] . " and active='1'");
+				}
+			}
+			if ($lastrow["typeofgroup"] == 3) {
+				$Title = dic_("Tracking.AllVehCompany");
+
+				if ($roleID == "2") {
+					$cntAllowVeh = dlookup("select count(*) from vehicles where clientID=" . $clientID . " and active='1'") ;
+				} else {
+					$cntAllowVeh = dlookup("select count(*) from vehicles where id in (select vehicleid from uservehicles where userid=" . $userID . ") and active='1'");
+				}
+			}
+
+			// --------------------------------------------------  [END] organisation i check  ----------------------------------
+			if($last) {
+				$vehRegTemp = formatvehicles($TitleLast, $cntAllowVeh, $vehRegLast);
+
+			} else {
+				$vehRegTemp = formatvehicles($Title, $cntAllowVeh, $vehReg);
+
+			}
+			$vehFlag = true;
+			$vehReg="";
+
+		}
+	}
+
+		if($vehFlag) {	// ako e setiran ovoj flag toa znaci deka cela grupa so ist uniqid e ischitana ($vehRegTemp)
+
+			array_push($alarmRowInfo, array(
+				'data' => $lastrow,
+				'vreg'	=> $vehRegTemp
+			));
+			$vehFlag = false;
+		}
+	$lastrow = $alertrow;
+	}
+$rn++;
+echo "increment $rn <br>";
+}
+
+
+// ----------------promeneti
+foreach ($ALL = pg_fetch_all($all_alerts) as $inx => $alertrow) {
+// pp($ALL[$inx]);
+pp($alertrow);
+
+if($alertrow["vid"] <> ""){  // gi otfrla site koi imaat prazni vid
+
+	if($alertrow["uniqid"] == "") {	// ako se raboti za obicen red
+
+		$vehReg .= '<span style="color:'.$fontVeh.'">'.$alertrow["registration"]. ' ('.$alertrow["code"].') </span> ';
+		array_push($alarmRowInfo, array(
+			'data' => $alertrow,
+			'vreg'	=> $vehReg
+		));
+		$vehReg="";
+
+	} else {	// redovi kade uniqid <> ""
+
+		if ($alertrow["uniqid"] == $ALL[$inx+1]["uniqid"]){		// redovi so isti uniqid
+
+			$vehReg .= formatRegistration($fontVeh, $alertrow);
+
+			if($RowsNumber == $inx+1){		// vazi samo za posledniot red
+
+				$last = true;
+				$vehFlag = true;
+				$vehRegLast .= $vehReg . formatRegistration($fontVeh, $alertrow);
+				if($alertrow["typeofgroup"] == 2) $TitleLast = dlookup("select name from organisation where id=" . $alertrow["settings"]);
+				if($alertrow["typeofgroup"] == 3) $TitleLast = dic_("Tracking.AllVehCompany");
+
+				// $vehRegTemp = $Title . "<br>" . $vehReg;
+			}
+
+		}
+		if(($alertrow["uniqid"] != $ALL[$inx+1]["uniqid"]) or $last) {	// ako uniqid na naredniot red ne e ist so prethodniot
+
+			$vehReg .= formatRegistration($fontVeh, $alertrow);
+			// --------------------------------------------------- organisation i check -------------------------------------------
+			if ($alertrow["typeofgroup"] == 2) {
+				$Title = dlookup("select name from organisation where id=" . $alertrow["settings"]);
+
+				if ($roleID == "2") {
+					$cntAllowVeh = dlookup("select count(*) from vehicles where clientID=" . $clientID . " and organisationid = " . $alertrow["settings"] . " and active='1'") ;
+				} else {
+					$cntAllowVeh = dlookup("select count(*) from vehicles where id in (select vehicleid from uservehicles where userid=" . $userID . ") and organisationid = " . $alertrow["settings"] . " and active='1'");
+				}
+			}
+			if ($alertrow["typeofgroup"] == 3) {
+				$Title = dic_("Tracking.AllVehCompany");
+
+				if ($roleID == "2") {
+					$cntAllowVeh = dlookup("select count(*) from vehicles where clientID=" . $clientID . " and active='1'") ;
+				} else {
+					$cntAllowVeh = dlookup("select count(*) from vehicles where id in (select vehicleid from uservehicles where userid=" . $userID . ") and active='1'");
+				}
+			}
+
+			// --------------------------------------------------  [END] organisation i check  ----------------------------------
+			if($last) {
+				$vehRegTemp = formatvehicles($TitleLast, $cntAllowVeh, $vehRegLast);
+
+			} else {
+				$vehRegTemp = formatvehicles($Title, $cntAllowVeh, $vehReg);
+
+			}
+			$vehFlag = true;
+			$vehReg="";
+
+		}
+
+		if($vehFlag) {	// ako e setiran ovoj flag toa znaci deka cela grupa so ist uniqid e ischitana ($vehRegTemp)
+
+		array_push($alarmRowInfo, array(
+			'data' => $alertrow,
+			'vreg'	=> $vehRegTemp
+		));
+		$vehFlag = false;
+		}
+
+	}
+}
+
+}
+
+
+
+
+// ---------------------------------------------------- LAST WORKING -----------------------------------------------------
+// 
+
+$all_alerts = query("select a.*,at.name, at.description, v.registration, cast(v.code as integer) code, v.id vid from alarms a left join alarmtypes at on a.alarmtypeid=at.id left join vehicles v on a.vehicleid=v.id
+				where a.clientid=". $clientID ." and at.id <> 11
+				order by cast(a.uniqid as integer) desc, alarmtypeid, code asc");
+
+$alarmRowInfo = array();
+$lastvar = array();
+$lastrow = '';
+$currrow = '';
+$vehReg = '';
+$Title = '';				// promelniva za cuvanje na registracii na vozila (edno ili povekje)
+$vehFlag = false;							// indicira dali e iscitana cela grupa so identicen uniqid
+$last = false;								// se upotrebuva za formatiranje na registraciite i brojot na vozila vo org edinica
+$RowsNumber = pg_num_rows($all_alerts);
+$lastuniqid='';	//inicijalna vrednos
+
+function formatregistration($fontVeh, $row) {
+	return '<span style="color:'.$fontVeh.'">'.$row["registration"]. ' ('.$row["code"].'); </span> ';
+}
+
+function formatvehicles($Title, $allow, $vehReg) {
+	return $Title . " (". $allow .")<br>" . $vehReg;;
+}
+
+// -------------------------------------- LOOP za generirawe na redovite ----------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------------
+while ($alertrow = pg_fetch_array($all_alerts)) {
+if($alertrow["vid"] <> "") {  // gi otfrla site koi imaat prazni vid
+
+$currrow = $alertrow;
+
+// -------------------------------------------------- boja na vozilata i check --------------------------------------------
+	if ($roleID == "2") {
+			$checkVeh = dlookup("select count(*) from vehicles where clientID=" . $clientID . " and active='1' and id=". $alertrow["vid"]);
+		}
+		else {
+			$checkVeh = dlookup("select count(*) from vehicles where id in (select vehicleid from uservehicles where vehicleid=" .  $alertrow["vid"] . " and userid=" . $userID . ") and active='1'");
+		}
+		($checkVeh == 0) ? $fontVeh = "red" : $fontVeh="";
+// --------------------------------------------------[END] boja na vozilata i check ----------------------------------------
+
+if($alertrow["uniqid"]=="") {
+	// nema uniqid
+	$vehReg .= '<span style="color:'.$fontVeh.'">'.$alertrow["registration"]. ' ('.$alertrow["code"].') </span> ';
+		array_push($alarmRowInfo, array(
+			'data' => $alertrow,
+			'vreg'	=> $vehReg
+		));
+
+	$vehReg="";
+
+	echo "red id:  " . $alertrow["id"] . " " . $alertrow["name"] . " " . $alarmRowInfo["vreg"] . "<br>";
+
+} else { //ima uniqid
+
+		// ----------------------------- Title and cntAllowVeh --------------------------------------------------------------
+		if ($alertrow["typeofgroup"] == 2) {
+			$Title = dlookup("select name from organisation where id=" . $alertrow["settings"]);
+
+			if ($roleID == "2") {
+				$cntAllowVeh = dlookup("select count(*) from vehicles where clientID=" . $clientID . " and organisationid = " . $alertrow["settings"] . " and active='1'") ;
+			} else {
+				$cntAllowVeh = dlookup("select count(*) from vehicles where id in (select vehicleid from uservehicles where userid=" . $userID . ") and organisationid = " . $alertrow["settings"] . " and active='1'");
+			}
+			}
+		if ($alertrow["typeofgroup"] == 3) {
+			$Title = dic_("Tracking.AllVehCompany");
+
+			if ($roleID == "2") {
+				$cntAllowVeh = dlookup("select count(*) from vehicles where clientID=" . $clientID . " and active='1'") ;
+			} else {
+				$cntAllowVeh = dlookup("select count(*) from vehicles where id in (select vehicleid from uservehicles where userid=" . $userID . ") and active='1'");
+			}
+		}
+		// -------------------------------[end] Title and cntAllowVeh ------------------------------------------------------------
+
+	if($lastuniqid == "") {
+		$lastuniqid = $alertrow["uniqid"]; // inicijalna vrednost za prv uniqid
+		echo "------------------ <br>";
+	}
+	if($alertrow["uniqid"] == $lastuniqid) {
+		echo "title : " . $Title . "<br>";
+
+		$vehReg .= formatRegistration($fontVeh, $alertrow);
+		$lastrow = $alertrow;
+
+		echo "red id:  " . $alertrow["id"] . " " . $alertrow["name"] . " uniqid : " . $alertrow["uniqid"] . "<br>";
+
+	}
+	if($alertrow["uniqid"] != $lastuniqid) {
+
+		echo "------------------ <br>";
+		echo "red id:  " . $alertrow["id"] . " " . $alertrow["name"] . " uniqid : " . $alertrow["uniqid"] . "<br>";
+		// zima od stariod red (prethoden)
+		$vehReg .= formatRegistration($lastvar['fontveh'], $lastrow);
+		$vehRegTemp = formatvehicles($lastvar['title'], $lastvar['cntallowveh'], $vehReg);
+		array_push($alarmRowInfo, array(
+				'data' => $lastrow,
+				'vreg'	=> $vehRegTemp
+			));
+		// se resetira vehReg so noviot red
+		$vehReg = formatRegistration($fontVeh, $alertrow);
+
+	}
+
+}  // else ako ima uniqid
+	$lastvar = array('title' => $Title, 'fontveh' => $fontVeh, 'cntallowveh' => $cntAllowVeh);
+	echo "lastvar : <br>";
+	pp($lastvar);
+	$lastuniqid = $alertrow["uniqid"];
+} // glaven if za vid <> ""
+} // end while fetch
+
+
+echo "last title: " . $lastvar['title'] . "<br>";
+$vehRegTemp = formatvehicles($lastvar['title'], $lastvar['cntallowveh'], $vehReg);
+array_push($alarmRowInfo, array(
+				'data' => $currrow,
+				'vreg'	=> $vehRegTemp
+			));
+
+/////////////////////////////////////// END LOOP /////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+ ?>
+

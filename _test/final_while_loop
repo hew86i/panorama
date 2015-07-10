@@ -1,0 +1,150 @@
+<?php
+
+
+$all_alerts = query("select a.*,at.name, at.description, v.registration, cast(v.code as integer) code, v.id vid from alarms a left join alarmtypes at on a.alarmtypeid=at.id left join vehicles v on a.vehicleid=v.id
+				where a.clientid=". $clientID ." and at.id <> 11
+				order by cast(a.uniqid as integer) desc, alarmtypeid, code asc");
+
+
+$alarmRowInfo = array();	// glavna promenliva kade ke bidata zacuvani vrednostite za redovite koi treba da bidat prikazani
+$lastvar = array();			// se cuvaat promenlivi od prethodniot red + celiot prethoden red
+$lastrow = '';				// se cuva posledniot red
+$vehReg = '';				// promelniva za cuvanje na registracii na vozila (edno ili povekje)
+$Title = '';				// naslov na organizaciona edinica ili na grupata
+$lastuniqid='';				//inicijalna vrednost
+$cntUniqID = 0;
+
+$cntAllowVeh='';
+
+function formatregistration($fontVeh, $row) {
+	return '<span style="color:'.$fontVeh.'">'.$row["registration"]. ' ('.$row["code"].'); </span> ';
+}
+
+function formatvehicles($Title, $allow, $vehReg) {
+	return $Title . " (". $allow .")<br>" . $vehReg;;
+}
+
+// -------------------------------------- LOOP za generirawe na redovite ----------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------------
+while ($alertrow = pg_fetch_array($all_alerts,null,PGSQL_ASSOC)) {
+if($alertrow["vid"] <> "") {  // gi otfrla site koi imaat prazni vid
+
+// -------------------------------------------------- boja na vozilata i check --------------------------------------------
+	if ($roleID == "2") {
+			$checkVeh = dlookup("select count(*) from vehicles where clientID=" . $clientID . " and active='1' and id=". $alertrow["vid"]);
+		}
+		else {
+			$checkVeh = dlookup("select count(*) from vehicles where id in (select vehicleid from uservehicles where vehicleid=" .  $alertrow["vid"] . " and userid=" . $userID . ") and active='1'");
+		}
+		($checkVeh == 0) ? $fontVeh = "red" : $fontVeh="";
+// --------------------------------------------------[END] boja na vozilata i check ----------------------------------------
+
+if($alertrow["uniqid"]=="") { // nema uniqid
+
+	$vehReg .= '<span style="color:'.$fontVeh.'">'.$alertrow["registration"]. ' ('.$alertrow["code"].') </span> ';
+		array_push($alarmRowInfo, array(
+			'data' => $alertrow,
+			'vreg'	=> $vehReg
+		));
+
+	$vehReg="";
+
+} else { //ima uniqid
+
+		// ----------------------------- Title and cntAllowVeh --------------------------------------------------------------
+		if ($alertrow["typeofgroup"] == 2) {
+			$Title = dlookup("select name from organisation where id=" . $alertrow["settings"]);
+
+			if ($roleID == "2") {
+				$cntAllowVeh = dlookup("select count(*) from vehicles where clientID=" . $clientID . " and organisationid = " . $alertrow["settings"] . " and active='1'") ;
+			} else {
+				$cntAllowVeh = dlookup("select count(*) from vehicles where id in (select vehicleid from uservehicles where userid=" . $userID . ") and organisationid = " . $alertrow["settings"] . " and active='1'");
+			}
+			}
+		if ($alertrow["typeofgroup"] == 3) {
+			$Title = dic_("Tracking.AllVehCompany");
+
+			if ($roleID == "2") {
+				$cntAllowVeh = dlookup("select count(*) from vehicles where clientID=" . $clientID . " and active='1'") ;
+			} else {
+				$cntAllowVeh = dlookup("select count(*) from vehicles where id in (select vehicleid from uservehicles where userid=" . $userID . ") and active='1'");
+			}
+		}
+		// -------------------------------[end] Title and cntAllowVeh ------------------------------------------------------------
+
+	if($lastuniqid == "") {
+		$lastuniqid = $alertrow["uniqid"]; // inicijalna vrednost za prv uniqid
+		echo $alertrow['id']. " se inicijalizira lastuniqd: $lastuniqid <br>";
+	}
+	if($alertrow["uniqid"] == $lastuniqid) {
+		echo $alertrow['id']. " count: $cntUniqID  <br>";
+		$cntUniqID++; // izbroj go redot
+		echo "vehreg od ist uniqid <br>";
+		$vehReg .= formatRegistration($fontVeh, $alertrow);
+		$lastrow = $alertrow;
+
+	}
+	if($alertrow["uniqid"] != $lastuniqid) {
+
+		$row = '';
+		if($cntUniqID == 1) echo $alertrow["id"] . " sega e 1!  prethoden red: ". $lastvar['row']['id'] ."<br>";
+		// samo ako prethodniot red sordzi ednistven uniqid odnosno org.ednici ima samo eden red so uniqid
+		if($cntUniqID != 1) {
+			echo $alertrow["id"] . "  razlicno od 1 => se menuva uniqid <br>";
+			// echo "vehreg ako e eden uniqid <br>";
+			// $vehReg .= formatRegistration($lastvar['fontveh'], $lastrow);
+		}
+		echo "vehreg pred da se zapise : " . $vehReg . "<br>";
+		// zema od stariod red (prethoden)
+		// $vehReg .= formatRegistration($lastvar['fontveh'], $lastrow);
+		$vehRegTemp = formatvehicles($lastvar['title'], $lastvar['cntallowveh'], $vehReg);
+
+		if($cntUniqID == 1) {
+			$row = $lastvar['row'];
+			echo "se raboti za eden red : " . $row["name"] . "<br>";
+		}else {
+			$row = $lastrow;
+		}
+		array_push($alarmRowInfo, array(
+				'data' => $row,
+				'vreg'	=> $vehRegTemp
+			));
+		echo "zapis --------------------- <br>";
+		// pp($alarmRowInfo);
+		echo "end zapis ------------------  <br>";
+
+		echo "vehreg od tekovniot red <br>";
+		// se resetira vehReg so noviot red
+		$vehReg = formatRegistration($fontVeh, $alertrow);
+
+		$cntUniqID = 1; //reset bidejke eden veke e pronajden
+	}
+
+}  // else ako ima uniqid
+
+	$lastvar = array('title' => $Title, 'fontveh' => $fontVeh, 'cntallowveh' => $cntAllowVeh, 'row' => $alertrow);
+	$lastuniqid = $alertrow["uniqid"];
+	echo "-------------- nov red --------------- <br>";
+
+} // glaven if za vid <> ""
+} // end while fetch
+echo "broj na redovi : " . ($yota+1);
+if($lastuniqid != "") {	// proverka poradi toa sto moze da ne postoi nitu eden red so uniqid
+$vehRegTemp = formatvehicles($lastvar['title'], $lastvar['cntallowveh'], $vehReg);
+array_push($alarmRowInfo, array(
+				'data' => $lastvar['row'],  //currrow
+				'vreg'	=> $vehRegTemp
+			));
+}
+
+?>
+<script type="text/javascript">
+	row_array = <?php echo json_encode($alarmRowInfo); ?>;
+</script>
+
+<?php
+
+/////////////////////////////////////// END LOOP /////////////////////////////////////////
+
+
+?>

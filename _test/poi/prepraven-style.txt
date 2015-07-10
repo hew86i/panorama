@@ -1,0 +1,16 @@
+eve go prepraveniot
+
+<files alt="sent file 'jj.png'">
+<file size="32456" index="0" tid="934649586">jj.png</file></files>
+
+Na naslovot (Benziski)
+background-color: #e5e3e3
+border: 1px dotted #2f5185
+
+Koloni - pod naslovot
+background-color: #f4f3f3
+border: 1px dotted #bbb
+
+<div style="margin-left: 10px; border-radius: 5px; width: 18px; height: 18px; float: left; background-color: rgb(255, 255, 0); border: 1px solid rgb(212,212,6)";</div>;
+
+float: left imas i na strelkata
