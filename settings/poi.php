@@ -407,7 +407,6 @@ $(document).ready(function () {
 	// 			S C R O L L   E V E N T
 
     $(".POI_data").scroll(function() {
-
 		item_id = ($(this)[0].id).split('_');
 		currGroup = Number(item_id[2]);
 		item = $('#POI_data_' + currGroup);
@@ -467,6 +466,11 @@ $(document).ready(function () {
 		// potrebno za da se prebaruva koga input == ''
 		if ($('#search_input').val() == ''){
 			show_original_data();
+		// inaku se registrira scroll event za filtriranite
+		} else {
+			$('.POI_data_new').scroll(function(event){
+				scrollEventFiltered(event);
+			});
 		}
 	});
 

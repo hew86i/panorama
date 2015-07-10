@@ -263,22 +263,22 @@ function changecolor()
 }
 
 function Loading(txt){
-	if (txt==null) {txt = '' + dic("wait", lang) + ''}
-	var wobj = document.getElementById('div-please-wait')
-	var wobjb = document.getElementById('div-please-wait-back')
-	var wobjc = document.getElementById('div-please-wait-close')
+	if (txt==null) {txt = '' + dic("wait", lang) + ''};
+	var wobj = document.getElementById('div-please-wait');
+	var wobjb = document.getElementById('div-please-wait-back');
+	var wobjc = document.getElementById('div-please-wait-close');
 	
-	var _w = 200
-	var _h = 30
-	var _l = (document.body.clientWidth-_w)/2
-	var _t = (document.body.clientHeight-_h)/3
+	var _w = 200;
+	var _h = 30;
+	var _l = (document.body.clientWidth-_w)/2;
+	var _t = (document.body.clientHeight-_h)/3;
 
 	
-	imgPath = twopoint + '/images/'
+	imgPath = twopoint + '/images/';
 	if (wobj == null) {
-		wobj = Create(document.body, 'div', 'div-please-wait')
-		wobjb = Create(document.body, 'div', 'div-please-wait-back')
-		wobjc = Create(document.body, 'div', 'div-please-wait-close')
+		wobj = Create(document.body, 'div', 'div-please-wait');
+		wobjb = Create(document.body, 'div', 'div-please-wait-back');
+		wobjc = Create(document.body, 'div', 'div-please-wait-close');
 		//wobjc.src = './images/smallClose.png'
 		$(wobjc).css({position:'fixed', width:'16px', height:'16px', left:(_l+_w-10)+'px', top:(_t+12)+'px',zIndex:19999, cursor:'pointer', display:'block', backgroundImage:'url('+imgPath+'closeSmall.png)', backgroundPosition:'0px -16px'})
 		$(wobjb).css({position:'fixed', width:document.body.clientWidth+'px', height:document.body.clientHeight+'px', position:'fixed', zIndex:19997, backgroundImage:'url('+imgPath+'backLoading.png)', opacity:0.2, left:'0px', top:'0px'})
@@ -712,6 +712,31 @@ var html =
 	"</tr>";
 
 	return html;
+}
+
+function displayMoreData(_id,limit_data){
+	console.log("--more data loading...");
+	$.each(limit_data,function(i,rowd){
+		// console.log(rowd);
+		if( $('.new-data#poiid_'+_id).length === 0) $('#POI_data_new_'+ _id + ' table').append(append_data(rowd));
+	});
+}
+
+
+function scrollEventFiltered(event){
+
+	// console.log(event.currentTarget.id);
+	item_id = (event.currentTarget.id).split('_');
+	currGroup = Number(item_id[2]);
+	item = $('#'+event.currentTarget.id);
+
+	if( (item.scrollTop() + item.innerHeight() >= (item[0].scrollHeight - 120))) {
+
+    	delay(function(){
+    		console.log('scrolling near bottom -- begin displaying data...');
+    		displayMoreData(item_id,filtered.slice(0,5));
+    	},300);
+    }
 }
 
 
