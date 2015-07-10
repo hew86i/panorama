@@ -3,7 +3,6 @@
 <?php include "../include/params.php" ?>
 <?php include "../include/dictionary2.php" ?>
 
-
 <?php
 
 	error_reporting(E_ALL & ~E_NOTICE);
