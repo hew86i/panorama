@@ -212,7 +212,8 @@ if($numPointsU != 0) { ?>
 		<tr>
 			<td align = "left" colspan="8" valign = "middle" height="40px" width = "100%" class="text2" style="color:#fff; font-weight:bold; font-size:14px;  padding-left:7px; background-color:#f7962b; font-weight:bold;" id="slider_1" onclick="show_group(1)">
 				<span class="expand-icon" style="font-size:18px">▶</span>
-				<span style="position:relative; bottom:4px; left: 10px;"><?php echo dic("Settings.NotGroupedItems")?>&nbsp;&nbsp;(<?php echo $numPointsU ?>)</span>
+				<span style="position:relative; bottom:4px; left: 10px;"><?php echo dic("Settings.NotGroupedItems")?>
+				<span class="num-of-poi">(<?php echo $numPointsU ?>)</span>
 				<!-- <span style="position:relative; bottom:4px; left: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;
 					<img src = "../images/poiButton.png" height="25px" width = "25px"  style="position: relative;top:7px;"> (<?php echo $numPOI ?>)</img>&nbsp;&nbsp;
 					<img src = "../images/zoneButton.png" height="25px" width = "25px"  style="position: relative;top:7px;"> (<?php echo $numZONE ?>)</img>&nbsp;&nbsp;
@@ -254,11 +255,12 @@ $numTocki = dlookup("select count(*) from pointsofinterest where clientid=" . $c
 
 <!-- ************************************** GROUP TITLE ***************************************************** -->
 <div class="align-center toi-group-title grouped-title">
-<table id="POI_group<?php echo $poiRow['id']?>" cellspacing = "2" cellpadding = "2">
+<table id="POI_group<?php echo $poiRow['id']?>" style="table-layout:fixed;">
 	<tr>
 		<td align = "left" colspan="8" valign = "middle" height="40px" width = "76%" class="text2" style="color:<?php echo comp($poiRow['fillcolor']); ?>; font-weight:bold; font-size:14px;  padding-left:7px; background-color:<?php echo $poiRow['fillcolor']; ?>; font-weight:bold;" id="slider_<?php echo $poiRow['id']?>" onclick="show_group(<?php echo $poiRow['id']?>)">
 			<span class="expand-icon" style="font-size:18px">▶</span>
-			<span style="position:relative; left: 10px;"><?php echo $poiRow['name']?>&nbsp;&nbsp;(<?php echo $numTocki ?>)</span>
+			<span style="position:relative; left: 10px;"><?php echo $poiRow['name']?></span>
+			<span class="num-of-poi" style="margin-left: 10px">(<?php echo $numTocki ?>)</span>
 			<!-- <span style="position:relative; bottom:4px; left: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;
 				<img src = "../images/poiButton.png" height="25px" width = "25px"  style="position: relative;top:7px;"> (<?php echo $numPOI ?>)</img>&nbsp;&nbsp;
 				<img src = "../images/zoneButton.png" height="25px" width = "25px"  style="position: relative;top:7px;"> (<?php echo $numZONE ?>)</img>&nbsp;&nbsp;

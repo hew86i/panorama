@@ -594,6 +594,8 @@ function displayData(filtered){
 	 */
 
 	$.each(filter_info,function(i,gi){
+
+		$('#POI_group'+gi.id+' .num-of-poi').html("("+gi.count+")"); // promeni go brojot na tocki vo naslov
 		$('#POI_group'+gi.id).show();
 		$('#POI_data_'+gi.id).after('<div id="POI_data_new_'+gi.id+'" class="POI_data_new align-center toi-row"><table><tbody></tbody></table></div>');
 		if(gi.count > 20) { $('#POI_data_new_' + gi.id).css({ height: '500',overflowY: 'scroll'}); }
@@ -620,6 +622,10 @@ function displayData(filtered){
 function hide_data(){ $('.POI_data').hide(); }
 
 function show_original_data(){
+
+	$.each(allGroups,function(i,v){
+		$('#POI_group'+v+' .num-of-poi').html("("+numOfPoints[i]+")"); // promeni go brojot na tocki vo naslov
+	});
 
 	$.each(GroupsInfo,function(i,g_info){
 		if(g_info.haveData) setScroll(g_info.numPOI,g_info.gpid);
