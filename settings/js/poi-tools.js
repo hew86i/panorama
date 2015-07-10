@@ -118,7 +118,7 @@ function show_group(_id) {
 
 }
 
-function first_expand(groupid){  // za negrupirani tocki
+function first_expand(groupid){
 
 	var currPoints = numOfPoints[allGroups.indexOf(groupid)];
 
