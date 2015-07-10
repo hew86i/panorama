@@ -70,7 +70,6 @@
 			<td width="38%" valign ="middle" class="text2 la td-row" style="padding-left:8px">
 				<span style="padding-left: 75px;"><?php echo dic("Routes.Name")?></span><br>
 				<span style="padding-left: 75px;">(<?php dic("Routes.CreatedBy")?>)</span>&nbsp;&nbsp;
-				<!-- <span><?php if ($bannedPOI == '0') echo "(<span class='c-or'>" . dic_("Settings.LongitudeName") . " , " . dic_("Settings.LatitudeName") . "</span>)"?></span> -->
 			</td>
 			<td width="13%" class="text2 td-row ca" ><?php dic("Settings.TypeOfPoi")?><br> (<?php dic("Tracking.Radius")?>)</td>
 			<td width="13%" class="text2 td-row ca" ><?php dic("Reports.AvailableFor")?></td>

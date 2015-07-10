@@ -404,8 +404,6 @@ $(document).ready(function () {
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	// 			S C R O L L   E V E N T
 
-	// align_elements();
-
     $(".POI_data").scroll(function() {
 
 		item_id = ($(this)[0].id).split('_');

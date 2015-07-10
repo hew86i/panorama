@@ -19,7 +19,6 @@ function fetchData(limit,offset,gpid) {
 
 	GroupsInfo[groupPos].firstExpand = true;
 
-	// console.log("url: " + "GetPOIOffset.php?limit=" + limit + "&offset=" + offset + "&groupid=" + gpid + "&expanded=" + isExpanded + "&l=" + lang);
 	$.ajax({
 	    url: "GetPOIOffset.php?limit=" + limit + "&offset=" + offset + "&groupid=" + gpid + "&expanded=" + isExpanded + "&l=" + lang,
 	    context: document.body,
@@ -135,14 +134,14 @@ function first_expand(groupid){
 		$('#POI_group' + groupid + ' .expand-icon').html("▼");
 
 		GroupsInfo[inx].clicked = true;
-		dataOffset = 0;  // da se hendla so if()
+		dataOffset = 0;
 
 		console.log("first DATA FETCH...");
 
 		if(currPoints > 20) $('#POI_data_' + groupid).css({ height: '500px',overflowY: 'scroll'});
 
 		fetchData(limit,dataOffset,groupid);
-		// goToByScroll("POI_group1",10);
+
 
 	}
 
