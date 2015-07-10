@@ -83,18 +83,8 @@
 	<?php }
 	// ---------------------------------------------------------------------------
 
-
 	while($row = pg_fetch_assoc($qGetpoi)) {
-		// if($row["type"] == 1)
-		// {
-		// 	$lat = dlookup("select st_y(st_transform(geom,4326)) lat from pointsofinterest where id=" . $row["id"]);
-		// 	$lon = dlookup("select st_x(st_transform(geom,4326)) lon from pointsofinterest where id=" . $row["id"]);
-		// }
-		// else
-		// {
-		// 	$lon = dlookup("select st_y(st_centroid(geom)) lon from pointsofinterest where id=" . $row["id"]);
-		// 	$lat = dlookup("select st_x(st_centroid(geom)) lat from pointsofinterest where id=" . $row["id"]);
-		// }
+
 	?>
 
 	<tr class="data-rows"  id="poiid_<?php echo $row["id"];?>">
