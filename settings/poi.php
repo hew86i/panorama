@@ -71,8 +71,11 @@
 			width: 100%;
 			border: 0;
 			margin-top: 30px;
-
 		}
+		.toi-group-title td {
+			background-color: #e5e3e3;
+		}
+
 		.toi-group-title .col-titles td {
 			height: 22;
 			text-align: center;
@@ -262,8 +265,9 @@ $numTocki = dlookup("select count(*) from pointsofinterest where clientid=" . $c
 <div class="align-center toi-group-title grouped-title">
 <table id="POI_group<?php echo $poiRow['id']?>" style="table-layout:fixed;">
 	<tr>
-		<td align = "left" colspan="8" valign = "middle" height="40px" width = "76%" class="text2" style="color:<?php echo comp($poiRow['fillcolor']); ?>; font-weight:bold; font-size:14px;  padding-left:7px; background-color:<?php echo $poiRow['fillcolor']; ?>; font-weight:bold;" id="slider_<?php echo $poiRow['id']?>" onclick="show_group(<?php echo $poiRow['id']?>)">
-			<span class="expand-icon" style="font-size:18px">▶</span>
+		<td align = "left" colspan="8" valign = "middle" height="40px" width = "76%" class="text2" style="color:black; font-weight:bold; font-size:14px;  padding-left:7px; font-weight:bold;" id="slider_<?php echo $poiRow['id']?>" onclick="show_group(<?php echo $poiRow['id']?>)">
+			<span class="expand-icon" style="float: left; font-size:18px">▶</span>&nbsp;
+			<div style="margin-left: 10px; border-radius: 5px; width: 18px; height: 18px; float: left; background-color: rgb(255, 255, 0); border: 1px solid rgb(212, 212, 6);"></div>
 			<span style="position:relative; left: 10px;"><?php echo $poiRow['name']?></span>
 			<span class="num-of-poi" style="margin-left: 10px">(<?php echo $numTocki ?>)</span>
 			<!-- <span style="position:relative; bottom:4px; left: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;
@@ -273,13 +277,13 @@ $numTocki = dlookup("select count(*) from pointsofinterest where clientid=" . $c
 			</span> -->
 		</td>
 
-		<td align = "center" valign = "middle" height="40px" class="text2" width = "8%" style="color:<?php echo comp($poiRow['fillcolor']); ?>; font-weight:bold; font-size:14px; padding-left:5px; padding-right:5px; background-color:<?php echo $poiRow["fillcolor"]?>; font-weight:bold;" >
+		<td align = "center" valign = "middle" height="40px" class="text2" width = "8%" style="font-weight:bold; font-size:14px; padding-left:5px; padding-right:5px; font-weight:bold;" >
 			<button id="btnGroupMap<?php echo $poiRow['id']?>" class="btn-search-ui" onclick="OpenMapAlarm3('<?php echo $poiRow["id"]?>','<?php echo $cLang?>')" style="height:22px; width:30px"></button>
 		</td>
-		<td align = "center" valign = "middle" height="40px" class="text2" width = "8%" style="color:<?php echo comp($poiRow['fillcolor']); ?>; font-weight:bold; font-size:14px; padding-left:5px; padding-right:5px; background-color:<?php echo $poiRow["fillcolor"]?>; font-weight:bold;" >
+		<td align = "center" valign = "middle" height="40px" class="text2" width = "8%" style="font-weight:bold; font-size:14px; padding-left:5px; padding-right:5px; font-weight:bold;" >
 			<button id="btnEdit<?php echo $poiRow['id']?>" class="btn-penci-ui" onclick="EditGroup('<?php echo $poiRow["id"]?>','<?php echo $cLang?>')" style="height:22px; width:30px"></button>
 		</td>
-		<td align = "center" valign = "middle" height="40px" class="text2" width = "8%" style="color:<?php echo comp($poiRow['fillcolor']); ?>; font-weight:bold; font-size:14px; padding-left:5px; padding-right:5px; background-color:<?php echo $poiRow["fillcolor"]?>; font-weight:bold;" >
+		<td align = "center" valign = "middle" height="40px" class="text2" width = "8%" style="font-weight:bold; font-size:14px; padding-left:5px; padding-right:5px; font-weight:bold;" >
 			<button id="btnVehicles<?php echo $poiRow['id']?>" class="btn-trash-ui" onclick="DeleteGroup('<?php echo $poiRow["id"]?>','<?php echo $cLang?>', <?php echo $numTocki?>)" style="height:22px; width:30px"></button>
 		</td>
 
@@ -388,7 +392,7 @@ $numTocki = dlookup("select count(*) from pointsofinterest where clientid=" . $c
 $(document).ready(function () {
 
     prikazi();
-    color_title(); // promena na boite
+    //color_title(); // promena na boite
 
     $('#kopce').button({ icons: { primary: "ui-icon-plus"} });
     $('#clear-input').button({ icons: { primary: "ui-icon-minus"} });
