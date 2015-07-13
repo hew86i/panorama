@@ -8,6 +8,7 @@ dataOffset = 0;
 currGroup = 0;	// momentalna grupa
 GroupsInfo = [];	// tuka ke se cuvaat infromacii za grupite so poveke POI
 isReady = true;	 // se odnesuva na scroll eventot i dali e zavrsen ajax call-ot
+filter_have_data = true;
 
 // -------------------------------
 
@@ -19,7 +20,6 @@ function fetchData(limit,offset,gpid) {
 
 	GroupsInfo[groupPos].firstExpand = true;
 	$.ajax({
-
 	    url: "GetPOIOffset.php?limit=" + limit + "&offset=" + offset + "&groupid=" + gpid + "&expanded=" + isExpanded + "&l=" + lang,
 	    context: document.body,
 
@@ -97,7 +97,7 @@ function show_group(_id) {
 			$('#POI_data_' + currGroup + ' table').append(cp);
 		}
 
-		if(currPoints > 20) {
+		if(currPoints > limit) {
 
 			GroupsInfo[inx].haveData = true;
 			GroupsInfo[inx].firstExpand = false;
@@ -159,6 +159,14 @@ function find_group (obj_arr, value) {
 	var rez = -1;
 	for(var i=0; i < obj_arr.length; i++){
 		if(obj_arr[i].gpid == value) rez = i;
+	}
+	return rez;
+}
+
+function get_index (obj_arr, value) {
+	var rez = -1;
+	for(var i=0; i < obj_arr.length; i++){
+		if(obj_arr[i].id == value) rez = i;
 	}
 	return rez;
 }
@@ -545,21 +553,22 @@ filter_info = [];
 function filter(term){
 	var ret = [];
 	filter_info = [];
-	var cnt = 1;
-	var ind = 0;
+	var cnt = 1;  // interen counter
+	var ind = 0;  // interen index
+	var pos = 0;  // pozozicija na koja zavrsuva grupata
 	$.each(toi,function(i,v){
 		var name = v.name;
 		if(name.toLowerCase().indexOf(term) >= 0){
 			if(filter_info.length === 0) {
-				filter_info.push({id:v.groupid, count: 1});
+				filter_info.push({id:v.groupid, count: 1, pos: pos});
 				cnt = 1;
 			} else { // ne e prv element
 
 				if(filter_info[ind].id == v.groupid){  // ista grupa
-					filter_info[ind].count = cnt+1;
-					cnt++;
+					filter_info[ind].count = ++cnt;
 				} else { // nova grupa
-					filter_info.push({id:v.groupid, count: 1});
+					pos += cnt;
+					filter_info.push({id:v.groupid, count: 1, pos: pos});
 					cnt = 1;
 					ind++;
 				}
@@ -598,18 +607,31 @@ function displayData(filtered){
 		$('#POI_group'+gi.id+' .num-of-poi').html("("+gi.count+")"); // promeni go brojot na tocki vo naslov
 		$('#POI_group'+gi.id).show();
 		$('#POI_data_'+gi.id).after('<div id="POI_data_new_'+gi.id+'" class="POI_data_new align-center toi-row"><table><tbody></tbody></table></div>');
-		if(gi.count > 20) { $('#POI_data_new_' + gi.id).css({ height: '500',overflowY: 'scroll'}); }
+		if(gi.count > limit) {
+			$('#POI_data_new_' + gi.id).css({ height: '500',overflowY: 'scroll'});
+			gi.offset = limit;  // kolku se prikazani
+		}
 
 		var cp = $('.proto-col tr').clone();
 		$('#POI_data_new_'+gi.id+' table').append(cp);
 
 	});
 
+	var indx = 0;
+	var cnt = 0;
+
 	$.each(filtered, function(i,red){
 
-		if( $('.new-data#poiid_'+red.id).length === 0) {
-			$('#POI_data_new_'+ red.groupid + ' table').append(append_data(red));
+		// se limitira prikazuvanjeto na grupite so nad 20 filtrirani rezultati
+		if(filter_info[indx].id == red.groupid) {
+			cnt++;
+		} else {
+			cnt = 1;
+			indx++;
 		}
+		// console.log(indx + " ** " + cnt );
+		if( $('.new-data#poiid_'+red.id).length === 0 && cnt <= limit)	$('#POI_data_new_'+ red.groupid + ' table').append(append_data(red));
+
 	});
 
 	$('.POI_data_new').show();  //novite podatoci
@@ -716,25 +738,37 @@ var html =
 
 function displayMoreData(_id,limit_data){
 	console.log("--more data loading...");
+	console.log(arguments);
 	$.each(limit_data,function(i,rowd){
-		// console.log(rowd);
 		if( $('.new-data#poiid_'+_id).length === 0) $('#POI_data_new_'+ _id + ' table').append(append_data(rowd));
 	});
 }
 
 
 function scrollEventFiltered(event){
-
 	// console.log(event.currentTarget.id);
 	item_id = (event.currentTarget.id).split('_');
-	currGroup = Number(item_id[2]);
+	currGroup = Number(item_id[3]);
 	item = $('#'+event.currentTarget.id);
 
-	if( (item.scrollTop() + item.innerHeight() >= (item[0].scrollHeight - 120))) {
+	var index = get_index(filter_info,currGroup);
+	filtered_in_group = filtered.slice(filter_info[index].pos, filter_info[index].count+filter_info[index].pos);
+
+	if( filter_have_data && (item.scrollTop() + item.innerHeight() >= (item[0].scrollHeight - 120))) {
 
     	delay(function(){
     		console.log('scrolling near bottom -- begin displaying data...');
-    		displayMoreData(item_id,filtered.slice(0,5));
+
+    		var offset = filter_info[index].offset;
+
+    		console.log(offset);
+    		if(filtered_in_group.slice(offset,offset+limit) !== 0) {
+    			displayMoreData(currGroup,filtered_in_group.slice(offset,offset+limit));
+    			filter_have_data = true;
+    		} else filter_have_data = false;
+
+    		buttonIcons();
+    		filter_info[index].offset+=limit;
     	},300);
     }
 }

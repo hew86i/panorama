@@ -319,7 +319,7 @@ $numTocki = dlookup("select count(*) from pointsofinterest where clientid=" . $c
 	<tr>
     	<td class="text5" style="font-weight:bold"><?php echo dic("Tracking.GroupName")?></td>
         <td>
-            	<input id="GroupNameName"  type="text" class="textboxcalender corner5 text5" style="width:200px; height:22px; font-size:11px"/>
+            <input id="GroupNameName"  type="text" class="textboxcalender corner5 text5" style="width:200px; height:22px; font-size:11px"/>
        	</td>
     </tr>
     <tr>
