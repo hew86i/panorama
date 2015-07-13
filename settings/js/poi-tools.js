@@ -765,11 +765,12 @@ function scrollEventFiltered(event){
     		if(filtered_in_group.slice(offset,offset+limit) !== 0) {
     			displayMoreData(currGroup,filtered_in_group.slice(offset,offset+limit));
     			filter_have_data = true;
+    			goToByScroll("POI_group" + currGroup,10);
     		} else filter_have_data = false;
 
     		buttonIcons();
     		filter_info[index].offset+=limit;
-    	},300);
+    	},150);
     }
 }
 

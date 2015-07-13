@@ -77,6 +77,11 @@
 			height: 22;
 			text-align: center;
 		}
+
+		.col-titles td {
+			background-color: #f4f3f3;
+		}
+
 		.toi-row table {
 			width: 100%;
 			border: 0;
@@ -94,7 +99,7 @@
 		}
 		.td-row {
 			font-weight:bold;
-			background-color:#E5E3E3;
+			background-color:#;
 			border:1px dotted #2f5185;
 		}
 		.c-or {
@@ -439,6 +444,9 @@ $(document).ready(function () {
 
 			$('#search_img').attr('src','../images/ajax-loader.gif');
 
+			// za da ne se povtoruvaat rezultatite
+			$('.POI_data_new').remove();
+
 			delay(function(){ // after nokey_treshhold
 
 	    		filtered = filter(term);
@@ -463,7 +471,7 @@ $(document).ready(function () {
 			doneSearching = false;
 			$('#search_img').attr('src','../images/search_find.png');
 		}
-		// potrebno za da se prebaruva koga input == ''
+		// potrebno za da ne se prebaruva koga input == ''
 		if ($('#search_input').val() == ''){
 			show_original_data();
 		// inaku se registrira scroll event za filtriranite
