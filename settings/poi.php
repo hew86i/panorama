@@ -23,6 +23,7 @@
 		$ilum = 1 - ( 0.299 * hexdec($out[1]) + 0.587 * hexdec($out[2]) + 0.114 * hexdec($out[3]))/255;
 		return ($ilum >= 0.5) ? '#ffffff' : '#000000';
 	}
+
 ?>
 
 <html>
@@ -53,10 +54,6 @@
 
 	<style type="text/css">
 
-		html {
-		    overflow: auto;
-		    -webkit-overflow-scrolling: touch;
-		}
 		body {
 		    /*height: 100%;*/
 		    /*ako se trgne 100%, ne raboti goToByScroll*/
@@ -220,8 +217,8 @@ if($numPointsU != 0) { ?>
 		<tr>
 			<td align = "left" colspan="8" valign = "middle" height="40px" width = "100%" class="text2" style="color:#fff; font-weight:bold; font-size:14px;  padding-left:7px; background-color:#f7962b; font-weight:bold;" id="slider_1" onclick="show_group(1)">
 				<span class="expand-icon" style="font-size:18px">▶</span>
-				<span style="position:relative; bottom:4px; left: 10px;"><?php echo dic("Settings.NotGroupedItems")?>
-				<span class="num-of-poi">(<?php echo $numPointsU ?>)</span>
+				<span style="position:relative; left: 10px;"><?php echo dic("Settings.NotGroupedItems")?>
+				<span class="num-of-poi" style="position:relative;">(<?php echo $numPointsU ?>)</span>
 				<!-- <span style="position:relative; bottom:4px; left: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;
 					<img src = "../images/poiButton.png" height="25px" width = "25px"  style="position: relative;top:7px;"> (<?php echo $numPOI ?>)</img>&nbsp;&nbsp;
 					<img src = "../images/zoneButton.png" height="25px" width = "25px"  style="position: relative;top:7px;"> (<?php echo $numZONE ?>)</img>&nbsp;&nbsp;
@@ -267,9 +264,9 @@ $numTocki = dlookup("select count(*) from pointsofinterest where clientid=" . $c
 	<tr>
 		<td align = "left" colspan="8" valign = "middle" height="40px" width = "76%" class="text2" style="color:black; font-weight:bold; font-size:14px;  padding-left:7px; font-weight:bold;" id="slider_<?php echo $poiRow['id']?>" onclick="show_group(<?php echo $poiRow['id']?>)">
 			<span class="expand-icon" style="float: left; font-size:18px">▶</span>&nbsp;
-			<div style="margin-left: 10px; border-radius: 5px; width: 18px; height: 18px; float: left; background-color: rgb(255, 255, 0); border: 1px solid rgb(212, 212, 6);"></div>
-			<span style="position:relative; left: 10px;"><?php echo $poiRow['name']?></span>
-			<span class="num-of-poi" style="margin-left: 10px">(<?php echo $numTocki ?>)</span>
+			<div  class="poi-box" style="margin-left: 10px; border-radius: 5px; width: 18px; height: 18px; float: left; background-color:<?php echo $poiRow["fillcolor"]?>;"></div>
+			<span style="position:relative; top:2px; left: 10px;"><?php echo $poiRow['name']?></span>
+			<span class="num-of-poi" style="position:relative; top: 2px; margin-left: 10px">(<?php echo $numTocki ?>)</span>
 			<!-- <span style="position:relative; bottom:4px; left: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;
 				<img src = "../images/poiButton.png" height="25px" width = "25px"  style="position: relative;top:7px;"> (<?php echo $numPOI ?>)</img>&nbsp;&nbsp;
 				<img src = "../images/zoneButton.png" height="25px" width = "25px"  style="position: relative;top:7px;"> (<?php echo $numZONE ?>)</img>&nbsp;&nbsp;
@@ -393,6 +390,7 @@ $(document).ready(function () {
 
     prikazi();
     //color_title(); // promena na boite
+   	shade_boxes();
 
     $('#kopce').button({ icons: { primary: "ui-icon-plus"} });
     $('#clear-input').button({ icons: { primary: "ui-icon-minus"} });
@@ -460,6 +458,7 @@ $(document).ready(function () {
 				hide_data(); // hide group data
 				$('.toi-group-title table').hide(); // hide group titles
 
+				Loading();
 				displayData(filtered);
 
 			},nokey_treshhold);

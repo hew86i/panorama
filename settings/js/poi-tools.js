@@ -189,30 +189,62 @@ function getTopOffset(id) {
 }
 
 function goToByScroll (id, offset){
-	$('html,body').stop().animate({ scrollTop: ($("#"+id).offset().top - offset)}, 500);
+	console.log("goToByScroll called");
+	$('body,html').stop(true,true).animate({ scrollTop: ($("#"+id).offset().top - offset)}, 500);
 }
 
 function TopScroll() {
-	$('html, body').animate({scrollTop: (0)}, 'slow');
+	$('body, html').stop(true,true).animate({scrollTop: 0}, 450);
 }
 
-// eksperimentalna fukcija (doc.ready())
+// >>>>>>>>>>>>>>>>>>>>>> color functions  >>>>>>>>>>>>>>>>>>>>>>>
 function color_title() {
 
     for (var i = 0; i < allGroups.length; i++) {
     	var get_color = $('#slider_'+allGroups[i]);
     	var selector = $('#POI_group'+allGroups[i]);
-    	var selector_right = $('#POI_group'+allGroups[i]+' tr td:first-child');
 
     	var bg_effect = chroma(get_color.css('background-color')).desaturate().hex();
     	var border_effect = chroma(get_color.css('background-color')).darken(20).hex();
 
     	selector.css('background-color',bg_effect);
     	selector.css({"border-color": border_effect, "border-width":"1px", "border-style":"solid"});
-    	if (allGroups[i] != 1) selector_right.css({"border-right-color": 'white', "border-right-width":"1px", "border-right-style":"solid"});
+
 
     }
 }
+
+function shadeColor(color, percent) {
+    var f=parseInt(color.slice(1),16),t=percent<0?0:255,p=percent<0?percent*-1:percent,R=f>>16,G=f>>8&0x00FF,B=f&0x0000FF;
+    return "#"+(0x1000000+(Math.round((t-R)*p)+R)*0x10000+(Math.round((t-G)*p)+G)*0x100+(Math.round((t-B)*p)+B)).toString(16).slice(1);
+}
+
+function blendColors(c0, c1, p) {
+    var f=parseInt(c0.slice(1),16),t=parseInt(c1.slice(1),16),R1=f>>16,G1=f>>8&0x00FF,B1=f&0x0000FF,R2=t>>16,G2=t>>8&0x00FF,B2=t&0x0000FF;
+    return "#"+(0x1000000+(Math.round((R2-R1)*p)+R1)*0x10000+(Math.round((G2-G1)*p)+G1)*0x100+(Math.round((B2-B1)*p)+B1)).toString(16).slice(1);
+}
+
+// RGB version --------------------------------------------
+
+function shadeRGBColor(color, percent) {
+    var f=color.split(","),t=percent<0?0:255,p=percent<0?percent*-1:percent,R=parseInt(f[0].slice(4)),G=parseInt(f[1]),B=parseInt(f[2]);
+    return "rgb("+(Math.round((t-R)*p)+R)+","+(Math.round((t-G)*p)+G)+","+(Math.round((t-B)*p)+B)+")";
+}
+
+function blendRGBColors(c0, c1, p) {
+    var f=c0.split(","),t=c1.split(","),R=parseInt(f[0].slice(4)),G=parseInt(f[1]),B=parseInt(f[2]);
+    return "rgb("+(Math.round((parseInt(t[0].slice(4))-R)*p)+R)+","+(Math.round((parseInt(t[1])-G)*p)+G)+","+(Math.round((parseInt(t[2])-B)*p)+B)+")";
+}
+
+function shade_boxes(){
+	for (var i = 1; i < allGroups.length; i++) {
+		var select_box_color = $('#POI_group'+ allGroups[i] +' .poi-box').css('background-color');
+		$('#POI_group'+ allGroups[i] +' .poi-box').css({"border-color": shadeRGBColor(select_box_color,-0.35), "border-width":"1px", "border-style":"solid"});
+	}
+}
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 
 function timedRefresh(timeoutPeriod) {
 	setTimeout("location.reload(true);",timeoutPeriod);
@@ -638,6 +670,7 @@ function displayData(filtered){
 
 	buttonIcons();
 	doneSearching = true;
+	HideWait();
 	setTimeout(function(){ $('#search_input').focus() },50);
 }
 
@@ -752,7 +785,7 @@ function scrollEventFiltered(event){
 	item = $('#'+event.currentTarget.id);
 
 	var index = get_index(filter_info,currGroup);
-	filtered_in_group = filtered.slice(filter_info[index].pos, filter_info[index].count+filter_info[index].pos);
+	var filtered_in_group = filtered.slice(filter_info[index].pos, filter_info[index].count+filter_info[index].pos);
 
 	if( filter_have_data && (item.scrollTop() + item.innerHeight() >= (item[0].scrollHeight - 120))) {
 
