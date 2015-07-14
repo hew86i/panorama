@@ -28,7 +28,9 @@ Promeni:
 	   email.
 	 --------------- novi promeni ----------------------------------------------
 	 - Otfrleno e overflow:auto kaj glavnata tabela i height:700
-	 - Otfrleno e SMS opcijata kompletno
+	 - Otfrlena e SMS opcijata kompletno
+	 - Otfrlena e dropdown listata za mobilni operatori. Sega tie se vnesuvaat
+	   slicno kako i email-ovite
 	 ---------------------------------------------------------------------------
 
 	[zabeleski]

@@ -447,12 +447,12 @@ $(document).ready(function () {
 			$('#search_img').attr('src','../images/ajax-loader.gif');
 
 			// za da ne se povtoruvaat rezultatite
-			$('.POI_data_new').remove();
+			$('.POI_data_new').show();
 
 			delay(function(){ // after nokey_treshhold
 
 	    		filtered = filter(term);
-				$('.new-data').remove(); // izbrisi prethodni filtrirani i prikazani
+				$('.new-data').show(); // izbrisi prethodni filtrirani i prikazani
 		    	console.log("found: "+ filtered.length + " .............");
 
 				hide_data(); // hide group data

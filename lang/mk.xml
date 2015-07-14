@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <note>
+<Settings.ValidMobileOperator>Внесовте невалиден мобилен оператор!</Settings.ValidMobileOperator>
+<Settings.InvalidSMSEmailFormat>Невалиден формат на е-маилот</Settings.InvalidSMSEmailFormat>
+<Reports.SchNoteSms>* За внес на повеќе е-маилови (смс) одделувајте со ,(br)Пр: 7133445566@operator1.com, 8866445566@operator2.com</Reports.SchNoteSms>
+<Tracking.SMSEmails>E-маилови (смс)</Tracking.SMSEmails>
 <Login.UserIsNotActive>Корисникот е деактивиран. Ве молиме контактирајте не преку е-маил:</Login.UserIsNotActive>
 <Settings.InsertValidLength>Внесете валидна километража</Settings.InsertValidLength>
 <Settings.InvalidPhoneFormat>Погрешен формат на бројот</Settings.InvalidPhoneFormat>

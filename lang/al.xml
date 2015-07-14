@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <note>
+<Settings.ValidMobileOperator> Shkruani operatorin vlefshme celular! </Settings.ValidMobileOperator>
+<Settings.InvalidSMSEmailFormat> Email adresa (es) në format të gabuar! </Settings.InvalidSMSEmailFormat>
+<Reports.SchNoteSms> * Për të hyrë të shumta e-mail ndarë nga, (br) Shembull: 7133445566 @ operator1.com, 8866445566 @ operator2.com </Reports.SchNoteSms>
+<Tracking.SMSEmails> Email (me SMS) </Tracking.SMSEmails>
 <Login.UserIsNotActive>Ky përdorues ka qenë i çaktivizuar. Ju lutemi të na kontaktoni përmes emailit:</Login.UserIsNotActive>
 <Settings.InsertValidLength>Shkruani kilometrazhin vlefshme</Settings.InsertValidLength>
 <Settings.InvalidPhoneFormat>Formati numër i gabuar</Settings.InvalidPhoneFormat>

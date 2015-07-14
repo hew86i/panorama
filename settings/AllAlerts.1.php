@@ -868,8 +868,8 @@ if ($condVeh > 0) //da se smeni
 			<td width = "75%" style="font-weight:bold" class ="text2"><input id = "smsviaemail" class="textboxcalender corner5 text5" type="text" style = "width:365px"></input></td>
 		</tr>
 
-		<tr>
-			<td width = "25%"></td>
+		<tr class="SMSemail" style="display:none">
+			<td width = "25%" ></td>
 			<td width = "75%" class ="text2" style="font-size:10px"><font color = "red" ><?php echo dic_("Reports.SchNoteSms")?></font></td>
 		</tr>
 
@@ -960,6 +960,7 @@ function validate_smsvemails(value, operators) {
 		var cell_numb = data.split('@');
 		ret = ret && validate_phone(Number(cell_numb[0]));
 	    var op = cell_numb[1];
+	    console.log("operator @ :"+op);
 	    validate_smsvemails.check = check_operator(operators,op);
 	});
 	validate_smsvemails.v = new_data.slice(0,-1); // za poslednata zapirka
@@ -1050,7 +1051,11 @@ function storeAlerts(isEdit, _id) {
             });
 
         	allowedSMSviaEmail = Number('<?php echo $allowedSMSvEmail; ?>');
-   			if(allowedSMSviaEmail == 1) $('.SMSemail').show();
+   			if(allowedSMSviaEmail == 1) {
+   				$('.SMSemail').show();
+
+   			} 
+   				
 
     	    $(function () {
 		        $("#combobox").combobox();
@@ -1155,7 +1160,6 @@ function storeAlerts(isEdit, _id) {
             text: (isEdit) ? dic('Fm.Mod', lang) : dic('Settings.Add', lang),
             click: function(data) {
 
-            	smschange();
                 var tipNaAlarm = $('#TipNaAlarm').val();
                 var email = $.map($('#emails').val().split(","), $.trim);	//clear the whitespaces in between
                 var sms = '';
@@ -1192,7 +1196,7 @@ function storeAlerts(isEdit, _id) {
                 // validate sms via email multi
                 if(allowedSMSviaEmail == 1 && smsviaemail !== "") {
                 	if(!validate_smsvemails(smsviaemail,getMO)) validation.push("Settings.InvalidSMSEmailFormat");
-                	if(!validate_smsvemails.check) validation.push("Settings.MobileOperator");
+                	if(!validate_smsvemails.check) validation.push("Settings.ValidMobileOperator");
                 }
 
 	 			if(Number(odbraniVozila) === 0) validation.push("Settings.SelectAlert1");
@@ -1366,7 +1370,6 @@ function ClearDialog() {
 	$('#brzinata').val("");
 
 	$("#smsviaemail").val("");
-	$("#mobilenoperator option[value='0']").attr('selected','selected');
 
 	$('#GFcheck1').attr('checked',true);
 	$('input:radio[name=radio]').button('refresh');

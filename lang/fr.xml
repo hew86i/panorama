@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <note>
+<Settings.ValidMobileOperator> Entrez opérateur mobile valide! </Settings.ValidMobileOperator>
+<Settings.InvalidSMSEmailFormat> Adresse e-mail (s) au format tort! </Settings.InvalidSMSEmailFormat>
+<Reports.SchNoteSms> * Pour entrer plusieurs e-mails séparés par, (br) Exemple: 7133445566 @ operator1.com, 8866445566 @ operator2.com </Reports.SchNoteSms>
+<Tracking.SMSEmails> Email (par sms) </Tracking.SMSEmails>
 <Login.UserIsNotActive>Cet utilisateur a été désactivé. S'il vous plaît nous contacter par email:</Login.UserIsNotActive>
 <Settings.InsertValidLength>Entrez kilométrage valide</Settings.InsertValidLength>
 <Settings.InvalidPhoneFormat>Format mauvais numéro</Settings.InvalidPhoneFormat>
