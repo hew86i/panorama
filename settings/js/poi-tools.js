@@ -337,6 +337,7 @@ function Loading(txt){
 	    $('#div-please-wait-back').show()
 	    $('#div-please-wait-close').show()
 	}
+
 }
 
 // ------------------------------------------------------------------------------
@@ -637,10 +638,7 @@ function displayData(filtered){
 
 		$('#POI_group'+gi.id+' .num-of-poi').html("("+gi.count+")"); // promeni go brojot na tocki vo naslov
 		$('#POI_group'+gi.id).show();
-
-		if($('#POI_data_new_333').length === 0) {  // ako nema kreirano za taa grupa, da se kreira
-			$('#POI_data_'+gi.id).after('<div id="POI_data_new_'+gi.id+'" class="POI_data_new align-center toi-row"><table><tbody></tbody></table></div>');
-		}
+		$('#POI_data_'+gi.id).after('<div id="POI_data_new_'+gi.id+'" class="POI_data_new align-center toi-row"><table><tbody></tbody></table></div>');
 
 		if(gi.count > limit) {
 			$('#POI_data_new_' + gi.id).css({ height: '500',overflowY: 'scroll'});
@@ -657,7 +655,7 @@ function displayData(filtered){
 
 	$.each(filtered, function(i,red){
 
-		// se limitira prikazuvanjeto na grupite so nad 20(limit) filtrirani rezultati
+		// se limitira prikazuvanjeto na grupite so nad 20 filtrirani rezultati
 		if(filter_info[indx].id == red.groupid) {
 			cnt++;
 		} else {
@@ -665,11 +663,7 @@ function displayData(filtered){
 			indx++;
 		}
 		// console.log(indx + " ** " + cnt );
-		if( $('.new-data#poiid_'+red.id).length === 0 && cnt <= limit)	{
-			$('#POI_data_new_'+ red.groupid + ' table').append(append_data(red));
-		} else if($('.new-data#poiid_'+red.id).length !== 0) {
-			$('.new-data#poiid_'+red.id).show(); // prikazi gi samo prethodno prebaranite
-		}
+		if( $('.new-data#poiid_'+red.id).length === 0 && cnt <= limit)	$('#POI_data_new_'+ red.groupid + ' table').append(append_data(red));
 
 	});
 
@@ -677,7 +671,7 @@ function displayData(filtered){
 
 	buttonIcons();
 	doneSearching = true;
-	HideWait();
+	// HideWait();
 	setTimeout(function(){ $('#search_input').focus() },50);
 }
 
@@ -692,9 +686,9 @@ function show_original_data(){
 	$.each(GroupsInfo,function(i,g_info){
 		if(g_info.haveData) setScroll(g_info.numPOI,g_info.gpid);
 	});
-
-	//$('.POI_data_new').remove();
+	// [optimisation]
 	$('.POI_data_new').hide();
+	$('.POI_data_new').remove();
 	$('.toi-group-title table').show();
 
 	$('.POI_data').show();
@@ -781,12 +775,7 @@ function displayMoreData(_id,limit_data){
 	console.log("--more data loading...");
 	console.log(arguments);
 	$.each(limit_data,function(i,rowd){
-		if( $('.new-data#poiid_'+_id).length === 0) {
-			$('#POI_data_new_'+ _id + ' table').append(append_data(rowd));
-		} else {  // treba else za optimizacija samo so hide and show
-			$('#POI_data_new_'+ _id).show();
-		}
-
+		if( $('.new-data#poiid_'+_id).length === 0) $('#POI_data_new_'+ _id + ' table').append(append_data(rowd));
 	});
 }
 

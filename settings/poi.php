@@ -447,18 +447,20 @@ $(document).ready(function () {
 			$('#search_img').attr('src','../images/ajax-loader.gif');
 
 			// za da ne se povtoruvaat rezultatite
-			$('.POI_data_new').show();
+			$('.POI_data_new').remove();
 
 			delay(function(){ // after nokey_treshhold
 
 	    		filtered = filter(term);
-				$('.new-data').show(); // izbrisi prethodni filtrirani i prikazani
+	    		// [optimisation]
+	    		$('.new-data').hide();
+				$('.new-data').remove(); // izbrisi prethodni filtrirani i prikazani
 		    	console.log("found: "+ filtered.length + " .............");
 
 				hide_data(); // hide group data
 				$('.toi-group-title table').hide(); // hide group titles
 
-				Loading();
+				// Loading();
 				displayData(filtered);
 
 			},nokey_treshhold);
