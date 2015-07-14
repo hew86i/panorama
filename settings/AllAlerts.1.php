@@ -590,9 +590,7 @@ if ($condVeh > 0) //da se smeni
 			<td class="text2 td-row la">
 			<?php
 				if($tableRow['data']["smsviaemail"] != null) {
-					$gsse = explode('@',$tableRow['data']["smsviaemail"]);
-					echo $gsse[0] . "<br>";
-				echo "(<b>" . dlookup("select name from operators where email='" . $gsse[1] . "'") . "</b>)";
+					echo str_replace(',', '<br>', $tableRow['data']["smsviaemail"]);
 				} else echo "/";
 			?>
 			</td>
@@ -933,7 +931,7 @@ if ($condVeh > 0) //da se smeni
 
 <script>
 
-function email_validate( value) {
+function email_validate(value) {
     var emailovi = value.split(",");
     var izlez;
     emailovi.forEach(function(mejl) {
@@ -941,6 +939,31 @@ function email_validate( value) {
         izlez = filter.test(mejl.trim());
     });
     return izlez;
+}
+
+function check_operator(operators,value){
+	var ret = false;
+	operators.forEach(function(data){
+		if(data.email == value) ret = ret || true;
+	});
+	return ret;
+}
+
+function validate_smsvemails(value, operators) {
+	var mails = value.split(',');
+	var ret = true;
+	var new_data = "";
+	mails.forEach(function(data){
+		var filter = new RegExp(/^(("[\w-+\s]+")|([\w-+]+(?:\.[\w-+]+)*)|("[\w-+\s]+")([\w-+]+(?:\.[\w-+]+)*))(@((?:[\w-+]+\.)*\w[\w-+]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][\d]\.|1[\d]{2}\.|[\d]{1,2}\.))((25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\.){2}(25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\]?$)/i);
+		ret = ret && filter.test(data.trim());
+		new_data+=data.trim()+",";
+		var cell_numb = data.split('@');
+		ret = ret && validate_phone(Number(cell_numb[0]));
+	    var op = cell_numb[1];
+	    validate_smsvemails.check = check_operator(operators,op);
+	});
+	validate_smsvemails.v = new_data.slice(0,-1); // za poslednata zapirka
+	return ret;
 }
 
 function validate_phone( value ) {
@@ -1109,9 +1132,7 @@ function storeAlerts(isEdit, _id) {
 
 		    	// ako e dozvolena ovaa opcija
 		    	if(allowedSMSviaEmail == 1 && row_array[objID].data.smsviaemail != null && row_array[objID].data.smsviaemail != "") {
-		    		var getSMS = row_array[objID].data.smsviaemail.split('@');
-		    		$('#smsviaemail').val(getSMS[0]);
-		    		$("#mobilenoperator option[value='"+getMO[get_operator_email(getMO,getSMS[1])].id+"']").attr('selected','selected');
+		    		$('#smsviaemail').val(row_array[objID].data.smsviaemail);
 		    	}
 
 		    	$('#GFcheck' + row_array[objID].data.available).attr('checked',true);
@@ -1156,7 +1177,7 @@ function storeAlerts(isEdit, _id) {
                 var dostapno = getCheckedRadio('radio');
                 var valueDays = $('#fmvalueDays').val();
                 var valueKm = convertMetric('<?php echo $metric ?>', $('#fmvalueKm').val());
-                var mobilenoperator = (allowedSMSviaEmail == 1) ? $('#mobilenoperator').val(): "";
+
                 var smsviaemail = (allowedSMSviaEmail == 1) ? $('#smsviaemail').val(): "";
 
                 //------------------------------------------------------------------------//
@@ -1168,9 +1189,10 @@ function storeAlerts(isEdit, _id) {
                 if(email === '') validation.push("Settings.AlertsEmailHaveTo");
                 if(email.length > 0 && !email_validate($('#emails').val())) validation.push("uncorrEmail");
 
+                // validate sms via email multi
                 if(allowedSMSviaEmail == 1 && smsviaemail !== "") {
-                	if(!validate_phone(smsviaemail)) validation.push("Settings.InvalidPhoneFormat");
-                	if(mobilenoperator == 0) validation.push("Settings.MobileOperator");
+                	if(!validate_smsvemails(smsviaemail,getMO)) validation.push("Settings.InvalidSMSEmailFormat");
+                	if(!validate_smsvemails.check) validation.push("Settings.MobileOperator");
                 }
 
 	 			if(Number(odbraniVozila) === 0) validation.push("Settings.SelectAlert1");
@@ -1283,7 +1305,9 @@ function storeAlerts(isEdit, _id) {
 
 	 			// get and construct the sms via email format
 	 			var sendSMS = '';
-	 			if(validation.length === 0 && allowedSMSviaEmail == 1 && Number(mobilenoperator.value) != 0 && smsviaemail != "") sendSMS = smsviaemail + "@" + getMO[get_operator_id(getMO,Number(mobilenoperator))].email;
+	 			validate_smsvemails($('#smsviaemail').val(),getMO);
+	 			smsviaemail = validate_smsvemails.v;
+	 			if(validation.length === 0 && allowedSMSviaEmail == 1 && smsviaemail != "") sendSMS = smsviaemail;
 				console.log("SEND SMS: " + sendSMS);
 
 			  	var qurl = "storeAlert.php?tipNaAlarm=" + tipNaAlarm + "&email=" + email + "&sms=" + sms + "&zvukot=" + zvukot + "&ImeNaTocka=" + ImeNaTocka + "&ImeNaZonaIzlez=" + ImeNaZonaIzlez + "&ImeNaZonaVlez=" + ImeNaZonaVlez + "&NadminataBrzina=" + NadminataBrzina + "&vreme=" + vreme + "&dostapno=" + dostapno + "&orgEdinica=" + orgEdinica + "&odbraniVozila=" + odbraniVozila + "&voziloOdbrano=" + voziloOdbrano + "&remindme=" + remindme + "&sendviaEmail=" + sendSMS;
