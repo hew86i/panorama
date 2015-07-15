@@ -3,18 +3,18 @@
     function opendb(){
 		extract($GLOBALS, EXTR_REFS);
 		//$myServer = "localhost";
-		// $myServer = "192.168.2.151";
-		// $myUser = "postgres";
-		// $myPass = "a5ed56c81d";
-		// $myDB = "gis";
-		// $dbhandle = pg_connect("dbname=$myDB user=$myUser password=$myPass host=$myServer port=5432");
-		// extract($GLOBALS, EXTR_REFS);
-		//$myServer = "localhost";
-		$myServer = "144.76.225.247";
+		$myServer = "192.168.2.151";
 		$myUser = "postgres";
-		$myPass = "yy3sTeX6AAPJ3x";
+		$myPass = "a5ed56c81d";
 		$myDB = "gis";
 		$dbhandle = pg_connect("dbname=$myDB user=$myUser password=$myPass host=$myServer port=5432");
+		// extract($GLOBALS, EXTR_REFS);
+		//$myServer = "localhost";
+		// $myServer = "144.76.225.247";
+		// $myUser = "postgres";
+		// $myPass = "yy3sTeX6AAPJ3x";
+		// $myDB = "gis";
+		// $dbhandle = pg_connect("dbname=$myDB user=$myUser password=$myPass host=$myServer port=5432");
 	}
 
 	function closedb(){

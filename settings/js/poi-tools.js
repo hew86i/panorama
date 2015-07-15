@@ -810,6 +810,7 @@ function scrollEventFiltered(event){
 
 function adjustWidth(gpid, _selector) {
 	var getTitleWidth = $('.toi-group-title table').width();
+	console.log("get width: "+getTitleWidth);
 	var selector = "#POI_data_";
 	if(arguments.length == 2) selector = _selector;
 	if(arguments.length == 1) {
