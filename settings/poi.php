@@ -24,13 +24,16 @@
 		return ($ilum >= 0.5) ? '#ffffff' : '#000000';
 	}
 
+
 ?>
 
 <html>
 
 <head>
 
-	<script type="text/javascript">	lang = '<?php echo $cLang?>';</script>
+	<script type="application/javascript">
+		lang = '<?php echo $cLang?>';
+	</script>
 
 	<link rel="stylesheet" type="text/css" href="../style.css">
 
@@ -60,6 +63,7 @@
 		    overflow: auto;
 		    -webkit-overflow-scrolling: touch;
 		}
+
 		.ui-button { margin-left: -1px; }
 		.ui-button-icon-only .ui-button-text { padding: 0.35em; }
 		.ui-autocomplete-input { margin: 0; padding: 0.48em 0 0.47em 0.45em; }
@@ -114,6 +118,10 @@
 		.btn-def {
 			height:22px;
 			width:30px;
+		}
+
+		.POI_data, .POI_data_new {
+			overflow-x: hidden; /* potrebno za scroll izmestuvanjeto */
 		}
 
 		#input_container { position:relative; padding:0; margin:0; background:#ddd; }
@@ -215,7 +223,7 @@ if($numPointsU != 0) { ?>
 <div class="align-center toi-group-title">
 <table id="POI_group1" style="border-spacing:2px">
 		<tr>
-			<td align = "left" colspan="8" valign = "middle" height="40px" width = "100%" class="text2" style="color:#fff; font-weight:bold; font-size:14px;  padding-left:7px; background-color:#f7962b; font-weight:bold;" id="slider_1" onclick="show_group(1)">
+			<td align = "left" colspan="8" valign = "middle" height="40px" width = "100%" class="text2" style="color:#fff; font-weight:bold; font-size:14px;  padding-left:7px; cursor: pointer; background-color:#f7962b; font-weight:bold;" id="slider_1" onclick="show_group(1)">
 				<span class="expand-icon" style="font-size:18px">▶</span>
 				<span style="position:relative; left: 10px;"><?php echo dic("Settings.NotGroupedItems")?>
 				<span class="num-of-poi" style="position:relative;">(<?php echo $numPointsU ?>)</span>
@@ -262,7 +270,7 @@ $numTocki = dlookup("select count(*) from pointsofinterest where clientid=" . $c
 <div class="align-center toi-group-title grouped-title">
 <table id="POI_group<?php echo $poiRow['id']?>" style="table-layout:fixed;">
 	<tr>
-		<td align = "left" colspan="8" valign = "middle" height="40px" width = "76%" class="text2" style="color:black; font-weight:bold; font-size:14px;  padding-left:7px; font-weight:bold;" id="slider_<?php echo $poiRow['id']?>" onclick="show_group(<?php echo $poiRow['id']?>)">
+		<td align = "left" colspan="8" valign = "middle" height="40px" width = "76%" class="text2" style="color:black; font-weight:bold; font-size:14px;  padding-left:7px; cursor: pointer; font-weight:bold;" id="slider_<?php echo $poiRow['id']?>" onclick="show_group(<?php echo $poiRow['id']?>)">
 			<span class="expand-icon" style="float: left; font-size:18px">▶</span>&nbsp;
 			<div  class="poi-box" style="margin-left: 10px; border-radius: 5px; width: 18px; height: 18px; float: left; background-color:<?php echo $poiRow["fillcolor"]?>;"></div>
 			<span style="position:relative; top:2px; left: 10px;"><?php echo $poiRow['name']?></span>
@@ -388,9 +396,12 @@ $numTocki = dlookup("select count(*) from pointsofinterest where clientid=" . $c
 
 $(document).ready(function () {
 
+	lang = '<?php echo $cLang ?>';
     prikazi();
     //color_title(); // promena na boite
    	shade_boxes();
+
+   	// $('.POI_data').css({'transition':'all 1s ease-out'});
 
     $('#kopce').button({ icons: { primary: "ui-icon-plus"} });
     $('#clear-input').button({ icons: { primary: "ui-icon-minus"} });
@@ -409,6 +420,11 @@ $(document).ready(function () {
 			return false;
 		}
     });
+
+    $(window).resize(function() {
+        adjustWidth();
+    });
+	adjustWidth();
 
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	// 			S C R O L L   E V E N T
@@ -438,7 +454,7 @@ $(document).ready(function () {
 
 	$('#search_input').bind("input",function(event){
 
-		term = $('#search_input').val();
+		term = $('#search_input').val().toLowerCase();
 		if(term.length == 0) $('#search_img').attr('src','../images/search_find.png');
 
 		filtered = [];
@@ -494,6 +510,7 @@ $(document).ready(function () {
 		$('#search_img').attr('src','../images/search_find.png');
 
 	});
+
 
     // ke se vcitaat site tocki vo JSON format
 	setTimeout(function(){

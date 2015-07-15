@@ -1,7 +1,6 @@
 
 
 // ------- GLOBAL VARs -----------
-lang = '<?php echo $cLang?>';
 haveData = true;
 limit = 20;
 dataOffset = 0;
@@ -14,7 +13,6 @@ filter_have_data = true;
 
 function fetchData(limit,offset,gpid) {
 	// Loading();
-
 	var groupPos = find_group(GroupsInfo,gpid);
 	var isExpanded = (GroupsInfo[groupPos].firstExpand == true) ? 1 : 0;
 
@@ -80,7 +78,7 @@ function show_group(_id) {
 
 	if($('#search_input').val() != '') {
 		goToByScroll("POI_group" + currGroup,10);
-		$('#POI_data_new_' + currGroup).slideToggle("slow");
+		$('#POI_data_new_' + currGroup).slideToggle(100);
 		return false;
 	}
 
@@ -110,14 +108,14 @@ function show_group(_id) {
 		}
 
 		fetchData(limit,dataOffset,currGroup);
-
+		adjustWidth(currGroup);
 		return false;
 
 	}
 
 	goToByScroll("POI_group" + currGroup,10);
 
-	$('#POI_data_' + currGroup).slideToggle("slow");
+	$('#POI_data_' + currGroup).slideToggle(100);
 
 
 }
@@ -189,7 +187,7 @@ function getTopOffset(id) {
 }
 
 function goToByScroll (id, offset){
-	console.log("goToByScroll called");
+
 	$('body,html').stop(true,true).animate({ scrollTop: ($("#"+id).offset().top - offset)}, 500);
 }
 
@@ -642,6 +640,7 @@ function displayData(filtered){
 
 		if(gi.count > limit) {
 			$('#POI_data_new_' + gi.id).css({ height: '500',overflowY: 'scroll'});
+			adjustWidth(gi.id,"#POI_data_new_");
 			gi.offset = limit;  // kolku se prikazani
 		}
 
@@ -807,6 +806,21 @@ function scrollEventFiltered(event){
     		filter_info[index].offset+=limit;
     	},150);
     }
+}
+
+function adjustWidth(gpid, _selector) {
+	var getTitleWidth = $('.toi-group-title table').width();
+	var selector = "#POI_data_";
+	if(arguments.length == 2) selector = _selector;
+	if(arguments.length == 1) {
+		$(selector + gpid + ' table').width(getTitleWidth);
+	} else {
+		$.each(numOfPoints,function(i,v){
+			if(v > limit) {
+	 			$(selector + allGroups[i]+ ' table').width(getTitleWidth);
+			}
+		});
+	}
 }
 
 

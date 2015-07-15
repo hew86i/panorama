@@ -59,7 +59,7 @@
 		exit;
 	}
 	else {
-
+		print_r($_SESSION);
 	while($row = pg_fetch_assoc($qGetpoi)) {
 
 	?>
