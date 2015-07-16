@@ -166,30 +166,6 @@ else
 
 <div class="align-center">
 	<table width="100%" style="margin-top:20px;">
-		<tr>
-			<td></td>
-			<td align="right" valign="middle">
-
-			<?php
-			if ($bannedPOI == '0') {
-			?>
-				<div id="noData" style="font-size:11px; font-style:normal;" class="text4">
-				<?php echo dic_("Routes.ExportToExcel")?>&nbsp;
-				<a href = "excel.php?l=<?php echo $cLang?>"><input align = "top" style="padding-top:3px;position:relative; bottom:4px; " valign = "middle" type="image" width = "15px" height = "15px" src="../images/eExcel.png"></input></a>
-				</div>
-			<?php
-			} else {
-			?>
-				<div id="noData" style="font-size:11px; font-style:normal; opacity:0.4" class="text4">
-				<?php echo dic_("Routes.ExportToExcel")?>&nbsp;
-				<input align = "top" style="cursor:default; padding-top:3px;position:relative; bottom:4px; " valign = "middle" type="image" width = "15px" height = "15px" src="../images/eExcel.png"></input>
-				</div>
-			<?php
-			}
-			?>
-
-			</td>
-		</tr>
 
 		<tr class="text2">
 			<td width = "70%" align = "left" valign = "middle">
