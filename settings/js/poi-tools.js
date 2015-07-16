@@ -68,11 +68,13 @@ function show_group(_id) {
 		GroupsInfo[inx].expanded = true;
 		if(currPoints !== 0) {
 			$('#POI_group'+ currGroup +' .expand-icon').html("▼");
+			$('#POI_group_header'+currGroup).show();
 		}
 	}
 	else {
 		GroupsInfo[inx].expanded = false;
 		$('#POI_group'+ currGroup +' .expand-icon').html("▶");
+		$('#POI_group_header'+currGroup).hide();
 
 	}
 	// ako se naogja vo rezim na prebaruvanje
@@ -90,11 +92,6 @@ function show_group(_id) {
 		GroupsInfo[inx].clicked = true;
 		dataOffset = 0;
 		console.log("first DATA FETCH...");
-
-		if(currPoints !== 0) {
-			var cp = $('.proto-col tr').clone();
-			$('#POI_data_' + currGroup + ' table').append(cp);
-		}
 
 		if(currPoints > limit) {
 
@@ -135,10 +132,8 @@ function first_expand(groupid){
 		GroupsInfo[inx].expanded = true;
 		GroupsInfo[inx].firstExpand = false;
 
-		var cp = $('.proto-col tr').clone();
-		$('#POI_data_' + groupid + ' table').append(cp);
-
 		$('#POI_group' + groupid + ' .expand-icon').html("▼");
+		$('#POI_group_header'+groupid).show();
 
 		GroupsInfo[inx].clicked = true;
 		dataOffset = 0;
@@ -552,18 +547,6 @@ $('#div-del-poi').dialog({ modal: true, width: 350, height: 170, resizable: fals
  });
 }
 
-function align_elements() {
-	$.each(allGroups,function(i,v){
-		// console.log(i+"--"+v);
-		var groupTitle = $('#POI_group'+v);
-		var groupTable = $('#POI_data_'+v);
-		var ml = parseInt(groupTable.css('margin-left'));
-		var diff = groupTitle.width()-groupTable.width();
-		groupTable.css('margin-left', ml+diff);
-		groupTable.width(groupTitle.width()+ 3 * Math.abs(diff));
-	});
-}
-
 /**
  * -----------------------------------------------------------------
  * 							S E A R C H
@@ -640,6 +623,7 @@ function displayData(filtered){
 
 		$('#POI_group'+gi.id+' .num-of-poi').html("("+gi.count+")"); // promeni go brojot na tocki vo naslov
 		$('#POI_group'+gi.id).show();
+		$('#POI_group_header'+gi.id).show();
 		$('#POI_data_'+gi.id).after('<div id="POI_data_new_'+gi.id+'" class="POI_data_new align-center toi-row"><table><tbody></tbody></table></div>');
 
 		if(gi.count > limit) {
@@ -647,9 +631,6 @@ function displayData(filtered){
 			adjustWidth(gi.id,"#POI_data_new_");
 			gi.offset = limit;  // kolku se prikazani
 		}
-
-		var cp = $('.proto-col tr').clone();
-		$('#POI_data_new_'+gi.id+' table').append(cp);
 
 	});
 

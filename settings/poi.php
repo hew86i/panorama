@@ -213,6 +213,21 @@ if($numPointsU != 0) { ?>
 				<span class="num-of-poi" style="position:relative;">(<?php echo $numPointsU ?>)</span>
 			</td>
 		</tr>
+		<!-- [change] -->
+		<tr id="POI_group_header1" class="col-titles" style="display:none">
+			<td width="4%"  class="text2 td-row ca"><?php dic("Fm.Rbr")?></td>
+			<td width="38%" valign ="middle" class="text2 la td-row" style="padding-left:8px">
+				<span style="padding-left: 75px;"><?php echo dic("Routes.Name")?></span><br>
+				<span style="padding-left: 75px;">(<?php dic("Routes.CreatedBy")?>)</span>&nbsp;&nbsp;
+			</td>
+			<td width="13%" class="text2 td-row ca" ><?php dic("Settings.TypeOfPoi")?><br> (<?php dic("Tracking.Radius")?>)</td>
+			<td width="13%" class="text2 td-row ca" ><?php dic("Reports.AvailableFor")?></td>
+			<td width="8%"  class="text2 td-row c-or ca" ><?php dic("Settings.TransferPOI")?></td>
+			<td width="8%"  class="text2 td-row c-or ca" ><?php dic("Routes.Overview")?></td>
+			<td width="8%"  class="text2 td-row c-or ca" ><?php dic("Routes.Mod")?></td>
+			<td width="8%"  class="text2 td-row c-or ca" ><?php dic("Fm.Delete")?></td>
+		</tr>
+
 </table>
 </div>  <!-- [end]. toi-group-title -->
 
@@ -271,6 +286,22 @@ if($poiRow['id'] != 1) {  // za da gi otfrli negrupiranite
 
 	</tr>
 
+</table>
+<table id="POI_group_header<?php echo $poiRow['id']?>" class="col-titles" style="margin-top:0px; display:none">
+	<!-- [change] -->
+	<tr >
+		<td width="4%"  class="text2 td-row ca"><?php dic("Fm.Rbr")?></td>
+		<td width="38%" valign ="middle" class="text2 la td-row" style="padding-left:8px">
+			<span style="padding-left: 75px;"><?php echo dic("Routes.Name")?></span><br>
+			<span style="padding-left: 75px;">(<?php dic("Routes.CreatedBy")?>)</span>&nbsp;&nbsp;
+		</td>
+		<td width="13%" class="text2 td-row ca" ><?php dic("Settings.TypeOfPoi")?><br> (<?php dic("Tracking.Radius")?>)</td>
+		<td width="13%" class="text2 td-row ca" ><?php dic("Reports.AvailableFor")?></td>
+		<td width="8%"  class="text2 td-row c-or ca" ><?php dic("Settings.TransferPOI")?></td>
+		<td width="8%"  class="text2 td-row c-or ca" ><?php dic("Routes.Overview")?></td>
+		<td width="8%"  class="text2 td-row c-or ca" ><?php dic("Routes.Mod")?></td>
+		<td width="8%"  class="text2 td-row c-or ca" ><?php dic("Fm.Delete")?></td>
+	</tr>
 </table>
 </div>  <!-- [end]. toi-group-title -->
 
@@ -454,6 +485,7 @@ $(document).ready(function () {
 
 				hide_data(); // hide group data
 				$('.toi-group-title table').hide(); // hide group titles
+				$('.col-titles').hide();
 
 				// Loading();
 				displayData(filtered);
