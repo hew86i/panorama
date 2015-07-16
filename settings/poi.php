@@ -8,7 +8,7 @@
 	$uid = session("user_id");
 	$cid = session("client_id");
 
-	$fetchOffset = 0;
+	$roleid = dlookup("select roleid from users where id=".$uid);
 
 	$Allow = getPriv("groupspoi", $uid);
 	if ($Allow == False) echo header ('Location: ../permission/?l=' . $cLang);
@@ -23,7 +23,6 @@
 		$ilum = 1 - ( 0.299 * hexdec($out[1]) + 0.587 * hexdec($out[2]) + 0.114 * hexdec($out[3]))/255;
 		return ($ilum >= 0.5) ? '#ffffff' : '#000000';
 	}
-
 
 ?>
 
@@ -137,7 +136,15 @@
 
 	$bannedPOI = dlookup("select bannedpoi from users where id = " . $uid);
 
-	$dsPoigroups = query("SELECT * from pointsofinterestgroups where clientid = " . $cid . " order by name");
+	if((int)$roleid == 2) {
+		$dsPoigroups = query("select * from pointsofinterestgroups where clientid = " . $cid . " order by name");
+	} else {
+		$dsPoigroups = query("select * from pointsofinterestgroups where id in (select distinct groupid from pointsofinterest where clientid=". $cid ."
+								and ((available=3) or (available = 2 and (select organisationid from users where id=". $uid .") =
+								(select organisationid from users where id=userid) and (select organisationid from users where id=userid) <> 0)
+								or (available=1 and userid=". $uid ."))) order by name");
+	}
+
 	$search = query("select count(*) from pointsofinterest where clientid = " . $cid);
 
 if($search == 0 && pg_num_rows($dsPoigroups) == 0){ ?>
@@ -212,11 +219,12 @@ else
 <!-- ************************************ NEGRUPIRANI TOCKI TITLE ****************************************** -->
 <?php
 
-$numPointsU = dlookup("select count(*) from pointsofinterest where clientid=" . $cid . "and groupid=1");
-
-	// $numPOI = dlookup("select count(*) from pointsofinterest where clientid=" . $cid . "and groupid=1 and type=1");
-	// $numZONE = dlookup("select count(*) from pointsofinterest where clientid=" . $cid . "and groupid=1 and type=2");
-	// $numAREA = dlookup("select count(*) from pointsofinterest where clientid=" . $cid . "and groupid=1 and type=3");
+	if((int)$roleid == 2) {
+		$numPointsU = dlookup("select count(*) from pointsofinterest where clientid=" . $cid . "and groupid=1");
+	} else {
+		$numPointsU = dlookup("select count(*) from pointsofinterest where clientid=". $cid ." and groupid=1 and ((available=3) or (available = 2 and (select organisationid from users where id=". $uid .") =
+						(select organisationid from users where id=userid) and (select organisationid from users where id=userid) <> 0)	or (available=1 and userid=". $uid .")) ");
+	}
 
 if($numPointsU != 0) { ?>
 
@@ -227,11 +235,6 @@ if($numPointsU != 0) { ?>
 				<span class="expand-icon" style="font-size:18px">▶</span>
 				<span style="position:relative; left: 10px;"><?php echo dic("Settings.NotGroupedItems")?>
 				<span class="num-of-poi" style="position:relative;">(<?php echo $numPointsU ?>)</span>
-				<!-- <span style="position:relative; bottom:4px; left: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;
-					<img src = "../images/poiButton.png" height="25px" width = "25px"  style="position: relative;top:7px;"> (<?php echo $numPOI ?>)</img>&nbsp;&nbsp;
-					<img src = "../images/zoneButton.png" height="25px" width = "25px"  style="position: relative;top:7px;"> (<?php echo $numZONE ?>)</img>&nbsp;&nbsp;
-					<img src = "../images/areaImg.png" height="25px" width = "25px"  style="position: relative;top:7px;"> (<?php echo $numAREA ?>)</img>&nbsp;&nbsp;
-				</span> -->
 			</td>
 		</tr>
 </table>
@@ -248,9 +251,8 @@ if($numPointsU != 0) { ?>
 </div>
 
 <script type="text/javascript">
-	// $('#POI_data_1 .col-titles').hide();
 	allGroups = [1]; // se zacuvuvaat site id-a na grupite
-	numOfPoints = [Number('<?php echo $numPointsU ?>')]  // broj na tocki po grupa
+	numOfPoints = [Number('<?php echo $numPointsU ?>')];  // broj na tocki po grupa
 </script>
 
 <!-- ******************************************************************************************************* -->
@@ -259,11 +261,15 @@ if($numPointsU != 0) { ?>
 
 while ($poiRow = pg_fetch_assoc($dsPoigroups)) {
 
-$numTocki = dlookup("select count(*) from pointsofinterest where clientid=" . $cid . "and groupid=" . $poiRow['id']);
+if($poiRow['id'] != 1) {  // za da gi otfrli negrupiranite
 
-	// $numPOI = dlookup("select count(*) from pointsofinterest where clientid=" . $cid . "and groupid=" . $poiRow['id'] . "and type=1");
-	// $numZONE = dlookup("select count(*) from pointsofinterest where clientid=" . $cid . "and groupid=" . $poiRow['id'] . "and type=2");
-	// $numAREA = dlookup("select count(*) from pointsofinterest where clientid=" . $cid . "and groupid=" . $poiRow['id'] . "and type=3");
+	if((int)$roleid == 2) {
+		$numTocki = dlookup("select count(*) from pointsofinterest where clientid=" . $cid . "and groupid=" . $poiRow['id']);
+	} else {
+		$numTocki = dlookup("select count(*) from pointsofinterest where clientid=". $cid ." and groupid = ". $poiRow['id'] ." and ((available=3) or (available = 2 and (select organisationid from users where id=". $uid .") =
+						(select organisationid from users where id=userid) and (select organisationid from users where id=userid) <> 0)	or (available=1 and userid=". $uid .")) ");
+	}
+
 ?>
 
 <!-- ************************************** GROUP TITLE ***************************************************** -->
@@ -275,11 +281,6 @@ $numTocki = dlookup("select count(*) from pointsofinterest where clientid=" . $c
 			<div  class="poi-box" style="margin-left: 10px; border-radius: 5px; width: 18px; height: 18px; float: left; background-color:<?php echo $poiRow["fillcolor"]?>;"></div>
 			<span style="position:relative; top:2px; left: 10px;"><?php echo $poiRow['name']?></span>
 			<span class="num-of-poi" style="position:relative; top: 2px; margin-left: 10px">(<?php echo $numTocki ?>)</span>
-			<!-- <span style="position:relative; bottom:4px; left: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;
-				<img src = "../images/poiButton.png" height="25px" width = "25px"  style="position: relative;top:7px;"> (<?php echo $numPOI ?>)</img>&nbsp;&nbsp;
-				<img src = "../images/zoneButton.png" height="25px" width = "25px"  style="position: relative;top:7px;"> (<?php echo $numZONE ?>)</img>&nbsp;&nbsp;
-				<img src = "../images/areaImg.png" height="25px" width = "25px"  style="position: relative;top:7px;"> (<?php echo $numAREA ?>)</img>&nbsp;&nbsp;
-			</span> -->
 		</td>
 
 		<td align = "center" valign = "middle" height="40px" class="text2" width = "8%" style="font-weight:bold; font-size:14px; padding-left:5px; padding-right:5px; font-weight:bold;" >
@@ -311,8 +312,10 @@ $numTocki = dlookup("select count(*) from pointsofinterest where clientid=" . $c
 </script>
 
 <!-- ******************************************************************************************************* -->
-
 	<?php
+
+		} // end if
+
 	} // [end].while
 
 	?>
@@ -413,6 +416,7 @@ $(document).ready(function () {
 
 	buttonIcons();
     top.HideWait();
+	adjustWidth();
 
     $.each(numOfPoints, function(index,value){
 		if(value !== 0) {
@@ -424,7 +428,6 @@ $(document).ready(function () {
     $(window).resize(function() {
         adjustWidth();
     });
-	adjustWidth();
 
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	// 			S C R O L L   E V E N T

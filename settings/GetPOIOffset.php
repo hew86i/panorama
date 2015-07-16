@@ -12,9 +12,10 @@
 	$cid = Session("client_id");
 	$uid = Session("user_id");
 
+	$roleid = dlookup("select roleid from users where id=".$uid);
+
 	$limit = 20;
 	$offset = 0;
-
 
 	$limit = str_replace("'", "''", NNull($_GET['limit'], ''));
 	$offset = str_replace("'", "''", NNull($_GET['offset'], ''));
@@ -22,15 +23,27 @@
 	$isExpanded = NNull($_GET['expanded'], '');
 	$isFetchAll = (int)NNull($_GET['all'], 0);
 
+
 	if($isFetchAll == 1) {
 
 		// >>>>>>>>>>> fetch all POI >>>>>>>>>>>>>
 		$go = 1;
 		$rows = array();
-		$getall = query("select p.id,p.groupid,p.name,p.type,p.radius,p.povrsina,p.userid,p.available,u.fullname from pointsofinterest p left join users u on p.userid=u.id where p.clientid=". $cid . " order by p.groupid asc, p.id asc");
-		// echo "select p.id,p.groupid,p.name,p.type,p.radius,p.povrsina, u.fullname from pointsofinterest p left join users u on p.userid=u.id where p.clientid=". $cid . " order by p.groupid asc, p.id asc";
+
+		$qSt_3 = "select p.id,p.groupid,p.name,p.type,p.radius,p.povrsina,p.userid,p.available,u.fullname from pointsofinterest p
+				left join users u on p.userid=u.id
+				where p.clientid=". $cid ." and ((p.available=3) or
+				(p.available = 2 and (select organisationid from users where id=". $uid .") = (select organisationid from users where id=userid) and (select organisationid from users where id=userid) <> 0) or
+				(available=1 and userid=". $uid .")) order by p.groupid asc, p.id asc";
+
+		$qSt_2 = "select p.id,p.groupid,p.name,p.type,p.radius,p.povrsina,p.userid,p.available,u.fullname from pointsofinterest p left join users u on p.userid=u.id where p.clientid=". $cid . " order by p.groupid asc, p.id asc";
+
+		$gal = ((int)$roleid == 2) ? $qSt_2 : $qSt_3;
+		$getall = query($gal);
+
 		$c = 1;
 		while ($r = pg_fetch_assoc($getall)) {
+
 			if($r['groupid'] == $go) {
 				$r['tblindex'] = $c;
 				$rows[] = $r;
@@ -49,17 +62,26 @@
 		// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	}
 
-	$qGetpoi = query("select * from pointsofinterest where clientid=" . $cid . " and groupid=" . (int)$groupid . " order by id limit ". (int)$limit ." offset " . (int)$offset);
+	$qGetpoi_user = "select * from pointsofinterest where clientid=". $cid ." and groupid= ". (int)$groupid ." and ((available=3) or (available=2 and (select organisationid from users where id=". $uid .") =
+					(select organisationid from users where id=userid) and (select organisationid from users where id=userid) <> 0)
+					or (available=1 and userid=". $uid .")) order by id limit ". (int)$limit ." offset " . (int)$offset;
+
+	$gGetpoi_admin =  "select * from pointsofinterest where clientid=" . $cid . " and groupid=" . (int)$groupid . " order by id limit ". (int)$limit ." offset " . (int)$offset;
+
+	$qGp = ((int)$roleid == 2) ? $gGetpoi_admin : $qGetpoi_user;
+
+	$qGetpoi = query($qGp);
+
 	$rowN= 1 + $offset;
 
-	$bannedPOI = dlookup("select bannedpoi from users where id = " . $uid);
+	$bannedPOI = dlookup("select bannedpoi from users where id=" . $uid);
 
 	if (pg_num_rows($qGetpoi) == 0) {
 		echo 0;
 		exit;
 	}
 	else {
-		
+
 	while($row = pg_fetch_assoc($qGetpoi)) {
 
 	?>

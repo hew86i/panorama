@@ -17,6 +17,7 @@ function fetchData(limit,offset,gpid) {
 	var isExpanded = (GroupsInfo[groupPos].firstExpand == true) ? 1 : 0;
 
 	GroupsInfo[groupPos].firstExpand = true;
+	console.log("GetPOIOffset.php?limit=" + limit + "&offset=" + offset + "&groupid=" + gpid + "&expanded=" + isExpanded + "&l=" + lang);
 	$.ajax({
 	    url: "GetPOIOffset.php?limit=" + limit + "&offset=" + offset + "&groupid=" + gpid + "&expanded=" + isExpanded + "&l=" + lang,
 	    context: document.body,
@@ -144,7 +145,10 @@ function first_expand(groupid){
 
 		console.log("first DATA FETCH...");
 
-		if(currPoints > 20) $('#POI_data_' + groupid).css({ height: '500px',overflowY: 'scroll'});
+		if(currPoints > limit) {
+			$('#POI_data_' + groupid).css({ height: '500px',overflowY: 'scroll'});
+			adjustWidth(groupid);
+		}
 
 		fetchData(limit,dataOffset,groupid);
 
@@ -809,15 +813,21 @@ function scrollEventFiltered(event){
 }
 
 function adjustWidth(gpid, _selector) {
-	var getTitleWidth = $('.toi-group-title table').width();
-	console.log("get width: "+getTitleWidth);
+	var getTitleWidth = 0;
 	var selector = "#POI_data_";
-	if(arguments.length == 2) selector = _selector;
 	if(arguments.length == 1) {
+		getTitleWidth = $('#POI_group'+gpid).width();
 		$(selector + gpid + ' table').width(getTitleWidth);
-	} else {
+	}
+	if(arguments.length == 2) {
+		selector = _selector;
+		getTitleWidth = $('#POI_group'+gpid).width();
+		$(selector + gpid + ' table').width(getTitleWidth);
+	}
+	if(arguments.length == 0) {
 		$.each(numOfPoints,function(i,v){
 			if(v > limit) {
+				getTitleWidth = $('#POI_group'+v).width();
 	 			$(selector + allGroups[i]+ ' table').width(getTitleWidth);
 			}
 		});
