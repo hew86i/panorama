@@ -32,10 +32,11 @@ function fetchData(limit,offset,gpid) {
 	    		haveData = false;
 	    		GroupsInfo[groupPos].haveData = false;
 	    	} else {
-	    		var getData = data; //data.split("@");
+	    		var getData = data;
 	    		haveData = (getData < limit) ? false : true;
 
 	    		$('#POI_data_' + gpid + ' table tbody').append(getData);
+	    		$('#POI_data_' + gpid).show();
 	    		buttonIcons();
 	    		dataOffset+=limit;
 	    		GroupsInfo[groupPos].haveData = haveData;
@@ -75,6 +76,7 @@ function show_group(_id) {
 		GroupsInfo[inx].expanded = false;
 		$('#POI_group'+ currGroup +' .expand-icon').html("▶");
 		$('#POI_group_header'+currGroup).hide();
+
 
 	}
 	// ako se naogja vo rezim na prebaruvanje
@@ -662,20 +664,25 @@ function displayData(filtered){
 function hide_data(){ $('.POI_data').hide(); }
 
 function show_original_data(){
+	console.trace();
+	$('.col-titles').hide();  // potrebno za clear input - da se prikazat originalnite
 
 	$.each(allGroups,function(i,v){
 		$('#POI_group'+v+' .num-of-poi').html("("+numOfPoints[i]+")"); // promeni go brojot na tocki vo naslov
 	});
 
-	$.each(GroupsInfo,function(i,g_info){
-		if(g_info.haveData) setScroll(g_info.numPOI,g_info.gpid);
-	});
 	// [optimisation]
 	$('.POI_data_new').hide();
 	$('.POI_data_new').remove();
-	$('.toi-group-title table').show();
+	$('.title-group').show();
 
-	$('.POI_data').show();
+	$.each(GroupsInfo,function(i,g_info){
+		if(g_info.haveData) setScroll(g_info.numPOI,g_info.gpid);
+		if(g_info.expanded && g_info.numPOI > 0) {
+			$('#POI_group_header'+g_info.gpid).show();  // tuka se prikazuvaat samo onie koi prethodno bile expandirani
+			$('#POI_data_'+g_info.gpid).show();
+		}
+	});
 
 }
 

@@ -205,7 +205,7 @@ else
 if($numPointsU != 0) { ?>
 
 <div class="align-center toi-group-title">
-<table id="POI_group1" style="border-spacing:2px">
+<table id="POI_group1" class="title-group" style="border-spacing:2px">
 		<tr>
 			<td align = "left" colspan="8" valign = "middle" height="40px" width = "100%" class="text2" style="color:#fff; font-weight:bold; font-size:14px;  padding-left:7px; cursor: pointer; background-color:#f7962b; font-weight:bold;" id="slider_1" onclick="show_group(1)">
 				<span class="expand-icon" style="font-size:18px">▶</span>
@@ -213,22 +213,24 @@ if($numPointsU != 0) { ?>
 				<span class="num-of-poi" style="position:relative;">(<?php echo $numPointsU ?>)</span>
 			</td>
 		</tr>
-		<!-- [change] -->
-		<tr id="POI_group_header1" class="col-titles" style="display:none">
-			<td width="4%"  class="text2 td-row ca"><?php dic("Fm.Rbr")?></td>
-			<td width="38%" valign ="middle" class="text2 la td-row" style="padding-left:8px">
-				<span style="padding-left: 75px;"><?php echo dic("Routes.Name")?></span><br>
-				<span style="padding-left: 75px;">(<?php dic("Routes.CreatedBy")?>)</span>&nbsp;&nbsp;
-			</td>
-			<td width="13%" class="text2 td-row ca" ><?php dic("Settings.TypeOfPoi")?><br> (<?php dic("Tracking.Radius")?>)</td>
-			<td width="13%" class="text2 td-row ca" ><?php dic("Reports.AvailableFor")?></td>
-			<td width="8%"  class="text2 td-row c-or ca" ><?php dic("Settings.TransferPOI")?></td>
-			<td width="8%"  class="text2 td-row c-or ca" ><?php dic("Routes.Overview")?></td>
-			<td width="8%"  class="text2 td-row c-or ca" ><?php dic("Routes.Mod")?></td>
-			<td width="8%"  class="text2 td-row c-or ca" ><?php dic("Fm.Delete")?></td>
-		</tr>
-
 </table>
+<table id="POI_group_header1" class="col-titles" style="display:none; margin-top:0px">
+	<!-- [change] -->
+	<tr>
+		<td width="4%"  class="text2 td-row ca"><?php dic("Fm.Rbr")?></td>
+		<td width="38%" valign ="middle" class="text2 la td-row" style="padding-left:8px">
+			<span style="padding-left: 75px;"><?php echo dic("Routes.Name")?></span><br>
+			<span style="padding-left: 75px;">(<?php dic("Routes.CreatedBy")?>)</span>&nbsp;&nbsp;
+		</td>
+		<td width="13%" class="text2 td-row ca" ><?php dic("Settings.TypeOfPoi")?><br> (<?php dic("Tracking.Radius")?>)</td>
+		<td width="13%" class="text2 td-row ca" ><?php dic("Reports.AvailableFor")?></td>
+		<td width="8%"  class="text2 td-row c-or ca" ><?php dic("Settings.TransferPOI")?></td>
+		<td width="8%"  class="text2 td-row c-or ca" ><?php dic("Routes.Overview")?></td>
+		<td width="8%"  class="text2 td-row c-or ca" ><?php dic("Routes.Mod")?></td>
+		<td width="8%"  class="text2 td-row c-or ca" ><?php dic("Fm.Delete")?></td>
+	</tr>
+</table>
+
 </div>  <!-- [end]. toi-group-title -->
 
 <?php } ?>  <!-- [end]. dali ima negrupirani tocki -->
@@ -265,7 +267,7 @@ if($poiRow['id'] != 1) {  // za da gi otfrli negrupiranite
 
 <!-- ************************************** GROUP TITLE ***************************************************** -->
 <div class="align-center toi-group-title grouped-title">
-<table id="POI_group<?php echo $poiRow['id']?>" style="table-layout:fixed;">
+<table id="POI_group<?php echo $poiRow['id']?>" class="title-group" style="table-layout:fixed;">
 	<tr>
 		<td align = "left" colspan="8" valign = "middle" height="40px" width = "76%" class="text2" style="color:black; font-weight:bold; font-size:14px;  padding-left:7px; cursor: pointer; font-weight:bold;" id="slider_<?php echo $poiRow['id']?>" onclick="show_group(<?php echo $poiRow['id']?>)">
 			<span class="expand-icon" style="float: left; font-size:18px">▶</span>&nbsp;
@@ -380,26 +382,6 @@ if($poiRow['id'] != 1) {  // za da gi otfrli negrupiranite
 
 <div id="fetch-data" style="display:none"></div>
 
-<div class="proto-col" style="display: none;">
-	<table>
-		<tbody>
-			<tr class="col-titles">
-				<td width="4%"  class="text2 td-row ca"><?php dic("Fm.Rbr")?></td>
-				<td width="38%" valign ="middle" class="text2 la td-row" style="padding-left:8px">
-					<span style="padding-left: 75px;"><?php echo dic("Routes.Name")?></span><br>
-					<span style="padding-left: 75px;">(<?php dic("Routes.CreatedBy")?>)</span>&nbsp;&nbsp;
-				</td>
-				<td width="13%" class="text2 td-row ca" ><?php dic("Settings.TypeOfPoi")?><br> (<?php dic("Tracking.Radius")?>)</td>
-				<td width="13%" class="text2 td-row ca" ><?php dic("Reports.AvailableFor")?></td>
-				<td width="8%"  class="text2 td-row c-or ca" ><?php dic("Settings.TransferPOI")?></td>
-				<td width="8%"  class="text2 td-row c-or ca" ><?php dic("Routes.Overview")?></td>
-				<td width="8%"  class="text2 td-row c-or ca" ><?php dic("Routes.Mod")?></td>
-				<td width="8%"  class="text2 td-row c-or ca" ><?php dic("Fm.Delete")?></td>
-			</tr>
-		</tbody>
-	</table>
-</div>
-
 <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  JS  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
 
 <script type="text/javascript">
@@ -411,7 +393,6 @@ $(document).ready(function () {
     //color_title(); // promena na boite
    	shade_boxes();
 
-   	// $('.POI_data').css({'transition':'all 1s ease-out'});
 
     $('#kopce').button({ icons: { primary: "ui-icon-plus"} });
     $('#clear-input').button({ icons: { primary: "ui-icon-minus"} });
@@ -464,7 +445,7 @@ $(document).ready(function () {
 
 	$('#search_input').bind("input",function(event){
 
-		term = $('#search_input').val().toLowerCase();
+		term = $('#search_input').val().trim().toLowerCase();
 		if(term.length == 0) $('#search_img').attr('src','../images/search_find.png');
 
 		filtered = [];
@@ -484,7 +465,7 @@ $(document).ready(function () {
 		    	console.log("found: "+ filtered.length + " .............");
 
 				hide_data(); // hide group data
-				$('.toi-group-title table').hide(); // hide group titles
+				$('.title-group').hide(); // hide group titles
 				$('.col-titles').hide();
 
 				// Loading();
@@ -499,6 +480,7 @@ $(document).ready(function () {
 	});
 
 	$('#search_input').focus(function(){
+
 		if(doneSearching) {
 			doneSearching = false;
 			$('#search_img').attr('src','../images/search_find.png');
