@@ -625,6 +625,7 @@ function displayData(filtered){
 
 		$('#POI_group'+gi.id+' .num-of-poi').html("("+gi.count+")"); // promeni go brojot na tocki vo naslov
 		$('#POI_group'+gi.id).show();
+		$('#POI_group'+ gi.id +' .expand-icon').html("▼");
 		$('#POI_group_header'+gi.id).show();
 		$('#POI_data_'+gi.id).after('<div id="POI_data_new_'+gi.id+'" class="POI_data_new align-center toi-row"><table><tbody></tbody></table></div>');
 
@@ -664,7 +665,7 @@ function displayData(filtered){
 function hide_data(){ $('.POI_data').hide(); }
 
 function show_original_data(){
-	console.trace();
+
 	$('.col-titles').hide();  // potrebno za clear input - da se prikazat originalnite
 
 	$.each(allGroups,function(i,v){

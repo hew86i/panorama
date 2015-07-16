@@ -454,6 +454,7 @@ $(document).ready(function () {
 			$('#search_img').attr('src','../images/ajax-loader.gif');
 
 			// za da ne se povtoruvaat rezultatite
+			$('.POI_data_new').hide();
 			$('.POI_data_new').remove();
 
 			delay(function(){ // after nokey_treshhold
