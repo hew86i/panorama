@@ -898,13 +898,69 @@ buttons:
 			   		}
 			    },
 			    {
-			    text:dic("cancel",lang),	
+			    text:dic("cancel",lang),
                 click: function() {
 				    $( this ).dialog( "close" );
 			    }
            }
            ]
      });
+   }
+}
+
+function ButtonAddEditPOIokClickPetar() {
+if (AllowAddPoi == false) { return false }
+if (document.getElementById("groupidTEst").title != '')
+    var _title = document.getElementById("groupidTEst").title;
+else
+    if ($(".dropdown dt a")[0].title != '')
+        var _title = $(".dropdown dt a")[0].title;
+    else
+        var _title = '';
+    if (($('#poiLat').val() != '') && ($('#poiLon').val() != '') && ($('#poiName').val() != '') && (_title != '') && ($(".dropdownRadius dt a")[0].title != '')) {
+    $('#loading').css({ display: "block" });
+    var avail;
+    for (var i = 1; i <= 3; i++)
+        if (document.getElementById("APcheck" + i).checked) {
+            avail = i;
+            break;
+        }
+    var _radius = $(".dropdownRadius dt a")[0].title.substring($(".dropdownRadius dt a")[0].title.lastIndexOf("_")+1, $(".dropdownRadius dt a")[0].title.length);
+    if ($('#btnAddPOI').val() == dic("Update", lang)) {
+        $.ajax({
+            url: "EditPoiNew.php?lat=" + $('#poiLat').val() + "&lon=" + $('#poiLon').val() + "&name=" + $('#poiName').val() + "&avail=" + avail + "&ppgid=" + _title + "&id=" + $('#idPoi').val() + "&description=" + $('#poiAddress').val() + "&additional=&l=" + lang + "&radius=" + _radius,
+            context: document.body,
+            success: function (data) {
+            	var _col = data.split("@@%%")[1];
+                if (data.indexOf(dic("Error", lang)) == -1) {
+
+                    for (var i = 0; i < 4; i++)
+                        if (Boards[i] != null) {
+                        	if($('#numPoi').val() != -1){
+                            	tmpMarkers[i][$('#numPoi').val()].events.element.attributes[3].nodeValue = "EditPOI('" + $('#poiLon').val() + "', '" + $('#poiLat').val() + "', '" + $('#poiName').val() + "', '" + avail + "', '" + _title + "', '" + $('#idPoi').val() + "', '" + $('#poiAddress').val() + "', '" + $('#numPoi').val() + "', '" + $('#additionalInfo').val() + "', '" + _radius + "')";
+                            	tmpMarkers[i][$('#numPoi').val()].events.element.attributes[2].nodeValue = "ShowPopup(event, '<strong style=\"font-size: 14px;\">" + $('#poiName').val() + "<br /></strong>" + dic("Group", lang) + ": <strong style=\"font-size: 12px;\">" + $(".dropdown dt a span")[0].textContent.substring(2, $(".dropdown dt a span")[0].textContent.length) + "</strong>')";
+                           	}else
+                           	{
+
+                            	var _cant = $('#APcheck3').attr('checked') == true ? "False" : "True";
+                            	tmpSearchMarker.events.element.attributes[3].nodeValue = "EditPOI('" + $('#poiLon').val() + "', '" + $('#poiLat').val() + "', '" + $('#poiName').val() + "', '" + avail + "', '" + _title + "', '" + $('#idPoi').val() + "', '" + $('#poiAddress').val() + "', '" + $('#numPoi').val() + "', '" + $('#additionalInfo').val() + "', '" + _radius + "')";
+                            	tmpSearchMarker.events.element.attributes[2].nodeValue = "ShowPopup(event, '<strong style=\"font-size: 14px;\">" + $('#poiName').val() + "<br /></strong>" + dic("Group", lang) + ": <strong style=\"font-size: 12px;\">" + $(".dropdown dt a span")[0].textContent.substring(2, $(".dropdown dt a span")[0].textContent.length) + "</strong>')";
+                           	}
+                        }
+                    msgboxPetar(data.split("@@%%")[2]);
+                    } else
+
+                    msgboxPetar(data);
+                    ShowWait()
+                    $('#div-Add-POI').dialog('destroy');
+                    $('#loading').css({ display: "none" });
+                    HideWait();
+                    timedRefresh(2000);
+                    }
+               });
+           }
+      }else {
+     msgboxPetar(dic("ReqFields", lang));
    }
 }
 

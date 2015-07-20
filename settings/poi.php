@@ -589,25 +589,7 @@ if($numPointsInactive != 0) { ?>
 	?>
 	</option>
 	</select>
-	<div id="div-add-color" style="display:none" title="<?php echo dic("Reports.AddGroup")?>">
-	<table>
-		<tr>
-	    	<td class="text5" style="font-weight:bold"><?php echo dic("Tracking.GroupName")?></td>
-	        <td>
-	             <input id="GroupNameName"  type="text" class="textboxcalender corner5 text5" style="width:200px; height:22px; font-size:11px"/>
-	       	</td>
-	    </tr>
-	    <tr>
-	    	<td class="text5" style="font-weight:bold"><?php echo dic("Settings.ChooseColor")?></td>
-	        <td>
-	   			<div id="Color">
-				<span id="Color1" style="cursor: pointer; float:left; border:1px solid black; width:15px; height:15px;margin:5px;"></span>
-				<input id="FillColor" type="text" class="textboxCalender corner5" onclick="changecolor()" value="" style="width:175px;height:25px;" />
-	   			</div>
-			</td>
-		</tr>
-	</table>
-	</div>
+
 	<div id="div-del-group1" style="display:none" title="<?php echo dic("Settings.Action")?>">
 	   <?php echo dic("Settings.QuestionForDeleteGroup1")?><br><br>
 	</div>
