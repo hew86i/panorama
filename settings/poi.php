@@ -196,9 +196,9 @@ else
 <?php
 
 	if((int)$roleid == 2) {
-		$numPointsU = dlookup("select count(*) from pointsofinterest where clientid=" . $cid . "and groupid=1");
+		$numPointsU = dlookup("select count(*) from pointsofinterest where clientid=" . $cid . "and active = '1' and groupid=1");
 	} else {
-		$numPointsU = dlookup("select count(*) from pointsofinterest where clientid=". $cid ." and groupid=1 and ((available=3) or (available = 2 and (select organisationid from users where id=". $uid .") =
+		$numPointsU = dlookup("select count(*) from pointsofinterest where clientid=". $cid ." and active = '1' and groupid=1 and ((available=3) or (available = 2 and (select organisationid from users where id=". $uid .") =
 						(select organisationid from users where id=userid) and (select organisationid from users where id=userid) <> 0)	or (available=1 and userid=". $uid .")) ");
 	}
 
@@ -257,9 +257,9 @@ while ($poiRow = pg_fetch_assoc($dsPoigroups)) {
 if($poiRow['id'] != 1) {  // za da gi otfrli negrupiranite
 
 	if((int)$roleid == 2) {
-		$numTocki = dlookup("select count(*) from pointsofinterest where clientid=" . $cid . "and groupid=" . $poiRow['id']);
+		$numTocki = dlookup("select count(*) from pointsofinterest where clientid=" . $cid . " and active = '1'and groupid=" . $poiRow['id']);
 	} else {
-		$numTocki = dlookup("select count(*) from pointsofinterest where clientid=". $cid ." and groupid = ". $poiRow['id'] ." and ((available=3) or (available = 2 and (select organisationid from users where id=". $uid .") =
+		$numTocki = dlookup("select count(*) from pointsofinterest where clientid=". $cid ." and active = '1' and groupid = ". $poiRow['id'] ." and ((available=3) or (available = 2 and (select organisationid from users where id=". $uid .") =
 						(select organisationid from users where id=userid) and (select organisationid from users where id=userid) <> 0)	or (available=1 and userid=". $uid .")) ");
 	}
 
@@ -328,8 +328,69 @@ if($poiRow['id'] != 1) {  // za da gi otfrli negrupiranite
 	} // [end].while
 
 	?>
+
+
+<!-- ************************************ NEAKTIVNI TOCKI TITLE ****************************************** -->
+
+<br><br>
+
+<div class="align-center text2" >
+	<button id = "AktivirajGrupno" onclick="aktivirajGrupaMarkeri()" style="display:none; height: 25px; margin-left:1px"><?php dic("Settings.ActivateMultiplePOI")?></button>
+</div>
+
+<?php
+
+	if((int)$roleid == 2) {
+		$numPointsInactive = dlookup("select count(*) from pointsofinterest where clientid=" . $cid . "and active = '0'");
+	} else {
+		$numPointsInactive = dlookup("select count(*) from pointsofinterest where clientid=". $cid ." and active = '0' and ((available=3) or (available = 2 and (select organisationid from users where id=". $uid .") =
+						(select organisationid from users where id=userid) and (select organisationid from users where id=userid) <> 0)	or (available=1 and userid=". $uid .")) ");
+	}
+
+if($numPointsInactive != 0) { ?>
+
+<div class="align-center toi-group-title">
+<table id="POI_group_inactive" class="title-group" style="border-spacing:2px">
+		<tr>
+			<td align = "left" colspan="8" valign = "middle" height="40px" width = "100%" class="text2" style="color:#fff; font-weight:bold; font-size:14px;  padding-left:7px; cursor: pointer; background-color:#f7962b; font-weight:bold;" id="slider_inactive">
+				<span class="expand-icon" style="font-size:18px">▼</span>
+				<span style="position:relative; left: 10px;"><?php echo dic("Settings.InactivePOIHeader")?>
+				<span class="num-of-poi" style="position:relative;">(<?php echo $numPointsInactive ?>)</span>
+			</td>
+		</tr>
+</table>
+<table id="POI_group_header_inactive" class="col-titles" style="margin-top:0px">
+	<!-- [change] -->
+	<tr>
+		<td width="4%"  class="text2 td-row ca"><?php dic("Fm.Rbr")?></td>
+		<td width="38%" valign ="middle" class="text2 la td-row" style="padding-left:8px">
+			<span style="padding-left: 75px;"><?php echo dic("Routes.Name")?></span><br>
+			<span style="padding-left: 75px;">(<?php dic("Routes.CreatedBy")?>)</span>&nbsp;&nbsp;
+		</td>
+		<td width="13%" class="text2 td-row ca" ><?php dic("Settings.TypeOfPoi")?><br> (<?php dic("Tracking.Radius")?>)</td>
+		<td width="13%" class="text2 td-row ca" ><?php dic("Reports.AvailableFor")?></td>
+		<td width="8%"  class="text2 td-row c-or ca" ><?php dic("Settings.TransferPOI")?></td>
+		<td width="8%"  class="text2 td-row c-or ca" ><?php dic("Routes.Overview")?></td>
+		<td width="8%"  class="text2 td-row c-or ca" ><?php dic("Routes.Mod")?></td>
+		<td width="8%"  class="text2 td-row c-or ca" ><?php dic("Fm.Delete")?></td>
+	</tr>
+</table>
+
+</div>  <!-- [end]. toi-group-title -->
+
+<?php } ?>  <!-- [end]. dali ima negrupirani tocki -->
+
+<div id="POI_data_inactive" class="POI_data align-center toi-row">
+<table>
+	<tbody>
+	<!-- FETCH INACTIVE DATA -->
+	</tbody>
+</table>
+</div>
+
+<!-- ******************************************************************************************************* -->
+
 <br><br><br><br><br>
-<!-- test -->
 
 <?php
 
@@ -366,14 +427,20 @@ if($poiRow['id'] != 1) {  // za da gi otfrli negrupiranite
 	<div align = "left">
 		<label class="text5"> <?php echo dic("Tracking.Group")?>:&nbsp;</label>
 		<select id="GroupNameList" class="combobox text2">
+		<option id="1" value = "1"><?php echo dic("Settings.NotGroupedItems"); ?></option>
 		<?php
-			$qSPoiGroups =query("select * from pointsofinterestgroups where clientid = 357 order by name");
+			$qSPoiGroups =query("select * from pointsofinterestgroups where clientid = ". $cid ." order by name");
 			while ($poiRow = pg_fetch_assoc($qSPoiGroups)) { ?>
 				<option id="<?php echo $poiRow["id"] ?>" value = "<?php echo $poiRow["id"] ?>"><?php echo $poiRow["name"] ?></option>
 		<?php } ?>
 		</select>
 	</div>
 </div>
+
+<div id="div-inactive-poi-multiple" style="display:none" title="<?php echo dic("Settings.Action")?>"><?php echo dic("Settings.MakeInactiveQuestion")?></div>
+<div id="div-active-poi-multiple" style="display:none" title="<?php echo dic("Settings.Action")?>"><?php echo dic("Settings.ActivateMarkers")?></div>
+
+<div id="div-edit-poi-multiple" style="display:none" title="<?php echo dic("Settings.SwitchPOI")?>"></div>
 
 <div id="div-del-poi" style="display:none" title="<?php echo dic("Tracking.DeletePoi")?>"><?php echo dic("Reports.DeletePoi")?></div>
 <div id="div-del-poi-multiple" style="display:none" title="<?php echo dic("Settings.Action")?>"><?php echo dic("Reports.DeletePoiMultiple")?></div>
@@ -390,9 +457,8 @@ $(document).ready(function () {
 
 	lang = '<?php echo $cLang ?>';
     prikazi();
-    //color_title(); // promena na boite
+    prikaziInactive();
    	shade_boxes();
-
 
     $('#kopce').button({ icons: { primary: "ui-icon-plus"} });
     $('#clear-input').button({ icons: { primary: "ui-icon-minus"} });
@@ -405,6 +471,8 @@ $(document).ready(function () {
 	buttonIcons();
     top.HideWait();
 	adjustWidth();
+
+	fetch_inactive();
 
     $.each(numOfPoints, function(index,value){
 		if(value !== 0) {
@@ -504,7 +572,6 @@ $(document).ready(function () {
 		$('#search_img').attr('src','../images/search_find.png');
 
 	});
-
 
     // ke se vcitaat site tocki vo JSON format
 	setTimeout(function(){

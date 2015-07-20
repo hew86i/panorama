@@ -65,6 +65,16 @@ function show_group(_id) {
 		inx = find_group(GroupsInfo,currGroup);
 	}
 
+	// ako se naogja vo rezim na prebaruvanje
+
+	if($('#search_input').val() != '') {
+		goToByScroll("POI_group" + currGroup,10);
+		$('#POI_data_new_' + currGroup).slideToggle(100);
+		return false;
+	}
+
+	// zastani tuka ako e vo rezim na prebaruvanje
+
 	if(GroupsInfo[inx].expanded === false) {
 		GroupsInfo[inx].expanded = true;
 		if(currPoints !== 0) {
@@ -79,15 +89,6 @@ function show_group(_id) {
 
 
 	}
-	// ako se naogja vo rezim na prebaruvanje
-
-	if($('#search_input').val() != '') {
-		goToByScroll("POI_group" + currGroup,10);
-		$('#POI_data_new_' + currGroup).slideToggle(100);
-		return false;
-	}
-
-	// zastani tuka ako e vo rezim na prebaruvanje
 
 	if(GroupsInfo[inx].clicked === false) {
 
@@ -290,6 +291,20 @@ function prikazi() {
 		document.getElementById('brisiGrupno').style.display = '';
 		document.getElementById('prefrliGrupno').style.display = '';
 		document.getElementById('neaktivniGrupno').style.display = '';
+	}
+}
+
+function prikaziInactive()
+{
+	var checked = $("input[class=caseInactive]:checked").length;
+
+	if (checked == 0)
+	{
+		document.getElementById('AktivirajGrupno').style.display = 'none';
+	}
+	else
+	{
+		document.getElementById('AktivirajGrupno').style.display = '';
 	}
 }
 
@@ -549,6 +564,137 @@ $('#div-del-poi').dialog({ modal: true, width: 350, height: 170, resizable: fals
  });
 }
 
+function prefrliGrupaMarkeri()
+{
+	ShowWait();
+	var selektirani = "";
+	    $('input[class="case"]').each(function () {
+	        if(this.checked){
+	            selektirani +=  $(this).attr('id') + ",";
+	    }
+    });
+	selektirani = selektirani.substring(0,selektirani.length - 1);
+	$.ajax({
+	url:"TransferPOIMultiple.php?selektirani="+selektirani,
+    context: document.body,
+    success: function(data){
+    HideWait();
+	$('#div-edit-poi-multiple').html(data);
+	document.getElementById('div-edit-poi-multiple').title = dic("Settings.SwitchPOI");
+    $('#div-edit-poi-multiple').dialog({  modal: true, width: 350, height: 300, resizable: false,
+              buttons: 
+              [
+              {
+              	text:dic("Settings.Change",lang),
+                click: function(){
+
+					    var groupid = $('#GroupNameMultiple option:selected').val();
+
+						$.ajax({
+                			url : "UpPOIMultiple.php?selektirani="+selektirani+"&groupid="+groupid,
+							context: document.body,
+	    					success: function(data){
+	    					msgboxPetar(dic("Settings.SuccSwitched"),lang);
+	    					top.ShowWait();
+								window.location.reload();
+								}
+						  });
+						  $( this ).dialog( "close" );
+						  HideWait();
+						    }
+
+					},
+                {
+                	text:dic("cancel",lang),
+                	click: function() {
+				    $( this ).dialog( "close" );
+			  	    }
+			 	}
+            ]
+         });
+      }
+    });
+}
+
+function neaktivniGrupaMarkeri()
+{
+var selektiraniInactive = "";
+$('input[class="case"]').each(function () {
+    if(this.checked){
+        selektiraniInactive +=  $(this).attr('id') + ",";
+    }
+});
+selektiraniInactive = selektiraniInactive.substring(0,selektiraniInactive.length - 1);
+
+$('#div-inactive-poi-multiple').dialog({ modal: true, width: 350, height: 250, resizable: false,
+            buttons:
+            [
+            {
+            	text:dic("Settings.Yes"),
+			    click: function() {
+                        $.ajax({
+	                        url: "InactiveMultiple.php?selektiraniInactive="+selektiraniInactive,
+	                        context: document.body,
+	                        success: function(data){
+	                        msgboxPetar(dic("Settings.SuccMadeInactive"),lang);
+	                        top.ShowWait();
+	                        window.location.reload();
+	                        }
+	                     });
+	                   $( this ).dialog( "close" );
+                     HideWait();
+                   }
+			    },
+			    {
+			    	text:dic("Settings.No",lang),
+                click: function() {
+				    $( this ).dialog( "close" );
+			    }
+             }
+         ]
+     });
+}
+
+function aktivirajGrupaMarkeri()
+{
+var selektiraniActive = "";
+$('input[class="caseInactive"]').each(function () {
+    if(this.checked){
+        selektiraniActive +=  $(this).attr('id') + ",";
+    }
+});
+selektiraniActive = selektiraniActive.substring(0,selektiraniActive.length - 1);
+
+$('#div-active-poi-multiple').dialog({ modal: true, width: 350, height: 250, resizable: false,
+            buttons:
+            [
+            {
+            	text:dic("Settings.Yes"),
+			    click: function() {
+                        $.ajax({
+	                        url: "ActiveMultiple.php?selektiraniActive="+selektiraniActive,
+	                        context: document.body,
+	                        success: function(data){
+	                        msgboxPetar(dic("Settings.SuccActivatedMarkers"),lang)
+	                        top.ShowWait();
+	                        window.location.reload();
+	                        }
+	                     });
+	                   $(this).dialog("close");
+                       HideWait();
+                     }
+                   },
+			    {
+			    	text:dic("Settings.No",lang),
+                click: function() {
+				    $( this ).dialog( "close" );
+			    }
+             }
+         ]
+     });
+}
+
+
 /**
  * -----------------------------------------------------------------
  * 							S E A R C H
@@ -692,11 +838,14 @@ function clear_input() {
 	$('#search_input').blur();
 }
 
-function append_data(data,cnt){
+function append_data(data,inactive){
 
 var img_row = '';
 var tip = '';
 var editp = '';
+var isInactive = (arguments.length == 2) ? 'prikaziInactive()' : 'prikazi()';
+var isInactiveCase = (arguments.length == 2) ? 'caseInactive' : 'case';
+
 if(data.type == 1) { img_row = "poiButton.png"; tip = dic("Settings.POI",lang); editp = "EditPOI('"+data.id+"')";}
 if(data.type == 2) { img_row = "zoneButton.png"; tip = dic("Settings.GeoFence",lang); editp = "OpenMapAlarm2('"+data.id+"')";}
 if(data.type == 3) { img_row = "areaImg.png"; tip = dic("Settings.Polygon",lang); editp = "OpenMapAlarm2('"+data.id+"')";}
@@ -726,7 +875,7 @@ var html =
 		"<td width='38%' class='text2 td-row-poi la' style='padding-left:8px'>" +
 		"<div class='toggle'>" +
 
-			"<input type='checkbox' class='case' id='"+data.id+"' onclick='prikazi()'/>&nbsp;"+
+			"<input type='checkbox' class='"+isInactiveCase+"' id='"+data.id+"' onclick='"+isInactive+"'/>&nbsp;"+
 			"<img src = '../images/"+img_row+"' height='25px' width = '25px'  style='position: relative;top:7px;'></img>"+
 			"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
 			"<span class='poi-id-name' style='position: relative;bottom:8px;'>"+
@@ -841,6 +990,22 @@ function fetch_all() {
 	    	$('#fetch-data').append(alldata);
 	    	toi = JSON.parse(alldata);
 	    }
+	});
+}
+
+function fetch_inactive() {
+	$.ajax({
+		url: "GetPOIOffset.php?getInactive=1",
+		context: document.body,
+		success: function(inactive) {
+			inactive_data = JSON.parse(inactive)
+			$.each(inactive_data,function(i,v){
+				$('#POI_data_inactive table tbody').append(append_data(v,true));
+			})
+
+	    	$('#POI_data_inactive').show();
+	    	buttonIcons();
+		}
 	});
 }
 

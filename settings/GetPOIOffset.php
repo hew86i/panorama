@@ -22,7 +22,7 @@
 	$groupid = str_replace("'", "''", NNull($_GET['groupid'], ''));
 	$isExpanded = NNull($_GET['expanded'], '');
 	$isFetchAll = (int)NNull($_GET['all'], 0);
-
+	$getInactive = (int)NNull($_GET['getInactive'], 0);
 
 	if($isFetchAll == 1) {
 
@@ -32,11 +32,12 @@
 
 		$qSt_3 = "select p.id,p.groupid,p.name,p.type,p.radius,p.povrsina,p.userid,p.available,u.fullname from pointsofinterest p
 				left join users u on p.userid=u.id
-				where p.clientid=". $cid ." and ((p.available=3) or
+				where p.clientid=". $cid ." and p.active = '1' and ((p.available=3) or
 				(p.available = 2 and (select organisationid from users where id=". $uid .") = (select organisationid from users where id=userid) and (select organisationid from users where id=userid) <> 0) or
 				(available=1 and userid=". $uid .")) order by p.groupid asc, p.id asc";
 
-		$qSt_2 = "select p.id,p.groupid,p.name,p.type,p.radius,p.povrsina,p.userid,p.available,u.fullname from pointsofinterest p left join users u on p.userid=u.id where p.clientid=". $cid . " order by p.groupid asc, p.id asc";
+		$qSt_2 = "select p.id,p.groupid,p.name,p.type,p.radius,p.povrsina,p.userid,p.available,u.fullname from pointsofinterest p left join users u on p.userid=u.id where p.clientid=". $cid . " and p.active = '1' order by p.groupid asc, p.id asc";
+
 
 		$gal = ((int)$roleid == 2) ? $qSt_2 : $qSt_3;
 		$getall = query($gal);
@@ -62,11 +63,41 @@
 		// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	}
 
-	$qGetpoi_user = "select * from pointsofinterest where clientid=". $cid ." and groupid= ". (int)$groupid ." and ((available=3) or (available=2 and (select organisationid from users where id=". $uid .") =
+	// >>>>>>>>>>> fetch all inactive >>>>>>>>>>>>>
+
+	if($getInactive == 1) {
+
+		$inactiveRows = array();
+
+		$iqSt_3 = "select p.id,p.groupid,p.name,p.type,p.radius,p.povrsina,p.userid,p.available,u.fullname from pointsofinterest p
+				left join users u on p.userid=u.id
+				where p.clientid=". $cid ." and p.active = '0' and ((p.available=3) or
+				(p.available = 2 and (select organisationid from users where id=". $uid .") = (select organisationid from users where id=userid) and (select organisationid from users where id=userid) <> 0) or
+				(available=1 and userid=". $uid .")) order by p.groupid asc, p.id asc";
+
+		$iqSt_2 = "select p.id,p.groupid,p.name,p.type,p.radius,p.povrsina,p.userid,p.available,u.fullname from pointsofinterest p left join users u on p.userid=u.id where p.clientid=". $cid . " and p.active = '0' order by p.groupid asc, p.id asc";
+
+		$igal = ((int)$roleid == 2) ? $iqSt_2 : $iqSt_3;
+		$igetall = query($igal);
+
+		$ic = 1;
+		while ($ir = pg_fetch_assoc($igetall)) {
+			$ir['tblindex'] = $ic++;
+			$inactiveRows[] = $ir;
+		}
+
+		echo json_encode($inactiveRows);
+		exit;
+		// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	}
+
+	// >>>>>>>>>>>>>>>>>>>>>>>>>  F E T C H     B Y    O F F S E T    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+	$qGetpoi_user = "select * from pointsofinterest where clientid=". $cid ." and active = '1' and groupid= ". (int)$groupid ." and ((available=3) or (available=2 and (select organisationid from users where id=". $uid .") =
 					(select organisationid from users where id=userid) and (select organisationid from users where id=userid) <> 0)
 					or (available=1 and userid=". $uid .")) order by id limit ". (int)$limit ." offset " . (int)$offset;
 
-	$gGetpoi_admin =  "select * from pointsofinterest where clientid=" . $cid . " and groupid=" . (int)$groupid . " order by id limit ". (int)$limit ." offset " . (int)$offset;
+	$gGetpoi_admin =  "select * from pointsofinterest where clientid=" . $cid . " and active = '1' and groupid=" . (int)$groupid . " order by id limit ". (int)$limit ." offset " . (int)$offset;
 
 	$qGp = ((int)$roleid == 2) ? $gGetpoi_admin : $qGetpoi_user;
 
