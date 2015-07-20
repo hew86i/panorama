@@ -184,13 +184,13 @@
 		</td>
 
 		<td width="8%" class="text2 td-row-poi">
-			<div class="toggle"><button class="btn-refresh-ui btn-def" id="btnprivilegesz<?php echo $rowN?>" onclick="edit_poi('<?php echo $row["id"]?>')"></button></div>
+			<div class="toggle"><button class="btn-refresh-ui btn-def" id="btnprivilegesz<?php echo $rowN?>" onclick="edit_poi('<?php echo $row["id"]?>','<?php echo $cLang?>')"></button></div>
 		</td>
 		<td width="8%" class="text2 td-row-poi">
 			<div class="toggle"><button class="btn-search-ui btn-def" id="btnMapPoiUngroup<?php echo $rowN?>" onclick = "OpenMapAlarm1('<?php echo $row["id"]?>', '<?php echo $row["name"]?>', '<?php echo $row["type"]?>');"></button></div>
 		</td>
 		<td width="8%" class="text2 td-row-poi">
-			<div class="toggle"><button class="btn-penci-ui btn-def" id="btnEditPoiUngroup<?php echo $rowN?>" <?php  if($row["type"] ==1){?> onclick="EditPOI('<?php echo $lon?>','<? echo $lat?>','<?php echo $row["name"]?>','<?php echo $row["available"]?>','<?php echo $row["groupid"]?>','<?php echo $row["id"]?>','','1','','<?php echo $row["radius"]?>');" <?php  } if($row["type"]==2 || $row["type"]==3 ){ ?> onclick = "OpenMapAlarm2('<?php echo $row["id"]?>', '<?php echo $row["name"]?>', '<?php echo $row["type"]?>');" <?php }?>></button></div>
+			<div class="toggle"><button class="btn-penci-ui btn-def" id="btnEditPoiUngroup<?php echo $rowN?>" <?php  if($row["type"] ==1){?> onclick="edit_poi_dialog('<?php echo $row["name"]?>','<?php echo $row["available"]?>','<?php echo $row["groupid"]?>','<?php echo $row["id"]?>','','1','','<?php echo $row["radius"]?>');" <?php  } if($row["type"]==2 || $row["type"]==3 ){ ?> onclick = "OpenMapAlarm2('<?php echo $row["id"]?>', '<?php echo $row["name"]?>', '<?php echo $row["type"]?>');" <?php }?>></button></div>
 		</td>
 		<td width="8%" class="text2 td-row-poi">
 			<div class="toggle"><button class="btn-trash-ui btn-def" id="btnDeletez<?php echo $rowN?>"  onclick="DeletePOI('<?php echo $row["id"]?>','<?php echo $cLang?>')"></button></div>

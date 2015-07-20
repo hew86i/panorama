@@ -445,6 +445,195 @@ if($numPointsInactive != 0) { ?>
 <div id="div-del-poi" style="display:none" title="<?php echo dic("Tracking.DeletePoi")?>"><?php echo dic("Reports.DeletePoi")?></div>
 <div id="div-del-poi-multiple" style="display:none" title="<?php echo dic("Settings.Action")?>"><?php echo dic("Reports.DeletePoiMultiple")?></div>
 
+ <div id="dialog-message" title="<?php echo dic("Reports.Message")?>" style="display:none">
+	<p>
+		<span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+		<div id="div-msgbox" style="font-size:14px"></div>
+	</p>
+</div>
+
+<div id="div-Add-POI" style="display: none;">
+<br/>
+<table style="font-size: 11px; color: rgb(65, 65, 65); font-family: Arial,Helvetica,sans-serif; margin-left: 20px;" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td width="90px"><?php echo dic("Tracking.Latitude")?></td>
+		<td>
+			<input id="poiLat" type="text" class="textboxCalender corner5" style="width:120px"/>
+		</td>
+	</tr>
+	<tr height="50px">
+		<td width="90px"><?php echo dic("Tracking.Longitude")?></td>
+		<td>
+			<input id="poiLon" type="text" class="textboxCalender corner5" style="width:120px" />
+		</td>
+	</tr>
+	<tr>
+		<td width="90px"><?php echo dic("Tracking.Address")?></td>
+		<td>
+			<input id="poiAddress" type="text" class="textboxCalender corner5" style="width:269px; position: relative; float: left;" /><img id="loadingAddress" style="visibility: hidden; position: relative; float: left; top: 2px;" width="25px" src="../images/loadingP1.gif" border="0" align="absmiddle" />
+		</td>
+	</tr>
+	<tr height="50px">
+		<td width="90px"><?php echo dic("Tracking.NamePoi")?></td>
+		<td>
+			<input id="poiName" type="text" class="textboxCalender corner5" style="width:269px" />
+		</td>
+	</tr>
+	<tr>
+		<td width="90px"><?php echo dic("Tracking.AvailableFor")?></td>
+		<td>
+			<div id="poiAvail" class="corner5" style="font-size: 10px">
+		        <input type="radio" id="APcheck1" name="radio" /><label for="APcheck1">Корисник</label>
+		        <input type="radio" id="APcheck2" name="radio" /><label for="APcheck2">Организациона единица</label>
+		        <input type="radio" id="APcheck3" name="radio" /><label for="APcheck3">Компанија</label>
+		    </div>
+		</td>
+	</tr>
+	<tr height="50px">
+		<td width="90px"><?php echo dic("Tracking.Radius")?></td>
+		<td>
+			<dl id="poiRadius" class="dropdownRadius" style="width: 70px; margin: 0px;">
+		        <dt><a href="#" title="" class="combobox1"><span><?php echo dic("Tracking.SelectRadius")?></span></a></dt>
+		        <dd>
+		            <ul>
+		                <li><a id="RadiusID_50" href="#">50&nbsp;<?php echo dic("Tracking.Meters")?></a></li>
+		                <li><a id="RadiusID_70" href="#">70&nbsp;<?php echo dic("Tracking.Meters")?></a></li>
+		                <li><a id="RadiusID_100" href="#">100&nbsp;<?php echo dic("Tracking.Meters")?></a></li>
+		                <li><a id="RadiusID_150" href="#">150&nbsp;<?php echo dic("Tracking.Meters")?></a></li>
+		            </ul>
+		        </dd>
+		    </dl>
+		</td>
+	</tr>
+	<tr>
+		<td width="90px"><?php echo dic("Tracking.Group")?></td>
+		<td>
+			<dl id="poiGroup" class="dropdown" style="width: 150px; position: relative; float: left; padding: 0px; margin: 0px;">
+		    <?php
+				$dsUG = query("SELECT id, name, fillcolor, '0' image FROM pointsofinterestgroups WHERE id=1");
+		        ?>
+		        <dt><a href="#" title="" id="groupidTEst" class="combobox1"><span><?php echo dic("Tracking.SelectGroup")?></span></a></dt>
+		        <dd>
+		            <ul>
+		                <li><a id="<?php echo pg_fetch_result($dsUG, 0, "id")?>" href="#">&nbsp;&nbsp;<?php echo dic("Settings.NotGroupedItems")?><div class="flag" style="margin-top: -3px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; width: 24px; height: 24px; background: url('http://gps.mk/new/pin/?color=<?php echo pg_fetch_result($dsUG, 0, "fillcolor")?>&type=<?php echo pg_fetch_result($dsUG, 0, "image")?>') no-repeat; position: relative; float: left;"></div></a></li>
+		                <?php
+							$dsGroup1 = query("select id, name, fillcolor, '0' image from pointsofinterestgroups where clientid=".session("client_id"));
+		                    while($row1 = pg_fetch_array($dsGroup1)) 
+		                    {
+		                    	$_color = substr($row1["fillcolor"], 1, strlen($row1["fillcolor"]));
+		                ?>
+		                <li><a id="<?php echo $row1["id"]?>" href="#">&nbsp;&nbsp;<?php echo $row1["name"]?><div class="flag" style="margin-top: -3px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; width: 24px; height: 24px; background: url('http://gps.mk/new/pin/?color=<?php echo $_color?>&type=<?php echo $row1["image"]?>') no-repeat; position: relative; float: left;"></div></a></li>
+		                <?php
+		                    }
+		                ?>
+		            </ul>
+		        </dd>
+		    </dl>
+			<input type="button" id="AddGroup" style="left: 20px; top: 1px;" onclick="AddGroup('0')" value="+" />
+		</td>
+	</tr>
+</table>
+<br /><br />
+<input type="hidden" id="idPoi" value="" />
+<input type="hidden" id="numPoi" value="" />
+<div align="right" style="display:block; width:380px; height: 30px; padding-top: 5px; position: relative; float: right; right: 15px;">
+    <img id="loading" style="display: none; width: 140px; position: absolute; left: 10px; margin-top: 7px;" src="../images/loading_bar1.gif" alt="" />
+	<input type="button" style="position: relative; float: right;" class="BlackText corner5" id="btnCancelPOI" value="<?php echo dic("Tracking.Cancel")?>" onclick="$('#div-Add-POI').dialog('destroy');" />&nbsp;&nbsp;        
+	<input type="button" style="position: relative; float: right;" class="BlackText corner5" id="btnAddPOI" value="<?php echo dic("Tracking.Add")?>" onclick="ButtonAddEditPOIokClickPetar()" />
+</div><br/><br/>
+</div>
+
+<div id="div-edit-user" style="display:none" title="<?php echo dic("Settings.ChangingGroup")?>">
+<table>
+        <tr>
+        <td class="text5" style="font-weight:bold"><?php echo dic("Routes.Name")?></td>
+        <td>
+            <input id="NameGroup" type="text" value="" class="textboxcalender corner5 text5" style="width:200px; height:22px; font-size:11px"/>
+        </td>
+	    </tr>
+    	<tr>
+            <td class="text5" style="font-weight:bold"><?php echo dic("Reports.Color")?></td>
+        <td>
+		<div id="colorPicker5">
+			<span id="colorPicker4" style="cursor: pointer; float:left; border:1px solid black; width:20px; height:20px;margin:5px;"></span>
+			<input id="clickAny1" type="text" class="textboxCalender corner5" onchange="changecolorSettings()" value="" style="width:120px" />
+		</div>
+        </td>
+        </tr>
+</table>
+</div>
+
+
+<div id="div-del-group" style="display:none" title="<?php echo dic("Settings.Action")?>">
+<?php echo dic("Settings.QuestionForDeleteGroup1")?><br><br>
+<?php echo dic("Settings.QuestionForDeleteGroup2")?><br><br>
+<br>
+<label class="text5"> <?php echo dic("Tracking.Group")?>:</label>
+	<?php $find = query("SELECT id,name from pointsofinterestgroups where clientid = " . Session("client_id")." order by name");
+	$n = 1;
+	?>
+
+	<select id="GroupName" class="combobox text2">
+	<option id="<?php echo $n ?>" value = "<?php echo $n?>"><?php echo dic("Settings.NotGroupedItems")?> </option>
+	<?php
+	while($row3 = pg_fetch_array($find)){
+	$data[] = ($row3);
+	}
+	foreach ($data as $row3)
+	{
+	?>
+	<option id="<?php echo $row3["id"] ?>" value = "<?php echo $row3["id"] ?>"><?php echo $row3["name"] ?>
+	</div>
+	<?php
+	}
+	?>
+	</option>
+	</select>
+	<div id="div-add-color" style="display:none" title="<?php echo dic("Reports.AddGroup")?>">
+	<table>
+		<tr>
+	    	<td class="text5" style="font-weight:bold"><?php echo dic("Tracking.GroupName")?></td>
+	        <td>
+	             <input id="GroupNameName"  type="text" class="textboxcalender corner5 text5" style="width:200px; height:22px; font-size:11px"/>
+	       	</td>
+	    </tr>
+	    <tr>
+	    	<td class="text5" style="font-weight:bold"><?php echo dic("Settings.ChooseColor")?></td>
+	        <td>
+	   			<div id="Color">
+				<span id="Color1" style="cursor: pointer; float:left; border:1px solid black; width:15px; height:15px;margin:5px;"></span>
+				<input id="FillColor" type="text" class="textboxCalender corner5" onclick="changecolor()" value="" style="width:175px;height:25px;" />
+	   			</div>
+			</td>
+		</tr>
+	</table>
+	</div>
+	<div id="div-del-group1" style="display:none" title="<?php echo dic("Settings.Action")?>">
+	   <?php echo dic("Settings.QuestionForDeleteGroup1")?><br><br>
+	</div>
+</div>
+<div id="div-edit-user" style="display:none" title="<?php echo dic("Settings.ChangingGroup")?>">
+<table>
+        <tr>
+        <td class="text5" style="font-weight:bold"><?php echo dic("Routes.Name")?></td>
+        <td>
+            <input id="NameGroup" type="text" value="" class="textboxcalender corner5 text5" style="width:200px; height:22px; font-size:11px"/>
+        </td>
+	    </tr>
+    	<tr>
+            <td class="text5" style="font-weight:bold"><?php echo dic("Reports.Color")?></td>
+        <td>
+		<div id="colorPicker5">
+			<span id="colorPicker4" style="cursor: pointer; float:left; border:1px solid black; width:20px; height:20px;margin:5px;"></span>
+			<input id="clickAny1" type="text" class="textboxCalender corner5" onchange="changecolorSettings()" value="" style="width:120px" />
+		</div>
+        </td>
+        </tr>
+</table>
+</div>
+
+
+
 <!-- >>>>>>>>>>>>>>>>>>>>>>>> testing >>>>>>>>>>>>>>>>>>>>>> -->
 
 <div id="fetch-data" style="display:none"></div>

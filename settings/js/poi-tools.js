@@ -504,7 +504,7 @@ selektirani = selektirani.substring(0,selektirani.length - 1);
 	});
 }
 
-function edit_poi(id){
+function edit_poi(id,lang){
 	var html = '';
 	$('#div-edit-poi').dialog({
 		modal: true,
@@ -521,8 +521,18 @@ function edit_poi(id){
 			{
 				text:dic("Settings.Change",lang),
             	click: function(){
+    		        var selectedGroup = $("#GroupNameList option:selected").val();
 
-            	}
+					$.ajax({
+						url : "UpPOI.php?id1="+id+"&groupidVtoro="+selectedGroup,
+						context: document.body,
+						success: function(){
+	 						msgboxPetar(dic("Settings.SuccSwitched"),lang);
+		                    timedRefresh(1200)
+						}
+					});
+				}
+
 			},
 			{
 				text:dic("cancel",lang),
@@ -595,8 +605,7 @@ function prefrliGrupaMarkeri()
 							context: document.body,
 	    					success: function(data){
 	    					msgboxPetar(dic("Settings.SuccSwitched"),lang);
-	    					top.ShowWait();
-								window.location.reload();
+								timedRefresh(1400);
 								}
 						  });
 						  $( this ).dialog( "close" );
@@ -692,6 +701,230 @@ $('#div-active-poi-multiple').dialog({ modal: true, width: 350, height: 250, res
              }
          ]
      });
+}
+
+function edit_poi_dialog(name, avail, ppgid, id, desc, num, addinfo, radiusID) {
+
+	var lon_lat = get_lonlat(id).split('@');
+	var lon = lon_lat[0];
+	var lat = lon_lat[1];
+
+    $('#poiAddress').val('');
+    $('#loadingAddress').css({ visibility: "visible" });
+    $('#div-Add-POI').attr("title", dic("EditPoi", lang));
+    $('#btnAddPOI').attr("value", dic("Update", lang));
+    $('#numPoi').val(num);
+    if (desc == "") {
+
+        $.ajax({
+            url: twopoint + "/main/getGeocode.php?lon=" + lon + "&lat=" + lat + "&tpoint=" + twopoint,
+            context: document.body,
+            success: function (data) {
+                $('#poiAddress').val(data);
+                //HideWait();
+                $('#loadingAddress').css({ visibility: "hidden" });
+            }
+        });
+    
+    } else {
+        $('#poiAddress').val(desc);
+        //HideWait();
+        $('#loadingAddress').css({ visibility: "hidden" });
+    }
+    for (var i = 0; i < $("#poiRadius dd ul li").length; i++) {
+        if ($("#poiRadius dd ul li a")[i].id == "RadiusID_" + radiusID) {
+            var text = $($("#poiRadius dd ul li a")[i]).html();
+            $("#poiRadius dt a")[0].title = "RadiusID_" + radiusID;
+            //document.getElementById("groupidTEst").title = ppgid;
+            $("#poiRadius dt a span").html(text);
+            break;
+        }
+    }
+    for (var i = 0; i < $("#poiGroup dd ul li").length; i++) {
+        if ($("#poiGroup dd ul li a")[i].id == ppgid) {
+            var text = $($("#poiGroup dd ul li a")[i]).html();
+            $("#poiGroup dt a")[0].title = ppgid;
+            document.getElementById("groupidTEst").title = ppgid;
+            $("#poiGroup dt a span").html(text);
+            break;
+        }
+    }
+    $('#APcheck' + avail).attr({ checked: 'checked' });
+    $('#AddGroup').button();
+    $('#poiAvail').buttonset();
+
+    $('#btnDeletePOI').css({ display: 'block' });
+    $('#btnDeletePOI').button();
+    $('#btnAddPOI').button();
+    $('#btnCancelPOI').button();
+    $('#poiLat').val(lat);
+    $('#poiLon').val(lon);
+    $('#idPoi').val(id);
+    $('#additionalInfo').val(addinfo);
+    $('#poiName').val(name);
+    $("#div-Add-POI").dialog({ modal: true, width: 430, height: 440, zIndex: 9999, resizable: false });
+}
+
+function get_lonlat(id,callback) {
+	var ret = ""
+	$.ajax({
+		url: "GetLonLat.php?id=" + id,
+		async: false,
+		context: document.body,
+		success: function(data){
+			var getdata = data.trim();
+			if(getdata.length > 1) {
+				ret = getdata;
+			}
+		}
+	});
+	return ret;
+}
+
+function EditGroup(id,lang){
+	ShowWait()
+	$.ajax({
+	    url: "EditColor.php?id="+id+"&l="+lang,
+	    context: document.body,
+	    success: function(data){
+            HideWait()
+			$("#colorPicker4").mlColorPicker({ 'onChange': function (val) {
+		    $("#colorPicker4").css("background-color", "#" + val);
+		    $("#clickAny1").val("#" + val);
+		    }
+		    });
+		    $('#NameGroup').val(data.split("$$")[0].replace("\n\n",""));
+		    $('#clickAny1').val(data.split("$$")[1]);
+		    changecolor()
+		    document.getElementById('div-edit-user').title = dic("Settings.ChangingGroup")
+	        $('#div-edit-user').dialog({ modal: true, width: 350, height: 200, resizable: false,
+	             buttons:
+	             [
+	             {
+	             	text:dic("Settings.Change",lang),
+			        click: function() {
+	                    var GroupName = $('#NameGroup').val()
+	                    var ColorName = encodeURIComponent($('#clickAny1').val())
+	                    if(GroupName==''){
+	                        msgboxPetar(dic("Settings.noGroupName", lang))
+	                    }else{
+	                        if(ColorName==''){
+	                            msgboxPetar(dic("Settings.ChooseColor", lang))
+	                        }
+	                        else{
+
+	                            $.ajax({
+								url: "UpGroup.php?id1="+id+"&GroupName="+GroupName+"&ColorName="+ColorName,
+	                             context: document.body,
+	                              success: function(data){
+	                              	msgboxPetar(dic("Settings.GroupSuccessfullyChanged"),lang)
+		                            window.location.reload();
+									}
+	                            });
+	                            $( this ).dialog( "close" );
+	                                }
+	                              }
+	                           }
+
+	                },
+	                {
+	                	text:dic("cancel",lang),
+	                	click: function() {
+				        $( this ).dialog( "close" );
+			        },
+	             }
+	             ]
+	        });
+    	}
+    });
+}
+
+function DeleteGroup(id,lang, cntRows) {
+if(cntRows>0){
+document.getElementById('div-del-group').title = dic("Settings.Action");
+$('#div-del-group').dialog({ modal: true, width: 350, height: 300, resizable: false,
+buttons:
+[
+{
+				text:dic("Settings.Delete",lang),
+					click: function() {
+						var groupid = $("#GroupName option:selected").val();
+                        $.ajax({
+                        	url:"DelGroupPOI.php?id="+id+"&groupid="+groupid,
+	                        context: document.body,
+	                        success: function(data){
+	                        if(data == 1)
+                            {
+                              	msgboxPetar(dic("Settings.CantGroupDelete",lang));
+                            }
+                            else
+                            {
+                              	msgboxPetar(dic("Settings.DeletedGroup"),lang)
+	                        	window.location.reload();
+	                        }
+	                      }
+	                    });	
+                        $( this ).dialog( "close" );
+			   		}
+			    },
+			    {
+			    text:dic("cancel",lang),	
+                click: function() {
+				    $( this ).dialog( "close" );
+			    }
+            }
+        ]
+    });
+}
+else
+{
+document.getElementById('div-del-group1').title = dic("Settings.Action");
+$('#div-del-group1').dialog({ modal: true, width: 350, height: 220, resizable: false,
+buttons: 
+[
+{
+				text:dic("Settings.Delete",lang),
+					click: function() {
+						
+                        $.ajax({
+                        	url:"DelGroupPOI.php?id="+id,
+	                        context: document.body,
+	                        success: function(data){
+	                        msgboxPetar(dic("Settings.DeletedGroup"),lang)
+	                        window.location.reload();
+							}
+	                    });	
+                        $( this ).dialog( "close" );
+			   		}
+			    },
+			    {
+			    text:dic("cancel",lang),	
+                click: function() {
+				    $( this ).dialog( "close" );
+			    }
+           }
+           ]
+     });
+   }
+}
+
+
+function OpenMapAlarm1(id, name , type){
+$('#dialog-map').html('<iframe id="iframemaps" style="width: 100%; height: 100%; border:0px" src=""></iframe>');
+document.getElementById('iframemaps').src = 'LoadMap.php?id=' + id + '&name=' + name + '&type=' + type;
+$('#dialog-map').dialog({ modal: true, height: 650, width: 800 });
+}
+
+function OpenMapAlarm2(id, name , type){
+$('#dialog-map').html('<iframe id="iframemaps" style="width: 100%; height: 100%; border:0px" src=""></iframe>');
+document.getElementById('iframemaps').src = 'LoadMap.php?id=' + id + '&name=' + name + '&type=' + type;
+$('#dialog-map').dialog({ modal: true, height: 650, width: 800 });
+}
+
+function OpenMapAlarm3(id){
+$('#dialog-map').html('<iframe id="iframemaps" style="width: 100%; height: 100%; border:0px" src=""></iframe>');
+document.getElementById('iframemaps').src = 'LoadMap2.php?id=' + id;
+$('#dialog-map').dialog({ modal: true, height: 650, width: 800 });
 }
 
 
@@ -816,6 +1049,7 @@ function show_original_data(){
 
 	$.each(allGroups,function(i,v){
 		$('#POI_group'+v+' .num-of-poi').html("("+numOfPoints[i]+")"); // promeni go brojot na tocki vo naslov
+		$('#POI_group'+ v +' .expand-icon').html("▶");
 	});
 
 	// [optimisation]
@@ -846,9 +1080,9 @@ var editp = '';
 var isInactive = (arguments.length == 2) ? 'prikaziInactive()' : 'prikazi()';
 var isInactiveCase = (arguments.length == 2) ? 'caseInactive' : 'case';
 
-if(data.type == 1) { img_row = "poiButton.png"; tip = dic("Settings.POI",lang); editp = "EditPOI('"+data.id+"')";}
-if(data.type == 2) { img_row = "zoneButton.png"; tip = dic("Settings.GeoFence",lang); editp = "OpenMapAlarm2('"+data.id+"')";}
-if(data.type == 3) { img_row = "areaImg.png"; tip = dic("Settings.Polygon",lang); editp = "OpenMapAlarm2('"+data.id+"')";}
+if(data.type == 1) { img_row = "poiButton.png"; tip = dic("Settings.POI",lang); editp = "edit_poi_dialog('"+data.name+"','"+data.available+"','"+data.groupid+"','"+data.id+"','','1','','"+data.radius+"')";}
+if(data.type == 2) { img_row = "zoneButton.png"; tip = dic("Settings.GeoFence",lang); editp = "OpenMapAlarm2('"+data.id+"','"+data.name+"','"+data.type+"')";}
+if(data.type == 3) { img_row = "areaImg.png"; tip = dic("Settings.Polygon",lang); editp = "OpenMapAlarm2('"+data.id+"','"+data.name+"','"+data.type+"')";}
 
 var area = round(data.povrsina,2);
 if (data.type != 1) {
