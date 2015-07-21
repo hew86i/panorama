@@ -4,6 +4,7 @@
 <?php include "../include/dictionary2.php" ?>
 
 <?php 
+	error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
 	header("Content-type: text/html; charset=utf-8");
 ?>
  

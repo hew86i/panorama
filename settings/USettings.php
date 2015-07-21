@@ -357,7 +357,7 @@ $( document ).ready(function() {
             <select id="TimeTrack" class="combobox text2">
                 <?php $TT = explode(" ", $getFullUser["trace"]);
                     for ($i=10; $i <=180; $i=$i+10) {
-                        echo '<option value="' . $i . '" ' . (($TT[0] == (string)$i) ? "selected='selected'" : "") . '>' . $i . '</option>';
+                        echo '<option value="' . $i . '" ' . (($TT[0] === (string)$i) ? "selected='selected'" : "") . '>' . $i . '</option>';
                     }
                 ?>
             </select>
@@ -391,7 +391,7 @@ $( document ).ready(function() {
                     <option value="0" <?php echo (($TTO[0]) ? "selected='selected'" : ""); ?>>None</option>
                     <?php
                         for($i=1; $i<=10; $i++) {
-                        echo '<option value="' . $i . '" ' . (($TTO[0]) ? "selected='selected'" : "") . ' >' . dic_("Settings.MoreThan") . ' ' . $i . '</option>';
+                        echo '<option value="' . $i . '" ' . (($TTO[0] === (string)$i) ? "selected='selected'" : "") . ' >' . dic_("Settings.MoreThan") . ' ' . $i . '</option>';
                         }
                     ?>
             </select>

@@ -30,13 +30,13 @@
 		$go = 1;
 		$rows = array();
 
-		$qSt_3 = "select p.id,p.groupid,p.name,p.type,p.radius,p.povrsina,p.userid,p.available,u.fullname from pointsofinterest p
+		$qSt_3 = "select p.id,p.groupid,p.name,p.type,p.radius,p.povrsina,p.userid,p.available,p.description,u.fullname from pointsofinterest p
 				left join users u on p.userid=u.id
 				where p.clientid=". $cid ." and p.active = '1' and ((p.available=3) or
 				(p.available = 2 and (select organisationid from users where id=". $uid .") = (select organisationid from users where id=userid) and (select organisationid from users where id=userid) <> 0) or
 				(available=1 and userid=". $uid .")) order by p.groupid asc, p.id asc";
 
-		$qSt_2 = "select p.id,p.groupid,p.name,p.type,p.radius,p.povrsina,p.userid,p.available,u.fullname from pointsofinterest p left join users u on p.userid=u.id where p.clientid=". $cid . " and p.active = '1' order by p.groupid asc, p.id asc";
+		$qSt_2 = "select p.id,p.groupid,p.name,p.type,p.radius,p.povrsina,p.userid,p.available,p.description,u.fullname from pointsofinterest p left join users u on p.userid=u.id where p.clientid=". $cid . " and p.active = '1' order by p.groupid asc, p.id asc";
 
 
 		$gal = ((int)$roleid == 2) ? $qSt_2 : $qSt_3;
@@ -190,7 +190,7 @@
 			<div class="toggle"><button class="btn-search-ui btn-def" id="btnMapPoiUngroup<?php echo $rowN?>" onclick = "OpenMapAlarm1('<?php echo $row["id"]?>', '<?php echo $row["name"]?>', '<?php echo $row["type"]?>');"></button></div>
 		</td>
 		<td width="8%" class="text2 td-row-poi">
-			<div class="toggle"><button class="btn-penci-ui btn-def" id="btnEditPoiUngroup<?php echo $rowN?>" <?php  if($row["type"] ==1){?> onclick="edit_poi_dialog('<?php echo $row["name"]?>','<?php echo $row["available"]?>','<?php echo $row["groupid"]?>','<?php echo $row["id"]?>','','1','','<?php echo $row["radius"]?>');" <?php  } if($row["type"]==2 || $row["type"]==3 ){ ?> onclick = "OpenMapAlarm2('<?php echo $row["id"]?>', '<?php echo $row["name"]?>', '<?php echo $row["type"]?>');" <?php }?>></button></div>
+			<div class="toggle"><button class="btn-penci-ui btn-def" id="btnEditPoiUngroup<?php echo $rowN?>" <?php  if($row["type"] ==1){?> onclick="edit_poi_dialog('<?php echo $row["name"]?>','<?php echo $row["available"]?>','<?php echo $row["groupid"]?>','<?php echo $row["id"]?>','<?php echo $row["description"]?>','1','','<?php echo $row["radius"]?>');" <?php  } if($row["type"]==2 || $row["type"]==3 ){ ?> onclick = "OpenMapAlarm2('<?php echo $row["id"]?>', '<?php echo $row["name"]?>', '<?php echo $row["type"]?>');" <?php }?>></button></div>
 		</td>
 		<td width="8%" class="text2 td-row-poi">
 			<div class="toggle"><button class="btn-trash-ui btn-def" id="btnDeletez<?php echo $rowN?>"  onclick="DeletePOI('<?php echo $row["id"]?>','<?php echo $cLang?>')"></button></div>

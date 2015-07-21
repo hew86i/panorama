@@ -3,7 +3,7 @@
 
 <?php include "../include/params.php" ?>
 <?php include "../include/dictionary2.php" ?>
-<?php session_start()?>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <?php
     set_time_limit(0);

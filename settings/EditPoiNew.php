@@ -3,9 +3,10 @@
 
 <?php include "../include/params.php" ?>
 <?php include "../include/dictionary2.php" ?>
-<?php session_start()?>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <?php
+    error_reporting(E_ALL & ~E_NOTICE);
     set_time_limit(0);
 	opendb();
 
@@ -24,7 +25,7 @@
 	$cLang = $_lang;
 	//echo "UPDATE pointsofinterest SET geom=ST_GeomFromText('POINT(" . $lat . " " . $lon . ")',900913), name=N'" . $_name . "', available=" . $_avail . ", groupid=" . $_ppgid . ", radius=" . $_radius . " WHERE ID=" . $_id;
     //exit;
-	$sql1 = "UPDATE pointsofinterest SET userid='" . session("user_id") . "', geom=ST_Transform(ST_GeomFromText('POINT(" . $lon . " " . $lat . ")',4326),26986), name=N'" . $_name . "', available=" . $_avail . ", groupid=" . $_ppgid . ", radius=" . $_radius . " WHERE ID=" . $_id;
+	$sql1 = "UPDATE pointsofinterest SET userid='" . session("user_id") . "', geom=ST_Transform(ST_GeomFromText('POINT(" . $lon . " " . $lat . ")',4326),26986), name=N'" . $_name . "', available=" . $_avail . ", groupid=" . $_ppgid . ", radius=" . $_radius . ", description='" . $_description . "' WHERE ID=" . $_id;
     $ret = RunSQL($sql1);
 	
     if($ret == "1")

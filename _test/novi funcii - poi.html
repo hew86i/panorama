@@ -1,0 +1,121 @@
+<dl id="poiGroup" class="dropdown" style="width: 150px; position: relative; float: left; padding: 0px; margin: 0px;">
+<?php
+	$dsUG = query("SELECT id, name, fillcolor FROM pointsofinterestgroups WHERE id=1");
+    ?>
+    <dt><a href="#" title="" id="groupidTEst" class="combobox1"><span><?= dic("Tracking.SelectGroup")?></span></a></dt>
+    <dd>
+        <ul>
+            <li><a id="<?php echo pg_fetch_result($dsUG, 0, "id")?>" href="#">&nbsp;<span style="margin-left: 0px; display: inline-block; padding-left: 0px; margin-top: 3px;"><?php echo dic("Settings.NotGroupedItems")?></span>
+            	<img style="height: 18px; position: relative; width: 18px; float: left; left: 3px; top: -1px; margin-right: 7px;" src="../images/pin-1.png">
+        	</a></li>
+            <?php
+				$dsGroup1 = query("select id, name, fillcolor, image from pointsofinterestgroups where id <> 1 and clientid=".session("client_id")." order by name asc");
+                while ($row1 = pg_fetch_array($dsGroup1)) {
+                	$_color = substr($row1["fillcolor"], 1, strlen($row1["fillcolor"]));
+            ?>
+            <li><a id="<?php echo $row1["id"]?>" href="#">&nbsp;<span style="margin-left: 0px; display: inline-block; padding-left: 0px; margin-top: 3px;"><?php echo $row1["name"]?></span><span class="iconpin20 icon-poi-<?= $row1["image"]?>" style="padding-left: 0px; padding-right: 0px; text-align: center; margin-top: -2px; width: 25px; position: relative; float: left; color: <?= $_color?>; text-shadow: 0px 0px 1px black;"></span></a></li>
+            <?php
+                }
+            ?>
+        </ul>
+    </dd>
+</dl>
+
+<script type="text/javascript">
+
+function AddGroup(_tbl) {
+    $('#GroupName').val('');
+    $("#colorPicker1").css("background-color", "transparent");
+    $("#GroupIcon0").attr({ checked: 'checked' });
+
+    $("#clickAny").val('');
+    //for (var p = 0; p < 22; p++)
+        //document.getElementById("GroupIconImg" + p).src = 'http://80.77.159.246:88/new/pin/?color=ffffff&type=' + p;
+    $('.iconpin').css({color: '#ffffff', textShadow: '0px 0px 2px black' })
+    $('#btnAddGroup').button();
+    $('#btnCancelGroup').button();
+    $("#colorPicker1").mlColorPicker({ 'onChange': function (val) {
+        $("#colorPicker1").css("background-color", "#" + val);
+        $("#clickAny").val("#" + val);
+        if (_tbl == 1) {
+            $("#tblIconsPOI").css({ visibility: "hidden" });
+            $("#loadingIconsPOI").css({ visibility: "visible" });
+            ChangeIconsColor(val);
+        }
+    }
+    });
+    $("#div-Add-Group").dialog({ modal: true, width: 400, zIndex: 10000, resizable: false });
+    if (_tbl == 1) {
+        $('#tblIconsPOI').css('display', 'block');
+        $('#spanIconsPOI').css('display', 'block');
+        $('#div-Add-Group').css('height', 'auto');
+    }
+    else {
+        $('#tblIconsPOI').css('display', 'none');
+        $('#spanIconsPOI').css('display', 'none');
+        $('#div-Add-Group').css('height', '190px');
+    }
+    $('#GroupName').focus();
+}
+
+
+function ButtonAddGroupOkClick() {
+    if (($('#GroupName').val() != '') && ($('#clickAny').val() != '')) {
+        $('#loading1').css({ display: "block" });
+        var _img = $("#tblIconsPOI input[name='GroupIcon']:checked").val();
+        //alert(twopoint + "/main/AddGroupNew.php?groupName=" + $('#GroupName').val() + "&fcolor=" + $("#clickAny").val().replace('#', '') + "&img=" + _img + "&l=" + lang + "&tpoint=" + twopoint);
+        //return false;
+        $.ajax({
+            url: twopoint + "/main/AddGroupNew.php?groupName=" + $('#GroupName').val() + "&fcolor=" + $("#clickAny").val().replace('#', '') + "&img=" + _img + "&l=" + lang + "&tpoint=" + twopoint,
+            context: document.body,
+            success: function (data) {
+                data = data.replace(/\r/g,'').replace(/\n/g,'');
+                if (data.indexOf("Error") == -1) {
+                    $('#div-Add-Group').dialog('destroy');
+                    $('#loading1').css({ display: "none" });
+
+                    $("#poiGroup dd ul").append('<li><a id="' + data.split("@@%%")[1] + '" href="#">&nbsp;<span style="margin-left: 0px; display: inline-block; padding-left: 0px; margin-top: 3px;">' + $('#GroupName').val() + '</span><span class="iconpin20 icon-poi-'+_img+'" style="padding-left: 0px; padding-right: 0px; text-align: center; margin-top: -2px; width: 25px; position: relative; float: left; color: ' + $("#clickAny").val() + '; text-shadow: 0px 0px 1px black;"></span></a></li>');
+                    $("#gfGroup dd ul").append('<li><a id="' + data.split("@@%%")[1] + '" href="#">&nbsp;&nbsp;' + $('#GroupName').val() + '<div class="flag" style="margin-top: -1px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; width: 18px; height: 18px; background-color: ' + $("#clickAny").val() + '; position: relative; float: left;"></div></a></li>');
+
+                    $("#poiGroup dd ul li a").click(function () {
+                        var text = $(this).html();
+                        $("#poiGroup dt a")[0].title = this.id;
+                        if(text.indexOf("pin-1") != -1)
+                            $("#poiGroup dt a").html(text.replace('top: -1px', 'top: 4px'));
+                        else
+                            $("#poiGroup dt a").html(text);
+                        $("#poiGroup dd ul").hide();
+                    });
+                    $("#gfGroup dd ul li a").click(function () {
+                        var text = $(this).html();
+                        $("#gfGroup dt a")[0].title = this.id;
+                        $("#gfGroup dt a span").html(text);
+                        $("#gfGroup dd ul").hide();
+                    });
+
+
+                    $("#poiGroup dt a")[0].title = data.split("@@%%")[1];
+                    $("#gfGroup dt a")[0].title = data.split("@@%%")[1];
+                    document.getElementById("groupidTEst").title = data.split("@@%%")[1];
+                    $("#poiGroup dt a").html($($("#poiGroup dd ul li")[$("#poiGroup dd ul li").length - 1].children[0]).html());
+                    $("#gfGroup dt a span").html($($("#gfGroup dd ul li")[$("#gfGroup dd ul li").length - 1].children[0]).html());
+
+                    msgbox(data.split("@@%%")[3]);
+
+                    if (document.getElementById("div-AreasUp") != null) {
+                        $('#div-AreasUp').remove();
+                    }
+                    if (document.getElementById("div-poiGroupUp") != null) {
+                        $('#div-poiGroupUp').remove();
+                    }
+                } else {
+                    msgbox(data);
+                }
+            }
+        });
+    } else {
+        msgbox(dic("ReqFields", lang));
+    }
+}
+	
+</script>

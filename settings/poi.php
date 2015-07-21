@@ -518,7 +518,7 @@ if($numPointsInactive != 0) { ?>
 		                <li><a id="<?php echo pg_fetch_result($dsUG, 0, "id")?>" href="#">&nbsp;&nbsp;<?php echo dic("Settings.NotGroupedItems")?><div class="flag" style="margin-top: -3px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; width: 24px; height: 24px; background: url('http://gps.mk/new/pin/?color=<?php echo pg_fetch_result($dsUG, 0, "fillcolor")?>&type=<?php echo pg_fetch_result($dsUG, 0, "image")?>') no-repeat; position: relative; float: left;"></div></a></li>
 		                <?php
 							$dsGroup1 = query("select id, name, fillcolor, '0' image from pointsofinterestgroups where clientid=".session("client_id"));
-		                    while($row1 = pg_fetch_array($dsGroup1)) 
+		                    while($row1 = pg_fetch_array($dsGroup1))
 		                    {
 		                    	$_color = substr($row1["fillcolor"], 1, strlen($row1["fillcolor"]));
 		                ?>
@@ -541,26 +541,6 @@ if($numPointsInactive != 0) { ?>
 	<input type="button" style="position: relative; float: right;" class="BlackText corner5" id="btnCancelPOI" value="<?php echo dic("Tracking.Cancel")?>" onclick="$('#div-Add-POI').dialog('destroy');" />&nbsp;&nbsp;        
 	<input type="button" style="position: relative; float: right;" class="BlackText corner5" id="btnAddPOI" value="<?php echo dic("Tracking.Add")?>" onclick="ButtonAddEditPOIokClickPetar()" />
 </div><br/><br/>
-</div>
-
-<div id="div-edit-user" style="display:none" title="<?php echo dic("Settings.ChangingGroup")?>">
-<table>
-        <tr>
-        <td class="text5" style="font-weight:bold"><?php echo dic("Routes.Name")?></td>
-        <td>
-            <input id="NameGroup" type="text" value="" class="textboxcalender corner5 text5" style="width:200px; height:22px; font-size:11px"/>
-        </td>
-	    </tr>
-    	<tr>
-            <td class="text5" style="font-weight:bold"><?php echo dic("Reports.Color")?></td>
-        <td>
-		<div id="colorPicker5">
-			<span id="colorPicker4" style="cursor: pointer; float:left; border:1px solid black; width:20px; height:20px;margin:5px;"></span>
-			<input id="clickAny1" type="text" class="textboxCalender corner5" onchange="changecolorSettings()" value="" style="width:120px" />
-		</div>
-        </td>
-        </tr>
-</table>
 </div>
 
 
@@ -612,6 +592,11 @@ if($numPointsInactive != 0) { ?>
         </td>
         </tr>
 </table>
+</div>
+
+<div id="colorPicker2">
+	<span id="colorPicker1" style="cursor: pointer; float:left; border:1px solid black; width:20px; height:20px;margin:5px;"></span>
+	<input id="clickAny" type="text" class="textboxCalender corner5" onchange="changecolor()" value="" style="width:120px" />
 </div>
 
 
@@ -749,6 +734,39 @@ $(document).ready(function () {
 		fetch_all();
 		console.log("fetch all");
 	},400);
+
+	// za pravilno funcioniranje na drop down listite
+	// kaj izmeni toi
+
+	$("#gfGroup dd ul li a").click(function() {
+	    var text = $(this).html();
+	    $("#gfGroup dt a")[0].title = this.id;
+	    document.getElementById("groupidTEst").title = this.id;
+	    $("#gfGroup dt a span").html(text);
+	    $("#gfGroup dd ul").hide();
+	});
+
+
+	$(".dropdown dt a").click(function() {
+	    $(".dropdown dd ul").toggle();
+	});
+	$(".dropdown dd ul li a").click(function() {
+	    var text = $(this).html();
+	    $(".dropdown dt a")[0].title = this.id;
+	    document.getElementById("groupidTEst").title = this.id;
+	    $(".dropdown dt a span").html(text);
+	    $(".dropdown dd ul").hide();
+	});
+
+	$(".dropdownRadius dt a").click(function() {
+	    $(".dropdownRadius dd ul").toggle();
+	});
+	$(".dropdownRadius dd ul li a").click(function() {
+	    var text = $(this).html();
+	    $(".dropdownRadius dt a")[0].title = this.id;
+	    $(".dropdownRadius dt a span").html(text);
+	    $(".dropdownRadius dd ul").hide();
+	});
 
 
 });
