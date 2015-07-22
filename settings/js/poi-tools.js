@@ -357,7 +357,7 @@ function Loading(txt){
 // ------------------------------------------------------------------------------
 // -------------------------- DODADENI ------------------------------------------
 
-function AddColor(lang) {
+function AddColor(lang) { // za dodavenje grupa
 document.getElementById('div-add-color').title = dic("Reports.AddGroup")
 $('#div-add-color').dialog({ modal: true, width: 350, height: 280, resizable: false,
 		buttons:
@@ -973,6 +973,70 @@ function ButtonAddEditPOIokClickPetar() {
        }
 }
 
+function AddGroup(_tbl) {
+    $('#GroupNameAdd').val('');
+    $("#colorPicker1").css("background-color", "transparent");
+    $("#GroupIcon0").attr({ checked: 'checked' });
+
+    $("#clickAny").val('');
+    //for (var p = 0; p < 22; p++)
+        //document.getElementById("GroupIconImg" + p).src = 'http://80.77.159.246:88/new/pin/?color=ffffff&type=' + p;
+    $('.iconpin').css({color: '#ffffff', textShadow: '0px 0px 2px black' })
+    $('#btnAddGroup').button();
+    $('#btnCancelGroup').button();
+    $("#colorPicker1").mlColorPicker({ 'onChange': function (val) {
+        $("#colorPicker1").css("background-color", "#" + val);
+        $("#clickAny").val("#" + val);
+        if (_tbl == 1) {
+            $("#tblIconsPOI").css({ visibility: "hidden" });
+            $("#loadingIconsPOI").css({ visibility: "visible" });
+            ChangeIconsColor(val);
+        }
+    }
+    });
+    $("#div-Add-Group").dialog({ modal: true, width: 400, zIndex: 10000, resizable: false });
+    if (_tbl == 1) {
+        $('#tblIconsPOI').css('display', 'block');
+        $('#spanIconsPOI').css('display', 'block');
+        $('#div-Add-Group').css('height', 'auto');
+    }
+    else {
+        $('#tblIconsPOI').css('display', 'none');
+        $('#spanIconsPOI').css('display', 'none');
+        $('#div-Add-Group').css('height', '190px');
+    }
+    $('#GroupNameAdd').focus();
+}
+
+function ButtonAddGroupOkClick() {
+    if (($('#GroupNameAdd').val() != '') && ($('#clickAny').val() != '')) {
+        $('#loading1').css({ display: "block" });
+        var _img = $("#tblIconsPOI input[name='GroupIcon']:checked").val();
+        console.log(twopoint + "/main/AddGroupNew.php?groupName=" + $('#GroupNameAdd').val() + "&fcolor=" + $("#clickAny").val().replace('#', '') + "&img=" + _img + "&l=" + lang + "&tpoint=" + twopoint);
+        // return false;
+        $.ajax({
+            url: twopoint + "/main/AddGroupNew.php?groupName=" + $('#GroupNameAdd').val() + "&fcolor=" + $("#clickAny").val().replace('#', '') + "&img=" + _img + "&l=" + lang + "&tpoint=" + twopoint,
+            context: document.body,
+            success: function (data) {
+                msgboxPetar(data.split("@@%%")[3]);
+                timedRefresh(1100);
+            }
+        });
+    } else {
+        msgboxPetar(dic("ReqFields", lang));
+    }
+}
+
+ function ChangeIconsColor(_color) {
+    //for (var p = 0; p < 22; p++)
+        //document.getElementById("GroupIconImg" + p).src = 'http://80.77.159.246:88/new/pin/?color=' + _color + '&type=' + p;
+    if(_color == '#ffffff')
+        $('.iconpin').css({color: _color, textShadow: '0px 0px 2px black' });
+    else
+        $('.iconpin').css({color: _color, textShadow: '0px 0px 1px black' });
+    $("#tblIconsPOI").css({ visibility: "visible" });
+    $("#loadingIconsPOI").css({ visibility: "hidden" });
+}
 
 
 function OpenMapAlarm1(id, name , type){

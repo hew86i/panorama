@@ -54,6 +54,8 @@
 	<script src="../js/chroma.min.js"></script>
 	<script	src="./js/poi-tools.js"></script>
 
+	<link rel="stylesheet" href="../tracking/pinIcons.css">
+
 	<style type="text/css">
 
 		body {
@@ -169,7 +171,7 @@ else
 
 		<tr class="text2">
 			<td width = "70%" align = "left" valign = "middle">
-				<button id="kopce" onclick="AddColor()" style="margin-left:1px"><?php echo dic("Reports.AddGroup")?></button>&nbsp;&nbsp;&nbsp;
+				<button id="kopce" onclick="AddGroup(1)" style="margin-left:1px"><?php echo dic("Reports.AddGroup")?></button>&nbsp;&nbsp;&nbsp;
 			</td>
 			<td width ="30%" align = "right" valign="middle">
 				<div class="input_container">
@@ -594,10 +596,135 @@ if($numPointsInactive != 0) { ?>
 </table>
 </div>
 
-<div id="colorPicker2">
-	<span id="colorPicker1" style="cursor: pointer; float:left; border:1px solid black; width:20px; height:20px;margin:5px;"></span>
-	<input id="clickAny" type="text" class="textboxCalender corner5" onchange="changecolor()" value="" style="width:120px" />
+ <div id="div-Add-Group" style="display: none;" title="<?php echo dic("Tracking.AddGroup")?>">
+	<span style="display:block; width:90px; float:left; margin-left:20px; padding-top:7px;"><?php echo dic("Tracking.GroupName")?></span><input id="GroupNameAdd" type="text" class="textboxCalender corner5" style="width:220px" /><br /><br />
+    <span style="display:block; width:90px; float:left; margin-left:20px; padding-top:7px;"><?php echo dic("Tracking.Color")?></span>
+    <div id="colorPicker2">
+		<span id="colorPicker1" style="cursor: pointer; float:left; border:1px solid black; width:20px; height:20px;margin:5px;"></span>
+		<input id="clickAny" type="text" class="textboxCalender corner5" onchange="changecolor()" value="" style="width:120px; display: none;" />
+		<br><br>
+	</div>
+    <img id="loadingIconsPOI" style="visibility: hidden; width: 140px; position: absolute; left: 125px; top: 180px;" src="../images/loading_bar1.gif" alt="" />
+    <br><br>
+    <span id="spanIconsPOI" style="display:block; width:90px; float:left; margin-left:20px; position: relative; top: 70px;"><?php echo dic("General.Icon")?></span>
+    <table id="tblIconsPOI" border="0" style="width: 268px; text-align: center; position: relative; top: -10px; left: -15px;">
+        <tr>
+        	<td>
+        		<span id="GroupIconImg0" class="iconpin icon-poi-0"></span>
+    		</td>
+    		<td>
+        		<span id="GroupIconImg1" class="iconpin icon-poi-1"></span>
+        	</td>
+    		<td>
+        		<span id="GroupIconImg2" class="iconpin icon-poi-2"></span>
+    		</td>
+    		<td>
+        		<span id="GroupIconImg3" class="iconpin icon-poi-3"></span>
+        	</td>
+    		<td>
+        		<span id="GroupIconImg4" class="iconpin icon-poi-4"></span>
+        	</td>
+        	<td>
+        		<span id="GroupIconImg5" class="iconpin icon-poi-5"></span>
+        	</td>
+        	<td>
+        		<span id="GroupIconImg6" class="iconpin icon-poi-6"></span>
+        	</td>
+        	<td>
+        		<span id="GroupIconImg7" class="iconpin icon-poi-7"></span>
+    		</td>
+    	</tr>
+    	<tr>
+    		<td><input style="cursor: pointer;" id="GroupIcon0" name="GroupIcon" value="0" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon1" name="GroupIcon" value="1" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon2" name="GroupIcon" value="2" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon3" name="GroupIcon" value="3" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon4" name="GroupIcon" value="4" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon5" name="GroupIcon" value="5" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon6" name="GroupIcon" value="6" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon7" name="GroupIcon" value="7" type="radio" /></td>
+    	</tr>
+        <tr>
+    		<td style="padding-top: 20px">
+        		<span id="GroupIconImg8" class="iconpin icon-poi-8"></span>
+        	</td>
+    		<td style="padding-top: 20px">
+        		<span id="GroupIconImg9" class="iconpin icon-poi-9"></span>
+    		</td>
+    		<td style="padding-top: 20px">
+        		<span id="GroupIconImg10" class="iconpin icon-poi-10"></span>
+        	</td>
+    		<td style="padding-top: 20px">
+        		<span id="GroupIconImg11" class="iconpin icon-poi-11"></span>
+        	</td>
+    		<td style="padding-top: 20px">
+        		<span id="GroupIconImg12" class="iconpin icon-poi-12"></span>
+        	</td>
+        	<td style="padding-top: 20px">
+        		<span id="GroupIconImg13" class="iconpin icon-poi-13"></span>
+        	</td>
+        	<td style="padding-top: 20px">
+        		<span id="GroupIconImg14" class="iconpin icon-poi-14"></span>
+        	</td>
+        	<td style="padding-top: 20px">
+        		<span id="GroupIconImg15" class="iconpin icon-poi-15"></span>
+    		</td>
+        </tr>
+        <tr>
+    		<td><input style="cursor: pointer;" id="GroupIcon8" name="GroupIcon" value="8" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon9" name="GroupIcon" value="9" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon10" name="GroupIcon" value="10" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon11" name="GroupIcon" value="11" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon12" name="GroupIcon" value="12" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon13" name="GroupIcon" value="13" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon14" name="GroupIcon" value="14" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon15" name="GroupIcon" value="15" type="radio" /></td>
+        </tr>
+        <tr>
+    		<td style="padding-top: 20px">
+        		<span id="GroupIconImg16" class="iconpin icon-poi-16"></span>
+        	</td>
+    		<td style="padding-top: 20px">
+        		<span id="GroupIconImg17" class="iconpin icon-poi-17"></span>
+        	</td>
+    		<td style="padding-top: 20px">
+        		<span id="GroupIconImg18" class="iconpin icon-poi-18"></span>
+        	</td>
+    		<td style="padding-top: 20px">
+        		<span id="GroupIconImg19" class="iconpin icon-poi-19"></span>
+        	</td>
+        	<td style="padding-top: 20px">
+        		<span id="GroupIconImg20" class="iconpin icon-poi-20"></span>
+        	</td>
+        	<td style="padding-top: 20px">
+        		<span id="GroupIconImg21" class="iconpin icon-poi-21"></span>
+    		</td>
+    		<td style="padding-top: 20px">
+        		<span id="GroupIconImg22" class="iconpin icon-poi-22"></span>
+    		</td>
+    		<td style="padding-top: 20px">
+        		<span id="GroupIconImg23" class="iconpin icon-poi-23"></span>
+        	</td>
+        </tr>
+        <tr>
+    		<td><input style="cursor: pointer;" id="GroupIcon16" name="GroupIcon" value="16" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon17" name="GroupIcon" value="17" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon18" name="GroupIcon" value="18" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon19" name="GroupIcon" value="19" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon20" name="GroupIcon" value="20" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon21" name="GroupIcon" value="21" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon22" name="GroupIcon" value="22" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon23" name="GroupIcon" value="23" type="radio" /></td>
+        </tr>
+    </table>
+    <br /><br />
+	<div align="right" style="display:block; width:330px">
+        <img id="loading1" style="display: none; width: 150px; position: absolute; left: 32px; margin-top: 7px;" src="../images/loading_bar1.gif" alt="" />
+		<input type="button" class="BlackText corner5" id="btnAddGroup" value="<?php echo dic("Tracking.Add")?>" onclick="ButtonAddGroupOkClick()" />&nbsp;&nbsp;
+		<input type="button" class="BlackText corner5" id="btnCancelGroup" value="<?php echo dic("Tracking.Cancel")?>" onclick="$('#div-Add-Group').dialog('destroy');" />
+	</div><br />
 </div>
+
 
 
 
@@ -737,6 +864,9 @@ $(document).ready(function () {
 
 	// za pravilno funcioniranje na drop down listite
 	// kaj izmeni toi
+	$("#gfGroup dt a").click(function() {
+        $("#gfGroup dd ul").toggle();
+    });
 
 	$("#gfGroup dd ul li a").click(function() {
 	    var text = $(this).html();
@@ -747,15 +877,16 @@ $(document).ready(function () {
 	});
 
 
-	$(".dropdown dt a").click(function() {
-	    $(".dropdown dd ul").toggle();
-	});
-	$(".dropdown dd ul li a").click(function() {
+	 $("#poiGroup dt a").click(function() {
+        $("#poiGroup dd ul").toggle();
+    });
+
+	 $("#poiGroup dd ul li a").click(function() {
 	    var text = $(this).html();
-	    $(".dropdown dt a")[0].title = this.id;
+	    $("#poiGroup dt a")[0].title = this.id;
 	    document.getElementById("groupidTEst").title = this.id;
-	    $(".dropdown dt a span").html(text);
-	    $(".dropdown dd ul").hide();
+	    $("#poiGroup dt a").html(text);
+        $("#poiGroup dd ul").hide();
 	});
 
 	$(".dropdownRadius dt a").click(function() {
