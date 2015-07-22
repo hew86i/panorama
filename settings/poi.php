@@ -175,7 +175,7 @@ else
 			</td>
 			<td width ="30%" align = "right" valign="middle">
 				<div class="input_container">
-					<button id="clear-input" onclick="clear_input()">Clear</button>
+					<!--button id="clear-input" onclick="clear_input()">Clear</button-->
 					<img id="search_img" src="../images/search_find.png"></img>
 					<input id="search_input" name="filter" type="text" placeholder="<?php echo dic ("search")?>" size=22 style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:200px;"/>&nbsp;
 				</div>
@@ -184,7 +184,7 @@ else
 
 		<tr style="height:5px;" class="text2"><td colspan="2"></td></tr>
 
-		<tr style="height: 33px;" class="text2" >
+		<tr id="trGrupno" style="height: 33px; display: none" class="text2">
 			<td colspan="2" width = "100%" align = "left" valign = "middle">
 				<button id="brisiGrupno" onclick="brisiGrupaMarkeri()" style="margin-left:1px"><?php echo dic("Settings.DeleteMultiplePOI")?></button>&nbsp;&nbsp;&nbsp;
 				<button id="prefrliGrupno" onclick="prefrliGrupaMarkeri()" style="margin-left:1px"><?php echo dic("Settings.TransferMultiplePOI")?></button>&nbsp;&nbsp;&nbsp;
@@ -209,8 +209,9 @@ if($numPointsU != 0) { ?>
 <div class="align-center toi-group-title">
 <table id="POI_group1" class="title-group" style="border-spacing:2px">
 		<tr>
-			<td align = "left" colspan="8" valign = "middle" height="40px" width = "100%" class="text2" style="color:#fff; font-weight:bold; font-size:14px;  padding-left:7px; cursor: pointer; background-color:#f7962b; font-weight:bold;" id="slider_1" onclick="show_group(1)">
+			<td align = "left" colspan="8" valign = "middle" height="40px" width = "100%" class="text2" style="font-weight:bold; font-size:14px;  padding-left:7px; cursor: pointer; font-weight:bold;" id="slider_1" onclick="show_group(1)">
 				<span class="expand-icon" style="font-size:18px">▶</span>
+				<img src="../images/pin-1.png" style="height: 18px; position: relative; width: 18px; left:5px; top:2px">
 				<span style="position:relative; left: 10px;"><?php echo dic("Settings.NotGroupedItems")?>
 				<span class="num-of-poi" style="position:relative;">(<?php echo $numPointsU ?>)</span>
 			</td>
@@ -269,22 +270,23 @@ if($poiRow['id'] != 1) {  // za da gi otfrli negrupiranite
 
 <!-- ************************************** GROUP TITLE ***************************************************** -->
 <div class="align-center toi-group-title grouped-title">
-<table id="POI_group<?php echo $poiRow['id']?>" class="title-group" style="table-layout:fixed;">
+<table id="POI_group<?php echo $poiRow['id']?>" class="title-group" style="">
 	<tr>
-		<td align = "left" colspan="8" valign = "middle" height="40px" width = "76%" class="text2" style="color:black; font-weight:bold; font-size:14px;  padding-left:7px; cursor: pointer; font-weight:bold;" id="slider_<?php echo $poiRow['id']?>" onclick="show_group(<?php echo $poiRow['id']?>)">
+		<td align = "left" colspan="8" valign = "middle" height="40px" width = "76%" class="text2" style="font-weight:bold; font-size:14px;  padding-left:7px; cursor: pointer; font-weight:bold;" id="slider_<?php echo $poiRow['id']?>" onclick="show_group(<?php echo $poiRow['id']?>)">
 			<span class="expand-icon" style="float: left; font-size:18px">▶</span>&nbsp;
-			<div  class="poi-box" style="margin-left: 10px; border-radius: 5px; width: 18px; height: 18px; float: left; background-color:<?php echo $poiRow["fillcolor"]?>;"></div>
-			<span style="position:relative; top:2px; left: 10px;"><?php echo $poiRow['name']?></span>
-			<span class="num-of-poi" style="position:relative; top: 2px; margin-left: 10px">(<?php echo $numTocki ?>)</span>
+			<span class="iconpin20 icon-poi-<?= $poiRow["image"]?>" style="padding-left: 5px; padding-right: 0px; text-align: center; margin-top: -2px; width: 25px; position: relative; color: <?= substr($poiRow["fillcolor"], 1, strlen($poiRow["fillcolor"]))?>; text-shadow: 0px 0px 1px black;"></span>
+			<!--div  class="poi-box" style="margin-left: 10px; border-radius: 5px; width: 18px; height: 18px; float: left; background-color:<?php echo $poiRow["fillcolor"]?>;"></div-->
+			<span class="ime-na-grupa" style="position:relative; left: 3px;"><?php echo $poiRow['name']?></span>
+			<span class="num-of-poi" style="position:relative; margin-left: 10px">(<?php echo $numTocki ?>)</span>
 		</td>
 
-		<td align = "center" valign = "middle" height="40px" class="text2" width = "8%" style="font-weight:bold; font-size:14px; padding-left:5px; padding-right:5px; font-weight:bold;" >
+		<td align = "center" valign = "middle" height="40px" class="text2" width = "8%" style="font-weight:bold; font-size:14px; font-weight:bold;" >
 			<button id="btnGroupMap<?php echo $poiRow['id']?>" class="btn-search-ui" onclick="OpenMapAlarm3('<?php echo $poiRow["id"]?>','<?php echo $cLang?>')" style="height:22px; width:30px"></button>
 		</td>
-		<td align = "center" valign = "middle" height="40px" class="text2" width = "8%" style="font-weight:bold; font-size:14px; padding-left:5px; padding-right:5px; font-weight:bold;" >
-			<button id="btnEdit<?php echo $poiRow['id']?>" class="btn-penci-ui" onclick="EditGroup('<?php echo $poiRow["id"]?>','<?php echo $cLang?>')" style="height:22px; width:30px"></button>
+		<td align = "center" valign = "middle" height="40px" class="text2" width = "8%" style="font-weight:bold; font-size:14px; font-weight:bold;" >
+			<button id="btnEdit<?php echo $poiRow['id']?>" class="btn-penci-ui" onclick="AddGroup('<?php echo $poiRow["id"]?>','<?php echo $cLang?>')" style="height:22px; width:30px"></button>
 		</td>
-		<td align = "center" valign = "middle" height="40px" class="text2" width = "8%" style="font-weight:bold; font-size:14px; padding-left:5px; padding-right:5px; font-weight:bold;" >
+		<td align = "center" valign = "middle" height="40px" class="text2" width = "8%" style="font-weight:bold; font-size:14px; font-weight:bold;" >
 			<button id="btnVehicles<?php echo $poiRow['id']?>" class="btn-trash-ui" onclick="DeleteGroup('<?php echo $poiRow["id"]?>','<?php echo $cLang?>', <?php echo $numTocki?>)" style="height:22px; width:30px"></button>
 		</td>
 
@@ -333,28 +335,34 @@ if($poiRow['id'] != 1) {  // za da gi otfrli negrupiranite
 
 
 <!-- ************************************ NEAKTIVNI TOCKI TITLE ****************************************** -->
+<?php
+if((int)$roleid == 2) {
+		$numPointsInactive = dlookup("select count(*) from pointsofinterest where clientid=" . $cid . "and active = '0'");
+} else {
+	$numPointsInactive = dlookup("select count(*) from pointsofinterest where clientid=". $cid ." and active = '0' and ((available=3) or (available = 2 and (select organisationid from users where id=". $uid .") =
+					(select organisationid from users where id=userid) and (select organisationid from users where id=userid) <> 0)	or (available=1 and userid=". $uid .")) ");
+}
 
-<br><br>
+$dividerStyle="display:none; ";
+if($numPointsInactive != 0) {
+	$dividerStyle=" ";
+}
+?>
+
+<div id="divider" style="<?=$dividerStyle?>border-bottom:1px solid #bebebe; padding-top:30px;width: 95%;" class="align-center"></div>
 
 <div class="align-center text2" >
-	<button id = "AktivirajGrupno" onclick="aktivirajGrupaMarkeri()" style="display:none; height: 25px; margin-left:1px"><?php dic("Settings.ActivateMultiplePOI")?></button>
+	<button id = "AktivirajGrupno" onclick="aktivirajGrupaMarkeri()" style="display:none; height: 25px; margin-left:1px; margin-top: 30px;"><?php dic("Settings.ActivateMultiplePOI")?></button>
 </div>
 
 <?php
-
-	if((int)$roleid == 2) {
-		$numPointsInactive = dlookup("select count(*) from pointsofinterest where clientid=" . $cid . "and active = '0'");
-	} else {
-		$numPointsInactive = dlookup("select count(*) from pointsofinterest where clientid=". $cid ." and active = '0' and ((available=3) or (available = 2 and (select organisationid from users where id=". $uid .") =
-						(select organisationid from users where id=userid) and (select organisationid from users where id=userid) <> 0)	or (available=1 and userid=". $uid .")) ");
-	}
 
 if($numPointsInactive != 0) { ?>
 
 <div class="align-center toi-group-title">
 <table id="POI_group_inactive" class="title-group" style="border-spacing:2px">
 		<tr>
-			<td align = "left" colspan="8" valign = "middle" height="40px" width = "100%" class="text2" style="color:#fff; font-weight:bold; font-size:14px;  padding-left:7px; cursor: pointer; background-color:#f7962b; font-weight:bold;" id="slider_inactive">
+			<td align = "left" colspan="8" valign = "middle" height="40px" width = "100%" class="text2" style="font-weight:bold; font-size:14px;  padding-left:7px; cursor: pointer; font-weight:bold;" id="slider_inactive">
 				<span class="expand-icon" style="font-size:18px">▼</span>
 				<span style="position:relative; left: 10px;"><?php echo dic("Settings.InactivePOIHeader")?>
 				<span class="num-of-poi" style="position:relative;">(<?php echo $numPointsInactive ?>)</span>
@@ -382,7 +390,7 @@ if($numPointsInactive != 0) { ?>
 
 <?php } ?>  <!-- [end]. dali ima negrupirani tocki -->
 
-<div id="POI_data_inactive" class="POI_data align-center toi-row">
+<div id="POI_data_inactive" class="align-center toi-row">
 <table>
 	<tbody>
 	<!-- FETCH INACTIVE DATA -->
@@ -400,7 +408,8 @@ if($numPointsInactive != 0) { ?>
 // END. GLAVEN ELSE
 ?>
 
-<!-- DIALOGS -->
+<!-- ************************************************* DIALOGS ***********************************************-->
+
 <div id="dialog-map" style="display:none" title="<?php echo dic_("Reports.ViewOnMap")?>"></div>
 
 <div id="div-add-color" style="display:none" title="<?php echo dic("Reports.AddGroup")?>">
@@ -531,7 +540,7 @@ if($numPointsInactive != 0) { ?>
 		            </ul>
 		        </dd>
 		    </dl>
-			<input type="button" id="AddGroup" style="left: 20px; top: 1px;" onclick="AddGroup('0')" value="+" />
+			<input type="button" id="AddGroup" style="right: 20px; top: 1px; float:right" onclick="AddGroup('0')" value="+" />
 		</td>
 	</tr>
 </table>
@@ -544,7 +553,6 @@ if($numPointsInactive != 0) { ?>
 	<input type="button" style="position: relative; float: right;" class="BlackText corner5" id="btnAddPOI" value="<?php echo dic("Tracking.Add")?>" onclick="ButtonAddEditPOIokClickPetar()" />
 </div><br/><br/>
 </div>
-
 
 <div id="div-del-group" style="display:none" title="<?php echo dic("Settings.Action")?>">
 <?php echo dic("Settings.QuestionForDeleteGroup1")?><br><br>
@@ -596,7 +604,7 @@ if($numPointsInactive != 0) { ?>
 </table>
 </div>
 
- <div id="div-Add-Group" style="display: none;" title="<?php echo dic("Tracking.AddGroup")?>">
+<div id="div-Add-Group" style="display: none;">
 	<span style="display:block; width:90px; float:left; margin-left:20px; padding-top:7px;"><?php echo dic("Tracking.GroupName")?></span><input id="GroupNameAdd" type="text" class="textboxCalender corner5" style="width:220px" /><br /><br />
     <span style="display:block; width:90px; float:left; margin-left:20px; padding-top:7px;"><?php echo dic("Tracking.Color")?></span>
     <div id="colorPicker2">
@@ -720,8 +728,8 @@ if($numPointsInactive != 0) { ?>
     <br /><br />
 	<div align="right" style="display:block; width:330px">
         <img id="loading1" style="display: none; width: 150px; position: absolute; left: 32px; margin-top: 7px;" src="../images/loading_bar1.gif" alt="" />
-		<input type="button" class="BlackText corner5" id="btnAddGroup" value="<?php echo dic("Tracking.Add")?>" onclick="ButtonAddGroupOkClick()" />&nbsp;&nbsp;
-		<input type="button" class="BlackText corner5" id="btnCancelGroup" value="<?php echo dic("Tracking.Cancel")?>" onclick="$('#div-Add-Group').dialog('destroy');" />
+		<!-- <input type="button" class="BlackText corner5" id="btnAddGroup" value="<?php echo dic("Tracking.Add")?>" onclick="ButtonAddGroupOkClick()" />&nbsp;&nbsp;
+		<input type="button" class="BlackText corner5" id="btnCancelGroup" value="<?php echo dic("Tracking.Cancel")?>" onclick="$('body').css({ overflow: 'auto' }); $('#div-Add-Group').dialog('destroy');" /> -->
 	</div><br />
 </div>
 
@@ -741,7 +749,7 @@ $(document).ready(function () {
 	lang = '<?php echo $cLang ?>';
     prikazi();
     prikaziInactive();
-   	shade_boxes();
+   	//shade_boxes();
 
     $('#kopce').button({ icons: { primary: "ui-icon-plus"} });
     $('#clear-input').button({ icons: { primary: "ui-icon-minus"} });

@@ -69,6 +69,15 @@ function show_group(_id) {
 
 	if($('#search_input').val() != '') {
 		goToByScroll("POI_group" + currGroup,10);
+		if($('#POI_data_new_' + currGroup).css('display') == "none"){
+			console.log("expandirana :"+currGroup);
+			$('#POI_group'+ currGroup +' .expand-icon').html("▼");
+			$('#POI_group_header'+currGroup).show();
+		} else {
+			console.log("zatvorena :"+currGroup);
+			$('#POI_group'+ currGroup +' .expand-icon').html("▶");
+			$('#POI_group_header'+currGroup).hide();
+		}
 		$('#POI_data_new_' + currGroup).slideToggle(100);
 		return false;
 	}
@@ -154,6 +163,7 @@ function first_expand(groupid){
 	}
 
 }
+// bara spored .gpid
 
 function find_group (obj_arr, value) {
 	var rez = -1;
@@ -162,6 +172,7 @@ function find_group (obj_arr, value) {
 	}
 	return rez;
 }
+// bara spored .id
 
 function get_index (obj_arr, value) {
 	var rez = -1;
@@ -282,15 +293,17 @@ function prikazi() {
 	var checked = $("input[class=case]:checked").length;
 	if (checked === 0)
 	{
-		document.getElementById('brisiGrupno').style.display = 'none';
-		document.getElementById('prefrliGrupno').style.display = 'none';
-		document.getElementById('neaktivniGrupno').style.display = 'none';
+		//document.getElementById('brisiGrupno').style.display = 'none';
+		//document.getElementById('prefrliGrupno').style.display = 'none';
+		//document.getElementById('neaktivniGrupno').style.display = 'none';
+		document.getElementById('trGrupno').style.display = 'none';
 	}
 	else
 	{
-		document.getElementById('brisiGrupno').style.display = '';
-		document.getElementById('prefrliGrupno').style.display = '';
-		document.getElementById('neaktivniGrupno').style.display = '';
+		//document.getElementById('brisiGrupno').style.display = '';
+		//document.getElementById('prefrliGrupno').style.display = '';
+		//document.getElementById('neaktivniGrupno').style.display = '';
+		document.getElementById('trGrupno').style.display = '';
 	}
 }
 
@@ -301,10 +314,12 @@ function prikaziInactive()
 	if (checked == 0)
 	{
 		document.getElementById('AktivirajGrupno').style.display = 'none';
+		//document.getElementById('divider').style.display = 'none';
 	}
 	else
 	{
 		document.getElementById('AktivirajGrupno').style.display = '';
+		//document.getElementById('divider').style.display = '';
 	}
 }
 
@@ -973,12 +988,18 @@ function ButtonAddEditPOIokClickPetar() {
        }
 }
 
-function AddGroup(_tbl) {
-    $('#GroupNameAdd').val('');
-    $("#colorPicker1").css("background-color", "transparent");
-    $("#GroupIcon0").attr({ checked: 'checked' });
+function AddGroup(_tbl,edit) {
 
-    $("#clickAny").val('');
+	var arg = arguments.length;
+
+    var iconnum = (arguments.length == 2) ? Number($('#POI_group'+ _tbl +' .iconpin20').attr("class").split('icon-poi-')[1]) : 0;
+    var Title = (arguments.length == 2) ? dic("Settings.ChangingGroup",lang) : dic("Tracking.AddGroup",lang);
+
+    $('#GroupNameAdd').val((arguments.length == 2) ? $('#POI_group'+_tbl+' .ime-na-grupa').html() : "");
+    $("#colorPicker1").css("background-color", (arguments.length == 2) ? $('#POI_group'+_tbl+' .iconpin20').css('color') : "transparent");
+    (arguments.length == 2) ? $("#GroupIcon"+iconnum).attr({ checked: 'checked' }) : $("#GroupIcon0").attr({ checked: 'checked' });
+
+    $("#clickAny").val($('#POI_group'+_tbl+' .iconpin20').css('color'));
     //for (var p = 0; p < 22; p++)
         //document.getElementById("GroupIconImg" + p).src = 'http://80.77.159.246:88/new/pin/?color=ffffff&type=' + p;
     $('.iconpin').css({color: '#ffffff', textShadow: '0px 0px 2px black' })
@@ -987,15 +1008,53 @@ function AddGroup(_tbl) {
     $("#colorPicker1").mlColorPicker({ 'onChange': function (val) {
         $("#colorPicker1").css("background-color", "#" + val);
         $("#clickAny").val("#" + val);
-        if (_tbl == 1) {
+        if (_tbl == 1 || arguments.length == 2) {
             $("#tblIconsPOI").css({ visibility: "hidden" });
             $("#loadingIconsPOI").css({ visibility: "visible" });
             ChangeIconsColor(val);
         }
     }
     });
-    $("#div-Add-Group").dialog({ modal: true, width: 400, zIndex: 10000, resizable: false });
-    if (_tbl == 1) {
+    $("#div-Add-Group").dialog({
+    	modal: true,
+    	width: 400,
+    	zIndex: 10000,
+    	resizable: false,
+    	title: Title,
+
+		create: function(event, ui) {
+		  $("body").css({ overflow: 'hidden' })
+		  ChangeIconsColor(RGBtoHEX($('#POI_group'+_tbl+' .iconpin20').css('color')).split("#")[1]);
+		 },
+		 beforeClose: function(event, ui) {
+		  $('#div-Add-Group').dialog('destroy');
+		  $("body").css({ overflow: 'auto' })
+		 },
+		 buttons:
+		 [
+		 {
+		 	text: dic("Tracking.Add",lang),
+		 	click: function(){
+
+		 	if(arg == 2) {
+		 			ButtonAddGroupOkClick(_tbl);
+		 		} else {
+		 			ButtonAddGroupOkClick();
+		 		}
+		 	}
+		 },
+		 {
+		 	text: dic("Tracking.Cancel",lang),
+		 	click: function(){
+		 		$('body').css({ overflow: 'auto' });
+		 		$('#div-Add-Group').dialog('destroy');
+		 	}
+		 }
+		 ]
+
+});
+
+    if (_tbl == 1 || arguments.length == 2) {
         $('#tblIconsPOI').css('display', 'block');
         $('#spanIconsPOI').css('display', 'block');
         $('#div-Add-Group').css('height', 'auto');
@@ -1008,18 +1067,28 @@ function AddGroup(_tbl) {
     $('#GroupNameAdd').focus();
 }
 
-function ButtonAddGroupOkClick() {
+function ButtonAddGroupOkClick(id) {
     if (($('#GroupNameAdd').val() != '') && ($('#clickAny').val() != '')) {
         $('#loading1').css({ display: "block" });
         var _img = $("#tblIconsPOI input[name='GroupIcon']:checked").val();
-        console.log(twopoint + "/main/AddGroupNew.php?groupName=" + $('#GroupNameAdd').val() + "&fcolor=" + $("#clickAny").val().replace('#', '') + "&img=" + _img + "&l=" + lang + "&tpoint=" + twopoint);
+
+        var send_url = twopoint + "/main/AddGroupNew.php?groupName=" + $('#GroupNameAdd').val() + "&fcolor=" + $("#clickAny").val().replace('#', '') + "&img=" + _img + "&l=" + lang + "&tpoint=" + twopoint;
+        if(arguments.length == 1){
+        	var ColorName = encodeURIComponent(RGBtoHEX($('#colorPicker1').css('background-color')));
+        	var GroupName = $('#GroupNameAdd').val();
+        	var send_url = "UpGroup.php?id1="+id+"&GroupName="+GroupName+"&ColorName="+ColorName+"&image="+_img
+
+        }
+        console.log(send_url);
         // return false;
         $.ajax({
-            url: twopoint + "/main/AddGroupNew.php?groupName=" + $('#GroupNameAdd').val() + "&fcolor=" + $("#clickAny").val().replace('#', '') + "&img=" + _img + "&l=" + lang + "&tpoint=" + twopoint,
+            url: send_url,
             context: document.body,
             success: function (data) {
-                msgboxPetar(data.split("@@%%")[3]);
-                timedRefresh(1100);
+            	if(data.split("@@%%").length == 1) msgboxPetar(dic("Settings.GroupSuccessfullyChanged"),lang)
+            	else msgboxPetar(data.split("@@%%")[3]);
+
+                timedRefresh(850);
             }
         });
     } else {
@@ -1037,6 +1106,12 @@ function ButtonAddGroupOkClick() {
     $("#tblIconsPOI").css({ visibility: "visible" });
     $("#loadingIconsPOI").css({ visibility: "hidden" });
 }
+
+var RGBtoHEX = function(color) {
+  return "#"+$.map(color.match(/\b(\d+)\b/g),function(digit){
+    return ('0' + parseInt(digit).toString(16)).slice(-2)
+  }).join('');
+};
 
 
 function OpenMapAlarm1(id, name , type){
@@ -1056,6 +1131,8 @@ $('#dialog-map').html('<iframe id="iframemaps" style="width: 100%; height: 100%;
 document.getElementById('iframemaps').src = 'LoadMap2.php?id=' + id;
 $('#dialog-map').dialog({ modal: true, height: 650, width: 800 });
 }
+
+
 
 
 /**
@@ -1192,6 +1269,7 @@ function show_original_data(){
 		if(g_info.expanded && g_info.numPOI > 0) {
 			$('#POI_group_header'+g_info.gpid).show();  // tuka se prikazuvaat samo onie koi prethodno bile expandirani
 			$('#POI_data_'+g_info.gpid).show();
+			$('#POI_group'+ g_info.gpid +' .expand-icon').html("▼");
 		}
 	});
 
@@ -1209,6 +1287,7 @@ var tip = '';
 var editp = '';
 var isInactive = (arguments.length == 2) ? 'prikaziInactive()' : 'prikazi()';
 var isInactiveCase = (arguments.length == 2) ? 'caseInactive' : 'case';
+var isInactiveClass = (arguments.length == 2) ? 'inactive-data' : 'data-rows new-data';
 var description = data.description || '';
 
 if(data.type == 1) { img_row = "poiButton.png"; tip = dic("Settings.POI",lang); editp = "edit_poi_dialog('"+data.name+"','"+data.available+"','"+data.groupid+"','"+data.id+"','"+description+"','1','','"+data.radius+"')";}
@@ -1230,7 +1309,7 @@ if(data.available == 2) available = dic("Reports.OrgUnit",lang);
 if(data.available == 3) available = dic("Settings.Company",lang);
 
 var html =
-"<tr class='data-rows new-data' id='poiid_"+data.id+"'>" +
+"<tr class='"+isInactiveClass+"' id='poiid_"+data.id+"'>" +
 		"<td width='4%' class='text2 td-row-poi'>" +
 			"<div class='toggle'>" +
 			 	data.tblindex +
