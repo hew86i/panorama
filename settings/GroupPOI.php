@@ -10,7 +10,7 @@
 	$yourbrowser1 = (bool) strpos($ua['userAgent'], "Macintosh");
 	$Allow = getPriv("groupspoi", session("user_id"));
 	if ($Allow == False) echo header ('Location: ../permission/?l=' . $cLang);
-	
+
 	addlog(41);
 ?>
 <html>
@@ -41,7 +41,7 @@
 	    height: 100%;
 	    overflow: auto; 
 	    -webkit-overflow-scrolling: touch;
-	    
+
 	}
 	<?php
 	}
