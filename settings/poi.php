@@ -30,9 +30,7 @@
 
 <head>
 
-	<script type="application/javascript">
-		lang = '<?php echo $cLang?>';
-	</script>
+	<script type="application/javascript"> lang = '<?php echo $cLang?>'; </script>
 
 	<link rel="stylesheet" type="text/css" href="../style.css">
 
@@ -50,7 +48,7 @@
 	<script type="text/javascript" src="../js/mlColorPicker.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-	<!-- >> added -->
+	<!-- >>>>>>>>>>>> added >>>>>>>>>>>>>>>>>>>>-->
 	<script src="../js/chroma.min.js"></script>
 	<script	src="./js/poi-tools.js"></script>
 
@@ -334,22 +332,22 @@ if($poiRow['id'] != 1) {  // za da gi otfrli negrupiranite
 	?>
 
 
-<!-- ************************************ NEAKTIVNI TOCKI TITLE ****************************************** -->
+<!-- ************************************ NEAKTIVNI TOCKI TITLE ******************************************** -->
 <?php
-if((int)$roleid == 2) {
-		$numPointsInactive = dlookup("select count(*) from pointsofinterest where clientid=" . $cid . "and active = '0'");
-} else {
-	$numPointsInactive = dlookup("select count(*) from pointsofinterest where clientid=". $cid ." and active = '0' and ((available=3) or (available = 2 and (select organisationid from users where id=". $uid .") =
-					(select organisationid from users where id=userid) and (select organisationid from users where id=userid) <> 0)	or (available=1 and userid=". $uid .")) ");
-}
 
-$dividerStyle="display:none; ";
-if($numPointsInactive != 0) {
-	$dividerStyle=" ";
-}
+	if((int)$roleid == 2) {
+			$numPointsInactive = dlookup("select count(*) from pointsofinterest where clientid=" . $cid . "and active = '0'");
+	} else {
+		$numPointsInactive = dlookup("select count(*) from pointsofinterest where clientid=". $cid ." and active = '0' and ((available=3) or (available = 2 and (select organisationid from users where id=". $uid .") =
+						(select organisationid from users where id=userid) and (select organisationid from users where id=userid) <> 0)	or (available=1 and userid=". $uid .")) ");
+	}
+
+	$dividerStyle="display:none; ";
+
+	if($numPointsInactive != 0) $dividerStyle=" ";
 ?>
 
-<div id="divider" style="<?=$dividerStyle?>border-bottom:1px solid #bebebe; padding-top:30px;width: 95%;" class="align-center"></div>
+<div id="divider" style="<?php echo $dividerStyle ?>border-bottom:1px solid #bebebe; padding-top:30px;width: 95%;" class="align-center"></div>
 
 <div class="align-center text2" >
 	<button id = "AktivirajGrupno" onclick="aktivirajGrupaMarkeri()" style="display:none; height: 25px; margin-left:1px; margin-top: 30px;"><?php dic("Settings.ActivateMultiplePOI")?></button>
@@ -728,15 +726,11 @@ if($numPointsInactive != 0) { ?>
     <br /><br />
 	<div align="right" style="display:block; width:330px">
         <img id="loading1" style="display: none; width: 150px; position: absolute; left: 32px; margin-top: 7px;" src="../images/loading_bar1.gif" alt="" />
-		<!-- <input type="button" class="BlackText corner5" id="btnAddGroup" value="<?php echo dic("Tracking.Add")?>" onclick="ButtonAddGroupOkClick()" />&nbsp;&nbsp;
-		<input type="button" class="BlackText corner5" id="btnCancelGroup" value="<?php echo dic("Tracking.Cancel")?>" onclick="$('body').css({ overflow: 'auto' }); $('#div-Add-Group').dialog('destroy');" /> -->
 	</div><br />
 </div>
 
 
-
-
-<!-- >>>>>>>>>>>>>>>>>>>>>>>> testing >>>>>>>>>>>>>>>>>>>>>> -->
+<!-- >>>>>>>>>>>>>>>>>>>>>>>> fetched data >>>>>>>>>>>>>>>>>>>>>> -->
 
 <div id="fetch-data" style="display:none"></div>
 
@@ -747,17 +741,16 @@ if($numPointsInactive != 0) { ?>
 $(document).ready(function () {
 
 	lang = '<?php echo $cLang ?>';
-    prikazi();
-    prikaziInactive();
+    showOptions();
+    showOptionsInactive();
    	//shade_boxes();
 
     $('#kopce').button({ icons: { primary: "ui-icon-plus"} });
-    $('#clear-input').button({ icons: { primary: "ui-icon-minus"} });
+    // $('#clear-input').button({ icons: { primary: "ui-icon-minus"} });
 	$('#brisiGrupno').button({ icons: { primary: "ui-icon-trash"} });
 	$('#prefrliGrupno').button({ icons: { primary: "ui-icon-refresh"} });
 	$('#neaktivniGrupno').button({ icons: { primary: "ui-icon-cancel"} });
 	$('#AktivirajGrupno').button({ icons: { primary: "ui-icon-circle-check"} });
-	$('#prikaziPovekeNegrupirani').button({ icons: { primary: "ui-icon-arrowthick-1-s"} });
 
 	buttonIcons();
     top.HideWait();
@@ -773,7 +766,14 @@ $(document).ready(function () {
     });
 
     $(window).resize(function() {
-        adjustWidth();
+    	delay(function(){
+	 	   	$.each(numOfPoints, function(i, v) {
+				if (v > limit) {
+					console.log("rezize: "+v);
+	        		adjustWidth(v);
+				}
+			});
+    	}, 600);
     });
 
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -824,7 +824,7 @@ $(document).ready(function () {
 				$('.new-data').remove(); // izbrisi prethodni filtrirani i prikazani
 		    	console.log("found: "+ filtered.length + " .............");
 
-				hide_data(); // hide group data
+				hideData(); // hide group data
 				$('.title-group').hide(); // hide group titles
 				$('.col-titles').hide();
 
@@ -834,7 +834,7 @@ $(document).ready(function () {
 			},nokey_treshhold);
 
 		} else {
-			show_original_data();
+			showOriginalData();
 		}
 
 	});
@@ -846,8 +846,8 @@ $(document).ready(function () {
 			$('#search_img').attr('src','../images/search_find.png');
 		}
 		// potrebno za da ne se prebaruva koga input == ''
-		if ($('#search_input').val() == ''){
-			show_original_data();
+		if ($('#search_input').val() === ''){
+			showOriginalData();
 		// inaku se registrira scroll event za filtriranite
 		} else {
 			$('.POI_data_new').scroll(function(event){
@@ -857,8 +857,8 @@ $(document).ready(function () {
 	});
 
 	$('#search_input').blur(function(){
-		if($(this).val() == '') {
-			show_original_data();
+		if($(this).val() === '') {
+			showOriginalData();
 		}
 		$('#search_img').attr('src','../images/search_find.png');
 

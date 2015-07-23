@@ -39,7 +39,7 @@
 	}
 	body {
 	    height: 100%;
-	    overflow: auto; 
+	    overflow: auto;
 	    -webkit-overflow-scrolling: touch;
 
 	}
