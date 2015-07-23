@@ -1175,7 +1175,7 @@ function AddGroup(_tbl, edit) {
 			})
 		},
 		buttons: [{
-			text: (arguments.length == 2) ? dic("Settings.ModalButtonChange", lang) : dic("Tracking.Add", lang) ,
+			text: dic("Tracking.Add", lang),
 			click: function() {
 
 				if (arg == 2) {

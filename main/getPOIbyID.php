@@ -36,7 +36,7 @@
     $str1 .= " where " . $sqlV . " " . $str2 . " ORDER BY ID DESC";*/
     $str1 = "";
 	$str1 .= " select ST_X(ST_Transform(pp.geom,4326)) long, ST_Y(ST_Transform(pp.geom,4326)) lat, pp.name, pp.available, pp.active, ";
-	$str1 .= " pp.groupid, pp.id, ppg.fillcolor color, ppg.name groupname, pp.radius from pointsofinterest pp "; 
+	$str1 .= " pp.groupid, pp.id, ppg.fillcolor color, ppg.name groupname, pp.radius, ppg.image from pointsofinterest pp "; 
 	$str1 .= " left outer join pointsofinterestgroups ppg on pp.groupid=ppg.id  ";
 	$str1 .= " where pp.clientid=" . session("client_id") ." " . $str2 . " and pp.active='1' and type=1 " . $str3 . " ORDER BY pp.id DESC";
 	// select * from pointsofinterest where clientid = 154
@@ -53,7 +53,7 @@
             //$_canch = "1";
 		//else
             //$_canch = $row["CanChange"];
-        $str .= "#" . str_replace(",", ".", $row["long"]."") . "|" . str_replace(",", ".", $row["lat"]."") . "|" . str_replace("|", "", str_replace("#", "", $row["name"])) . "|" . $row["groupid"] . "|" . $row["id"] . "|" . str_replace("|", "", str_replace("#", "", $row["color"])) . "|" . str_replace("|", "", str_replace("#", "", $row["groupname"])) . "|" . str_replace("|", "", str_replace("#", "", $row["radius"])) . "|" . $row["available"];
+        $str .= "#" . str_replace(",", ".", $row["long"]."") . "|" . str_replace(",", ".", $row["lat"]."") . "|" . str_replace("|", "", str_replace("#", "", $row["name"])) . "|" . $row["groupid"] . "|" . $row["id"] . "|" . str_replace("|", "", str_replace("#", "", $row["color"])) . "|" . str_replace("|", "", str_replace("#", "", $row["groupname"])) . "|" . str_replace("|", "", str_replace("#", "", $row["radius"])) . "|" . $row["available"] . "|" . $row["image"];
     }
 	
     if($str == "")

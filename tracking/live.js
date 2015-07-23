@@ -67,10 +67,10 @@ var ClosePopUp = true;
 var FirstLoad = true;
 
 reloadMarker = false;
-
+var checkTF = true;
 var _index = 1;
 var TimerRec;
-
+var TimerZoom;
 var loadAjaxRec;
 
 var traektorija = 180;
@@ -82,6 +82,9 @@ var RecOnNew = false;
 var RecOnNewAll = false;
 
 var metric = 'Km';
+var numdelimiter = '.';
+var dateformatU_ = 'Y-m-d';
+var timeformatU_ = 'H:i:s';
 var liq = 'litar'
 var tempunit = 'C';
 
@@ -227,6 +230,10 @@ var VehcileIDs = []
 var VehcileIDsWS = '';
 
 var AllowedMaps = "11111"
+var _trajIDs = "";
+var _trajCodes = "";
+var _trajSH = false;
+var _trajPodatoci = "";
 
 var LastPointsLon = []
 var LastPointsLat = []
@@ -1020,6 +1027,7 @@ function Applay_1(_num, _id) {
 			{
 	        	if (document.getElementById(_num + "_checkRow" + i).checked) {
 	        		_ids =  document.getElementById(_num + "_checkRow" + i).alt;
+                    _trajCodes = parseInt(i)-1;
 	        		tmpCheckGroup[_num][i] = 1;
 	        		i = -1;
 	        		break;
@@ -1035,9 +1043,11 @@ function Applay_1(_num, _id) {
         	if(_pts.length > 1)
         		goToPointIdxNew(_pts.length - 1);
         	ShowHideTrajectory = false;
+            _trajSH = false;
         	document.getElementById('icon-draw-path').style.backgroundPosition = '0px -24px';
         } else {
         	ShowHideTrajectory = true;
+            _trajSH = true;
             document.getElementById('icon-draw-path').style.backgroundPosition = '0px 0px';
         }
         loadrecinlive(_ids, parseInt(traceForUser, 10));
@@ -1056,6 +1066,7 @@ function Applay_1(_num, _id) {
 	        		get10Points1(Vehicles[i-1].ID, Vehicles[i-1].Reg, $('#trajectoryvalue').val());
 	        	}
 	            _ids += document.getElementById(_num + "_checkRow" + i).alt + ", ";
+                _trajCodes += (parseInt(i)-1) + ", ";
 	            tmpCheckGroup[_num][i] = 1;
 	        } else {
 	            tmpCheckGroup[_num][i] = 0;
@@ -1079,6 +1090,7 @@ function Applay_1(_num, _id) {
 	    }
 	    
 	    _ids = _ids.substring(0, _ids.length - 2);
+        _trajCodes = _trajCodes.substring(0, _trajCodes.length - 2);
 	    if (_ids == "") {
 	    	ClearGraphic();
 	        ShowHideTrajectory = false;
@@ -1098,6 +1110,7 @@ function Applay_1(_num, _id) {
 	    $('#' + _id).css({ display: 'none' });
 	    document.getElementById('icon-draw-path-down').style.backgroundPosition = '0px -144px';
     }
+    _trajIDs = _ids;
 }
 
 function Applay_2(_num, _id) {
@@ -1852,8 +1865,8 @@ function eventClick(e) {
 		$('#poiLon').val(lonlat.lon)
 		$('#poiName').val('');
 		$('#additionalInfo').val('');
-		$(".dropdown dt a")[0].title = "";
-		$(".dropdown dt a span").html(dic("selGroup", lang));
+		$("#poiGroup dt a")[0].title = "";
+		$("#poiGroup dt a").html('<span>'+dic("selGroup", lang)+'</span>');
 		$(".dropdownRadius dt a")[0].title = "";
 		$(".dropdownRadius dt a span").html(dic("selRadius", lang));
         $("#div-Add-POI").dialog({ modal: true, width: 430, height: 440, zIndex: 9999, resizable: false });
@@ -2063,9 +2076,9 @@ function GetDirections(_from){
             if($('#directionLon').val() != '' && $('#directionLat').val() != '' && $('#directionLatEnd').val() != '' && $('#directionLonEnd').val() != '' && $('#direcitonAddressEnd').val() != '' && $('#direcitonAddress').val() != '') {
                 ShowWait();
                 boundsDir = new OpenLayers.Bounds();
-                var _name = '<strong>Кратка ' + dic("Route", lang).toLowerCase() + '</strong><br>Од: ' + $('#direcitonAddress').val() + '<br>До: ' + $('#direcitonAddressEnd').val();
+                var _name = '<strong>' + dic("ShortRoute", lang) + '</strong><br>' + dic("From", lang) + ': ' + $('#direcitonAddress').val() + '<br>' + dic("To", lang) + ': ' + $('#direcitonAddressEnd').val();
                 DrawLine_Directions($('#directionLon').val(), $('#directionLat').val(), $('#directionLonEnd').val(), $('#directionLatEnd').val(), _name, 'getLinePoints', 0, '#0000FF');
-                var _name = '<strong>Брза ' + dic("Route", lang).toLowerCase() + '</strong><br>Од: ' + $('#direcitonAddress').val() + '<br>До: ' + $('#direcitonAddressEnd').val();
+                var _name = '<strong>' + dic("FastRoute", lang) + '</strong><br>' + dic("From", lang) + ': ' + $('#direcitonAddress').val() + '<br>' + dic("To", lang) + ': ' + $('#direcitonAddressEnd').val();
                 DrawLine_Directions($('#directionLon').val(), $('#directionLat').val(), $('#directionLonEnd').val(), $('#directionLatEnd').val(), _name, 'getLinePointsF', 1, '#FF0000');
             }
         } else {
@@ -2233,7 +2246,10 @@ function EditPOI(lon, lat, name, avail, ppgid, id, desc, num, addinfo, radiusID)
             var text = $($("#poiGroup dd ul li a")[i]).html();
             $("#poiGroup dt a")[0].title = ppgid;
             document.getElementById("groupidTEst").title = ppgid;
-            $("#poiGroup dt a span").html(text);
+            if(text.indexOf("pin-1") != -1)
+                $("#poiGroup dt a").html(text.replace('top: -1px', 'top: 4px'));
+            else
+                $("#poiGroup dt a").html(text);
             break;
         }
     }
@@ -2275,17 +2291,24 @@ function clearItem() {
     $("#clickAny").val("");
 }
 function ChangeIconsColor(_color) {
-    for (var p = 0; p < 22; p++)
-        document.getElementById("GroupIconImg" + p).src = 'http://80.77.159.246:88/new/pin/?color=' + _color + '&type=' + p;
-    setTimeout('$("#tblIconsPOI").css({ visibility: "visible" }); $("#loadingIconsPOI").css({ visibility: "hidden" });', 1500);
+    //for (var p = 0; p < 22; p++)
+        //document.getElementById("GroupIconImg" + p).src = 'http://80.77.159.246:88/new/pin/?color=' + _color + '&type=' + p;
+    if(_color == '#ffffff')
+        $('.iconpin').css({color: _color, textShadow: '0px 0px 2px black' });
+    else
+        $('.iconpin').css({color: _color, textShadow: '0px 0px 1px black' });
+    $("#tblIconsPOI").css({ visibility: "visible" });
+    $("#loadingIconsPOI").css({ visibility: "hidden" });
 }
 function AddGroup(_tbl) {
     $('#GroupName').val('');
     $("#colorPicker1").css("background-color", "transparent");
     $("#GroupIcon0").attr({ checked: 'checked' });
+    
     $("#clickAny").val('');
-    for (var p = 0; p < 22; p++)
-        document.getElementById("GroupIconImg" + p).src = 'http://80.77.159.246:88/new/pin/?color=ffffff&type=' + p;
+    //for (var p = 0; p < 22; p++)
+        //document.getElementById("GroupIconImg" + p).src = 'http://80.77.159.246:88/new/pin/?color=ffffff&type=' + p;
+    $('.iconpin').css({color: '#ffffff', textShadow: '0px 0px 2px black' })
     $('#btnAddGroup').button();
     $('#btnCancelGroup').button();
     $("#colorPicker1").mlColorPicker({ 'onChange': function (val) {
@@ -2298,7 +2321,24 @@ function AddGroup(_tbl) {
         }
     }
     });
-    $("#div-Add-Group").dialog({ modal: true, width: 400, zIndex: 10000, resizable: false });
+    $("#div-Add-Group").dialog({ modal: true, width: 400, zIndex: 10000, resizable: false, title: dic("Tracking.AddGroup", lang),
+    buttons: [{
+            text: dic("Tracking.Add", lang),
+            click: function() {
+                    ButtonAddGroupOkClick();
+            }
+        }, {
+            text: dic("Tracking.Cancel", lang),
+            click: function() {
+
+                $('body').css({
+                    overflow: 'auto'
+                });
+                $('#div-Add-Group').dialog('destroy');
+            }
+        }]
+
+    });
     if (_tbl == 1) {
         $('#tblIconsPOI').css('display', 'block');
         $('#spanIconsPOI').css('display', 'block');
@@ -2314,28 +2354,28 @@ function AddGroup(_tbl) {
 function ButtonAddGroupOkClick() {
     if (($('#GroupName').val() != '') && ($('#clickAny').val() != '')) {
         $('#loading1').css({ display: "block" });
-        for (var i = 0; i < 22; i++)
-            if ($('#GroupIcon' + i)[0].checked) {
-                var _img = i;
-                break;
-            }
-        //alert("AddGroupNew.php?groupName=" + String($('#GroupName').val()) + "&fcolor=" + String($("#clickAny").val().substring(1, $("#clickAny").val().length)) + "&img=" + _img + "&l=" + lang);
+        var _img = $("#tblIconsPOI input[name='GroupIcon']:checked").val();
+        //alert(twopoint + "/main/AddGroupNew.php?groupName=" + $('#GroupName').val() + "&fcolor=" + $("#clickAny").val().replace('#', '') + "&img=" + _img + "&l=" + lang + "&tpoint=" + twopoint);
+        //return false;
         $.ajax({
-            url: twopoint + "/main/AddGroupNew.php?groupName=" + String($('#GroupName').val()) + "&fcolor=" + String($("#clickAny").val().substring(1, $("#clickAny").val().length)) + "&img=" + _img + "&l=" + lang + "&tpoint=" + twopoint,
+            url: twopoint + "/main/AddGroupNew.php?groupName=" + $('#GroupName').val() + "&fcolor=" + $("#clickAny").val().replace('#', '') + "&img=" + _img + "&l=" + lang + "&tpoint=" + twopoint,
             context: document.body,
             success: function (data) {
+                data = data.replace(/\r/g,'').replace(/\n/g,'');
                 if (data.indexOf("Error") == -1) {
                     $('#div-Add-Group').dialog('destroy');
                     $('#loading1').css({ display: "none" });
-                    
-                    var _bgimg = 'http://80.77.159.246:88/new/pin/?color=' + $("#clickAny").val().substring(1, $("#clickAny").val().length) + '&type=' + _img;
-                    $("#poiGroup dd ul").append('<li><a id="' + data.split("@@%%")[1] + '" href="#">&nbsp;&nbsp;' + $('#GroupName').val() + '<div class="flag" style="margin-top: -3px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; width: 24px; height: 24px; background: url(' + _bgimg + ') no-repeat; position: relative; float: left;"></div></a></li>');
-                    $("#gfGroup dd ul").append('<li><a id="' + data.split("@@%%")[1] + '" href="#">&nbsp;&nbsp;' + $('#GroupName').val() + '<div class="flag" style="margin-top: -1px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; width: 18px; height: 18px; background-color: #' + $("#clickAny").val().substring(1, $("#clickAny").val().length) + '; position: relative; float: left;"></div></a></li>');
+
+                    $("#poiGroup dd ul").append('<li><a id="' + data.split("@@%%")[1] + '" href="#">&nbsp;<span style="margin-left: 0px; display: inline-block; padding-left: 0px; margin-top: 3px;">' + $('#GroupName').val() + '</span><span class="iconpin20 icon-poi-'+_img+'" style="padding-left: 0px; padding-right: 0px; text-align: center; margin-top: -2px; width: 25px; position: relative; float: left; color: ' + $("#clickAny").val() + '; text-shadow: 0px 0px 1px black;"></span></a></li>');
+                    $("#gfGroup dd ul").append('<li><a id="' + data.split("@@%%")[1] + '" href="#">&nbsp;&nbsp;' + $('#GroupName').val() + '<div class="flag" style="margin-top: -1px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; width: 18px; height: 18px; background-color: ' + $("#clickAny").val() + '; position: relative; float: left;"></div></a></li>');
 
                     $("#poiGroup dd ul li a").click(function () {
                         var text = $(this).html();
                         $("#poiGroup dt a")[0].title = this.id;
-                        $("#poiGroup dt a span").html(text);
+                        if(text.indexOf("pin-1") != -1)
+                            $("#poiGroup dt a").html(text.replace('top: -1px', 'top: 4px'));
+                        else
+                            $("#poiGroup dt a").html(text);
                         $("#poiGroup dd ul").hide();
                     });
                     $("#gfGroup dd ul li a").click(function () {
@@ -2349,7 +2389,7 @@ function ButtonAddGroupOkClick() {
                     $("#poiGroup dt a")[0].title = data.split("@@%%")[1];
                     $("#gfGroup dt a")[0].title = data.split("@@%%")[1];
                     document.getElementById("groupidTEst").title = data.split("@@%%")[1];
-                    $("#poiGroup dt a span").html($($("#poiGroup dd ul li")[$("#gfGroup dd ul li").length - 1].children[0]).html());
+                    $("#poiGroup dt a").html($($("#poiGroup dd ul li")[$("#poiGroup dd ul li").length - 1].children[0]).html());
                     $("#gfGroup dt a span").html($($("#gfGroup dd ul li")[$("#gfGroup dd ul li").length - 1].children[0]).html());
 
                     msgbox(data.split("@@%%")[3]);
@@ -2360,8 +2400,9 @@ function ButtonAddGroupOkClick() {
                     if (document.getElementById("div-poiGroupUp") != null) {
                         $('#div-poiGroupUp').remove();
                     }
-                } else
+                } else {
                     msgbox(data);
+                }
             }
         });
     } else {
@@ -2397,8 +2438,8 @@ function ButtonAddEditPOIokClick() {
     if (document.getElementById("groupidTEst").title != '')
         var _title = document.getElementById("groupidTEst").title;
     else
-        if ($(".dropdown dt a")[0].title != '')
-            var _title = $(".dropdown dt a")[0].title;
+        if ($("#poiGroup dt a")[0].title != '')
+            var _title = $("#poiGroup dt a")[0].title;
         else
             var _title = '';
         if (($('#poiLat').val() != '') && ($('#poiLon').val() != '') && ($('#poiName').val() != '') && (_title != '') && ($(".dropdownRadius dt a")[0].title != '')) {
@@ -2421,14 +2462,13 @@ function ButtonAddEditPOIokClick() {
                 	var _col = data.split("@@%%")[1].split("|@")[0];
                 	var _img = data.split("@@%%")[1].split("|@")[1];
                     if (data.indexOf(dic("Error", lang)) == -1) {
-                        var _bgimg = 'url("http://80.77.159.246:88/new/pin/?color=' + String(_col.substring(1, _col.length)) + '&type='+_img+'")';
+                        //var _bgimg = 'url("http://80.77.159.246:88/new/pin/?color=' + String(_col.substring(1, _col.length)) + '&type='+_img+'")';
                         for (var i = 0; i < 4; i++)
                             if (Boards[i] != null) {
                             	if($('#numPoi').val() != -1){
-                            		
                             		if(_title != "1")
                             		{
-                            			var groupName = $(".dropdown dt a span")[0].textContent.substring(2, $(".dropdown dt a span")[0].textContent.length);
+                            			var groupName = $("#poiGroup dt a span")[0].textContent;
                             			Markers[i].removeMarker(tmpMarkers[i][$('#numPoi').val()]);
                             			var size = new OpenLayers.Size(24, 24);
         								var calculateOffset = function (size) { return new OpenLayers.Pixel(-(size.w / 2), -size.h); };
@@ -2437,10 +2477,10 @@ function ButtonAddEditPOIokClick() {
 								        var UpdateMar = new OpenLayers.Marker(ll, icon);
 								        Markers[i].addMarker(UpdateMar);
 								        tmpMarkers[i][$('#numPoi').val()] = UpdateMar;
-                                		tmpMarkers[i][$('#numPoi').val()].events.element.children[0].style.backgroundImage = _bgimg;
+                                		//tmpMarkers[i][$('#numPoi').val()].events.element.children[0].style.backgroundImage = _bgimg;
+                                		tmpMarkers[i][$('#numPoi').val()].events.element.innerHTML = '<span class="iconpin24 icon-poi-'+_img+'" style="color: #'+String(_col.substring(1, _col.length))+'; text-shadow: 0px 0px 1px black;"></span>';
                                 	} else
                         			{
-                        	
                             			var groupName = dic("Settings.NotGroupedItems", lang);
                         				Markers[i].removeMarker(tmpMarkers[i][$('#numPoi').val()]);
                                 		var size = new OpenLayers.Size(24, 24);
@@ -2451,20 +2491,22 @@ function ButtonAddEditPOIokClick() {
                                 		Markers[i].addMarker(UpdateMar);
                                 		tmpMarkers[i][$('#numPoi').val()] = UpdateMar;
                                 		tmpMarkers[i][$('#numPoi').val()].events.element.children[0].style.backgroundImage = '';
+                                		//tmpMarkers[i][$('#numPoi').val()].events.element.innerHTML = '';
                                 	}
                                 	tmpMarkers[i][$('#numPoi').val()].events.element.style.cursor = 'pointer';
 	                                tmpMarkers[i][$('#numPoi').val()].events.element.setAttribute("onmousemove", "ShowPopup(event, '<strong style=\"font-size: 14px;\">" + $('#poiName').val() + "<br /></strong>" + dic("Group", lang) + ": <strong style=\"font-size: 12px;\">" + groupName + "</strong>')")
 	                                tmpMarkers[i][$('#numPoi').val()].events.element.setAttribute("onclick", "EditPOI('" + $('#poiLon').val() + "', '" + $('#poiLat').val() + "', '" + $('#poiName').val() + "', '" + avail + "', '" + _title + "', '" + $('#idPoi').val() + "', '" + $('#poiAddress').val() + "', '" + $('#numPoi').val() + "', '" + $('#additionalInfo').val() + "', '" + _radius + "')");
 	                                $(tmpMarkers[i][$('#numPoi').val()].events.element).mouseout(function () { HidePopup() });
                                	}else
-                           	{
+                           	    {
                                		//if(_title != "1")
-                               		tmpSearchMarker.events.element.children[0].style.backgroundImage = _bgimg;
+                               		//tmpSearchMarker.events.element.children[0].style.backgroundImage = _bgimg;
+                               		tmpMarkers[i][$('#numPoi').val()].events.element.innerHTML = '<span class="iconpin24 icon-poi-'+_img+'" style="color: #'+String(_col.substring(1, _col.length))+'; text-shadow: 0px 0px 1px black;"></span>';
                                		//else
                                 	//tmpSearchMarker.events.element.children[0].style.backgroundImage = '';
                                 	var _cant = $('#APcheck3').attr('checked') == true ? "False" : "True";
                                 	tmpSearchMarker.events.element.attributes[3].nodeValue = "EditPOI('" + $('#poiLon').val() + "', '" + $('#poiLat').val() + "', '" + $('#poiName').val() + "', '" + avail + "', '" + _title + "', '" + $('#idPoi').val() + "', '" + $('#poiAddress').val() + "', '" + $('#numPoi').val() + "', '" + $('#additionalInfo').val() + "', '" + _radius + "')";
-                                	tmpSearchMarker.events.element.attributes[2].nodeValue = "ShowPopup(event, '<strong style=\"font-size: 14px;\">" + $('#poiName').val() + "<br /></strong>" + dic("Group", lang) + ": <strong style=\"font-size: 12px;\">" + $(".dropdown dt a span")[0].textContent.substring(2, $(".dropdown dt a span")[0].textContent.length) + "</strong>')";
+                                	tmpSearchMarker.events.element.attributes[2].nodeValue = "ShowPopup(event, '<strong style=\"font-size: 14px;\">" + $('#poiName').val() + "<br /></strong>" + dic("Group", lang) + ": <strong style=\"font-size: 12px;\">" + $("#poiGroup dt a span")[0].textContent + "</strong>')";
                                	}
                             }
                         msgbox(data.split("@@%%")[2]);
@@ -2483,6 +2525,7 @@ function ButtonAddEditPOIokClick() {
                 url: twopoint + "/main/AddPoi.php?lat=" + $('#poiLat').val() + "&lon=" + $('#poiLon').val() + "&name=" + $('#poiName').val() + "&avail=" + avail + "&ppgid=" + _title + "&description=" + $('#poiAddress').val() + "&additional=&l=" + lang + "&radius=" + _radius + "&tpoint=" + twopoint,
                 context: document.body,
                 success: function (data) {
+                    data = data.replace(/\r/g,'').replace(/\n/g,'');
                     if (data.indexOf("Error") == -1) {
                         msgbox(data.split("@@%%")[2]);
                         //if (ShowPOI == true) {
@@ -2508,14 +2551,14 @@ function ButtonAddEditPOIokClick() {
                                 markers.addMarker(MyMar);
                                 MyMar.events.element.style.zIndex = 666
                                 tmpMarkers[z][tmpMarkers[z].length] = MyMar;
-                                var _bgimg = 'http://80.77.159.246:88/new/pin/?color=' +  _ppp[7] + '&type=' + _ppp[13];
+                                //var _bgimg = 'http://80.77.159.246:88/new/pin/?color=' +  _ppp[7] + '&type=' + _ppp[13];
 
 								var groupName = _ppp[8];
 								if(_ppp[4] == "1")
                             		groupName = dic("Settings.NotGroupedItems", lang);
                                 tmpMarkers[z][tmpMarkers[z].length - 1].events.element.style.cursor = 'pointer';
 								if(_ppp[4] != "1")
-									tmpMarkers[z][tmpMarkers[z].length - 1].events.element.innerHTML = '<div style="background: transparent url(' + _bgimg + ') no-repeat; width: 24px; height: 24px; font-size:4px"></div>';
+									tmpMarkers[z][tmpMarkers[z].length - 1].events.element.innerHTML = '<span class="iconpin24 icon-poi-'+_ppp[13]+'" style="color: '+_ppp[7]+'; text-shadow: 0px 0px 1px black;"></span>';
                                 tmpMarkers[z][tmpMarkers[z].length - 1].events.element.setAttribute("onmousemove", "ShowPopup(event, '<strong style=\"font-size: 14px;\">" + $('#poiName').val() + "<br /></strong>" + dic("Group", lang) + ": <strong style=\"font-size: 12px;\">" + groupName + "</strong>')")
                                 tmpMarkers[z][tmpMarkers[z].length - 1].events.element.setAttribute("onclick", "EditPOI('" + _ppp[0] + "', '" + _ppp[1] + "', '" + _ppp[2] + "', '" + _ppp[3] + "', '" + _ppp[4] + "', '" + _ppp[5] + "', '" + _ppp[6] + "', '" + (tmpMarkers[z].length - 1) + "', '" + _ppp[11] + "', '" + _ppp[12] + "')");
                                 $(tmpMarkers[z][tmpMarkers[z].length - 1].events.element).mouseout(function () { HidePopup() });
@@ -2576,7 +2619,7 @@ function ButtonAddCanned(_id, _gsmnum, _from) {
                     ws.send('quickmess', _gsmnum + '$*^' + _text + '$*^' + data.replace(/\r/g, '').replace(/\n/g, ''));
                 }
                 $('#predefmess').load('../main/PredefinedMess.php?id=' + _id, function(){
-                    $("#txtCannedReg").load('../tracking/garminReloadReg.php?id=' + _id, function(){
+                    $("#txtCannedReg").load('../tracking/garminReloadReg.php?id=' + _id + "&l=" + lang, function(){
                         HideWait(); 
                     });
                 });
@@ -2725,6 +2768,25 @@ function mapEvent(event) {
 				num2 = podatok[Maps[SelectedBoard].getZoom()]; //Math.abs(19 - Maps[SelectedBoard].getZoom()) + Math.abs(18 - Maps[SelectedBoard].getZoom()) + Math.abs(18 - Maps[SelectedBoard].getZoom()) + Math.abs(18 - Maps[SelectedBoard].getZoom());
 	    }
     }
+    window.clearTimeout(TimerZoom);
+    TimerZoom = window.setTimeout("DisplayVehicles()", 1500);
+}
+function DisplayVehicles() {
+    for (var z = 0; z < Maps.length; z++) {
+        for(var i=0; i<Vehicles.length; i++) {
+            if($('#div-sv-' + Vehicles[i].ID).css('display') != 'none' && $('#cb-vehicle-' + z + '-' + Vehicles[i].ID).attr('checked'))
+                $(Vehicles[i].Marker.events.element).fadeIn(50);
+        }
+    }
+    //$(el).css({display: 'none' });
+}
+function HideVehicles() {
+    for (var z = 0; z < Maps.length; z++) {
+        for(var i=0; i<Vehicles.length; i++) {
+            if($('#div-sv-' + Vehicles[i].ID).css('display') != 'none' && $('#cb-vehicle-' + z + '-' + Vehicles[i].ID).attr('checked'))
+                $(Vehicles[i].Marker.events.element).css({display: 'none' });
+        }
+    }
 }
 
  var selectControl; 
@@ -2855,7 +2917,7 @@ function mapEvent(event) {
                     {
                     	if($('#vozila').attr('selectedIndex') == 0)
                     	{
-                    		msgbox("Немате изберено група на која ке се внесе алармот!");
+                    		msgbox(dic("Tracking.GroupNotEnter",lang));
                         	return false;
                     	}
                     	if($('#txt_emails').val() == "" && $('#txt_phones').val() == "")
@@ -3105,6 +3167,7 @@ function LoadMaps() {
          if (Boards[i] != null) {
              map = new OpenLayers.Map({ div: Boards[i].id, allOverlays: true,
                  eventListeners: {
+                     "zoomstart": HideVehicles,
                      "zoomend": mapEvent,
                      "movestart": mapmovestart,
                      "click": function (e) { eventClick(e) }
@@ -4163,7 +4226,7 @@ function DrawPath_Rec(LonArray, LatArray, DistArray, DTArray, alphaArray, alarms
 		if((parseFloat(DistArray.split(",")[_j]) < 2500))
 		{
 	        var defDT = DTArray.split(",")[_j];
-	        defDT = defDT.split(" ")[1].split(".")[0] + " " + defDT.split(" ")[0].split("-")[2] + "-" + defDT.split(" ")[0].split("-")[1] + "-" + defDT.split(" ")[0].split("-")[0];
+	        defDT = formattime13_(defDT.split(".")[0], timeformatU_) + " " + formatdate13_(defDT.split(".")[0], dateformatU_);//defDT.split(" ")[1].split(".")[0] + " " + defDT.split(" ")[0].split("-")[2] + "-" + defDT.split(" ")[0].split("-")[1] + "-" + defDT.split(" ")[0].split("-")[0];
 	        point = new OpenLayers.Geometry.Point(_lon[_j], _lat[_j]);
 	    		point.transform(
 	            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
@@ -4200,7 +4263,7 @@ function DrawPath_Rec(LonArray, LatArray, DistArray, DTArray, alphaArray, alarms
 			        tmpMarkersRec[tmpMarkersRec.length] = MyMar;
 			        //tmpMarkersRec[tmpMarkersRec.length - 1].events.element.innerHTML = '<div class="gnPOI" style="background-color: ' + _color + '"; display:box; font-size:4px"></div>';
 			        tmpMarkersRec[tmpMarkersRec.length - 1].events.element.style.cursor = 'pointer';
-			        tmpMarkersRec[tmpMarkersRec.length - 1].events.element.setAttribute("onmousemove", "ShowPopup(event, '<strong >Аларм: " + dic(alarmsArray.split(",")[_j], lang) + "<br/ >" + defDT + "</strong>')");
+			        tmpMarkersRec[tmpMarkersRec.length - 1].events.element.setAttribute("onmousemove", "ShowPopup(event, '<strong >"+dic("Tracking.Alarm", lang)+": " + dic(alarmsArray.split(",")[_j], lang) + "<br/ >" + defDT + "</strong>')");
 			        $(tmpMarkersRec[tmpMarkersRec.length - 1].events.element).mouseout(function () { HidePopup() });
 			        //tmpMarkersRec[tmpMarkersRec.length - 1].events.element.addEventListener('click', function (e) { OpenMapAlarm2(DTArray.split(",")[_j], VehReg, alarmsArray.split(",")[_j], $vh, '1'); });
 			        tmpMarkersRec[tmpMarkersRec.length - 1].events.element.setAttribute("onclick", "OpenMapAlarm2('" + DTArray.split(",")[_j] + "', '" + VehReg + "', '" + alarmsArray.split(",")[_j] + "', " + $vh + ", '1')");
@@ -4227,7 +4290,7 @@ function DrawPath_Rec(LonArray, LatArray, DistArray, DTArray, alphaArray, alarms
 	        	if(idlingArray.split(",")[_j] != "")
 		        {
 		        	var defDTDiff = DTArrayDiff.split(",")[_j];
-		        	defDTDiff = defDTDiff.split(" ")[1].split(".")[0] + " " + defDTDiff.split(" ")[0].split("-")[2] + "-" + defDTDiff.split(" ")[0].split("-")[1] + "-" + defDTDiff.split(" ")[0].split("-")[0];
+		        	defDTDiff = formattime13_(defDTDiff.split(".")[0], timeformatU_) + " " + formatdate13_(defDTDiff.split(".")[0], dateformatU_);//defDTDiff.split(" ")[1].split(".")[0] + " " + defDTDiff.split(" ")[0].split("-")[2] + "-" + defDTDiff.split(" ")[0].split("-")[1] + "-" + defDTDiff.split(" ")[0].split("-")[0];
 		        	var size = new OpenLayers.Size(48, 48);
 				    var calculateOffset = function (size) { return new OpenLayers.Pixel(-(size.w / 2) - 1, -size.h + 3 ); };
 			        var icon = new OpenLayers.Icon(twopoint + '/images/idle1.png', size, null, calculateOffset);
@@ -4351,9 +4414,9 @@ function CreateMarkerIgnition_RecNew(_lonn, _latt, _date, _date1, _date2) {
             var _zero1 = " < " + _MinMin + " min";
         else
             var _zero1 = "";
-        var _NewCreateDateTime = _dt[3].split(":")[0] + ":" + _dt[3].split(":")[1] + " " + _dt[2] + "-" + _dt[1] + "-" + _dt[0];
-    	var _NewCreateDateTime1 = _dtT[3].split(":")[0] + ":" + _dtT[3].split(":")[1] + " " + _dtT[2] + "-" + _dtT[1] + "-" + _dtT[0];
-    	var _NewCreateDateTime2 = _dtT2[3].split(":")[0] + ":" + _dtT2[3].split(":")[1] + " " + _dtT2[2] + "-" + _dtT2[1] + "-" + _dtT2[0];
+        var _NewCreateDateTime = formattime13_1(_date, timeformatU_) + " " + formatdate13_(_date, dateformatU_);//_dt[3].split(":")[0] + ":" + _dt[3].split(":")[1] + " " + _dt[2] + "-" + _dt[1] + "-" + _dt[0];
+    	var _NewCreateDateTime1 = formattime13_1(_date1, timeformatU_) + " " + formatdate13_(_date1, dateformatU_);//_dtT[3].split(":")[0] + ":" + _dtT[3].split(":")[1] + " " + _dtT[2] + "-" + _dtT[1] + "-" + _dtT[0];
+    	var _NewCreateDateTime2 = formattime13_1(_date2, timeformatU_) + " " + formatdate13_(_date2, dateformatU_);//_dtT2[3].split(":")[0] + ":" + _dtT2[3].split(":")[1] + " " + _dtT2[2] + "-" + _dtT2[1] + "-" + _dtT2[0];
         
         var lonLatMarker = new OpenLayers.LonLat(_lonn, _latt).transform(Maps[0].displayProjection, Maps[0].projection);
         var feature = new OpenLayers.Feature(markers, lonLatMarker);
@@ -4366,7 +4429,7 @@ function CreateMarkerIgnition_RecNew(_lonn, _latt, _date, _date1, _date2) {
                     lonLatMarker,
                     new OpenLayers.Size(185, 33),
                 //"<div class='text1' style='overflow: hidden; font-size:.8em; position: absolute; top: -1px;'><strong style='font-size: 12px;'>Почеток: " + _date1 + "<br />Крај: " + _date + "<br />Вкупно стоење: " + (_diffDT.days != 0 ? (_diffDT.days + " days") : "") + " " + (_diffDT.hours != 0 ? (_diffDT.hours + " h") : "") + " " + (_diffDT.minutes != 0 ? (_diffDT.minutes + " m") : "") + " " + (_diffDT.seconds != 0 ? (_diffDT.seconds + " s") : "") + "</strong></div>", null, true);
-                    "<div class='text1' style='overflow: hidden; font-size:.8em; position: relative; left: -2px; top: -8px; width: 125px; height: 135px; margin-right: -15px; margin-bottom: -22px;'><strong style='font-size: 12px;'><img onmousemove='ShowPopup(event, \"" + dic("STOS", lang) + "\")' onmouseout='HidePopup()' src='"+twopoint+"/images/startRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime1 + "<br /><img onmousemove='ShowPopup(event, \"" + dic("ETOS", lang) + "\")' onmouseout='HidePopup()' src='"+twopoint + "/images/endRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime + "<br /><img onmousemove='ShowPopup(event, \"" + dic("TTOS", lang) + " со исклучен мотор\")' onmouseout='HidePopup()' src='"+twopoint + "/images/sum1.png' style='height: 16px; width: 16px; position: relative; top: 4px;' />: " + _zero + (_diffDT.days != 0 ? (_diffDT.days + " day(s)") : "") + " " + (_diffDT.hours != 0 ? (_diffDT.hours + " h") : "") + " " + (_diffDT.minutes != 0 ? (_diffDT.minutes + " min") : "") + "</strong><br/><br/><strong style='font-size: 12px;'><img onmousemove='ShowPopup(event, \"" + dic("STOS", lang) + "\")' onmouseout='HidePopup()' src='"+twopoint + "/images/startRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime + "<br /><img onmousemove='ShowPopup(event, \"" + dic("ETOS", lang) + "\")' onmouseout='HidePopup()' src='"+twopoint + "/images/endRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime2 + "<br /><img onmousemove='ShowPopup(event, \"" + dic("TTOS", lang) + " со вклучен мотор\")' onmouseout='HidePopup()' src='"+twopoint + "/images/sum1.png' style='height: 16px; width: 16px; position: relative; top: 4px;' />: " + _zero1 + (_diffDT1.days != 0 ? (_diffDT1.days + " day(s)") : "") + " " + (_diffDT1.hours != 0 ? (_diffDT1.hours + " h") : "") + " " + (_diffDT1.minutes != 0 ? (_diffDT1.minutes + " min") : "") + "</strong></div>", null, true);
+                    "<div class='text1' style='overflow: hidden; font-size:.8em; position: relative; left: -2px; top: -8px; width: 145px; height: 135px; margin-right: -15px; margin-bottom: -22px;'><strong style='font-size: 12px;'><img onmousemove='ShowPopup(event, \"" + dic("STOS", lang) + "\")' onmouseout='HidePopup()' src='"+twopoint+"/images/startRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime1 + "<br /><img onmousemove='ShowPopup(event, \"" + dic("ETOS", lang) + "\")' onmouseout='HidePopup()' src='"+twopoint + "/images/endRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime + "<br /><img onmousemove='ShowPopup(event, \"" + dic("TTOS", lang) + " со исклучен мотор\")' onmouseout='HidePopup()' src='"+twopoint + "/images/sum1.png' style='height: 16px; width: 16px; position: relative; top: 4px;' />: " + _zero + (_diffDT.days != 0 ? (_diffDT.days + " day(s)") : "") + " " + (_diffDT.hours != 0 ? (_diffDT.hours + " h") : "") + " " + (_diffDT.minutes != 0 ? (_diffDT.minutes + " min") : "") + "</strong><br/><br/><strong style='font-size: 12px;'><img onmousemove='ShowPopup(event, \"" + dic("STOS", lang) + "\")' onmouseout='HidePopup()' src='"+twopoint + "/images/startRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime + "<br /><img onmousemove='ShowPopup(event, \"" + dic("ETOS", lang) + "\")' onmouseout='HidePopup()' src='"+twopoint + "/images/endRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime2 + "<br /><img onmousemove='ShowPopup(event, \"" + dic("TTOS", lang) + " со вклучен мотор\")' onmouseout='HidePopup()' src='"+twopoint + "/images/sum1.png' style='height: 16px; width: 16px; position: relative; top: 4px;' />: " + _zero1 + (_diffDT1.days != 0 ? (_diffDT1.days + " day(s)") : "") + " " + (_diffDT1.hours != 0 ? (_diffDT1.hours + " h") : "") + " " + (_diffDT1.minutes != 0 ? (_diffDT1.minutes + " min") : "") + "</strong></div>", null, true);
                 this.popup = popup;
                 this.popup.contentDiv.style.overflow = 'hidden';
                 map.addPopup(this.popup);
@@ -4392,7 +4455,7 @@ function CreateMarkerIgnition_RecNew(_lonn, _latt, _date, _date1, _date2) {
                 new OpenLayers.Size(500, 500),
                 //"<div class='text1' style='overflow: hidden; font-size:.8em; position: relative; left: -2px; top: -8px; width: 107px; height: 70px; margin-right: -10px; margin-bottom: -20px;'><strong style='font-size: 12px;'><img onmousemove='ShowPopup(event, \"Почетно време на застанување\")' onmouseout='HidePopup()' src='../images/startRec.png' style='height: 20px; width: 19px; position: relative; top: 5px;' />: " + _NewCreateDateTime1 + "<br /><img onmousemove='ShowPopup(event, \"Крајно време на застанување\")' onmouseout='HidePopup()' src='../images/endRec.png' style='height: 20px; width: 19px; position: relative; top: 5px;' />: " + _NewCreateDateTime + "<br /><img onmousemove='ShowPopup(event, \"Вкупно време на стоење\")' onmouseout='HidePopup()' src='../images/sum1.png' style='height: 19px; width: 19px; position: relative; top: 5px;' />: " + _zero + (_diffDT.days != 0 ? (_diffDT.days + " d") : "") + " " + (_diffDT.hours != 0 ? (_diffDT.hours + " h") : "") + " " + (_diffDT.minutes != 0 ? (_diffDT.minutes + " m") : "") + "</strong></div>", null, true);
                 //"<div class='text1' style='overflow: hidden; font-size:.8em; position: relative; left: -2px; top: -8px; width: 125px; height: 59px; margin-right: -15px; margin-bottom: -22px;'><strong style='font-size: 12px;'><img onmousemove='ShowPopup(event, \"" + dic("STOS", lang) + "\")' onmouseout='HidePopup()' src='../images/startRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime1 + "<br /><img onmousemove='ShowPopup(event, \"" + dic("ETOS", lang) + "\")' onmouseout='HidePopup()' src='../images/endRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime + "<br /><img onmousemove='ShowPopup(event, \"" + dic("TTOS", lang) + "\")' onmouseout='HidePopup()' src='../images/sum1.png' style='height: 16px; width: 16px; position: relative; top: 4px;' />: " + _zero + (_diffDT.days != 0 ? (_diffDT.days + " day(s)") : "") + " " + (_diffDT.hours != 0 ? (_diffDT.hours + " h") : "") + " " + (_diffDT.minutes != 0 ? (_diffDT.minutes + " min") : "") + "</strong></div>", null, true);
-                "<div class='text1' style='overflow: hidden; font-size:.8em; position: relative; left: -2px; top: -8px; width: 125px; height: 135px; margin-right: -15px; margin-bottom: -22px;'><strong style='font-size: 12px;'><img onmousemove='ShowPopup(event, \"" + dic("STOS", lang) + "\")' onmouseout='HidePopup()' src='"+twopoint+"/images/startRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime1 + "<br /><img onmousemove='ShowPopup(event, \"" + dic("ETOS", lang) + "\")' onmouseout='HidePopup()' src='"+twopoint+"/images/endRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime + "<br /><img onmousemove='ShowPopup(event, \"" + dic("TTOS", lang) + " со исклучен мотор\")' onmouseout='HidePopup()' src='"+twopoint+"/images/sum1.png' style='height: 16px; width: 16px; position: relative; top: 4px;' />: " + _zero + (_diffDT.days != 0 ? (_diffDT.days + " day(s)") : "") + " " + (_diffDT.hours != 0 ? (_diffDT.hours + " h") : "") + " " + (_diffDT.minutes != 0 ? (_diffDT.minutes + " min") : "") + "</strong><br/><br/><strong style='font-size: 12px;'><img onmousemove='ShowPopup(event, \"" + dic("STOS", lang) + "\")' onmouseout='HidePopup()' src='"+twopoint+"/images/startRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime + "<br /><img onmousemove='ShowPopup(event, \"" + dic("ETOS", lang) + "\")' onmouseout='HidePopup()' src='"+twopoint+"/images/endRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime2 + "<br /><img onmousemove='ShowPopup(event, \"" + dic("TTOS", lang) + " со вклучен мотор\")' onmouseout='HidePopup()' src='"+twopoint+"/images/sum1.png' style='height: 16px; width: 16px; position: relative; top: 4px;' />: " + _zero1 + (_diffDT1.days != 0 ? (_diffDT1.days + " day(s)") : "") + " " + (_diffDT1.hours != 0 ? (_diffDT1.hours + " h") : "") + " " + (_diffDT1.minutes != 0 ? (_diffDT1.minutes + " min") : "") + "</strong></div>", null, true);
+                "<div class='text1' style='overflow: hidden; font-size:.8em; position: relative; left: -2px; top: -8px; width: 145px; height: 135px; margin-right: -15px; margin-bottom: -22px;'><strong style='font-size: 12px;'><img onmousemove='ShowPopup(event, \"" + dic("STOS", lang) + "\")' onmouseout='HidePopup()' src='"+twopoint+"/images/startRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime1 + "<br /><img onmousemove='ShowPopup(event, \"" + dic("ETOS", lang) + "\")' onmouseout='HidePopup()' src='"+twopoint+"/images/endRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime + "<br /><img onmousemove='ShowPopup(event, \"" + dic("TTOS", lang) + " со исклучен мотор\")' onmouseout='HidePopup()' src='"+twopoint+"/images/sum1.png' style='height: 16px; width: 16px; position: relative; top: 4px;' />: " + _zero + (_diffDT.days != 0 ? (_diffDT.days + " day(s)") : "") + " " + (_diffDT.hours != 0 ? (_diffDT.hours + " h") : "") + " " + (_diffDT.minutes != 0 ? (_diffDT.minutes + " min") : "") + "</strong><br/><br/><strong style='font-size: 12px;'><img onmousemove='ShowPopup(event, \"" + dic("STOS", lang) + "\")' onmouseout='HidePopup()' src='"+twopoint+"/images/startRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime + "<br /><img onmousemove='ShowPopup(event, \"" + dic("ETOS", lang) + "\")' onmouseout='HidePopup()' src='"+twopoint+"/images/endRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime2 + "<br /><img onmousemove='ShowPopup(event, \"" + dic("TTOS", lang) + " со вклучен мотор\")' onmouseout='HidePopup()' src='"+twopoint+"/images/sum1.png' style='height: 16px; width: 16px; position: relative; top: 4px;' />: " + _zero1 + (_diffDT1.days != 0 ? (_diffDT1.days + " day(s)") : "") + " " + (_diffDT1.hours != 0 ? (_diffDT1.hours + " h") : "") + " " + (_diffDT1.minutes != 0 ? (_diffDT1.minutes + " min") : "") + "</strong></div>", null, true);
         this.popup = popup;
         this.popup.contentDiv.style.overflow = 'hidden';
         if (parseInt(_diffDT.minutes, 10) > parseInt(_MinMin, 10) || parseInt(_diffDT1.minutes, 10) > parseInt(_MinMin, 10)) {
@@ -5435,7 +5498,7 @@ function SaveNewArea(num, _n) {
                         {
                         	if($('#vozila').attr('selectedIndex') == 0)
                         	{
-                        		msgbox("Немате изберено група на која ке се внесе алармот!");
+                        		msgbox(dic("Tracking.GroupNotEnter",lang));
                             	return false;
                         	}
                         	if($('#txt_emails').val() == "" && $('#txt_phones').val() == "")
@@ -6620,6 +6683,7 @@ function SelectMapLayer(num, l) {
 
     map = new OpenLayers.Map({ div: Boards[num].id, allOverlays: true,
         eventListeners: {
+            "zoomstart": HideVehicles,
             "zoomend": mapEvent,
             "movestart": mapmovestart,
             "click": function (e) { eventClick(e) }
@@ -7155,6 +7219,7 @@ function CreateVehicle(_mapNo, _vehicleNo, _color, _lon, _lat, map0, map1, map2,
 		{
 			$($(el).children()[0]).append('<div id="img-vehicle-' + _mapNo + '-' + _vehicleNo + '" style="height: 16px; background-image: url(\'../images/nocommunication.png\'); position: absolute; width: 16px; z-index: 9; left: 12px; top: 12px;"></div>');
 		}
+	
 	//}
 	// Ova ne treba ako miruva //el.innerHTML += '<div class="gnMarkerPointer' + MarkerColor + '" style="left:' + 20 + 'px; top:' + 6 + 'px; height:6px; width:6px; position:absolute; display:box; font-size:4px"></div>'			
 	//debugger;
@@ -7175,8 +7240,11 @@ function CreateVehicle(_mapNo, _vehicleNo, _color, _lon, _lat, map0, map1, map2,
 
 	Vehicle.Marker = MyM
 	Vehicle.el = el
-	if(RecOnNewAll == false)
-	   $(Vehicle.el).css({transition: 'all 2s ease-in-out'});
+	if(RecOnNewAll == false) {
+       $(el).css({display: 'none' });
+       if (checkTF)
+       $(Vehicle.el).css({transition: 'all 2s ease-in-out', cursor: 'pointer'});
+   }
 	
 	Vehicles[vIndex] = Vehicle
 	if (InitLoad==true) {
@@ -7327,15 +7395,17 @@ function MoveMarker(_vehicleNo, newLon, newLat, _color, map0, map1, map2, map3, 
                     if ((dX == 0) && (dY == 0)) {
                         alfa = Vehicles[i].angle
                     }
-                    if(tmpCheckGroup != '')
-                    	if(tmpCheckGroup[1] != undefined)
-                    		if (tmpCheckGroup[1][Vehicles[i].ID] == 1)
+                    if(tmpCheckGroup != '') {
+                    	if(tmpCheckGroup[1] != undefined) {
+                    		if (tmpCheckGroup[1][i+1] == 1)
                     		{
                     			if(alfa1 < 0) {
 									alfa1 = 180 + (180 - alfa1 * (-1));
 								}
 								drawDirectionLive(j, newLon, newLat, Vehicles[i].ID, Vehicles[i].Reg, _dt, alfa1, i);
 							}
+						}
+					}
                     var radius = 14;
                     var pi = 3.14159;
                     var cosAlfa = Math.cos(alfa * (pi / 180));
@@ -7732,9 +7802,8 @@ function MoveMoveMarkerStep(_i, pX, pY, _j){
 		//setTimeout("$(Vehicles[" + _i + "].el).fadeIn('slow');", 1000);
 	//if (LastPointsLon.length > 0) {
 	    if (tmpCheckGroup[1] != undefined) {
-	    	//if(carID == "6")
-					//debugger;
-	        if (tmpCheckGroup[1][Vehicles[_i].ID] == 1) {
+	    	
+	        if (tmpCheckGroup[1][_i+1] == 1) {
 	        	
 	            //document.getElementById("testText").value = VehReg;
 	            if(RecOnNewAll)
@@ -7773,7 +7842,7 @@ function MoveMoveMarker(_i, pX, pY, _j, _cc) {
             TimersData[_j][_i][_cc] = '';
         //if (LastPointsLon.length > 0) {
             if (tmpCheckGroup[1] != undefined) {
-                if (tmpCheckGroup[1][Vehicles[_i].ID] == 1) {
+                if (tmpCheckGroup[1][_i+1] == 1) {
                     //document.getElementById("testText").value = VehReg;
                     if(RecOnNewAll)
                     	DrawPathAgain(LastPointsLon[_j][carID] + ',' + lonLat.lon, LastPointsLat[_j][carID] + ',' + lonLat.lat, carID, _j, _i, VehReg);
@@ -8066,7 +8135,7 @@ function Ajax() {
 											var nexserv = '<font style="color: Red;">' + $('#'+this.id).html().substring($('#'+this.id).html().indexOf("(")+1, $('#'+this.id).html().indexOf(")")) + '</font>';
 										else
 											var nexserv = $('#'+this.id).html().substring($('#'+this.id).html().indexOf("(")+1, $('#'+this.id).html().indexOf(")"));
-					                    ShowPopup(event, dic('Reports.Past', lang) + ' ' + mmetric + ': <b>' + $('#'+this.id).html().substring(0, $('#'+this.id).html().indexOf("(")-1) + '</b><br/>Преостануваат <b>' + nexserv + '</b> до следен сервис!');
+					                    ShowPopup(event, dic('Reports.Past', lang) + ' ' + mmetric + ': <b>' + $('#'+this.id).html().substring(0, $('#'+this.id).html().indexOf("(")-1) + '</b><br/>'+dic("Live.Remaining", lang)+' <b>' + nexserv + '</b> '+dic("Live.UntilNextService", lang)+'!');
 					                });
 								} else
 								{
@@ -8135,7 +8204,7 @@ function Ajax() {
 		                					var zoneindt = Car[j].fulldt;
 		                				else
 		                					var zoneindt = Car[j].zonedt;
-		                				str += '<div onmousemove="ShowPopup(event, \'Влез во зона: ' + formatdt1(zoneindt) + '\');" onmouseout="HidePopup()" id="div_zone_'+geoid+'_'+Car[j].id+'" style="float:left; width:16px; height:16px; margin-left:2px; margin-bottom:2px; cursor:pointer" onclick="FindVehicleOnMap0(' + Car[j].id + ')" class="' + cname + '">' + Car[j].id + '<input type="hidden" value="'+zoneindt+'"/></div>';
+		                				str += '<div onmousemove="ShowPopup(event, \'' + dic("enterZone", lang) + ': ' + formattime13_(zoneindt, timeformatU_) + " " + formatdate13_(zoneindt, dateformatU_) + '\');" onmouseout="HidePopup()" id="div_zone_'+geoid+'_'+Car[j].id+'" style="float:left; width:16px; height:16px; margin-left:2px; margin-bottom:2px; cursor:pointer" onclick="FindVehicleOnMap0(' + Car[j].id + ')" class="' + cname + '">' + Car[j].id + '<input type="hidden" value="'+zoneindt+'"/></div>';
 		                				if(FirstLoad)
 		                				{
 		                					if(Car[j].zonedt > $($('#geo-fence-' + geoid).children()[$('#geo-fence-' + geoid).children().length-1]).children().val())
@@ -8244,7 +8313,7 @@ function Ajax() {
 										var nexserv = '<font style="color: Red;">' + $('#'+this.id).html().substring($('#'+this.id).html().indexOf("(")+1, $('#'+this.id).html().indexOf(")")) + '</font>';
 									else
 										var nexserv = $('#'+this.id).html().substring($('#'+this.id).html().indexOf("(")+1, $('#'+this.id).html().indexOf(")"));
-				                    ShowPopup(event, dic('Reports.Past', lang) + ' ' + mmetric + ': <b>' + $('#'+this.id).html().substring(0, $('#'+this.id).html().indexOf("(")-1) + '</b><br/>Преостануваат <b>' + nexserv + '</b> до следен сервис!');
+				                    ShowPopup(event, dic('Reports.Past', lang) + ' ' + mmetric + ': <b>' + $('#'+this.id).html().substring(0, $('#'+this.id).html().indexOf("(")-1) + '</b><br/>'+dic("Live.Remaining", lang)+' <b>' + nexserv + '</b> '+dic("Live.UntilNextService", lang)+'!');
 				                });
 							} else
 							{
@@ -8284,7 +8353,7 @@ function Ajax() {
 											var nexserv = '<font style="color: Red;">' + $('#'+this.id).html().substring($('#'+this.id).html().indexOf("(")+1, $('#'+this.id).html().indexOf(")")) + '</font>';
 										else
 											var nexserv = $('#'+this.id).html().substring($('#'+this.id).html().indexOf("(")+1, $('#'+this.id).html().indexOf(")"));
-					                    ShowPopup(event, dic('Reports.Past', lang) + ' ' + mmetric + ': <b>' + $('#'+this.id).html().substring(0, $('#'+this.id).html().indexOf("(")-1) + '</b><br/>Преостануваат <b>' + nexserv + '</b> до следен сервис!');
+					                    ShowPopup(event, dic('Reports.Past', lang) + ' ' + mmetric + ': <b>' + $('#'+this.id).html().substring(0, $('#'+this.id).html().indexOf("(")-1) + '</b><br/>'+dic("Live.Remaining", lang)+' <b>' + nexserv + '</b> '+dic("Live.UntilNextService", lang)+'!');
 					                });
 								} else
 								{
@@ -8306,7 +8375,7 @@ function Ajax() {
 	                tmr = tmr + 100
 	                if(Car[j].sedista == "/")
 	                {
-	                	_imgsedista = '<img src="../images/nosignal.png" onmousemove="ShowPopup(event, \'Потребна проверка на сензори на седишта\')" onmouseout="HidePopup()" style="width: 11px; position: relative; margin-top: 0px; margin-left: 2px; height: 11px; margin-bottom: -2px;" id="img-senzor-'+Car[j].id+'">';
+	                	_imgsedista = '<img src="../images/nosignal.png" onmousemove="ShowPopup(event, \''+dic("Tracking.RequireSS",lang)+'\')" onmouseout="HidePopup()" style="width: 11px; position: relative; margin-top: 0px; margin-left: 2px; height: 11px; margin-bottom: -2px;" id="img-senzor-'+Car[j].id+'">';
 	                	$('#vh-sedista-' + Car[j].id).html(_imgsedista);
 	                } else
                 	{
@@ -8465,7 +8534,8 @@ function Ajax() {
 }
 function commaSeparateNumber(val){
 	while (/(\d+)(\d{3})/.test(val.toString())){
-		val = val.toString().replace(/(\d+)(\d{3})/, '$1'+'.'+'$2');
+		//val = val.toString().replace(/(\d+)(\d{3})/, '$1'+'.'+'$2');
+		val = val.toString().replace(/(\d+)(\d{3})/, '$1'+numdelimiter+'$2');
 	}
     return val;
 }
@@ -8820,10 +8890,10 @@ function LoadPOI(_id) {
                                 var _color = 'ff0000';
                             else
                                 var _color = _ppp[7];*/
-                            var _bgimg = 'http://80.77.159.246:88/new/pin/?color=' + _ppp[5] + '&type=' + _ppp[9];
+                            //var _bgimg = 'http://80.77.159.246:88/new/pin/?color=' + _ppp[5] + '&type=' + _ppp[9];
                             //debugger;
                             if(_ppp[3] != '1')
-                            	tmpMarkers[i][tmpMarkers[i].length - 1].events.element.innerHTML = '<div style="background: transparent url(' + _bgimg + ') no-repeat; width: 24px; height: 24px; font-size:4px"></div>';
+                            	tmpMarkers[i][tmpMarkers[i].length - 1].events.element.innerHTML = '<span class="iconpin24 icon-poi-'+_ppp[9]+'" style="color: '+_ppp[5]+'; text-shadow: 0px 0px 1px black;"></span>';
                             tmpMarkers[i][tmpMarkers[i].length - 1].events.element.style.cursor = 'pointer';
                             //tmpMarkers[tmpMarkers.length - 1].events.element.style.backgroundColor = '#' + _ppp[7];
                             //alert(_ppp[6]);
@@ -8902,7 +8972,7 @@ function LoadPOIPetar(_id) {
                                 var _color = 'ff0000';
                             else
                                 var _color = _ppp[7];*/
-                            var _bgimg = 'http://80.77.159.246:88/new/pin/?color=' + _ppp[5] + '&type=0';
+                            //var _bgimg = 'http://80.77.159.246:88/new/pin/?color=' + _ppp[5] + '&type=0';
                             //debugger;
                             //tmpMarkers[i][tmpMarkers[i].length - 1].events.element.innerHTML = '<div style="background: transparent url(' + _bgimg + ') no-repeat; width: 24px; height: 24px; font-size:4px"></div>';
                             tmpMarkers[i][tmpMarkers[i].length - 1].events.element.style.cursor = 'pointer';
@@ -8952,7 +9022,10 @@ function LoadPOIbyID(_id) {
                             var _ppp = _pp[j].split('|');
                             var size = new OpenLayers.Size(24, 24);
                             var calculateOffset = function (size) { return new OpenLayers.Pixel(-(size.w / 2), -size.h); };
-                            var icon = new OpenLayers.Icon(twopoint + '/images/pin-1.png', size, null, calculateOffset);
+                            if(_ppp[3] == '1')
+                                var icon = new OpenLayers.Icon(twopoint + '/images/pin-1.png', size, null, calculateOffset);
+                            else
+                            var icon = new OpenLayers.Icon('./blank.png', size, null, calculateOffset);
 
                             var ll = new OpenLayers.LonLat(parseFloat(_ppp[0]), parseFloat(_ppp[1])).transform(new OpenLayers.Projection("EPSG:4326"), Maps[i].getProjectionObject())
                             //if (MapType[i] == 'YAHOOM') { var ll = new OpenLayers.LonLat(parseFloat(_ppp[0]), parseFloat(_ppp[1])) }
@@ -8968,6 +9041,13 @@ function LoadPOIbyID(_id) {
                             //var _bgimg = 'http://80.77.159.246:88/new/pin/?color=' + _ppp[5] + '&type=0';
                             //debugger;
                             //tmpMarkers[i][tmpMarkers[i].length - 1].events.element.innerHTML = '<div style="background: transparent url(' + _bgimg + ') no-repeat; width: 24px; height: 24px; font-size:4px"></div>';
+                            if(_ppp[3] != '1') {
+                               // alert('<span class="iconpin24 icon-poi-'+_ppp[9]+'" style="color: '+_ppp[5]+'; text-shadow: 0px 0px 1px black;"></span>')
+                                tmpMarkers[i][tmpMarkers[i].length - 1].events.element.innerHTML = '<span class="iconpin24 icon-poi-'+_ppp[9]+'" style="color: '+_ppp[5]+'; text-shadow: 0px 0px 1px black;"></span>';
+                            }
+                            var groupName = _ppp[6];
+                            if(_ppp[3] == "1")
+                                groupName = dic("Settings.NotGroupedItems", lang);
                             tmpMarkers[i][tmpMarkers[i].length - 1].events.element.style.cursor = 'pointer';
                             //tmpMarkers[tmpMarkers.length - 1].events.element.style.backgroundColor = '#' + _ppp[7];
                             tmpMarkers[i][tmpMarkers[i].length - 1].events.element.setAttribute("onmousemove", "ShowPopup(event, '<strong style=\"font-size: 14px;\">" + _ppp[2] + "<br /></strong>" + dic("Group", lang) + ": <strong style=\"font-size: 12px;\">" + _ppp[6] + "</strong>')");
@@ -9088,9 +9168,9 @@ function CreateMarkerIgnition_Rec(_lonn, _latt, _date, _date1) {
         else
             var _zero = "";
         
-        var _NewCreateDateTime = _dt[3].split(":")[0] + ":" + _dt[3].split(":")[1] + " " + _dt[2] + "-" + _dt[1] + "-" + _dt[0];
-    	var _NewCreateDateTime1 = _dtT[3].split(":")[0] + ":" + _dtT[3].split(":")[1] + " " + _dtT[2] + "-" + _dtT[1] + "-" + _dtT[0];
-        
+        var _NewCreateDateTime = formattime13_1(_date, timeformatU_) + " " + formatdate13_(_date, dateformatU_);//_dt[3].split(":")[0] + ":" + _dt[3].split(":")[1] + " " + _dt[2] + "-" + _dt[1] + "-" + _dt[0];
+    	var _NewCreateDateTime1 = formattime13_1(_date1, timeformatU_) + " " + formatdate13_(_date1, dateformatU_);//_dtT[3].split(":")[0] + ":" + _dtT[3].split(":")[1] + " " + _dtT[2] + "-" + _dtT[1] + "-" + _dtT[0];
+        //alert(_NewCreateDateTime + " " + _NewCreateDateTime1)
         var lonLatMarker = new OpenLayers.LonLat(_lonn, _latt).transform(Maps[0].displayProjection, Maps[0].projection);
         var feature = new OpenLayers.Feature(markers, lonLatMarker);
         //if (MapType[0] == 'YAHOOM') { var ll = new OpenLayers.LonLat(parseFloat(_lonn), parseFloat(_latt)) }
@@ -9102,7 +9182,7 @@ function CreateMarkerIgnition_Rec(_lonn, _latt, _date, _date1) {
                     lonLatMarker,
                     new OpenLayers.Size(185, 33),
                 //"<div class='text1' style='overflow: hidden; font-size:.8em; position: absolute; top: -1px;'><strong style='font-size: 12px;'>Почеток: " + _date1 + "<br />Крај: " + _date + "<br />Вкупно стоење: " + (_diffDT.days != 0 ? (_diffDT.days + " days") : "") + " " + (_diffDT.hours != 0 ? (_diffDT.hours + " h") : "") + " " + (_diffDT.minutes != 0 ? (_diffDT.minutes + " m") : "") + " " + (_diffDT.seconds != 0 ? (_diffDT.seconds + " s") : "") + "</strong></div>", null, true);
-                    "<div class='text1' style='overflow: hidden; font-size:.8em; position: relative; left: -2px; top: -8px; width: 125px; height: 59px; margin-right: -15px; margin-bottom: -22px;'><strong style='font-size: 12px;'><img onmousemove='ShowPopup(event, \"" + dic("STOS", lang) + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/startRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime1 + "<br /><img onmousemove='ShowPopup(event, \"" + dic("ETOS", lang) + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/endRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime + "<br /><img onmousemove='ShowPopup(event, \"" + dic("TTOS", lang) + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/sum1.png' style='height: 16px; width: 16px; position: relative; top: 4px;' />: " + _zero + (_diffDT.days != 0 ? (_diffDT.days + " day(s)") : "") + " " + (_diffDT.hours != 0 ? (_diffDT.hours + " h") : "") + " " + (_diffDT.minutes != 0 ? (_diffDT.minutes + " min") : "") + "</strong></div>", null, true);
+                    "<div class='text1' style='overflow: hidden; font-size:.8em; position: relative; left: -2px; top: -8px; width: 145px; height: 59px; margin-right: -15px; margin-bottom: -22px;'><strong style='font-size: 12px;'><img onmousemove='ShowPopup(event, \"" + dic("STOS", lang) + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/startRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime1 + "<br /><img onmousemove='ShowPopup(event, \"" + dic("ETOS", lang) + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/endRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime + "<br /><img onmousemove='ShowPopup(event, \"" + dic("TTOS", lang) + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/sum1.png' style='height: 16px; width: 16px; position: relative; top: 4px;' />: " + _zero + (_diffDT.days != 0 ? (_diffDT.days + " day(s)") : "") + " " + (_diffDT.hours != 0 ? (_diffDT.hours + " h") : "") + " " + (_diffDT.minutes != 0 ? (_diffDT.minutes + " min") : "") + "</strong></div>", null, true);
                 this.popup = popup;
                 this.popup.contentDiv.style.overflow = 'hidden';
                 map.addPopup(this.popup);
@@ -9126,7 +9206,7 @@ function CreateMarkerIgnition_Rec(_lonn, _latt, _date, _date1) {
         var popup = new OpenLayers.Popup.FramedCloud("Popup",
                 lonLatMarker,
                 new OpenLayers.Size(500, 500),
-                "<div class='text1' style='overflow: hidden; font-size:.8em; position: relative; left: -2px; top: -8px; width: 125px; height: 59px; margin-right: -15px; margin-bottom: -22px;'><strong style='font-size: 12px;'><img onmousemove='ShowPopup(event, \"" + dic("STOS", lang) + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/startRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime1 + "<br /><img onmousemove='ShowPopup(event, \"" + dic("ETOS", lang) + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/endRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime + "<br /><img onmousemove='ShowPopup(event, \"" + dic("TTOS", lang) + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/sum1.png' style='height: 16px; width: 16px; position: relative; top: 4px;' />: " + _zero + (_diffDT.days != 0 ? (_diffDT.days + " day(s)") : "") + " " + (_diffDT.hours != 0 ? (_diffDT.hours + " h") : "") + " " + (_diffDT.minutes != 0 ? (_diffDT.minutes + " min") : "") + "</strong></div>", null, true);
+                "<div class='text1' style='overflow: hidden; font-size:.8em; position: relative; left: -2px; top: -8px; width: 145px; height: 59px; margin-right: -15px; margin-bottom: -22px;'><strong style='font-size: 12px;'><img onmousemove='ShowPopup(event, \"" + dic("STOS", lang) + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/startRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime1 + "<br /><img onmousemove='ShowPopup(event, \"" + dic("ETOS", lang) + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/endRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime + "<br /><img onmousemove='ShowPopup(event, \"" + dic("TTOS", lang) + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/sum1.png' style='height: 16px; width: 16px; position: relative; top: 4px;' />: " + _zero + (_diffDT.days != 0 ? (_diffDT.days + " day(s)") : "") + " " + (_diffDT.hours != 0 ? (_diffDT.hours + " h") : "") + " " + (_diffDT.minutes != 0 ? (_diffDT.minutes + " min") : "") + "</strong></div>", null, true);
         this.popup = popup;
         this.popup.contentDiv.style.overflow = 'hidden';
         if (parseInt(_diffDT.minutes, 10) > parseInt(_MinMin, 10)) {
@@ -9191,7 +9271,7 @@ function CreateMarkerIgnition_Rec1(_lonn, _latt, _time, _date, _date1) {
                     lonLatMarker,
                     new OpenLayers.Size(185, 33),
                 //"<div class='text1' style='overflow: hidden; font-size:.8em; position: absolute; top: -1px;'><strong style='font-size: 12px;'>Почеток: " + _date1 + "<br />Крај: " + _date + "<br />Вкупно стоење: " + (_diffDT.days != 0 ? (_diffDT.days + " days") : "") + " " + (_diffDT.hours != 0 ? (_diffDT.hours + " h") : "") + " " + (_diffDT.minutes != 0 ? (_diffDT.minutes + " m") : "") + " " + (_diffDT.seconds != 0 ? (_diffDT.seconds + " s") : "") + "</strong></div>", null, true);
-                    "<div class='text1' style='overflow: hidden; font-size:.8em; position: relative; left: -2px; top: -8px; width: 125px; height: 59px; margin-right: -15px; margin-bottom: -22px;'><strong style='font-size: 12px;'><img onmousemove='ShowPopup(event, \"" + dic("STOS", lang) + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/startRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime1 + "<br /><img onmousemove='ShowPopup(event, \"" + dic("ETOS", lang) + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/endRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime + "<br /><img onmousemove='ShowPopup(event, \"" + dic("TTOS", lang) + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/sum1.png' style='height: 16px; width: 16px; position: relative; top: 4px;' />: " + _zero + (_diffDT.days != 0 ? (_diffDT.days + " day(s)") : "") + " " + (_diffDT.hours != 0 ? (_diffDT.hours + " h") : "") + " " + (_diffDT.minutes != 0 ? (_diffDT.minutes + " min") : "") + "</strong></div>", null, true);
+                    "<div class='text1' style='overflow: hidden; font-size:.8em; position: relative; left: -2px; top: -8px; width: 145px; height: 59px; margin-right: -15px; margin-bottom: -22px;'><strong style='font-size: 12px;'><img onmousemove='ShowPopup(event, \"" + dic("STOS", lang) + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/startRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime1 + "<br /><img onmousemove='ShowPopup(event, \"" + dic("ETOS", lang) + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/endRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime + "<br /><img onmousemove='ShowPopup(event, \"" + dic("TTOS", lang) + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/sum1.png' style='height: 16px; width: 16px; position: relative; top: 4px;' />: " + _zero + (_diffDT.days != 0 ? (_diffDT.days + " day(s)") : "") + " " + (_diffDT.hours != 0 ? (_diffDT.hours + " h") : "") + " " + (_diffDT.minutes != 0 ? (_diffDT.minutes + " min") : "") + "</strong></div>", null, true);
                 this.popup = popup;
                 this.popup.contentDiv.style.overflow = 'hidden';
                 map.addPopup(this.popup);
@@ -9215,7 +9295,7 @@ function CreateMarkerIgnition_Rec1(_lonn, _latt, _time, _date, _date1) {
         var popup = new OpenLayers.Popup.FramedCloud("Popup",
                 lonLatMarker,
                 new OpenLayers.Size(500, 500),
-                "<div class='text1' style='overflow: hidden; font-size:.8em; position: relative; left: -2px; top: -8px; width: 125px; height: 59px; margin-right: -15px; margin-bottom: -22px;'><strong style='font-size: 12px;'><img onmousemove='ShowPopup(event, \"" + dic("STOS", lang) + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/startRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime1 + "<br /><img onmousemove='ShowPopup(event, \"" + dic("ETOS", lang) + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/endRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime + "<br /><img onmousemove='ShowPopup(event, \"" + dic("TTOS", lang) + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/sum1.png' style='height: 16px; width: 16px; position: relative; top: 4px;' />: " + _zero + (_diffDT.days != 0 ? (_diffDT.days + " day(s)") : "") + " " + (_diffDT.hours != 0 ? (_diffDT.hours + " h") : "") + " " + (_diffDT.minutes != 0 ? (_diffDT.minutes + " min") : "") + "</strong></div>", null, true);
+                "<div class='text1' style='overflow: hidden; font-size:.8em; position: relative; left: -2px; top: -8px; width: 145px; height: 59px; margin-right: -15px; margin-bottom: -22px;'><strong style='font-size: 12px;'><img onmousemove='ShowPopup(event, \"" + dic("STOS", lang) + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/startRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime1 + "<br /><img onmousemove='ShowPopup(event, \"" + dic("ETOS", lang) + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/endRec.png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _NewCreateDateTime + "<br /><img onmousemove='ShowPopup(event, \"" + dic("TTOS", lang) + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/sum1.png' style='height: 16px; width: 16px; position: relative; top: 4px;' />: " + _zero + (_diffDT.days != 0 ? (_diffDT.days + " day(s)") : "") + " " + (_diffDT.hours != 0 ? (_diffDT.hours + " h") : "") + " " + (_diffDT.minutes != 0 ? (_diffDT.minutes + " min") : "") + "</strong></div>", null, true);
         this.popup = popup;
         this.popup.contentDiv.style.overflow = 'hidden';
         if (parseInt(_diffDT.minutes, 10) > parseInt(_MinMin, 10)) {
@@ -9264,7 +9344,7 @@ function CreateMarkerStartEnd(_lonn1, _latt1, _date1, _lonn2, _latt2, _date2, st
 	        var popup = new OpenLayers.Popup.FramedCloud("Popup",
 	            ll,
 	            new OpenLayers.Size(500, 500),
-	            "<div class='text1' style='overflow: hidden; font-size:.8em; position: relative; left: -2px; top: -3px; width: 125px; height: 55px; margin-right: -15px; margin-bottom: -22px;'><strong style='font-size: 12px;'><img onmousemove='ShowPopup(event, \"" + _textS + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/" + imgS + ".png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _date1.split(/\-|\s/)[3].split(":")[0] + ":" + _date1.split(/\-|\s/)[3].split(":")[1] + " " + _date1.split(/\-|\s/)[2] + "-" + _date1.split(/\-|\s/)[1]+ "-" + _date1.split(/\-|\s/)[0] + "</strong><br/><strong style='font-size: 12px;'><img onmousemove='ShowPopup(event, \"" + _textE + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/" + imgE + ".png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _date2.split(/\-|\s/)[3].split(":")[0] + ":" + _date2.split(/\-|\s/)[3].split(":")[1] + " " + _date2.split(/\-|\s/)[2] + "-" + _date2.split(/\-|\s/)[1]+ "-" + _date2.split(/\-|\s/)[0] + "</strong></div>", null, true);
+	            "<div class='text1' style='overflow: hidden; font-size:.8em; position: relative; left: -2px; top: -3px; width: 145px; height: 55px; margin-right: -15px; margin-bottom: -22px;'><strong style='font-size: 12px;'><img onmousemove='ShowPopup(event, \"" + _textS + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/" + imgS + ".png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + formattime13_1(_date1, timeformatU_) + " " + formatdate13_(_date1, dateformatU_) + "</strong><br/><strong style='font-size: 12px;'><img onmousemove='ShowPopup(event, \"" + _textE + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/" + imgE + ".png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + formattime13_1(_date2, timeformatU_) + " " + formatdate13_(_date2, dateformatU_) + "</strong></div>", null, true);
 	        this.popup = popup;
 	        this.popup.contentDiv.style.overflow = 'hidden';
 	        map.addPopup(this.popup);
@@ -9274,7 +9354,7 @@ function CreateMarkerStartEnd(_lonn1, _latt1, _date1, _lonn2, _latt2, _date2, st
 	        this.popup.hide();
 	        
 	        tmpMarkersRec[tmpMarkersRec.length - 1].events.element.style.cursor = 'pointer';
-	        tmpMarkersRec[tmpMarkersRec.length - 1].events.element.setAttribute("onmousemove", "ShowPopup(event, '<strong style=\"font-size: 12px;\">" + _textS + _date1 + "<br />" + _textE + _date2 + "</strong>')");
+	        tmpMarkersRec[tmpMarkersRec.length - 1].events.element.setAttribute("onmousemove", "ShowPopup(event, '<strong style=\"font-size: 12px;\">" + _textS + formattime13_(_date1, timeformatU_) + " " + formatdate13_(_date1, dateformatU_) + "<br />" + _textE + formattime13_(_date2, timeformatU_) + " " + formatdate13_(_date2, dateformatU_) + "</strong>')");
 	        $(tmpMarkersRec[tmpMarkersRec.length - 1].events.element).mouseout(function () { HidePopup() });
 	        tmpMarkersRec[tmpMarkersRec.length - 1].events.element.addEventListener('click', function (e) { AddPOI = true; VehClick = true; });
 	    }
@@ -9303,7 +9383,7 @@ function CreateMarkerStartEnd(_lonn1, _latt1, _date1, _lonn2, _latt2, _date2, st
 	        var popup = new OpenLayers.Popup.FramedCloud("Popup",
 	            ll,
 	            new OpenLayers.Size(500, 500),
-	            "<div class='text1' style='overflow: hidden; font-size:.8em; position: relative; left: -2px; top: -3px; width: 125px; height: 35px; margin-right: -15px; margin-bottom: -22px;'><strong style='font-size: 12px;'><img onmousemove='ShowPopup(event, \"" + _textS + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/" + imgS + ".png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _date1.split(/\-|\s/)[3].split(":")[0] + ":" + _date1.split(/\-|\s/)[3].split(":")[1] + " " + _date1.split(/\-|\s/)[2] + "-" + _date1.split(/\-|\s/)[1]+ "-" + _date1.split(/\-|\s/)[0] + "</strong></div>", null, true);
+	            "<div class='text1' style='overflow: hidden; font-size:.8em; position: relative; left: -2px; top: -3px; width: 145px; height: 35px; margin-right: -15px; margin-bottom: -22px;'><strong style='font-size: 12px;'><img onmousemove='ShowPopup(event, \"" + _textS + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/" + imgS + ".png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + formattime13_1(_date1, timeformatU_) + " " + formatdate13_(_date1, dateformatU_) + "</strong></div>", null, true);
 	        this.popup = popup;
 	        this.popup.contentDiv.style.overflow = 'hidden';
 	        map.addPopup(this.popup);
@@ -9313,7 +9393,7 @@ function CreateMarkerStartEnd(_lonn1, _latt1, _date1, _lonn2, _latt2, _date2, st
 	        this.popup.hide();
 	        
 	        tmpMarkersRec[tmpMarkersRec.length - 1].events.element.style.cursor = 'pointer';
-	        tmpMarkersRec[tmpMarkersRec.length - 1].events.element.setAttribute("onmousemove", "ShowPopup(event, '<strong style=\"font-size: 12px;\">" + _textS + _date1 + "</strong>')");
+	        tmpMarkersRec[tmpMarkersRec.length - 1].events.element.setAttribute("onmousemove", "ShowPopup(event, '<strong style=\"font-size: 12px;\">" + _textS + formattime13_(_date1, timeformatU_) + " " + formatdate13_(_date1, dateformatU_) + "</strong>')");
 	        $(tmpMarkersRec[tmpMarkersRec.length - 1].events.element).mouseout(function () { HidePopup() });
 	        tmpMarkersRec[tmpMarkersRec.length - 1].events.element.addEventListener('click', function (e) { AddPOI = true; VehClick = true; });
 	        
@@ -9330,7 +9410,7 @@ function CreateMarkerStartEnd(_lonn1, _latt1, _date1, _lonn2, _latt2, _date2, st
 	        var popup = new OpenLayers.Popup.FramedCloud("Popup",
 	            ll,
 	            new OpenLayers.Size(500, 500),
-	            "<div class='text1' style='overflow: hidden; font-size:.8em; position: relative; left: -2px; top: -3px; width: 125px; height: 35px; margin-right: -15px; margin-bottom: -22px;'><strong style='font-size: 12px;'><img onmousemove='ShowPopup(event, \"" + _textE + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/" + imgE + ".png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + _date2.split(/\-|\s/)[3].split(":")[0] + ":" + _date2.split(/\-|\s/)[3].split(":")[1] + " " + _date2.split(/\-|\s/)[2] + "-" + _date2.split(/\-|\s/)[1]+ "-" + _date2.split(/\-|\s/)[0] + "</strong></div>", null, true);
+	            "<div class='text1' style='overflow: hidden; font-size:.8em; position: relative; left: -2px; top: -3px; width: 145px; height: 35px; margin-right: -15px; margin-bottom: -22px;'><strong style='font-size: 12px;'><img onmousemove='ShowPopup(event, \"" + _textE + "\")' onmouseout='HidePopup()' src='" + twopoint + "/images/" + imgE + ".png' style='height: 17px; width: 16px; position: relative; top: 4px;' />: " + formattime13_1(_date2, timeformatU_) + " " + formatdate13_(_date2, dateformatU_) + "</strong></div>", null, true);
 	        this.popup = popup;
 	        this.popup.contentDiv.style.overflow = 'hidden';
 	        map.addPopup(this.popup);
@@ -9340,7 +9420,7 @@ function CreateMarkerStartEnd(_lonn1, _latt1, _date1, _lonn2, _latt2, _date2, st
 	        this.popup.hide();
 	        
 	        tmpMarkersRec[tmpMarkersRec.length - 1].events.element.style.cursor = 'pointer';
-	        tmpMarkersRec[tmpMarkersRec.length - 1].events.element.setAttribute("onmousemove", "ShowPopup(event, '<strong style=\"font-size: 12px;\">" + _textE + _date2 + "</strong>')");
+	        tmpMarkersRec[tmpMarkersRec.length - 1].events.element.setAttribute("onmousemove", "ShowPopup(event, '<strong style=\"font-size: 12px;\">" + _textE + formattime13_(_date2, timeformatU_) + " " + formatdate13_(_date2, dateformatU_) + "</strong>')");
 	        $(tmpMarkersRec[tmpMarkersRec.length - 1].events.element).mouseout(function () { HidePopup() });
 	        tmpMarkersRec[tmpMarkersRec.length - 1].events.element.addEventListener('click', function (e) { AddPOI = true; VehClick = true; });
 	    }

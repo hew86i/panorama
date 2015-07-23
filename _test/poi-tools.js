@@ -911,6 +911,10 @@ function edit_poi_dialog(name, avail, ppgid, id, desc, num, addinfo, radiusID) {
 		resizable: false,
 		draggable: false,
 
+		beforeClose: function(event, ui) {
+
+			$('#div-Add-POI').dialog('destroy');
+		}
 	});
 }
 
@@ -1175,7 +1179,7 @@ function AddGroup(_tbl, edit) {
 			})
 		},
 		buttons: [{
-			text: (arguments.length == 2) ? dic("Settings.ModalButtonChange", lang) : dic("Tracking.Add", lang) ,
+			text: dic("Tracking.Add", lang),
 			click: function() {
 
 				if (arg == 2) {
@@ -1239,7 +1243,7 @@ function ButtonAddGroupOkClick(id) {
 	                    $('#div-Add-Group').dialog('destroy');
 	                    $('#loading1').css({ display: "none" });
 
-	                    $("#poiGroup dd ul").append('<li><a id="' + data.split("@@%%")[1] + '" href="#">&nbsp;<span style="margin-left: 0px; display: inline-block; padding-left: 0px; margin-top: 3px;">' + $('#GroupNameAdd').val() + '</span><span class="iconpin20 icon-poi-'+_img+'" style="padding-left: 0px; padding-right: 0px; text-align: center; margin-top: -2px; width: 25px; position: relative; float: left; color: ' + $("#clickAny").val() + '; text-shadow: 0px 0px 1px black;"></span></a></li>');
+	                    $("#poiGroup dd ul").append('<li><a id="' + data.split("@@%%")[1] + '" href="#">&nbsp;<span style="margin-left: 0px; display: inline-block; padding-left: 0px; margin-top: 3px;">' + $('#GroupName').val() + '</span><span class="iconpin20 icon-poi-'+_img+'" style="padding-left: 0px; padding-right: 0px; text-align: center; margin-top: -2px; width: 25px; position: relative; float: left; color: ' + $("#clickAny").val() + '; text-shadow: 0px 0px 1px black;"></span></a></li>');
 
 	                    $("#poiGroup dd ul li a").click(function () {
 	                        var text = $(this).html();
@@ -1256,7 +1260,7 @@ function ButtonAddGroupOkClick(id) {
 	                    document.getElementById("groupidTEst").title = data.split("@@%%")[1];
 	                    $("#poiGroup dt a").html($($("#poiGroup dd ul li")[$("#poiGroup dd ul li").length - 1].children[0]).html());
 
-	                    msgboxPetar(data.split("@@%%")[3],lang);
+	                    msgboxPetar(data.split("@@%%")[3]);
 	                    setTimeout(function(){
 	               			$("#dialog-message").dialog("close");
 	                    },1000);

@@ -4,14 +4,13 @@
 <?php include "../include/dictionary2.php" ?>
 
 <?php 
-	error_reporting(E_ALL & ~E_NOTICE);
 	header("Content-type: text/html; charset=utf-8");
 ?>
  
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
+	<link rel="stylesheet" href="../tracking/pinIcons.css">
 </head>
 	<script type="text/javascript">
 		lang = '<?php echo $cLang?>';
@@ -51,6 +50,13 @@
 	opendb();
     
     $DefMap = nnull(dlookup("select defaultmap from users where id=".session("user_id")),1);
+    $metric = nnull(dlookup("select metric from users where id=".session("user_id")),1);
+	if ($metric == 'mi') {
+		$metricvalue1 = 1.0936;
+	} else {
+		$metricvalue1 = 1;
+	}
+
     $cntz = dlookup("select count(*) from pointsofinterest where clientid=".session("client_id"));
     $dsStartLL = query("select * from cities where id = (select cityid from clients where id=".session("client_id")." limit 1)");
 	
@@ -133,86 +139,130 @@
 <div id="dialog-draw-area" title="<?php echo dic("Tracking.DrawArea")?>" style="display:none">
 	<iframe src="" id="ifrm-edit-areas" scrolling="no" frameborder="0" style="border:0px dotted #387cb0"></iframe>
 </div>
-<div id="div-Add-Group" style="display: none;" title="<?php echo dic("Tracking.AddGroup")?>">
+<div id="div-Add-Group" style="display: none;">
 	<span style="display:block; width:90px; float:left; margin-left:20px; padding-top:7px;"><?php echo dic("Tracking.GroupName")?></span><input id="GroupName" type="text" class="textboxCalender corner5" style="width:220px" /><br /><br />
     <span style="display:block; width:90px; float:left; margin-left:20px; padding-top:7px;"><?php echo dic("Tracking.Color")?></span>
     <div id="colorPicker2">
 		<span id="colorPicker1" style="cursor: pointer; float:left; border:1px solid black; width:20px; height:20px;margin:5px;"></span>
-		<input id="clickAny" type="text" class="textboxCalender corner5" onchange="changecolor()" value="" style="width:120px" />
+		<input id="clickAny" type="text" class="textboxCalender corner5" onchange="changecolor()" value="" style="width:120px; display: none;" />
+		<br><br>
 	</div>
     <img id="loadingIconsPOI" style="visibility: hidden; width: 140px; position: absolute; left: 125px; top: 180px;" src="../images/loading_bar1.gif" alt="" />
     <br><br>
     <span id="spanIconsPOI" style="display:block; width:90px; float:left; margin-left:20px; position: relative; top: 70px;"><?php echo dic("General.Icon")?></span>
     <table id="tblIconsPOI" border="0" style="width: 268px; text-align: center; position: relative; top: -10px; left: -15px;">
         <tr>
-        <?php
-            for ($icon=0; $icon <= 7; $icon++) { 
-        ?>
-            <td><img id="GroupIconImg<?php echo $icon?>" src="http://80.77.159.246:88/new/pin/?color=ffffff&type=<?php echo $icon?>" alt="" /></td>
-        <?php
-            }
-        ?>
+        	<td>
+        		<span id="GroupIconImg0" class="iconpin icon-poi-0"></span>
+    		</td>
+    		<td>
+        		<span id="GroupIconImg1" class="iconpin icon-poi-1"></span>
+        	</td>
+    		<td>
+        		<span id="GroupIconImg2" class="iconpin icon-poi-2"></span>
+    		</td>
+    		<td>
+        		<span id="GroupIconImg3" class="iconpin icon-poi-3"></span>
+        	</td>
+    		<td>
+        		<span id="GroupIconImg4" class="iconpin icon-poi-4"></span>
+        	</td>
+        	<td>
+        		<span id="GroupIconImg5" class="iconpin icon-poi-5"></span>
+        	</td>
+        	<td>
+        		<span id="GroupIconImg6" class="iconpin icon-poi-6"></span>
+        	</td>
+        	<td>
+        		<span id="GroupIconImg7" class="iconpin icon-poi-7"></span>
+    		</td>
+    	</tr>
+    	<tr>
+    		<td><input style="cursor: pointer;" id="GroupIcon0" name="GroupIcon" value="0" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon1" name="GroupIcon" value="1" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon2" name="GroupIcon" value="2" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon3" name="GroupIcon" value="3" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon4" name="GroupIcon" value="4" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon5" name="GroupIcon" value="5" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon6" name="GroupIcon" value="6" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon7" name="GroupIcon" value="7" type="radio" /></td>
+    	</tr>
+        <tr>
+    		<td style="padding-top: 20px">
+        		<span id="GroupIconImg8" class="iconpin icon-poi-8"></span>
+        	</td>
+    		<td style="padding-top: 20px">
+        		<span id="GroupIconImg9" class="iconpin icon-poi-9"></span>
+    		</td>
+    		<td style="padding-top: 20px">
+        		<span id="GroupIconImg10" class="iconpin icon-poi-10"></span>
+        	</td>
+    		<td style="padding-top: 20px">
+        		<span id="GroupIconImg11" class="iconpin icon-poi-11"></span>
+        	</td>
+    		<td style="padding-top: 20px">
+        		<span id="GroupIconImg12" class="iconpin icon-poi-12"></span>
+        	</td>
+        	<td style="padding-top: 20px">
+        		<span id="GroupIconImg13" class="iconpin icon-poi-13"></span>
+        	</td>
+        	<td style="padding-top: 20px">
+        		<span id="GroupIconImg14" class="iconpin icon-poi-14"></span>
+        	</td>
+        	<td style="padding-top: 20px">
+        		<span id="GroupIconImg15" class="iconpin icon-poi-15"></span>
+    		</td>
         </tr>
         <tr>
-        <?php
-            for ($icon=0; $icon <= 7; $icon++) { 
-                if($icon == 0)
-                {
-                    ?>
-                    <td><input style="cursor: pointer;" id="GroupIcon<?php echo $icon?>" name="GroupIcon" checked type="radio" /></td>
-                    <?php
-                } else
-				{
-                    ?>
-                    <td><input style="cursor: pointer;" id="GroupIcon<?php echo $icon?>" name="GroupIcon" type="radio" /></td>
-                    <?php
-                }
-            
-            }
-        ?>
+    		<td><input style="cursor: pointer;" id="GroupIcon8" name="GroupIcon" value="8" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon9" name="GroupIcon" value="9" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon10" name="GroupIcon" value="10" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon11" name="GroupIcon" value="11" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon12" name="GroupIcon" value="12" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon13" name="GroupIcon" value="13" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon14" name="GroupIcon" value="14" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon15" name="GroupIcon" value="15" type="radio" /></td>
         </tr>
         <tr>
-        <?php
-            for ($icon=8; $icon <= 14; $icon++) { 
-            ?>
-            <td  style="padding-top: 20px"><img id="GroupIconImg<?php echo $icon?>" src="http://80.77.159.246:88/new/pin/?color=ffffff&type=<?php echo $icon?>" alt="" /></td>
-            <?php
-            }
-            ?>
+    		<td style="padding-top: 20px">
+        		<span id="GroupIconImg16" class="iconpin icon-poi-16"></span>
+        	</td>
+    		<td style="padding-top: 20px">
+        		<span id="GroupIconImg17" class="iconpin icon-poi-17"></span>
+        	</td>
+    		<td style="padding-top: 20px">
+        		<span id="GroupIconImg18" class="iconpin icon-poi-18"></span>
+        	</td>
+    		<td style="padding-top: 20px">
+        		<span id="GroupIconImg19" class="iconpin icon-poi-19"></span>
+        	</td>
+        	<td style="padding-top: 20px">
+        		<span id="GroupIconImg20" class="iconpin icon-poi-20"></span>
+        	</td>
+        	<td style="padding-top: 20px">
+        		<span id="GroupIconImg21" class="iconpin icon-poi-21"></span>
+    		</td>
+    		<td style="padding-top: 20px">
+        		<span id="GroupIconImg22" class="iconpin icon-poi-22"></span>
+    		</td>
+    		<td style="padding-top: 20px">
+        		<span id="GroupIconImg23" class="iconpin icon-poi-23"></span>
+        	</td>
         </tr>
         <tr>
-        <?php
-            for ($icon=8; $icon <= 14; $icon++) { 
-            ?>
-            <td><input style="cursor: pointer;" id="GroupIcon<?php echo $icon?>" name="GroupIcon" type="radio" /></td>
-            <?php
-            }
-            ?>
-        </tr>
-        <tr>
-        <?php
-            for ($icon=15; $icon <= 21; $icon++) { 
-            ?>
-            <td  style="padding-top: 20px"><img id="GroupIconImg<?php echo $icon?>" src="http://80.77.159.246:88/new/pin/?color=ffffff&type=<?php echo $icon?>" alt="" /></td>
-            <?php
-            }
-            ?>
-        </tr>
-        <tr>
-        <?php
-            for ($icon=15; $icon <= 21; $icon++) { 
-            ?>
-            <td><input style="cursor: pointer;" id="GroupIcon<?php echo $icon?>" name="GroupIcon" type="radio" /></td>
-            <?php
-            }
-            ?>
+    		<td><input style="cursor: pointer;" id="GroupIcon16" name="GroupIcon" value="16" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon17" name="GroupIcon" value="17" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon18" name="GroupIcon" value="18" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon19" name="GroupIcon" value="19" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon20" name="GroupIcon" value="20" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon21" name="GroupIcon" value="21" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon22" name="GroupIcon" value="22" type="radio" /></td>
+    		<td><input style="cursor: pointer;" id="GroupIcon23" name="GroupIcon" value="23" type="radio" /></td>
         </tr>
     </table>
     <br /><br />
 	<div align="right" style="display:block; width:330px">
         <img id="loading1" style="display: none; width: 150px; position: absolute; left: 32px; margin-top: 7px;" src="../images/loading_bar1.gif" alt="" />
-		<input type="button" class="BlackText corner5" id="btnAddGroup" value="<?php echo dic("Tracking.Add")?>" onclick="ButtonAddGroupOkClick()" />&nbsp;&nbsp;
-		<input type="button" class="BlackText corner5" id="btnCancelGroup" value="<?php echo dic("Tracking.Cancel")?>" onclick="$('#div-Add-Group').dialog('destroy');" />
 	</div><br />
 </div>
 <div id="div-ver-DelGroup" style="display: none;" title="<?php echo dic("Tracking.DeletePoi")?>">
@@ -276,10 +326,10 @@
 			        <dt><a href="#" title="" class="combobox1"><span><?php echo dic("Tracking.SelectRadius")?></span></a></dt>
 			        <dd>
 			            <ul>
-			                <li><a id="RadiusID_50" href="#">50&nbsp;<?php if($metric == "mi") { echo "yards"; } else { echo dic("Tracking.Meters"); } ?></a></li>
-			                <li><a id="RadiusID_70" href="#">70&nbsp;<?php if($metric == "mi") { echo "yards"; } else { echo dic("Tracking.Meters"); } ?></a></li>
-			                <li><a id="RadiusID_100" href="#">100&nbsp;<?php if($metric == "mi") { echo "yards"; } else { echo dic("Tracking.Meters"); } ?></a></li>
-			                <li><a id="RadiusID_150" href="#">150&nbsp;<?php if($metric == "mi") { echo "yards"; } else { echo dic("Tracking.Meters"); } ?></a></li>
+			                <li><a id="RadiusID_50" href="#"><?php echo round(50*$metricvalue1)?>&nbsp;<?php if($metric == "mi") { echo "yards"; } else { echo dic("Tracking.Meters"); } ?></a></li>
+			                <li><a id="RadiusID_70" href="#"><?php echo round(70*$metricvalue1)?>&nbsp;<?php if($metric == "mi") { echo "yards"; } else { echo dic("Tracking.Meters"); } ?></a></li>
+			                <li><a id="RadiusID_100" href="#"><?php echo round(100*$metricvalue1)?>&nbsp;<?php if($metric == "mi") { echo "yards"; } else { echo dic("Tracking.Meters"); } ?></a></li>
+			                <li><a id="RadiusID_150" href="#"><?php echo round(150*$metricvalue1)?>&nbsp;<?php if($metric == "mi") { echo "yards"; } else { echo dic("Tracking.Meters"); } ?></a></li>
 			            </ul>
 			        </dd>
 			    </dl>
@@ -288,30 +338,30 @@
     	<tr>
     		<td width="90px"><?php echo dic("Tracking.Group")?></td>
     		<td>
-    			<dl id="poiGroup" class="dropdown" style="width: 150px; position: relative; float: left; padding: 0px; margin: 0px;">
-			    <?php
-					$dsUG = query("SELECT id, name, fillcolor FROM pointsofinterestgroups WHERE id=1");
-			        ?>
-			        <dt><a href="#" title="" id="groupidTEst" class="combobox1"><span><?php echo dic("Tracking.SelectGroup")?></span></a></dt>
-			        <dd>
-			            <ul>
-			                <li><a id="<?php echo pg_fetch_result($dsUG, 0, "id")?>" href="#">&nbsp;&nbsp;<?php echo dic("Settings.NotGroupedItems")?>
-			                	<img style="height: 18px; position: relative; width: 18px; float: left; top: -5px; margin-right: 6px;" src="../images/pin-1.png">
-		                	</a></li>
-			                <?php
-								$dsGroup1 = query("select id, name, fillcolor, image from pointsofinterestgroups where id <> 1 and clientid=".session("client_id"));
-			                    while ($row1 = pg_fetch_array($dsGroup1)) {
-			                    	$_color = substr($row1["fillcolor"], 1, strlen($row1["fillcolor"]));
-			                ?>
-			                <li><a id="<?php echo $row1["id"]?>" href="#">&nbsp;&nbsp;<?php echo $row1["name"]?><div class="flag" style="margin-top: -3px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; width: 24px; height: 24px; background: url('http://80.77.159.246:88/new/pin/?color=<?php echo $_color?>&type=<?php echo $row1["image"]?>') no-repeat; position: relative; float: left;"></div></a></li>
-			                <?php
-			                    }
-			                ?>
-			            </ul>
-			        </dd>
-			    </dl>
-    			<input type="button" id="AddGroup" style="left: 20px; top: 1px;" onclick="AddGroup('1')" value="+" />
-    		</td>
+			<dl id="poiGroup" class="dropdown" style="width: 150px; position: relative; float: left; padding: 0px; margin: 0px;">
+		    <?php
+				$dsUG = query("SELECT id, name, fillcolor FROM pointsofinterestgroups WHERE id=1");
+		        ?>
+		        <dt><a href="#" title="" id="groupidTEst" class="combobox1"><span><?= dic("Tracking.SelectGroup")?></span></a></dt>
+		        <dd>
+		            <ul>
+		                <li><a id="<?php echo pg_fetch_result($dsUG, 0, "id")?>" href="#">&nbsp;<span style="margin-left: 0px; display: inline-block; padding-left: 0px; margin-top: 3px;"><?php echo dic("Settings.NotGroupedItems")?></span>
+		                	<img style="height: 18px; position: relative; width: 18px; float: left; left: 3px; top: 4px; margin-right: 7px;" src="../images/pin-1.png">
+		            	</a></li>
+		                <?php
+							$dsGroup1 = query("select id, name, fillcolor, image from pointsofinterestgroups where id <> 1 and clientid=".session("client_id")." order by name asc");
+		                    while ($row1 = pg_fetch_assoc($dsGroup1)) {
+		                    	$_color = substr($row1["fillcolor"], 1, strlen($row1["fillcolor"]));
+		                ?>
+		                <li><a id="<?php echo $row1["id"]?>" href="#">&nbsp;<span style="margin-left: 0px; display: inline-block; padding-left: 0px; margin-top: 3px;"><?php echo $row1["name"]?></span><span class="iconpin20 icon-poi-<?= $row1["image"]?>" style="padding-left: 0px; padding-right: 0px; text-align: center; margin-top: -2px; width: 25px; position: relative; float: left; color: <?= $_color?>; text-shadow: 0px 0px 1px black;"></span></a></li>
+		                <?php
+		                    }
+		                ?>
+		            </ul>
+		        </dd>
+		    </dl>
+			<input type="button" id="AddGroup" style="float: right; right: 20px; top: 1px;" onclick="AddGroup(1)" value="+" />
+		</td>
     	</tr>
 	</table>
     <br /><br />
@@ -776,9 +826,9 @@
         $(".dropdown dt a")[0].title = this.id;
         document.getElementById("groupidTEst").title = this.id;
         if(text.indexOf("pin-1") != -1)
-        	$(".dropdown dt a span").html(text.replace('top: -5px', 'top: -1px'));
+        	$(".dropdown dt a").html(text.replace('top: -5px', 'top: -1px'));
         else
-			$(".dropdown dt a span").html(text);
+			$(".dropdown dt a").html(text);
         $(".dropdown dd ul").hide();
         //$("#result").html("Selected value is: " + getSelectedValue("sample"));
     });
@@ -811,6 +861,23 @@
         if (! $clicked.parents().hasClass("dropdownGF"))
             $(".dropdownGF dd ul").hide();
     });
+
+ //    $("#poiGroup dt a").click(function() {
+ //        $("#poiGroup dd ul").toggle();
+ //    });
+
+	//  $("#poiGroup dd ul li a").click(function() {
+	//     var text = $(this).html();
+	//     $("#poiGroup dt a")[0].title = this.id;
+	//     document.getElementById("groupidTEst").title = this.id;
+	//     //$("#poiGroup dt a").html(text);
+	//     if(text.indexOf("pin-1") != -1)
+ //        	$("#poiGroup dt a").html(text.replace('top: -1px', 'top: 4px'));
+ //            else
+	// 	$("#poiGroup dt a").html(text);
+
+ //        $("#poiGroup dd ul").hide();
+	// });
 
 
 /*
@@ -856,7 +923,8 @@
     AllowedMaps = '<?php echo $AllowedMaps?>'
     DefMapType = '<?php echo $DefMap?>'
     var cntz = parseInt('<?php echo ($cntz-1)?>');
-    VehcileIDs = ['<?php echo $strVehcileID?>'];
+    // na server raboti
+    VehcileIDs = '';// ['<php echo $strVehcileID?>'];
 
     OpenForDrawing = true;
     LoadCurrentPosition = false;

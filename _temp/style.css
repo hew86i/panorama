@@ -228,7 +228,7 @@ body{margin:0px 0px 0px 0px; padding:0px 0px 0px 0px; overflow:hidden}
 #main-blue-track{position:absolute; top:100px; width:100%; height:130px; background-color:#c6d7f2; border:1px solid #95b1d7}
 #main-container{position:absolute; top:0px; width:950px;}
 #footer-rights{position:absolute; width:475px; height:25px;}
-#footer-legacy{position:absolute; width:475px; height:25px; text-align:right}
+#footer-legacy{position:absolute; width:476px; height:25px; text-align:right}
 #img-logo{position:absolute; left:10px; top:5px}
 #img-advert{position:absolute; left:10px; top:150px}
 #div-advert{position:absolute; left:-8px; top:100px; width:950px; height:131px; text-align:right}
