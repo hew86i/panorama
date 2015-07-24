@@ -8959,7 +8959,10 @@ function LoadPOIPetar(_id) {
                             var size = new OpenLayers.Size(24, 24);
                             var calculateOffset = function (size) { return new OpenLayers.Pixel(-(size.w / 2), -size.h); };
                             //var icon = new OpenLayers.Icon('./blank.png', size, null, calculateOffset);
-                            var icon = new OpenLayers.Icon(twopoint + '/images/pin-1.png', size, null, calculateOffset);
+                            if(_ppp[3] == '1')
+                                var icon = new OpenLayers.Icon(twopoint + '/images/pin-1.png', size, null, calculateOffset);
+                            else
+                                var icon = new OpenLayers.Icon('./blank.png', size, null, calculateOffset);
 
                             var ll = new OpenLayers.LonLat(parseFloat(_ppp[0]), parseFloat(_ppp[1])).transform(new OpenLayers.Projection("EPSG:4326"), Maps[i].getProjectionObject())
                             //if (MapType[i] == 'YAHOOM') { var ll = new OpenLayers.LonLat(parseFloat(_ppp[0]), parseFloat(_ppp[1])) }
@@ -8973,14 +8976,21 @@ function LoadPOIPetar(_id) {
                             else
                                 var _color = _ppp[7];*/
                             //var _bgimg = 'http://80.77.159.246:88/new/pin/?color=' + _ppp[5] + '&type=0';
-                            //debugger;
+                            //debugger;                            
                             //tmpMarkers[i][tmpMarkers[i].length - 1].events.element.innerHTML = '<div style="background: transparent url(' + _bgimg + ') no-repeat; width: 24px; height: 24px; font-size:4px"></div>';
+                            if(_ppp[3] != '1') {
+                               // alert('<span class="iconpin24 icon-poi-'+_ppp[9]+'" style="color: '+_ppp[5]+'; text-shadow: 0px 0px 1px black;"></span>')
+                                tmpMarkers[i][tmpMarkers[i].length - 1].events.element.innerHTML = '<span class="iconpin24 icon-poi-'+_ppp[9]+'" style="color: '+_ppp[5]+'; text-shadow: 0px 0px 1px black;"></span>';
+                            }
+                            var groupName = _ppp[6];
+                            if(_ppp[3] == "1")
+                                groupName = dic("Settings.NotGroupedItems", lang);
+
+
                             tmpMarkers[i][tmpMarkers[i].length - 1].events.element.style.cursor = 'pointer';
                             //tmpMarkers[tmpMarkers.length - 1].events.element.style.backgroundColor = '#' + _ppp[7];
                             //alert(_ppp[6]);
-							var groupName = _ppp[6];
-							if(_ppp[3] == "1")
-                            	groupName = dic("Settings.NotGroupedItems", lang);
+
                             tmpMarkers[i][tmpMarkers[i].length - 1].events.element.setAttribute("onmousemove", "ShowPopup(event, '<strong style=\"font-size: 14px;\">" + _ppp[2] + "<br /></strong>" + dic("Group", lang) + ": <strong style=\"font-size: 12px;\">" + groupName + "</strong>')");
                             tmpMarkers[i][tmpMarkers[i].length - 1].events.element.setAttribute("onclick", "EditPOI('" + _ppp[0] + "', '" + _ppp[1] + "', '" + _ppp[2] + "', " + _ppp[8] + ", '" + _ppp[3] + "', '" + _ppp[4] + "', '', '" + (tmpMarkers[i].length - 1) + "', '/', '" + _ppp[7] + "')");
                             //$(tmpMarkers[tmpMarkers.length-1].events.element).mousemove(function(event) {alert(j)});
@@ -10477,7 +10487,7 @@ function EnableDisable(_alid, _vehlist, _load) {
             OnMenuClick(6);
             }
             else {
-            
+
             OnMenuClick(6);
             }*/
     	}

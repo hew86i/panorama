@@ -834,6 +834,8 @@ function aktivirajGrupaMarkeri() {
 function edit_poi_dialog(name, avail, ppgid, id, desc, num, addinfo, radiusID) {
 	console.log(arguments);
 
+	dialogPosition = $(window).scrollTop();
+
 	var lon_lat = get_lonlat(id).split('@');
 	var lon = lon_lat[0];
 	var lat = lon_lat[1];
@@ -910,6 +912,13 @@ function edit_poi_dialog(name, avail, ppgid, id, desc, num, addinfo, radiusID) {
 		zIndex: 9999,
 		resizable: false,
 		draggable: false,
+		position: "relative",
+		open: function(){ // za da se poramni iconata na negrupirani tocki
+			$("#poiGroup dd ul li a img").css({"top":"-1px"});
+		},
+		close: function(){
+			window.scrollTo(0,dialogPosition);
+         }
 
 	});
 }
@@ -1330,8 +1339,6 @@ function OpenMapAlarm3(id) {
 		width: 800
 	});
 }
-
-
 
 /**
  * -----------------------------------------------------------------

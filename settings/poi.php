@@ -66,6 +66,7 @@
 		.ui-button { margin-left: -1px; }
 		.ui-button-icon-only .ui-button-text { padding: 0.35em; }
 		.ui-autocomplete-input { margin: 0; padding: 0.48em 0 0.47em 0.45em; }
+		.ui-dialog { position: fixed; }
 
 		.toi-group-title table {
 			width: 100%;
@@ -548,7 +549,7 @@ if($numPointsInactive != 0) { ?>
 <input type="hidden" id="numPoi" value="" />
 <div align="right" style="display:block; width:380px; height: 30px; padding-top: 5px; position: relative; float: right; right: 15px;">
     <img id="loading" style="display: none; width: 140px; position: absolute; left: 10px; margin-top: 7px;" src="../images/loading_bar1.gif" alt="" />
-	<input type="button" style="position: relative; float: right;" class="BlackText corner5" id="btnCancelPOI" value="<?php echo dic("Tracking.Cancel")?>" onclick="$('#div-Add-POI').dialog('destroy'); $('body').css({overflow: 'auto'});" />&nbsp;&nbsp;
+	<input type="button" style="position: relative; float: right;" class="BlackText corner5" id="btnCancelPOI" value="<?php echo dic("Tracking.Cancel")?>" onclick="$('#div-Add-POI').dialog('destroy'); $('body').css({overflow: 'auto'}); window.scrollTo(0,dialogPosition);" />&nbsp;&nbsp;
 	<input type="button" style="position: relative; float: right;" class="BlackText corner5" id="btnAddPOI" value="<?php echo dic("Tracking.Add")?>" onclick="ButtonAddEditPOIokClickPetar()" />
 </div><br/><br/>
 </div>
@@ -885,9 +886,9 @@ $(document).ready(function () {
 	    $("#gfGroup dd ul").hide();
 	});
 
-
 	 $("#poiGroup dt a").click(function() {
         $("#poiGroup dd ul").toggle();
+
     });
 
 	 $("#poiGroup dd ul li a").click(function() {
@@ -897,11 +898,11 @@ $(document).ready(function () {
 	    //$("#poiGroup dt a").html(text);
 	    if(text.indexOf("pin-1") != -1)
         	$("#poiGroup dt a").html(text.replace('top: -1px', 'top: 4px'));
-            else
-		$("#poiGroup dt a").html(text);
+        else
+			$("#poiGroup dt a").html(text);
 
         $("#poiGroup dd ul").hide();
-	});
+ 	});
 
 	$(".dropdownRadius dt a").click(function() {
 	    $(".dropdownRadius dd ul").toggle();
@@ -913,6 +914,15 @@ $(document).ready(function () {
 	    $(".dropdownRadius dd ul").hide();
 	});
 
+	$(document).bind('click', function(e) {
+        var $clicked = $(e.target);
+        if (! $clicked.parents().hasClass("dropdown"))
+            $(".dropdown dd ul").hide();
+        if (! $clicked.parents().hasClass("dropdownRadius"))
+            $(".dropdownRadius dd ul").hide();
+        if (! $clicked.parents().hasClass("dropdownGF"))
+            $(".dropdownGF dd ul").hide();
+    });
 
 });
 

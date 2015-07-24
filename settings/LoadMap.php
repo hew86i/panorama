@@ -338,30 +338,30 @@
     	<tr>
     		<td width="90px"><?php echo dic("Tracking.Group")?></td>
     		<td>
-			<dl id="poiGroup" class="dropdown" style="width: 150px; position: relative; float: left; padding: 0px; margin: 0px;">
-		    <?php
-				$dsUG = query("SELECT id, name, fillcolor FROM pointsofinterestgroups WHERE id=1");
-		        ?>
-		        <dt><a href="#" title="" id="groupidTEst" class="combobox1"><span><?= dic("Tracking.SelectGroup")?></span></a></dt>
-		        <dd>
-		            <ul>
-		                <li><a id="<?php echo pg_fetch_result($dsUG, 0, "id")?>" href="#">&nbsp;<span style="margin-left: 0px; display: inline-block; padding-left: 0px; margin-top: 3px;"><?php echo dic("Settings.NotGroupedItems")?></span>
-		                	<img style="height: 18px; position: relative; width: 18px; float: left; left: 3px; top: 4px; margin-right: 7px;" src="../images/pin-1.png">
-		            	</a></li>
-		                <?php
-							$dsGroup1 = query("select id, name, fillcolor, image from pointsofinterestgroups where id <> 1 and clientid=".session("client_id")." order by name asc");
-		                    while ($row1 = pg_fetch_assoc($dsGroup1)) {
-		                    	$_color = substr($row1["fillcolor"], 1, strlen($row1["fillcolor"]));
-		                ?>
-		                <li><a id="<?php echo $row1["id"]?>" href="#">&nbsp;<span style="margin-left: 0px; display: inline-block; padding-left: 0px; margin-top: 3px;"><?php echo $row1["name"]?></span><span class="iconpin20 icon-poi-<?= $row1["image"]?>" style="padding-left: 0px; padding-right: 0px; text-align: center; margin-top: -2px; width: 25px; position: relative; float: left; color: <?= $_color?>; text-shadow: 0px 0px 1px black;"></span></a></li>
-		                <?php
-		                    }
-		                ?>
-		            </ul>
-		        </dd>
-		    </dl>
-			<input type="button" id="AddGroup" style="float: right; right: 20px; top: 1px;" onclick="AddGroup(1)" value="+" />
-		</td>
+				<dl id="poiGroup" class="dropdown" style="width: 150px; position: relative; float: left; padding: 0px; margin: 0px;">
+			    <?php
+					$dsUG = query("SELECT id, name, fillcolor FROM pointsofinterestgroups WHERE id=1");
+			        ?>
+			        <dt><a href="#" title="" id="groupidTEst" class="combobox1"><span><?= dic("Tracking.SelectGroup")?></span></a></dt>
+			        <dd>
+			            <ul>
+			                <li><a id="<?php echo pg_fetch_result($dsUG, 0, "id")?>" href="#">&nbsp;<span style="margin-left: 0px; display: inline-block; padding-left: 0px; margin-top: 3px;"><?php echo dic("Settings.NotGroupedItems")?></span>
+			                	<img style="height: 18px; position: relative; width: 18px; float: left; left: 3px; top: -1px; margin-right: 7px;" src="../images/pin-1.png">
+			            	</a></li>
+			                <?php
+								$dsGroup1 = query("select id, name, fillcolor, image from pointsofinterestgroups where id <> 1 and clientid=".session("client_id")." order by name asc");
+			                    while ($row1 = pg_fetch_array($dsGroup1)) {
+			                    	$_color = substr($row1["fillcolor"], 1, strlen($row1["fillcolor"]));
+			                ?>
+			                <li><a id="<?php echo $row1["id"]?>" href="#">&nbsp;<span style="margin-left: 0px; display: inline-block; padding-left: 0px; margin-top: 3px;"><?php echo $row1["name"]?></span><span class="iconpin20 icon-poi-<?= $row1["image"]?>" style="padding-left: 0px; padding-right: 0px; text-align: center; margin-top: -2px; width: 25px; position: relative; float: left; color: <?= $_color?>; text-shadow: 0px 0px 1px black;"></span></a></li>
+			                <?php
+			                    }
+			                ?>
+			            </ul>
+			        </dd>
+			    </dl>
+				<input type="button" id="AddGroup" style="float:right; right: 30px; top: 1px; height: 28px" onclick="AddGroup('1')" value="+" />
+			</td>
     	</tr>
 	</table>
     <br /><br />
@@ -770,15 +770,15 @@
 	    $('#directionLat').val($('#directionLatEnd').val());
     	$('#fromDirection').val($('#toDirection').val());
     	$('#direcitonAddress').val($('#direcitonAddressEnd').val());
-    	
+
     	$('#directionLonEnd').val(tmpLon);
 	    $('#directionLatEnd').val(tmpLat);
     	$('#toDirection').val(tmpFromDir);
     	$('#direcitonAddressEnd').val(tmpDirAddress);
-    	
+
     	AddMarkerDirectionS($('#directionLon').val(), $('#directionLat').val(), 0, $('#direcitonAddress').val());
     	AddMarkerDirectionE($('#directionLonEnd').val(), $('#directionLatEnd').val(), 0, $('#direcitonAddressEnd').val());
-    	
+
     	$('#ResultDirections').css({ display: 'none' });
 	    $('#ResultDirections').html('');
 	    $('#ResultDirectionsF').css({ display: 'none' });
@@ -791,11 +791,11 @@
 
 	top.HideWait();
    var lang = '<?php echo $cLang ?>';
-   
+
     //Marjan
     var boolDDR = true;
     $(".dropdownRadius dt a").click(function() {
-        if(boolDDR)
+        if(1)
         {
             $(".dropdownRadius dd ul").toggle();
             boolDDR = false;
@@ -806,32 +806,41 @@
     $(".dropdownRadius dd ul li a").click(function() {
         var text = $(this).html();
         $(".dropdownRadius dt a")[0].title = this.id;
-        
+
         $(".dropdownRadius dt a span").html(text);
         $(".dropdownRadius dd ul").hide();
         //$("#result").html("Selected value is: " + getSelectedValue("sample"));
     });
-    var boolDD = true;
+
     $(".dropdown dt a").click(function () {
-        if(boolDD)
-        {
             $(".dropdown dd ul").toggle();
-            boolDD = false;
-        }
-        else
-            boolDD = true;
     });
-    $(".dropdown dd ul li a").click(function () {
+    
+    $("#poiGroup dd ul li a").click(function () {
         var text = $(this).html();
-        $(".dropdown dt a")[0].title = this.id;
+        $("#poiGroup dt a")[0].title = this.id;
         document.getElementById("groupidTEst").title = this.id;
         if(text.indexOf("pin-1") != -1)
-        	$(".dropdown dt a").html(text.replace('top: -5px', 'top: -1px'));
+        	//$(".dropdown dt a").html(text.replace('top: -5px', 'top: -1px'));
+            $("#poiGroup dt a").html(text.replace('top: -1px', 'top: 4px'));
         else
-			$(".dropdown dt a").html(text);
-        $(".dropdown dd ul").hide();
+			$("#poiGroup dt a").html(text);
+        $("#poiGroup dd ul").hide();
         //$("#result").html("Selected value is: " + getSelectedValue("sample"));
     });
+
+
+   //  $(".dropdown dd ul li a").click(function () {
+   //      var text = $(this).html();
+   //      $(".dropdown dt a")[0].title = this.id;
+   //      document.getElementById("groupidTEst").title = this.id;
+   //      if(text.indexOf("pin-1") != -1)
+   //      	$(".dropdown dt a").html(text.replace('top: 4px', 'top: -1px'));
+   //      else
+			// $(".dropdown dt a").html(text);
+   //      $(".dropdown dd ul").hide();
+   //      //$("#result").html("Selected value is: " + getSelectedValue("sample"));
+   //  });
 
     var boolDDGF = true;
     $(".dropdownGF dt a").click(function () {
