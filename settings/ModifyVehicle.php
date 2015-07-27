@@ -1273,7 +1273,7 @@
 		else
 		{
 		?>
-		<table  <?php if($yourbrowser == "1") {?>width="98%" style="min-width:900px;padding-left:10px;"<?php }else{?> width="75%"  style="min-width:900px;padding-left:40px;"<?php;} ?>class="text2">
+		<table  <?php if($yourbrowser == "1") { ?> width="98%" style="min-width:900px;padding-left:10px;" <?php } else { ?> width="75%"  style="min-width:900px;padding-left:40px;" <?php } ?> class="text2">
 		<tr>
         <td align = "left" width="26%" height="25px" align="center" class="text2" style="padding-left:10px; font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><?php dic("Settings.TypeOfAlert") ?></td>
 		<td align = "left" width="30%" height="25px" align="center" class="text2" style="padding-left:10px; font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><?= dic_("Settings.Email")?></td>

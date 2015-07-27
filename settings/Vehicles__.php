@@ -571,7 +571,7 @@
 								 
                              } //end while
                        } //end while
-                 echo "role id == 2";
+      
              	 } //end if
                  ?>
                  </table>
@@ -582,7 +582,7 @@
 				 else
 				 {
                  
-				 	echo "role id != 2";
+				 
            $cnt = 1;
            $cnt1 = 1;
            $cnt2 = 1;
@@ -714,22 +714,18 @@
 				}
 				?>
 				</div>
-				</td> 				         
+				</td>
                 <td id="td-4-<?php echo $cnt?>" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;"><?php echo DateTimeFormat($rV["lastregistration"], $dateformat) ?></td>
                 <td id="td-5-<?php echo $cnt?>" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;">
                       <img id="act<?php echo $cnt?>" width= "11px" height = "11px" src="<?php echo $greenCard?>"  />
                 </td>
                 <td id="td-6-<?php echo $cnt?>" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8; color:<?php echo $color?>"><?php echo DateTimeFormat($lastDate, $datetimeformat)?></td>
-                <!--
-                <td id="td-7-<?php echo $cnt ?>" width="8%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;">
-                    <button id="costBtn<?php echo $cnt ?>" onclick="costVehicle(<?php echo $cnt ?>, <?php echo $id ?>, '<?php echo $rV["registration"] ?> (<?php echo $rV["code"] ?>) <?php echo $rV["alias"] ?>')" style="height:22px; width:30px"></button>
-                </td>
-                -->
+
                 <td id="td-9-<?php echo $cnt ?>" height="30px" align="center" class="text2 <?php echo $paren?>" style="background-color:#fff; border:1px dotted #B8B8B8;">
                     <img id="act<?php echo $cnt?>" width= "11px" height = "11px" src="<?php echo $activity?>"  />
                     <!--<button id="delBtn<?php echo $cnt ?>" onclick="del(<?php echo $rV["id"] ?>, '<?php echo $cLang ?>', 'vehicles')" style="height:22px; width:30px"></button>-->
                 </td>
-				
+
 				<td id="td-8-<?php echo $cnt ?>"height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;">
                     <button id="modBtn<?php echo $cnt ?>" onclick="modifyVehicle(<?php echo $cnt ?>, <?php echo $id ?>)" style="height:22px; width:30px"></button>
                 </td>
@@ -740,7 +736,7 @@
                      $cnt1 = $cnt1 + 1;
              }//end while
              ?>
-             
+
         </table>
 
         <?php
