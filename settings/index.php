@@ -13,6 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="../rstyle.css">
 	<link rel="stylesheet" type="text/css" href="../css/ui-lightness/jquery-ui-1.8.14.custom.css">	
 	<LINK REL="SHORTCUT ICON" HREF="../images/icon.ico">
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 	<script type="text/javascript" src="../js/jquery.js"></script>
 	<script type="text/javascript" src="../js/share.js"></script>
 	<script type="text/javascript" src="../js/iScroll.js"></script>
@@ -232,6 +233,7 @@
 </script>
 
 <body onResize="SetHeightSettingsPetar()">
+	<div id="divaddCity" title="<?php echo dic("Admin.AddCity")?>" style="display:none"></div>
 <div id="rep"></div>
 <table width="100%" border="0" cellpadding="0" cellspacing="0" style="min-width: 717px;">
 	<tr>
@@ -287,7 +289,7 @@
 	<div id="div-locMain" style="display:none" title="<?php echo dic("Reports.AddNewExecutor")?>"></div>
 	<div id="div-compMain" style="display:none" title="<?php echo dic("Reports.AddNewComponent")?>"></div>
 	
-<div id="div-mainalerts" onmouseover="clearTimeOutAlertView()" onmouseout="setTimeOutAlertView()" style="font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; border: 0px; right: 35px; float: right; position: absolute; z-index: 9999; top: 43px; width: 315px; overflow-x: hidden; overflow-y: auto;"></div>
+<div id="div-mainalerts" onmouseover="clearTimeOutAlertView()" onmouseout="setTimeOutAlertView()" style="display:none; font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; border: 0px; right: 35px; float: right; position: absolute; z-index: 9999; top: 43px; width: 315px; overflow-x: hidden; overflow-y: auto;"></div>
 <div id="div-delComp" style="display:none" title="<?php echo dic("Reports.DelComp")?>"></div>
 
 <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
@@ -420,7 +422,7 @@ var seluser = 0;
 	$('#showBtn').button({ icons: { primary: "ui-icon-search"} })    
 	if(allowedAlarms == '1')
 	{    
-    	ShowHideAlerts();
+    	//ShowHideAlerts();
 		//ShowHideMail();
 		snoozeAlarm();
 		AjaxNotify();

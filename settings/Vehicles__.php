@@ -4,8 +4,7 @@
 <?php include "../include/dictionary2.php" ?>
 
 
-<?php
-
+<?php 
 	header("Content-type: text/html; charset=utf-8");
 	opendb();
 	$Allow = getPriv("vehicles", session("user_id"));
@@ -18,7 +17,7 @@
 	addlog(42);
 ?>
 
-<!-- <html xmlns="http://www.w3.org/1999/xhtml"> -->
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
@@ -65,7 +64,7 @@
  <body>
  	
  	<script>
-  		if (!Number('<?php echo is_numeric(session("user_id")); ?>'))
+  		if (!<?php echo is_numeric(session('user_id')) ?>)
   			top.window.location = "../sessionexpired/?l=" + '<?php echo $cLang ?>';
  	</script>
   
@@ -88,10 +87,13 @@
         </p>
     </div>
  	<?php
- 	 
+
 	 $cnt_ = 1;
      $cnt_1 = 1;
      
+     $americaUser = dlookup("select count(*) from cities where id = (select cityid from users where id=".session("user_id").") and countryid = 4");
+     $americaUserStyle = "";
+     if ($americaUser == 1) $americaUserStyle = "display: none";
 	 $currency = dlookup("select currency from users where id=" . session('user_id')); 
 	 $currencyvalue = dlookup("select value from currency where name='" . $currency . "'"); 
 	 $liqunit1 = dlookup("select liquidunit from users where id=" . session('user_id'));
@@ -113,8 +115,10 @@
 	$datfor = explode(" ", $datetimeformat);
 	$dateformat = $datfor[0];
 	$timeformat =  $datfor[1];
-	if ($timeformat == 'h:i:s') $timeformat = $timeformat . " a";
-	
+	if ($timeformat == 'h:i:s') {
+		$timeformat = $timeformat . " A";
+		$datetimeformat = $datetimeformat . " A";
+	}
      /*$cntVeh = nnull(dlookup("select COUNT(*) from Vehicles where ClientID = " . Session("client_id")), 0);
 	 
      $cntfmVeh = NNull(DlookUP("select COUNT(*) from fmVehicles where Client_id = " & Session("client_id")), 0)
@@ -128,14 +132,15 @@
 
      ?>
      
-     <div id="report-content" style="width:100%; background-color:#fafafa; margin-bottom:50px; overflow-y:auto; overflow-x:hidden" class="corner5">	 
+     <div id="report-content" style="width:100%; background-color:#fafafa; margin-bottom:50px; overflow-y:auto; overflow-x:hidden" class="corner5">
+	 
     
     	 <div style="margin-bottom:25px; margin-top:30px; width:94%; margin-left:35px" align="right">
          <!--<div style="float:right; margin-right:36px; margin-bottom:25px; margin-top:10px"> -->
          <table width="100%">
          <tr class="text2_">
               	<td width="80%" align = "left" class="textTitle"><?php echo dic_("Fm.Vehicles")?></td>
-                <td width="20%" align = "center" ><?php dic("Fm.SearchCode") ?>:</td>
+                <td width="20%" align = "center" ><?php dic("Settings.SearchVehNum") ?>:</td>
                 <td width="20%" align = "center"  style="padding-left:30px" ><?php dic("Fm.SearchReg")?>:</td>
          </tr>
 	     <tr class="text2">
@@ -179,10 +184,18 @@
             </tr>
 
             <tr>
-                <td width="6%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185; ;" class="text2"><?php dic("Fm.Code") ?></td>
-                <td width="12%" height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;" class="text2"><?php dic("Fm.Registration")?></td> 
-                <td width="14%" height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185; " class="text2"><?php dic("Fm.Model") ?></td>
-                <td width="11%" height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;" class="text2">
+                <td width="10%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185; ;" class="text2"><?php dic("VehicleNumber") ?></td>
+                <td width="17%" height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;" class="text2"><?php dic("Fm.Registration")?></td> 
+                <?php
+                if (session("client_id") == 259) {
+                	?>
+                	<td width="11%" height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;" class="text2"><?php dic("Admin.GSMnumber")?></td> 
+                	<?php
+                }
+                ?>
+                
+                <td width="15%" height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185; " class="text2"><?php dic("Fm.Model") ?></td>
+                <td width="16%" height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;" class="text2">
                 	<table width=100%>
                 		<tr class="text2" style="font-weight:bold;"><td colspan=2 align="center"><? echo dic_("Settings.Registration")?></td></tr>
                 		<tr class="text2" style="font-weight:bold;">
@@ -191,11 +204,11 @@
                 		</tr>
                 	</table>
                 </td>
-                <td width="8%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;" class="text2"><?php echo dic("Settings.GreenCard")?></td>
-                <td width="12%" height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;" class="text2"><?php echo dic("Settings.LastData")?></td>
+                <td width="11%"  height="22px" align="center" class="text2" style="<?=$americaUserStyle?>; font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;" class="text2"><?php echo dic("Settings.GreenCard")?></td>
+                <td width="13%" height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;" class="text2"><?php echo dic("Settings.LastData")?></td>
                 <!--<td width="8%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185; color:#ff6633" class="text2"><?php echo dic_("Reports.Costs")?></td>-->
-				<td width="8%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185; color:ff6633" class="text2"><?php dic("Settings.VisibleLive")?></td>
-				<td width="8%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185; color:#ff6633" class="text2"><?php dic("Fm.Mod") ?></td>
+				<td width="9%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185; color:ff6633" class="text2"><?php dic("Settings.VisibleLive")?></td>
+				<td width="9%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185; color:#ff6633" class="text2"><?php dic("Fm.Mod") ?></td>
             </tr>
 
          <?php
@@ -255,9 +268,16 @@
                  
                 <tr id="veh<?php echo $cnt ?>" style="" onmouseover="over(<?php echo $cnt ?>, 0, <?php echo $actYN ?>)" onmouseout="out(<?php echo $cnt ?>, 0, <?php echo $actYN ?>)">
                 
-                <td id="td-1-<?php echo $cnt ?>" width="6%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8; "><?php echo $rV["code"]?></td>
-                <td id="td-2-<?php echo $cnt ?>" width="13%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;"><strong><?php echo $rV["registration"] ?></strong><br><?php if($zaAlias>0){?><font style="font-size:10px">(<?php echo $rV["alias"];?>)</font><?php }else{ echo "";}?></td>
-                <td id="td-3-<?php echo $cnt ?>" width="16%" height="30px" align="center" class="text2 <?php echo $paren ?>" style="background-color:#fff; border:1px dotted #B8B8B8;" >
+                <td id="td-1-<?php echo $cnt ?>" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8; "><?php echo $rV["code"]?></td>
+                <td id="td-2-<?php echo $cnt ?>" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;"><strong><?php echo $rV["registration"] ?></strong><br><?php if($zaAlias>0){?><font style="font-size:10px">(<?php echo $rV["alias"];?>)</font><?php }else{ echo "";}?></td>
+                <?php
+                if (session("client_id") == 259) {
+                ?>
+                <td id="" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8; "><?php echo $rV["gsmnumber"]?></td>
+                <?php
+            	}
+                ?>
+                <td id="td-3-<?php echo $cnt ?>" height="30px" align="center" class="text2 <?php echo $paren ?>" style="background-color:#fff; border:1px dotted #B8B8B8;" >
             	<b><?php echo $rV["model"]?></b><br>
             	<?php if($row1["name"]=="Бензин")
 	            {
@@ -280,10 +300,10 @@
 				?>
 				</div>
 				</td> 				         
-                <td id="td-4-<?php echo $cnt?>" width="11%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;">
+                <td id="td-4-<?php echo $cnt?>" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;">
                 	<table width=100%>
                 		<tr class="text2">
-                			<td align="center"><?php echo $lastReg ?></td>
+                			<td align="center"><?php echo DateTimeFormat($rV["lastregistration"], $dateformat) ?></td>
                 			<?php
                 			//$totalDaysOfYear = date("z", mktime(0,0,0,12,31,DateTimeFormat($lastReg, 'Y'))) + 1;
                 			$nextReg = DateTimeFormat(date('Y-m-d', strtotime($lastReg. ' + 1 year')), $dateformat);
@@ -314,21 +334,21 @@
                 		</tr>
                 	</table>
                 </td>
-                <td id="td-5-<?php echo $cnt?>" width="5%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;">
+                <td id="td-5-<?php echo $cnt?>" height="30px" align="center" class="text2" style="<?=$americaUserStyle?>; background-color:#fff; border:1px dotted #B8B8B8;">
                       <img id="act<?php echo $cnt?>" width= "11px" height = "11px" src="<?php echo $greenCard?>"  />
                 </td>
-                <td id="td-6-<?php echo $cnt?>" width="12%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8; color:<?php echo $color?>"><?php echo $lastDate?></td>
+                <td id="td-6-<?php echo $cnt?>" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8; color:<?php echo $color?>"><?php echo DateTimeFormat($lastDate, $datetimeformat)?></td>
                 <!--
                 <td id="td-7-<?php echo $cnt ?>" width="8%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;">
                     <button id="costBtn<?php echo $cnt ?>" onclick="costVehicle(<?php echo $cnt ?>, <?php echo $id ?>, '<?php echo $rV["registration"] ?> (<?php echo $rV["code"] ?>) <?php echo $rV["alias"] ?>')" style="height:22px; width:30px"></button>
                 </td>
                 -->
-				<td id="td-9-<?php echo $cnt?>" width="8%" height="30px" align="center" class="text2 <?php echo $paren?>" style="background-color:#fff; border:1px dotted #B8B8B8;">
+				<td id="td-9-<?php echo $cnt?>" height="30px" align="center" class="text2 <?php echo $paren?>" style="background-color:#fff; border:1px dotted #B8B8B8;">
                      <img id="act<?php echo $cnt?>" width= "11px" height = "11px" src="<?php echo $activity?>"  />
                      <!--<button id="delBtn<?php echo $cnt ?>" onclick="del(<?php echo $rV["id"] ?>, '<?php echo $cLang ?>', 'vehicles')" style="height:22px; width:30px"></button>-->
                 </td>
 				
-				<td id="td-8-<?php echo $cnt?>" width="8%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;">
+				<td id="td-8-<?php echo $cnt?>" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;">
                     <button id="modBtn<?php echo $cnt ?>" onclick="modifyVehicle(<?php echo $cnt ?>, <?php echo $id ?>)" style="height:22px; width:30px"></button>
                 </td>
                 
@@ -355,18 +375,23 @@
 
              If (pg_num_rows($dsOthV) > 0) {
 
-
-
         ?>
         
         <table id="tabId<?php echo $cnt2 ?>" width="94%" border="0" cellspacing="2" cellpadding="2" style="margin-top:30px; margin-left:35px"> 	
             <tr><td height="22px" class="text2" colspan=10 style="color:#fff; font-weight:bold; font-size:14px; border:1px solid #ff6633; padding-left:7px; background-color:#f7962b;"><?php dic("Fm.UngroupedVeh") ?></td></tr>
           
             <tr>
-                <td width="6%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;;"><?php dic("Fm.Code")?></td>
-                <td width="12%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><?php dic("Fm.Registration") ?></td> 
-                <td width="14%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185; "><?php dic("Fm.Model") ?></td>
-                <td width="11%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;" >
+                <td width="10%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;;"><?php dic("VehicleNumber")?></td>
+                <td width="17%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><?php dic("Fm.Registration") ?></td> 
+                <?php
+                if (session("client_id") == 259) {
+                	?>
+                	<td width="11%" height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;" class="text2"><?php dic("Admin.GSMnumber")?></td> 
+                	<?php
+                }
+                ?>
+                <td width="15%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185; "><?php dic("Fm.Model") ?></td>
+                <td width="16%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;" >
                 	<table width=100%>
                 		<tr class="text2" style="font-weight:bold;"><td colspan=2 align="center"><? echo dic_("Settings.Registration")?></td></tr>
                 		<tr class="text2" style="font-weight:bold;">
@@ -375,10 +400,20 @@
                 		</tr>
                 	</table>
                 </td>
-                <td width="8%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;" ><?php echo dic("Settings.GreenCard")?></td>
-                <td width="12%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;" class="text2"><?php echo dic("Settings.LastData")?></td>
-                <td width="8%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185; color:#ff6633"><?php dic("Settings.VisibleLive")?></td>
-                <td width="8%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185; color:#ff6633"><?php dic("Fm.Mod")?></td>
+                <td width="11%"  height="22px" align="center" class="text2" style="<?=$americaUserStyle?>; font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;" ><?php echo dic("Settings.GreenCard")?></td>
+                <td width="13%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;" class="text2"><?php echo dic("Settings.LastData")?></td>
+				<!--
+				<?php
+                	$fm = dlookup("select allowedfm from clients where id=" . session("client_id"));
+					if ($fm == '1' and session("role_id") == 2) {
+                ?>
+                <td width="8%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185; color:#ff6633"><?php echo dic_("Reports.Costs")?></td>
+                <?
+					}
+                ?>
+                -->
+                <td width="9%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185; color:#ff6633"><?php dic("Settings.VisibleLive")?></td>
+                <td width="9%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185; color:#ff6633"><?php dic("Fm.Mod")?></td>
             </tr>
 
                  <?php
@@ -442,35 +477,41 @@
 							 ?>
                              <tr id="veh<?php echo $cnt_1 ?>" style="" onmouseover="over(<?php echo $cnt_ ?>, 1, <?php echo $actYN ?>)" onmouseout="out(<?php echo $cnt_ ?>, 1, <?php echo $actYN ?>)">
                              
-                                <td id="_td-1-<?php echo $cnt_ ?>" width="6%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8; "><?php echo $drOV["code"] ?></td>  
-                                <td id="_td-2-<?php echo $cnt_ ?>" width="13%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;"><strong><?php echo $drOV["registration"] ?></strong><br> <?php if($zaAlias>0){?><font style="font-size:10px">(<?php echo $drOV["alias"];?>)</font><?php }else{ echo "";}?></td>
-                                <td id="_td-3-<?php echo $cnt_ ?>" width="16%" height="30px" align="center" class="text2 <?php echo $paren?>" style="background-color:#fff; border:1px dotted #B8B8B8;">
+                                <td id="_td-1-<?php echo $cnt_ ?>" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8; "><?php echo $drOV["code"] ?></td>  
+                                <td id="_td-2-<?php echo $cnt_ ?>" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;"><strong><?php echo $drOV["registration"] ?></strong><br> <?php if($zaAlias>0){?><font style="font-size:10px">(<?php echo $drOV["alias"];?>)</font><?php }else{ echo "";}?></td>
+                                <?php
+				                if (session("client_id") == 259) {
+				                ?>
+                                <td id="" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8; "><?php echo $drOV["gsmnumber"]?></td>
+                                <?php
+				            	}
+				                ?>
+                                <td id="_td-3-<?php echo $cnt_ ?>" height="30px" align="center" class="text2 <?php echo $paren?>" style="background-color:#fff; border:1px dotted #B8B8B8;">
                                 <b><?php echo $drOV["model"]?></b><br>
-                                <?php 
-                                if($row2["name"]=="Бензин")
+                                <?php if($row2["name"]=="Бензин")
 			                    {
 			                    ?>
-			                    &nbsp;(<font style="font-size: 10px"><?php echo dic("Settings.Petrol")?></font>)
+			                    &nbsp;(<font style="font-size: 10px"><?php echo dic_("Gasoline")?></font>)
 			                    <?php
 			                    }
 			                    if($row2["name"]=="Дизел")
 								{	
 								?>
-								&nbsp;(<font style="font-size:10px"><?php echo dic("Settings.Diesel")?></font>)
+								&nbsp;(<font style="font-size:10px"><?php echo dic_("Diesel")?></font>)
 			    			 	<?php
 								}
 								if($row2["name"]=="LPG")
 								{
 								?>
-								&nbsp;(<font style= "font-size: 10px"><?php echo dic("Settings.Gas")?></font>)
+								&nbsp;(<font style= "font-size: 10px"><?php echo dic_("LPG")?></font>)
 			    			 	<?php
 								}
 								?>
-								</td>
-                                <td id="_td-4-<?php echo $cnt_ ?>" width="11%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;">
+								</div>	
+                                <td id="_td-4-<?php echo $cnt_ ?>" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;">
                                 	<table width=100%>
 				                		<tr class="text2">
-				                			<td align="center"><?php echo $lastReg ?></td>
+				                			<td align="center"><?php echo DateTimeFormat($drOV["lastregistration"], $dateformat) ?></td>
 				                			<?php
 				                			//$totalDaysOfYear = date("z", mktime(0,0,0,12,31,DateTimeFormat($lastReg, 'Y'))) + 1;
 				                			$nextReg = DateTimeFormat(date('Y-m-d', strtotime($lastReg. ' + 1 year')), $dateformat);
@@ -501,15 +542,26 @@
 				                		</tr>
 				                	</table>
                                 </td>
-                                <td id="_td-5-<?php echo $cnt_ ?>" width="5%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;"><img id="_act<?php echo $cnt_?>" src=<?php echo $greenCard ?>  width = "11px" height = "11px"/></td>
-                                <td id="_td-6-<?php echo $cnt_ ?>" width="12%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8; color:<?php echo $color?>"><?php echo $lastDate?></td>
-                          
-								<td id="_td-9-<?php echo $cnt_ ?>" width="8%" height="30px" align="center" class="text2 <?php echo $paren ?>" style="background-color:#fff; border:1px dotted #B8B8B8;">
+                                <td id="_td-5-<?php echo $cnt_ ?>" height="30px" align="center" class="text2" style="<?=$americaUserStyle?>; background-color:#fff; border:1px dotted #B8B8B8;"><img id="_act<?php echo $cnt_?>" src=<?php echo $greenCard ?>  width = "11px" height = "11px"/></td>
+                                <td id="_td-6-<?php echo $cnt_ ?>" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8; color:<?php echo $color?>"><?php echo DateTimeFormat($lastDate, $datetimeformat)?></td>
+                                <!--
+                                 <?php
+				                	$fm = dlookup("select allowedfm from clients where id=" . session("client_id"));
+									if ($fm == '1' and session("role_id") == 2) {
+				                ?>
+				                <td id="_td-7-<?php echo $cnt_ ?>" width="8%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;">
+                                    <button id="_costBtn-<?php echo $cnt_?>" onclick="costVehicle(<?php echo $cnt_1 ?>, <?php echo $id ?>, '<?php echo $drOV["registration"] ?> (<?php echo $drOV["code"] ?>) <?php echo $drOV["alias"] ?>')" style="height:22px; width:30px"></button>
+                                </td>
+			                   <?
+								}
+								?>
+								-->  
+								<td id="_td-9-<?php echo $cnt_ ?>" height="30px" align="center" class="text2 <?php echo $paren ?>" style="background-color:#fff; border:1px dotted #B8B8B8;">
                                     <img id="_act<?php echo $cnt_?>" src=<?php echo $activity?>  width = "11px" height = "11px"/>
                                     <!--<button id="_delBtn-<?php echo $cnt_ ?>" onclick="del(<?php echo $drOV["id"] ?>, '<?php echo $cLang ?>', 'vehicles')" style="height:22px; width:30px"></button>-->
                                 </td>                              
 							
-								<td id="_td-8-<?php echo $cnt_ ?>" width="8%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;">
+								<td id="_td-8-<?php echo $cnt_ ?>" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;">
                                     <button id="_modBtn-<?php echo $cnt_?>" onclick="modifyVehicle(<?php echo $cnt_1 ?>, <?php echo $id ?>)" style="height:22px; width:30px"></button>
                                 </td>
                              </tr>
@@ -519,15 +571,349 @@
 								 
                              } //end while
                        } //end while
-                       ?>
-                       </table>
-                     <?php  
-             } //end if
-                 ?>                 
+                 echo "role id == 2";
+             	 } //end if
+                 ?>
+                 </table>
+                 
                  
                  <?php 
                  }
+				 else
+				 {
+                 
+				 	echo "role id != 2";
+           $cnt = 1;
+           $cnt1 = 1;
+           $cnt2 = 1;
+           
+           $sqlOU = "select id, name, code from organisation where clientID=" . Session("client_id");
+           $dsOU = query($sqlOU);
+		  // $zaAlias = query("select count(*) from vehicles where alias <> '' and clientID=" . Session("client_id"));
+		   
+		   while ($drOU = pg_fetch_array($dsOU)){
+               $sqlVeh = "select * from vehicles where active='1' and organisationid = " . $drOU["id"] . " and id in(select vehicleid from uservehicles where userid = ".Session("user_id").") and clientid = " . Session("client_id"). " ORDER BY code::INTEGER";
+               $dsVh = query($sqlVeh);
+				
+               If (pg_num_rows($dsVh) > 0) {
+                   $cnt1 = 1;
+				   
+        ?>
+		<table id="tabId<?php echo $cnt2 ?>" width="94%" border="0" cellspacing="2" cellpadding="2" style="margin-top:30px; margin-left:35px">
+            <tr>
+	            <td height="22px" class="text2" colspan=10 style="color:#fff; font-weight:bold; font-size:14px; border:1px solid #ff6633; padding-left:7px; background-color:#f7962b;">
+	                <?php echo $drOU["code"]?>. <?php echo $drOU["name"] ?>
+	            </td>
+            </tr>
+
+            <tr>
+                <td width="10%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185; ;" class="text2"><?php dic("VehicleNumber") ?></td>
+                <td width="17%" height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;" class="text2"><?php dic("Fm.Registration")?></td> 
+                <?php
+                if (session("client_id") == 259) {
+                	?>
+                	<td width="11%" height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;" class="text2"><?php dic("Admin.GSMnumber")?></td> 
+                	<?php
+                }
+                ?>
+                <td width="15%" height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185; " class="text2"><?php dic("Fm.Model") ?></td>
+                <td width="16%" height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;" class="text2"><?php dic("Fm.LastReg") ?></td>
+                <td width="11%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;" class="text2"><?php echo dic("Settings.GreenCard")?></td>
+                <td width="13%" height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;" class="text2"><?php echo dic("Settings.LastData")?></td>
+                <!--<td width="8%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185; color:#ff6633" class="text2"><?php echo dic_("Reports.Costs")?></td>-->
+				<td width="9%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185; color:ff6633" class="text2"><?php dic("Settings.VisibleLive")?></td>
+				<td width="9%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185; color:#ff6633" class="text2"><?php dic("Fm.Mod") ?></td>
+            </tr>
+
+         <?php
+
+             $paren = "";
+             $greenCard = "";
+			 $activity = "";
+             $actYN = 0;
+             $id = 0;
+             
+			 while ($rV = pg_fetch_array($dsVh)){
+			 	
+				$zaAlias = dlookup("select count(*) from vehicles where alias <> '' and id=" . $rV["id"]);
 				 
+                 $id = $rV["id"];
+				 
+                 If ($rV["greencard"] == 1)
+				 {
+                     $greenCard = "../images/stikla2.png";
+                     $actYN = 1;
+                 } 
+                 else
+				 {
+                     $greenCard = "../images/stikla3.png";
+                     $actYN = 0;
+                 }
+				 
+				 If ($rV["visible"] == 1)
+				 {
+	                 $activity = "../images/stikla2.png";
+	             } 
+	             else
+				 {
+	                 $activity = "../images/stikla3.png";
+	             }
+                                
+                $_lastReg = explode(" ", DateTimeFormat($rV["lastregistration"], "d-m-Y"));
+          		$lastReg = $_lastReg[0];
+		   		$fuelType = query("select name from fueltypes where id = (select fueltypeid from vehicles where id=" . $rV["id"] . ")");
+				$row1 = pg_fetch_array($fuelType);
+				//$lastDate = nnull(dlookup('select "DateTime" from currentposition where vehicleid=' . $rV["id"]), '/');	
+				$ld = query('select "DateTime" from currentposition where vehicleid=' . $rV["id"]);
+				if (pg_num_rows($ld) > 0)
+					$lastDate = nnull(pg_fetch_result($ld, 0, 0), "/");
+				else 
+					$lastDate = "/";
+				
+				if ($lastDate <> "/") $lastDate = DateTimeFormat($lastDate, 'd-m-Y H:i:s');
+				$color = "";
+				
+								
+				if ($lastDate <> "/") {
+					if (round(abs(strtotime(now())-strtotime($lastDate))/60) > 1440) $color = "red";	
+					else $color = "green";
+				}
+				
+                ?>
+                 
+                <tr id="veh<?php echo $cnt?>" style="" onmouseover="over(<?php echo $cnt ?>, 0, <?php echo $actYN ?>)" onmouseout="out(<?php echo $cnt ?>, 0, <?php echo $actYN ?>)">
+                
+                <td id="td-1-<?php echo $cnt?>" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8; "><?php echo $rV["code"]?></td>
+                <td id="td-2-<?php echo $cnt?>" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;"><strong><?php echo $rV["registration"] ?></strong><br><?php if($zaAlias>0){?><font style="font-size:10px">(<?php echo $rV["alias"];?>)</font><?php }else{ echo "";}?></td>
+                <?php
+                if (session("client_id") == 259) {
+                ?>
+                <td id="" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8; "><?php echo $rV["gsmnumber"]?></td>
+                <?php
+            	}
+                ?>
+                <td id="td-3-<?php echo $cnt?>" height="30px" align="center" class="text2 <?php echo $paren ?>" style="background-color:#fff; border:1px dotted #B8B8B8;" >
+            	<b><?php echo $rV["model"]?></b><br>
+            	<?php if($row1["name"]=="Бензин")
+	            {
+	            ?>
+	            &nbsp;(<font style="font-size:10px"><?php echo dic_("Gasoline")?></font>)
+	            <?php
+	            }
+	            if($row1["name"]=="Дизел")
+				{
+				?>
+				&nbsp;(<font style="font-size:10px"><?php echo dic_("Diesel")?></font>)
+			 	<?php
+				}
+				if($row1["name"]=="LPG")
+				{
+				?>
+				&nbsp;(<font style="font-size:10px"><?php echo dic_("LPG")?></font>)
+			 	<?php
+				}
+				?>
+				</div>
+				</td> 				         
+                <td id="td-4-<?php echo $cnt?>" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;"><?php echo DateTimeFormat($rV["lastregistration"], $dateformat) ?></td>
+                <td id="td-5-<?php echo $cnt?>" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;">
+                      <img id="act<?php echo $cnt?>" width= "11px" height = "11px" src="<?php echo $greenCard?>"  />
+                </td>
+                <td id="td-6-<?php echo $cnt?>" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8; color:<?php echo $color?>"><?php echo DateTimeFormat($lastDate, $datetimeformat)?></td>
+                <!--
+                <td id="td-7-<?php echo $cnt ?>" width="8%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;">
+                    <button id="costBtn<?php echo $cnt ?>" onclick="costVehicle(<?php echo $cnt ?>, <?php echo $id ?>, '<?php echo $rV["registration"] ?> (<?php echo $rV["code"] ?>) <?php echo $rV["alias"] ?>')" style="height:22px; width:30px"></button>
+                </td>
+                -->
+                <td id="td-9-<?php echo $cnt ?>" height="30px" align="center" class="text2 <?php echo $paren?>" style="background-color:#fff; border:1px dotted #B8B8B8;">
+                    <img id="act<?php echo $cnt?>" width= "11px" height = "11px" src="<?php echo $activity?>"  />
+                    <!--<button id="delBtn<?php echo $cnt ?>" onclick="del(<?php echo $rV["id"] ?>, '<?php echo $cLang ?>', 'vehicles')" style="height:22px; width:30px"></button>-->
+                </td>
+				
+				<td id="td-8-<?php echo $cnt ?>"height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;">
+                    <button id="modBtn<?php echo $cnt ?>" onclick="modifyVehicle(<?php echo $cnt ?>, <?php echo $id ?>)" style="height:22px; width:30px"></button>
+                </td>
+            </tr>
+
+                 <?php
+                     $cnt = $cnt + 1;
+                     $cnt1 = $cnt1 + 1;
+             }//end while
+             ?>
+             
+        </table>
+
+        <?php
+            $cnt2 = $cnt2 + 1;
+			$cnt1 = $cnt1 + 1;
+        }//end if
+       		
+        }//end while
+      
+     	  
+             $sqlOthV = "select distinct organisationid from vehicles where active='1' and clientid = " . Session("client_id") . " and organisationid not in (select id from organisation where clientid=" . Session("client_id") . ")";
+             $dsOthV = query($sqlOthV);
+
+             If (pg_num_rows($dsOthV) > 0) {
+
+        ?>
+        <table id="tabId<?php echo $cnt2?>" width="94%" border="0" cellspacing="2" cellpadding="2" style="margin-top:30px; margin-left:35px"> 	
+            <tr><td height="22px" class="text2" colspan=10 style="color:#fff; font-weight:bold; font-size:14px; border:1px solid #ff6633; padding-left:7px; background-color:#f7962b;"><?php dic("Fm.UngroupedVeh") ?></td></tr>
+          
+            <tr>
+                <td width="10%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;;"><?php dic("VehicleNumber")?></td>
+                <td width="17%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><?php dic("Fm.Registration") ?></td> 
+                <?php
+                if (session("client_id") == 259) {
+                	?>
+                	<td width="11%" height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;" class="text2"><?php dic("Admin.GSMnumber")?></td> 
+                	<?php
+                }
+                ?>
+                <td width="15%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185; "><?php dic("Fm.Model") ?></td>
+                <td width="16%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;" ><?php dic("Fm.LastReg")?></td>
+                <td width="11%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;" ><?php echo dic("Settings.GreenCard")?></td>
+                <td width="13%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;" class="text2"><?php echo dic("Settings.LastData")?></td>
+				<!--
+				<?php
+                	$fm = dlookup("select allowedfm from clients where id=" . session("client_id"));
+					if ($fm == '1' and session("role_id") == 2) 
+					{
+                ?>
+                <td width="8%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185; color:#ff6633"><?php echo dic_("Reports.Costs")?></td>
+                <?
+					}
+                ?>
+                -->
+                <td width="9%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185; color:#ff6633"><?php dic("Settings.VisibleLive")?></td>
+                <td width="9%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185; color:#ff6633"><?php dic("Fm.Mod")?></td>
+            </tr>
+
+                 <?php
+                 
+                     $sqlOV = "";
+                     
+                     $paren = "";
+                     $greenCard = "";
+					 $activity = "";
+                     $actYN = 0;
+                     $id = 0;
+                     $lastReg = "";
+                     
+                     $cnt_1 = $cnt;
+                     					
+					 while ($drOthV = pg_fetch_array($dsOthV)){
+					 	
+                         $sqlOV = "select * from vehicles where active='1' and organisationid=" . $drOthV["organisationid"] . "  and id in(select vehicleid from uservehicles where userid = ".Session("user_id").") and clientid=" . Session("client_id")." ORDER BY code::INTEGER";
+                         $dsOV = query($sqlOV);
+                         			 
+						 while ($drOV= pg_fetch_array($dsOV)){
+						 	$zaAlias = dlookup("select count(*) from vehicles where alias <> '' and id=" . $drOV["id"]);
+                             $id = $drOV["id"];
+                             
+                             If ($drOV["greencard"] == 1) {
+                                 $greenCard = "../images/stikla2.png";
+                                 $actYN = 1;
+                             } else {
+                                 $greenCard = "../images/stikla3.png";
+                                 $actYN = 0;
+                             } 
+							 
+							 If ($drOV["visible"] == 1)
+							 {
+				                 $activity = "../images/stikla2.png";
+				             } 
+				             else
+							 {
+				                 $activity = "../images/stikla3.png";
+				             }
+	             
+							 $_lastReg = explode(" ", DateTimeFormat($drOV["lastregistration"], "d-m-Y"));
+			          		 $lastReg = $_lastReg[0];
+				             $fuelType1 = query("select name from fueltypes where id = (select fueltypeid from vehicles where id=" . $drOV["id"] . ")");	
+                             $row2 = pg_fetch_array($fuelType1);
+                             //$lastDate = nnull(dlookup('select "DateTime" from currentposition where vehicleid=' . $drOV["id"]), "/");
+
+							 $ld = query('select "DateTime" from currentposition where vehicleid=' . $drOV["id"]);
+							 if (pg_num_rows($ld) > 0)
+								$lastDate = nnull(pg_fetch_result($ld, 0, 0), "/");
+							 else 
+								$lastDate = "/";
+				
+                             if ($lastDate <> "/") $lastDate = DateTimeFormat($lastDate, 'd-m-Y H:i:s');
+                         		$color = "";					
+							 if ($lastDate <> "/") {
+								if (round(abs(strtotime(now())-strtotime($lastDate))/60) > 1440) $color = "red";	
+								else $color = "green";
+							 }
+							 ?>
+                             <tr id="veh<?php echo $cnt_1 ?>" style="" onmouseover="over(<?php echo $cnt_ ?>, 1, <?php echo $actYN ?>)" onmouseout="out(<?php echo $cnt_ ?>, 1, <?php echo $actYN ?>)">
+                             
+                                <td id="_td-1-<?php echo $cnt_ ?>" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8; "><?php echo $drOV["code"] ?></td>  
+                                <td id="_td-2-<?php echo $cnt_ ?>" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;"><strong><?php echo $drOV["registration"] ?></strong><br> <?php if($zaAlias>0){?><font style="font-size:10px">(<?php echo $drOV["alias"];?>)</font><?php }else{ echo "";}?></td>
+                                <?php
+				                if (session("client_id") == 259) {
+				                ?>
+                                <td id="" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8; "><?php echo $drOV["gsmnumber"]?></td>
+                                <?php
+				            	}
+				                ?>
+                                <td id="_td-3-<?php echo $cnt_ ?>" height="30px" align="center" class="text2 <?php echo $paren?>" style="background-color:#fff; border:1px dotted #B8B8B8;">
+                                <b><?php echo $drOV["model"]?></b><br>
+                                <?php if($row2["name"]=="Бензин")
+								{
+								?>
+			                    &nbsp;(<font style="font-size:10px"><?php echo dic_("Gasoline")?></font>)
+			                    <?php
+			                    }
+			                    if($row2["name"]=="Дизел")
+								{
+								?>
+								&nbsp;(<font style="font-size:10px"><?php echo dic_("Diesel")?></font>)
+			    			 	<?php
+								}
+								if($row2["name"]=="LPG")
+								{
+								?>
+								&nbsp;(<font style="font-size:10px"><?php echo dic_("LPG")?></font>)
+			    			 	<?php
+								}
+								?>
+								</div>	
+                                <td id="_td-4-<?php echo $cnt_ ?>" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;"><?php echo DateTimeFormat($drOV["lastregistration"], $dateformat) ?></td>
+                                <td id="_td-5-<?php echo $cnt_ ?>" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;"><img id="_act<?php echo $cnt_?>" src=<?php echo $greenCard ?>  width = "11px" height = "11px"/></td>
+                                <td id="_td-6-<?php echo $cnt_ ?>" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8; color:<?php echo $color?>"><?php echo DateTimeFormat($lastDate, $datetimeformat)?></td>
+                                <!--
+                                <?php
+				                	$fm = dlookup("select allowedfm from clients where id=" . session("client_id"));
+									if ($fm == '1' and session("role_id") == 2) {
+				                ?>
+				                <td id="_td-7-<?php echo $cnt_ ?>" width="8%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;">
+                                    <button id="_costBtn-<?php echo $cnt_?>" onclick="costVehicle(<?php echo $cnt_1 ?>, <?php echo $id ?>, '<?php echo $drOV["registration"] ?> (<?php echo $drOV["code"] ?>) <?php echo $drOV["alias"] ?>')" style="height:22px; width:30px"></button>
+                                </td>
+			                    <?
+								}
+								?>
+								-->                                
+								<td id="_td-9-<?php echo $cnt_ ?>" height="30px" align="center" class="text2 <?php echo $paren ?>" style="background-color:#fff; border:1px dotted #B8B8B8;">
+                                   <img id="_act<?php echo $cnt_?>" src=<?php echo $activity?>  width = "11px" height = "11px"/>
+                                    <!--<button id="_delBtn-<?php echo $cnt_ ?>" onclick="del(<?php echo $drOV["id"] ?>, '<?php echo $cLang ?>', 'vehicles')" style="height:22px; width:30px"></button>-->
+                                </td>
+								
+								<td id="_td-8-<?php echo $cnt_ ?>" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;">
+                                    <button id="_modBtn-<?php echo $cnt_?>" onclick="modifyVehicle(<?php echo $cnt_1 ?>, <?php echo $id ?>)" style="height:22px; width:30px"></button>
+                                </td>
+                             </tr>
+                             <?php
+                                 $cnt_ = $cnt_ + 1;
+                                 $cnt_1 = $cnt_1 + 1;
+							 } //end while
+                       } //end while
+             	 } //end if
+                 ?>
+                 </table>
+    			 <?php
+				 }
     			 ?>	
          <div style="height:40px">&nbsp;</div>
    </div>

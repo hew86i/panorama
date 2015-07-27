@@ -1,386 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <note>
-<Settings.ValidMobileOperator>Внесовте невалиден мобилен оператор!</Settings.ValidMobileOperator>
-<Settings.InvalidSMSEmailFormat>Невалиден формат на е-маилот</Settings.InvalidSMSEmailFormat>
-<Reports.SchNoteSms>* За внес на повеќе е-маилови (смс) одделувајте со ,(br)Пр: 7133445566@operator1.com, 8866445566@operator2.com</Reports.SchNoteSms>
-<Tracking.SMSEmails>E-маилови (смс)</Tracking.SMSEmails>
-	<Settings.CodeMustNo>Кодот мора да биде бројка.</Settings.CodeMustNo>
-	<Settings.InvalidCode>Невалиден код!</Settings.InvalidCode>
-	<Settings.SelectPoint>Избери точка</Settings.SelectPoint>
-	<Settings.EnterPredefMess>Внесете предефинирана порака</Settings.EnterPredefMess>
-	<Settings.GarminComm>Гармин комуникација</Settings.GarminComm>
-	<Settings.PredefMess>Предефинирани пораки</Settings.PredefMess>
-	<Settings.ForAllVehicles>За сите возила</Settings.ForAllVehicles>
-	<Settings.VehGarminComm>Изберете возило за комуникација преку гармин</Settings.VehGarminComm>
-	<Settings.MessNo>Број на порака</Settings.MessNo>
-	<Settings.SnoozeVolume>Јачина на звук</Settings.SnoozeVolume>
-	<Settings.OBDAlerts>Аларми од ОБД</Settings.OBDAlerts>
-	<Settings.PersonalAlerts>Аларми од лични уреди</Settings.PersonalAlerts>
-	<Settings.AssetAlerts>Аларми од опрема</Settings.AssetAlerts>
-	<Settings.SecurityAlerts>Безбедносни аларми</Settings.SecurityAlerts>
-	<Settings.AlertFromApp>Аларми од апликација</Settings.AlertFromApp>
-	<Main.AlarmNotCorrect>Алармот не е внесен прописно во базата!!!</Main.AlarmNotCorrect>
-	<Tracking.RequireSS>Потребна проверка на сензори на седишта</Tracking.RequireSS>
-	<Tracking.MustOdometer>Мора да внесете вредност на одометарот.</Tracking.MustOdometer>
-	<Tracking.MessNotDelivered>Пораката не е успешно доставена!!!</Tracking.MessNotDelivered>
-	<Tracking.VehNotConn>Возилото не е поврзано!!!</Tracking.VehNotConn>
-  <Tracking.GarminSuccPoint>Успешно испратена точка до гармин уред!</Tracking.GarminSuccPoint>
-  <Tracking.GroupNotEnter>Немате избрано група на која ќе се внесе алармот!</Tracking.GroupNotEnter>
-  <Live.Remaining>Преостануваат</Live.Remaining>
-  <Live.UntilNextService>до следен сервис</Live.UntilNextService>
-  <Login.UserIsNotActive>Корисникот е деактивиран. Ве молиме контактирајте не преку е-маил:</Login.UserIsNotActive>
-  <Lang.MadeChanges>Имате направено промени. Дали сте сигурни дека сакате да ги откажете истите?</Lang.MadeChanges>
-  <Lang.MkLang>Македонски јазик</Lang.MkLang>
-  <Lang.EnLang>Англиски јазик</Lang.EnLang>
-  <Lang.AlLang>Албански јазик</Lang.AlLang>
-  <Lang.FrLang>Француски јазик</Lang.FrLang>
-  <Lang.Translation>Превод</Lang.Translation>
-  <Lang.NewLang>Нов јазик</Lang.NewLang>
-  <Lang.Choose>Изберете</Lang.Choose>
-  <Lang.Load>Вчитај</Lang.Load>
-  <Lang.NoLangEdit>Немате избрано превод на јазик кој сакате да го промените.</Lang.NoLangEdit>
-  <Lang.EditLang>Промени превод</Lang.EditLang>
-  <Lang.EditLangTitle>ПРОМЕНА ПРЕВОД НА ЈАЗИК</Lang.EditLangTitle>
-  <Lang.EditSucc>Промените беа успешно зачувани.</Lang.EditSucc>
-  <Lang.EnterNewLang>ВНЕС НА НОВ ЈАЗИК</Lang.EnterNewLang>
-  <Lang.FirstLang>Основен јазик</Lang.FirstLang>
-  <Lang.SecondLang>Помошен јазик</Lang.SecondLang>
-  <Lang.NoFirstLang>Немате избрано основен јазик за превод.</Lang.NoFirstLang>
-  <Lang.NameNewLang>Внесете име на новиот јазик.</Lang.NameNewLang>
-  <Lang.SuccTranslate>Преводот беше успешно зачуван.</Lang.SuccTranslate>
-  <Lang.For>За</Lang.For>
-  <Lang.RowsNoLang>линии немате внесено превод.</Lang.RowsNoLang>
-  <Settings.InsertValidLength>Внесете валидна километража</Settings.InsertValidLength>
-  <Settings.InvalidPhoneFormat>Погрешен формат на бројот</Settings.InvalidPhoneFormat>
-  <Tracking.MobileOperator>Мобилен оператор</Tracking.MobileOperator>
-  <Tracking.SMSNumber>СМС број</Tracking.SMSNumber>
-  <Settings.SendviaEmail>СМС/е-маил</Settings.SendviaEmail>
-  <Settings.MobileOperator>Oдберете мобилен оператор</Settings.MobileOperator>
-  <Settings.MobileOperatorMust>Ве молиме одберете мобилен оператор</Settings.MobileOperatorMust>
-  <Settings.InsertValidTime>Внесете валидно време</Settings.InsertValidTime>
-  <Settings.FleetManagement>Менаџирање на флота</Settings.FleetManagement>
-  <Settings.RFID>RFID</Settings.RFID>
-  <odlozenablokada>Одложена блокада</odlozenablokada>
-  <zadenpanik>Заден паник тастер</zadenpanik>
-  <zadenaodlozenablokada>Задна одложена блокада</zadenaodlozenablokada>
-  <granicaobrtai>Надминување граница на обртаи</granicaobrtai>
-  <nacionalnamreza>Национална мрежа после роаминг</nacionalnamreza>
-  <taxioffpasson>Исклучен таксиметар со седнати патници</taxioffpasson>
-  <LPG>Плин</LPG>
-  <EnterPredefMess>Внес на предефинирани пораки</EnterPredefMess>
-  <ClickNewData>Кликнете за нов податок</ClickNewData>
-  <Garmin>Гармин</Garmin>
-  <Inactive>Неактивен</Inactive>
-  <Estimation>Естимација</Estimation>
-  <ClickCheckGarmin>Кликнете за проверка на статус на гарминот</ClickCheckGarmin>
-  <TheReqInfo>потребните информаци!</TheReqInfo>
-  <HaveNotEntered>Ги немате внесено</HaveNotEntered>
-  <SentBlockade>Блокадата е пратена, возилото ке биде блокирано во моментот кога ке ја намали својата брзина под</SentBlockade>
-  <CancelBlocking>Доколку сакате да ја прекинете операцијата за блокирање на оваа возило, притиснете на копчето Откажи.</CancelBlocking>
-  <EngineBlocking>Блокирање на мотор</EngineBlocking>
-  <UnblockEngine>Деблокада на мотор</UnblockEngine>
-  <BlockadeEngine>Блокада на мотор</BlockadeEngine>
-  <GarminCommMess>Гармин пораки за комуникација</GarminCommMess>
-  <EngineSuccBlock>Моторот е успешно блокиран!</EngineSuccBlock>
-  <DeactParkArea>ја деактивирате зоната за паркинг?</DeactParkArea>
-  <ActParkArea>да активирате зона за паркинг?</ActParkArea>
-  <ToUnBlockVeh>да го деблокирате оваа возило?</ToUnBlockVeh>
-  <ToBlockVeh>да го блокирате оваа возило?</ToBlockVeh>
-  <SureWant>Дали сте сигурни дека сакате</SureWant>
-  <SureActAlarm>Дали сте сигурни дека сакате да го активирате овој аларм?</SureActAlarm>
-  <AlreadyNewOdometer>Постои веќе внесен податок со понов датум од моменталниот. Дали сте сигурни дека сакате да го внесете овој датум со оваа вредност за одометар како последен запис?</AlreadyNewOdometer>
-  <EnterOdometer>Внеси одометар</EnterOdometer>
-  <CurrentMileage>Моментална километража на одометарот</CurrentMileage>
-  <Radius>Радиус</Radius>
-  <Only12Months>Може да изберете максимум за 12 месеци !!!</Only12Months>
-  <yearly>годишно</yearly>
-  <Allowed>Дозволени</Allowed>
-  <Diesel>Дизел</Diesel>
-  <Gasoline>Бензин</Gasoline>
-  <Brand>Марка</Brand>
-  <YearManuf>Година на производство</YearManuf>
-  <Predicted>Предвидени</Predicted>
-  <Settings.DLNumber>Број на возачка дозвола</Settings.DLNumber>
-  <SearchEmployeeID>Пребарај по код</SearchEmployeeID>
-  <VehNo>Код</VehNo>
-  <Settings.SearchVehNum>Пребарај по код</Settings.SearchVehNum>
-  <VehicleNumber>Код</VehicleNumber>
-  <Reports.WithIgnOff>со исклучен мотор</Reports.WithIgnOff>
-  <Settings.DepartmentID>Код</Settings.DepartmentID>
-  <lenoftraj2>минути, можен е избор само на едно возило</lenoftraj2>
-  <lenoftraj1>Должина на траекторија во минути</lenoftraj1>
-  <Settings.EmployeeID>Код</Settings.EmployeeID>
-  <LostConnection>Изгубена конекција!</LostConnection>
-  <Settings.AfterLogIn>После најава</Settings.AfterLogIn>
-  <Settings.HomePage>Почетна страна</Settings.HomePage>
-  <rangeoflocation>Ваша локација во опсег од</rangeoflocation>
-  <Settings.ClubCardsName>клуб картичка</Settings.ClubCardsName>
-  <Settings.Temperature>Температура</Settings.Temperature>
-  <Login.ActProfile>Активација на профил</Login.ActProfile>
-  <Reports.ModalInfo>Потребно е да го промените Вашето корисничко име со валидна email адреса. Истата ќе ви служи за најава.</Reports.ModalInfo>
-  <Reports.ModalInfoAlertT1>Имате уште</Reports.ModalInfoAlertT1>
-  <Reports.ModalInfoAlertT2>дена за да извршите промена.</Reports.ModalInfoAlertT2>
-  <Reports.ModalInfoAlertLastDay>Имате уште еден ден да ја извршите промената!</Reports.ModalInfoAlertLastDay>
-  <Reports.PasswordChange>Ве молиме да ја промените вашата лозинка. Внесете лозика подолга од 6 карактери.</Reports.PasswordChange>
-  <Reports.NotificationEmail>Морате да внесете email адреса!</Reports.NotificationEmail>
-  <Reports.NotificationEmailSuccess>Пратена е порака на внесената email адреса. Ве молиме за потврда.</Reports.NotificationEmailSuccess>
-  <Reports.NotificationEmailValid>Внесете валидна email адреса!</Reports.NotificationEmailValid>
-  <Settings.EmailValidationFailed>Внесениот email не постои! Пробајте повторно.</Settings.EmailValidationFailed>
-  <Settings.EmailChangeSuccess>Ви благодариме на извршената промена на вашата email адреса.</Settings.EmailChangeSuccess>
-  <Settings.EmailBodyLink>Ве молиме да кликнете на долниот линк и со тоа да го потврдите приемот на оваа порака и да го активарате вашиот профил.</Settings.EmailBodyLink>
-  <Settings.ModalButtonChange>Измени</Settings.ModalButtonChange>
-  <Reports.WithIgnOn>со вклучен мотор</Reports.WithIgnOn>
-  <Settings.MustReg>Внесете регистрација на возилото !!!</Settings.MustReg>
-  <Settings.MustCode>Внесете код на возилото !!!</Settings.MustCode>
-  <Tracking.FuelDown>Пад на гориво</Tracking.FuelDown>
-  <Tracking.FuelDownDetails>Детали за пад на гориво</Tracking.FuelDownDetails>
-  <Tracking.Hoist>Дигалка</Tracking.Hoist>
-  <Tracking.DetailNewTab>Отвори детали за возила во нов таб</Tracking.DetailNewTab>
-  <Tracking.OrdersNewTab>Отвори денешни налози во нов таб</Tracking.OrdersNewTab>
-  <Routes.NotCreatedPreOrders>Немате креирано предефинирани налози!!!</Routes.NotCreatedPreOrders>
-  <Settings.PeriodFrom>Период од</Settings.PeriodFrom>
-  <Settings.ForVeh>за возилата</Settings.ForVeh>
-  <Settings.CurrYearAllVeh>Тековна година за сите возила</Settings.CurrYearAllVeh>
-  <Settings.ForAllVeh>за сите возила</Settings.ForAllVeh>
-  <Reports.LastPhoto>Последна слика</Reports.LastPhoto>
-  <Reports.ClickNewPhoto>Кликнете за нова слика</Reports.ClickNewPhoto>
-  <Reports.VehNoPhoto>Ова возило нема ниту една слика...</Reports.VehNoPhoto>
-  <Reports.Max3Photos>На дневно ниво, можете рачно да изгенерирате максимум три слики по возило.</Reports.Max3Photos>
-  <Reports.LimitPhotos>За ова возило, го имате достигнато лимитот од три рачно генерирани слики на ден.</Reports.LimitPhotos>
-  <Reports.PreviewLastPhoto>Преглед на последна слика</Reports.PreviewLastPhoto>
-  <Reports.PhotoName>Име на слика</Reports.PhotoName>
-  <Reports.NewPhoto>Нова слика</Reports.NewPhoto>
-  <Reports.TimeFirstIgnOn>Време на прво палење на мотор</Reports.TimeFirstIgnOn>
-  <Reports.TimeLastData>Време на последен пристигнат податок</Reports.TimeLastData>
-  <Reports.TotalTimeBetween>Вкупно време меѓу прво палење на мотор и последен пристигнат податок</Reports.TotalTimeBetween>
-  <Reports.OdometerStart>Почетна вредност на одометарот</Reports.OdometerStart>
-  <Reports.CurrSpeed>Моментална брзина</Reports.CurrSpeed>
-  <Reports.MaxSpeedDay>Максимална постигната брзина во текот на денот</Reports.MaxSpeedDay>
-  <Reports.TotalToursDay>Вкупен број на тури во текот на денот</Reports.TotalToursDay>
-  <Reports.TotalPriceDay>Вкупна цена од сите тури во текот на денот</Reports.TotalPriceDay>
-  <Reports.TotalPriceDayTaxi>Вкупна цена од сите тури со вклучен таксиметар</Reports.TotalPriceDayTaxi>
-  <Reports.TotalPriceDayWithout>Вкупна цена од сите тури без вклучен таксиметар</Reports.TotalPriceDayWithout>
-  <Reports.CurrTaximeter>Моментална состојба на таксиметарот</Reports.CurrTaximeter>
-  <Reports.CurrPassengers>Моментален број на патници во возилото</Reports.CurrPassengers>
-  <Reports.CurrOdometer>Моментална вредност на одометарот</Reports.CurrOdometer>
-  <Reports.PastDistDay>Поминато растојание во текот на денот</Reports.PastDistDay>
-  <Reports.CurrLocation>Моментална локација</Reports.CurrLocation>
-  <Reports.CurrPoi>Моментална посетена точка од интерес</Reports.CurrPoi>
-  <Reports.CurrZone>Моментална посетена зона</Reports.CurrZone>
-  <Reports.CameraReport>Извештај за слики</Reports.CameraReport>
-  <Reports.VehNotCam>Ова возило нема вградено камера !!!</Reports.VehNotCam>
-  <Reports.CameraImg>Слика</Reports.CameraImg>
-  <Reports.ViewCameraImg>Преглед на слика</Reports.ViewCameraImg>
-  <hideColVehDetails>Оваа колона ќе биде сокриена во делот Детали за возилата. Нејзиното повторно прикажување можете да го овозможите преку Подесувања.</hideColVehDetails>
-  <currdataweather>Прогноза</currdataweather>
-  <garmin>Гармин</garmin>
-  <fueldown>Ненадеен пад на гориво!</fueldown>
-  <Settings.FallFuel>Ненадеен пад на гориво</Settings.FallFuel>
-  <Reports.NoTours1>Тури</Reports.NoTours1>
-  <tow>Неавторизирано придвижување</tow>
-  <weakAccumulator>Слаб акумулатор</weakAccumulator>
-  <geolock>Неавторизирано излегување од паркинг зона</geolock>
-  <changelocation>Промена на локација</changelocation>
-  <geolockasset>Неавторизирано излегување од зона</geolockasset>
-  <weakbattery>Слаба батерија</weakbattery>
-  <mainpoweroff>Уредот е дисконектиран</mainpoweroff>
-  <mainpoweron>Уредот е приклучен</mainpoweron>
-  <Reports.Fast>Брза</Reports.Fast>
-  <Reports.Short>Кратка</Reports.Short>
-  <Reports.StartPoi>Стартна точка</Reports.StartPoi>
-  <Reports.Destination>Дестинација</Reports.Destination>
-  <Reports.SavedDirections>Снимени пресметки</Reports.SavedDirections>
-  <incorrectcalculation>Немате направено коректна пресметка!</incorrectcalculation>
-  <invalidendposition>Невалидна позиција за дестинација!</invalidendposition>
-  <invalidstartposition>Невалидна стартна позиција!</invalidstartposition>
-  <invaliddestination>Невалидни стартна позиција и дестинација!</invaliddestination>
-  <directionsaved>Успешно снимена пресметка</directionsaved>
-  <OneClickDirection>Потребен е еден клик на мапа за да се избере позиција</OneClickDirection>
-  <clickforendpoint>Избор на дестинација со клик на мапа</clickforendpoint>
-  <clickforstartpoint>Избор на стартна позиција со клик на мапа</clickforstartpoint>
-  <Routes.OptimizedTooltip>Рута со најоптимизирано време за возење/најкратко растојание/време на одење која ги вклучува сите средни локации (почетната и крајната локација се фиксни).</Routes.OptimizedTooltip>
-  <Routes.ShortestTooltip>Најкратко растојание за возење на рутата.</Routes.ShortestTooltip>
-  <Routes.FastestTooltip>Најбрзо време за возење на рутата.</Routes.FastestTooltip>
-  <WeatherForecast>Временска прогноза</WeatherForecast>
-  <directlive>Директно во следење во живо</directlive>
-  <Reports.Tooltip13>Вкупна цена од сите тури во однос на поминатото растојание со вклучен таксиметар поделена со вкупно поминатото растојание</Reports.Tooltip13>
-  <Reports.Productivity>Продуктивност</Reports.Productivity>
-  <feelslike>Се чувствува како</feelslike>
-  <lastupdate>Последна промена од</lastupdate>
-  <wind>Ветер</wind>
-  <humidity>Влажност</humidity>
-  <weather>Време</weather>
-  <ReverseDestinationa>Промена на почетна точка и дестинација</ReverseDestinationa>
-  <ChooseStartingPoint>Изберете стартна точка</ChooseStartingPoint>
-  <ChooseDestination>Изберете дестинација</ChooseDestination>
-  <FastRoute>Брза рута</FastRoute>
-  <ShortRoute>Кратка рута</ShortRoute>
-  <calculate>Пресметај</calculate>
-  <CalculatingDistance>Пресметка на растојание</CalculatingDistance>
-  <directions>Пресметки</directions>
-  <Routes.OldRoute>Не може да се внесе рута во минатото !!!</Routes.OldRoute>
-  <Reports.Active>Активна</Reports.Active>
-  <Reports.Completed>Завршена</Reports.Completed>
-  <Reports.Unread>Непрочитана</Reports.Unread>
-  <Reports.Read>Прочитана</Reports.Read>
-  <Reports.Deleted>Избришана</Reports.Deleted>
-  <Reports.MessNotDel>Пораката не е доставена !!!</Reports.MessNotDel>
-  <Reports.DtDelete>Време на бришење</Reports.DtDelete>
-  <Reports.DtEnd>Време на завршување</Reports.DtEnd>
-  <Reports.DtStart>Време на активирање</Reports.DtStart>
-  <Reports.Checked>Проверено</Reports.Checked>
-  <Reports.DtSeen>Време на читање</Reports.DtSeen>
-  <Reports.DtDelivery>Време на испраќање</Reports.DtDelivery>
-  <Reports.Messages>Пораки</Reports.Messages>
-  <Reports.StopStatus>Стоп статус</Reports.StopStatus>
-  <person>Лице</person>
-  <sosalarm>СОС Аларм</sosalarm>
-  <mandown>Детекција на можен пад!</mandown>
-  <Routes.NotSelOpt>Немате избрано ниту една опција !!!</Routes.NotSelOpt>
-  <Routes.OrdinalNumber>Реден број</Routes.OrdinalNumber>
-  <Routes.TotalArea>Вкупна површина</Routes.TotalArea>
-  <Routes.DoneArea>Сработена површина</Routes.DoneArea>
-  <Routes.TotWorkTime>Вкупно време на работење</Routes.TotWorkTime>
-  <Routes.Downtime>Време на застој</Routes.Downtime>
-  <Routes.SelectCulture>Изберете култура</Routes.SelectCulture>
-  <Routes.RouteAct>Активности според налог</Routes.RouteAct>
-  <Routes.AddedMechanisation>Прикл. механизација</Routes.AddedMechanisation>
-  <Routes.PopupDO>Преземи предефинирани налози</Routes.PopupDO>
-  <Routes.Optimized>Оптимизирано</Routes.Optimized>
-  <Routes.Short>Кратко</Routes.Short>
-  <Routes.DownloadOrder>Преземи налог</Routes.DownloadOrder>
-  <Routes.EnterStartEnd>Внес на почетна и крајна точка на рута</Routes.EnterStartEnd>
-  <Routes.ToBeEntered>Дали сакате оваа точка да биде внесена како</Routes.ToBeEntered>
-  <Routes.StartPoiRoute>почетна точка</Routes.StartPoiRoute>
-  <Routes.And>и</Routes.And>
-  <Routes.EndPoiRoute>крајна точка на рутата?</Routes.EndPoiRoute>
-  <Routes.NoSEPoi>Немате внесено почетна и крајна точка на рутата !!!</Routes.NoSEPoi>
-  <Routes.NoSPoi>Немате внесено почетна точка на рутата !!!</Routes.NoSPoi>
-  <Routes.NoEPoi>Немате внесено крајна точка на рутата !!!</Routes.NoEPoi>
-  <Settings.WaitPrice>Цена на чекање</Settings.WaitPrice>
-  <Admin.FuelTankHeight>Висина на резервоар</Admin.FuelTankHeight>
-  <Admin.Allow>Дозволи</Admin.Allow>
-  <Admin.AllowFuel>Дозволи сензор за гориво</Admin.AllowFuel>
-  <Admin.AllowTemp>Дозволи сензор за температура</Admin.AllowTemp>
-  <Admin.AllowRfid>Дозволи rfid</Admin.AllowRfid>
-  <Admin.AllowInputVoltage>Дозволи акумулатор</Admin.AllowInputVoltage>
-  <Admin.AllowGarmin>Дозволи garmin</Admin.AllowGarmin>
-  <Admin.AllowRpm>Дозволи rpm</Admin.AllowRpm>
-  <Admin.AllowMotoBlock>Дозволи moto-block</Admin.AllowMotoBlock>
-  <Admin.AllowMotoAlarm>Дозволи мото-аларм</Admin.AllowMotoAlarm>
-  <Admin.AllowBattery>Дозволи батерија</Admin.AllowBattery>
-  <Admin.AllowGeoLock>Дозволи geo-lock</Admin.AllowGeoLock>
-  <Admin.AddCountry>Додади држава</Admin.AddCountry>
-  <Admin.AddCity>Додади град</Admin.AddCity>
-  <Settings.MotoAlarms>Мото аларми</Settings.MotoAlarms>
-  <Settings.Tow>Неавторизирано придвижување</Settings.Tow>
-  <Settings.WeakAcc>Слаб акумулатор</Settings.WeakAcc>
-  <Settings.PoiGroups>Групи на точки од интерес</Settings.PoiGroups>
-  <Reports.NoPerm>Немате дозвола да го гледате оваа мени !!!</Reports.NoPerm>
-  <Settings.AutomResetDriver>Автоматско одјавување на доделени возачи по возила</Settings.AutomResetDriver>
-  <Settings.OptionsResetDriver>Опции за автоматско одјавување</Settings.OptionsResetDriver>
-  <Settings.ResetDriver1>Со секое гасење на мотор</Settings.ResetDriver1>
-  <Settings.ResetDriver2>Секој ден во 00:00h</Settings.ResetDriver2>
-  <Settings.ResetDriver3>Со следно доделување на возач</Settings.ResetDriver3>
-  <Settings.FmAlarmInfo1>За пристигнување на овој аларм задолжително е да имате внесено последна регистрација на ова возило.</Settings.FmAlarmInfo1>
-  <Settings.FmAlarmInfo2>За пристигнување на овој аларм задолжително е да имате внесено најмалку еден трошок за сервис на ова возило.</Settings.FmAlarmInfo2>
-  <Settings.FmAlarmInfo3>За пристигнување на овој аларм задолжително е да имате внесено полномошно на најмалку еден од дозволените возачи на ова возило.</Settings.FmAlarmInfo3>
-  <Settings.MustServiceInterval>Мора да внесете сервисен интервал за возилото !!!</Settings.MustServiceInterval>
-  <Settings.Months>мес.</Settings.Months>
-  <Settings.RemindMeMustOne>Мора да внесете најмалку една опција за "Потсети ме претходно"</Settings.RemindMeMustOne>
-  <Reports.FrontPassenger>Совозач</Reports.FrontPassenger>
-  <Reports.Yes1>има</Reports.Yes1>
-  <Reports.No1>нема</Reports.No1>
-  <Admin.VehiclePutRight>Возилото во меѓувреме е средено</Admin.VehiclePutRight>
-  <Admin.ChooseFilter>Изберете филтер за приказ на возила!</Admin.ChooseFilter>
-  <Admin.Valid>валидни</Admin.Valid>
-  <Admin.Invalid>невалидни</Admin.Invalid>
-  <Admin.Satellites>Сателити</Admin.Satellites>
-  <Admin.MarkAsInactive>Обележи како неактивно</Admin.MarkAsInactive>
-  <Admin.AllClients>Сите клиенти</Admin.AllClients>
-  <Admin.History>Историја</Admin.History>
-  <Admin.CurrentStatus>Моментална состојба на возила според статус</Admin.CurrentStatus>
-  <Admin.IgnOnMore2>Запален мотор, податок постар од 5 мин</Admin.IgnOnMore2>
-  <Admin.More2>Податок постар од 2 дена</Admin.More2>
-  <Settings.AlreadyFuelCost>Веќе го имате внесено овој трошок за гориво !!!</Settings.AlreadyFuelCost>
-  <Settings.AlreadyServiceCost>Веќе го имате внесено овој трошок за сервис !!!</Settings.AlreadyServiceCost>
-  <Settings.AlreadyOthCost>Веќе го имате внесено овој останат трошок !!!</Settings.AlreadyOthCost>
-  <Settings.AlreadyCost>Веќе го имате внесено овој трошок !!!</Settings.AlreadyCost>
-  <Settings.SuccDownloadHolidays1>Државните празници беа успешно превземени и автоматски сите пресметки во апликацијата ќе бидат повторно извршени за истите !!!</Settings.SuccDownloadHolidays1>
-  <Settings.SuccRemoveHolidays1>Државните празници беа успешно отстранети и автоматски сите пресметки во апликацијата ќе бидат повторно извршени за истите !!!</Settings.SuccRemoveHolidays1>
-  <Settings.RemoveHolidays>Отстрани државни празници</Settings.RemoveHolidays>
-  <Settings.SuccRemoveHolidays>Државните празници беа успешно отстранети</Settings.SuccRemoveHolidays>
-  <Settings.AlertRegTitle>Додади алерт за истекување на регистрација</Settings.AlertRegTitle>
-  <Settings.AlertServiceTitle>Додади алерт за сервис</Settings.AlertServiceTitle>
-  <Settings.AlertGreenCardTitle>Додади алерт за зелен картон</Settings.AlertGreenCardTitle>
-  <Settings.RemindMe>Потсети ме</Settings.RemindMe>
-  <Settings.Before>претходно</Settings.Before>
-  <Settings.AddShift>Смената беше успешно додадена и автоматски сите пресметки во апликацијата ќе бидат повторно извршени за сите денови од претходниот месец на кои се однесува смената !!!</Settings.AddShift>
-  <Settings.ModifyShift>Смената беше успешно променета и автоматски сите пресметки во апликацијата ќе бидат повторно извршени за сите денови од претходниот месец на кои се однесува смената !!!</Settings.ModifyShift>
-  <Settings.DeleteShift>Смената беше успешно избришана и автоматски сите пресметки во апликацијата ќе бидат повторно извршени за сите денови од претходниот месец на кои се однесува смената !!!</Settings.DeleteShift>
-  <Settings.1>прва</Settings.1>
-  <Settings.2>втора</Settings.2>
-  <Settings.3>трета</Settings.3>
-  <Settings.4>четврта</Settings.4>
-  <Settings.DeleteRecache>Денот беше успешно избришан како неработен ден и автоматски сите пресметки во апликацијата ќе бидат повторно извршени за истиот !!!</Settings.DeleteRecache>
-  <Settings.AddRecache>Денот беше успешно додаден како неработен ден и автоматски сите пресметки во апликацијата ќе бидат повторно извршени за истиот !!!</Settings.AddRecache>
-  <Settings.Play>Пушти</Settings.Play>
-  <Settings.Stop>Стопирај</Settings.Stop>
-  <Settings.Louder>Погласно</Settings.Louder>
-  <Settings.Quieter>Потивко</Settings.Quieter>
-  <Settings.SuccDownloadHolidays>Државните празници беа успешно превземени</Settings.SuccDownloadHolidays>
-  <Settings.NameHoliday>Име на неработен ден</Settings.NameHoliday>
-  <Settings.DownloadHolidays>Преземи државни празници</Settings.DownloadHolidays>
-  <Settings.Last>Последна</Settings.Last>
-  <Settings.Next>Следна</Settings.Next>
-  <Reports.NoDataDayAct>Во бараниот ден нема активни часови. Пасивни часови:</Reports.NoDataDayAct>
-  <Reports.NoCalcActOption>Ова возило нема опција за пресметка на активни часови !!!</Reports.NoCalcActOption>
-  <Reports.DeleteCostType>Бришење тип на трошок</Reports.DeleteCostType>
-  <Reports.DelExecutor>Избриши извршител</Reports.DelExecutor>
-  <Reports.DelCostType>Избриши тип на трошок</Reports.DelCostType>
-  <Reports.SureDelComp>Дали сте сигурни дека сакате да ја избришете компонентата</Reports.SureDelComp>
-  <Reports.DelComp>Бришење на компонента</Reports.DelComp>
-  <Reports.DelComp1>Избриши компонента</Reports.DelComp1>
-  <Reports.DelListComp>Тргни од листа на избрани компоненти</Reports.DelListComp>
-  <Admin.SelectCalc>Изберете начин на пресметка на активни часови</Admin.SelectCalc>
-  <Admin.SelectShowRpm>Изберете приказ на обратите</Admin.SelectShowRpm>
-  <Admin.SelectRpmLimit>Изберете граница на обратите</Admin.SelectRpmLimit>
-  <Admin.SelectMinRpm>Изберете минимален број на обратите</Admin.SelectMinRpm>
-  <Admin.SelectMaxRpm>Изберете максимален број на обратите</Admin.SelectMaxRpm>
-  <Admin.SelectSpeedLimit>Изберете граница на брзината</Admin.SelectSpeedLimit>
-  <Admin.Limit>Граница</Admin.Limit>
-  <Admin.NoRPM>Бр. обртаи</Admin.NoRPM>
-  <Admin.RpmSpeed>Обртаи и брзина</Admin.RpmSpeed>
-  <Admin.ShowRPM>Приказ на обртаи</Admin.ShowRPM>
-  <Admin.CalculateActiveH>Пресметка на активни часови според граница на</Admin.CalculateActiveH>
-  <Admin.VehicleStatus>Статус на возила</Admin.VehicleStatus>
-  <Reports.TheRPMLimit>Границата на обртаи е</Reports.TheRPMLimit>
-  <Reports.Obrtai>обртаи</Reports.Obrtai>
-  <Reports.Obrtai1>Обртаи</Reports.Obrtai1>
-  <Reports.MinRPM>Минимален број на обртаи</Reports.MinRPM>
-  <Reports.MaxRPM>Максимален број на обртаи</Reports.MaxRPM>
-  <Reports.SpeedLimit>Граница на брзина</Reports.SpeedLimit>
-  <Reports.RpmLimit>Граница на обртаи</Reports.RpmLimit>
-  <Reports.Load>Оптовареност</Reports.Load>
-  <Reports.LockPass>Лозинка за заклучување</Reports.LockPass>
-  <Reports.ActiveHours>Активни часови</Reports.ActiveHours>
-  <Reports.PassiveHours>Пасивни часови</Reports.PassiveHours>
-  <Reports.TotalActiveHours>Вкупно активни часови</Reports.TotalActiveHours>
-  <Reports.TotalPassiveHours>Вкупно пасивни часови</Reports.TotalPassiveHours>
-  <Reports.UnauthUse>Неавторизирано користење</Reports.UnauthUse>
-  <Reports.Range>Опсег</Reports.Range>
-  <Settings.VisibleLive>Видливост во следење во живо</Settings.VisibleLive>
-  <Reports.DailyFuel>Податоците за горивото се пресметуваат на дневно ниво.</Reports.DailyFuel>
-  <Reports.TotalDistance>Вкупно растојание</Reports.TotalDistance>
-  <Reports.Intervention>Интервенција</Reports.Intervention>
-  <Reports.Pump>Пумпа</Reports.Pump>
-  <Reports.Caps>Капаци</Reports.Caps>
-  <Reports.Opened>отворени</Reports.Opened>
-  <Reports.Closed>затворени</Reports.Closed>
-  <Reports.PCReport>Состојба пумпа/капаци</Reports.PCReport>
-  <Reports.ActivePump>активна</Reports.ActivePump>
-  <Reports.InactivePump>неактивна</Reports.InactivePump>
-  <Tracking.LostComm>Изгубена комуникација</Tracking.LostComm>
   <Reports.Tours1>тури</Reports.Tours1>
   <Reports.TaxiActivity>Такси активност</Reports.TaxiActivity>
   <Reports.TaxiReport2>Такси извештај 2</Reports.TaxiReport2>
@@ -863,8 +482,8 @@
   <Reports.Tu>Вт</Reports.Tu>
   <Reports.Mo>По</Reports.Mo>
   <Reports.FromPrevRec>од претходен запис</Reports.FromPrevRec>
-  <Reports.NoPass>Број на патници</Reports.NoPass>
-  <Reports.TaxiState>Состојба на таксиметар</Reports.TaxiState>
+  <Reports.NoPass>Број на патници</Reports.NoPass> 
+  <Reports.TaxiState>Состојба на таксиметар</Reports.TaxiState>  
   <Reports.TimeFromPT>Поминато време од претходна тура</Reports.TimeFromPT>
   <Reports.DistanceFromPT>Поминато растојание од претходна тура</Reports.DistanceFromPT>
   <Reports.DistanceTooltip>Поминато растојание во тура</Reports.DistanceTooltip>
@@ -890,11 +509,12 @@
   <Reports.Tooltip1_>Вкупно поминато време меѓу сите тури</Reports.Tooltip1_>
   <Reports.Tooltip2_>Вкупно поминато растојание меѓу сите тури</Reports.Tooltip2_>
   <Reports.Tooltip5_>Вкупна цена на сите тури</Reports.Tooltip5_>
-  <Reports.Tooltip6_>Вкупна цена на сите тури во однос на вкупно поминатото растојание со вклучен таксиметар</Reports.Tooltip6_>
+  <Reports.Tooltip6_>Вкупна цена на сите тури во однос на вкупно поминатото растојание со вклучен таксиметар</Reports.Tooltip6_>	
   <Reports.Tooltip3_>Времетраење на сите тури</Reports.Tooltip3_>
   <Reports.Tooltip31_>(Вкупно - Време на стоење во сите тури)</Reports.Tooltip31_>
   <Reports.Tooltip4_>Поминато растојание во сите тури</Reports.Tooltip4_>
   <Reports.BetweenTours>меѓу тури</Reports.BetweenTours>
+  
   <Reports.InTerms1>во однос на вкупно поминатото растојание</Reports.InTerms1>
   <Reports.InTerms2>во однос на вкупно поминатото растојание со вклучен таксиметар</Reports.InTerms2>
   <Tracking.rpm>Вртежи</Tracking.rpm>
@@ -964,7 +584,7 @@
   <Settings.AlarmRegExpire>Истекување на регистрација</Settings.AlarmRegExpire>
   <Settings.AlarmLeaveRoute>Бегање од рута</Settings.AlarmLeaveRoute>
   <Settings.AlarmStayMoreThanAllowed>Задржување поголемо од дозволеното</Settings.AlarmStayMoreThanAllowed>
-  <Settings.30MinNoDataIgnON>Повеќе од 30 минути без податок, вклучен мотор</Settings.30MinNoDataIgnON>
+  <Settings.30MinNoDataIgnON>Повеќе од 30 минути без податок / Вклучен мотор = Вклучен</Settings.30MinNoDataIgnON>
   <Settings.AlarmVisitPOI>Посета на ТОИ</Settings.AlarmVisitPOI>
   <Settings.AlarmLeaveZone>Излез од зона</Settings.AlarmLeaveZone>
   <Settings.AlarmEnterZone>Влез во зона</Settings.AlarmEnterZone>
@@ -1069,7 +689,7 @@
   <Routes.Map>Мапа</Routes.Map>
   <Routes.PredefinedOrders>Предефинирани налози</Routes.PredefinedOrders>
   <Routes.SelectFDriver>Избери прв возач</Routes.SelectFDriver>
-  <Routes.Download>Преземи</Routes.Download>
+  <Routes.Download>Превземи</Routes.Download>
   <Routes.ExportToExcel>Експортирај во Excel</Routes.ExportToExcel>
   <Routes.DeleteLocationQ>Дали сакате да ја отсртаните локацијата</Routes.DeleteLocationQ>
   <Routes.Poi>Точка од интерес</Routes.Poi>
@@ -1154,7 +774,7 @@
   <Settings.LastDataGiven>Последен податок</Settings.LastDataGiven>
   <Settings.PasswordMust>Лозинката мора да има минимум 6 карактери,1 голема буква и 1 специјален знак</Settings.PasswordMust>
   <Settings.RequiredInfo>Потребните податоци се означени со</Settings.RequiredInfo>
-  <Settings.UnitMeasurements>Мерни единици</Settings.UnitMeasurements>
+  <Settings.UnitMeasurements>Мерни Единици</Settings.UnitMeasurements>
   <Settings.HoldayPrice>Празнична</Settings.HoldayPrice>
   <Settings.Night>Вечерна</Settings.Night>
   <Settings.Regular>Редовна</Settings.Regular>
@@ -1302,7 +922,7 @@
   <Reports.IdlingReport>Стоење во место</Reports.IdlingReport>
   <Reports.Total1>Вкупно поминато растојание</Reports.Total1>
   <Reports.Total1_>Вкупно поминато(br)растојание</Reports.Total1_>
-  <Reports.TotalDist>Вкупно растојание</Reports.TotalDist>
+  <Reports.TotalDist>Вкупно растојание</Reports.TotalDist>  
   <Reports.TotalDistForTaxi>Вк. раст.</Reports.TotalDistForTaxi>
   <Reports.PrivacyPolice>Полиса на приватност</Reports.PrivacyPolice>
   <Reports.Total2>Вкупно работење со запален мотор</Reports.Total2>
@@ -1662,13 +1282,13 @@
   <Tracking.Company>Компанија</Tracking.Company>
   <Tracking.User>Корисник</Tracking.User>
   <Tracking.GeoFenceModify>Зоната беше успешно изменета.</Tracking.GeoFenceModify>
-  <Tracking.EngineOn>Мотор вклучен</Tracking.EngineOn>
-  <Tracking.EngineOff>Мотор исклучен</Tracking.EngineOff>
-  <Tracking.EngineOffPassOn>Мотор исклучен / Патници има</Tracking.EngineOffPassOn>
+  <Tracking.EngineOn>Мотор Вклучен</Tracking.EngineOn>
+  <Tracking.EngineOff>Мотор Исклучен</Tracking.EngineOff>
+  <Tracking.EngineOffPassOn>Мотор Исклучен / Патници Има</Tracking.EngineOffPassOn>
   <Tracking.LowSat>Слаби сателити</Tracking.LowSat>
   <Tracking.Engaged>Ангажирано</Tracking.Engaged>
-  <Tracking.TaxOffPassOn>Таксиметар исклучен / Патници има</Tracking.TaxOffPassOn>
-  <Tracking.TaxOn>Таксиметар вклучен</Tracking.TaxOn>
+  <Tracking.TaxOffPassOn>Таксиметар Исклучен / Патници Има</Tracking.TaxOffPassOn>
+  <Tracking.TaxOn>Таксиметар Вклучен</Tracking.TaxOn>
   <Tracking.Engaged1>Ангажирани</Tracking.Engaged1>
   <Tracking.ShowHideAllVeh>Прикажи/Скриј ја траекторијата за сите возила</Tracking.ShowHideAllVeh>
   <Tracking.ShowHideVeh>Прикажи/Скриј ја траекторијата за возила</Tracking.ShowHideVeh>
@@ -1713,7 +1333,7 @@
   <Tracking.POI>Точка од интерес</Tracking.POI>
   <Tracking.Street>Улица</Tracking.Street>
   <Tracking.GFVeh>Зона во која што се наоѓа возилото</Tracking.GFVeh>
-  <Tracking.InfoMsg>Не ја прикажувај пораката уште еднаш!</Tracking.InfoMsg>
+  <Tracking.InfoMsg>Не ја прокажувај пораката уште еднаш!</Tracking.InfoMsg>
   <Tracking.BusyDriver>Возачот е веќе зафатен!!!</Tracking.BusyDriver>
   <Settings.Reports>Извештаи</Settings.Reports>
   <Settings.NoVeh>Број на возило</Settings.NoVeh>
@@ -1901,13 +1521,13 @@
   <Settings.Metric>Метрички</Settings.Metric>
   <Settings.Imperial>Империјално</Settings.Imperial>
   <Settings.VehColors>Бои на статус на возила</Settings.VehColors>
-  <Settings.EngineOn>Мотор вклучен</Settings.EngineOn>
-  <Settings.EngineOff>Мотор исклучен</Settings.EngineOff>
-  <Settings.EngineOffPassOn>Мотор исклучен / Патници има</Settings.EngineOffPassOn>
+  <Settings.EngineOn>Мотор Вклучен</Settings.EngineOn>
+  <Settings.EngineOff>Мотор Исклучен</Settings.EngineOff>
+  <Settings.EngineOffPassOn>Мотор Исклучен / Патници Има</Settings.EngineOffPassOn>
   <Settings.LowSat>Слаби сателити</Settings.LowSat>
   <Settings.Engaged>Ангажирано</Settings.Engaged>
-  <Settings.TaxOffPassOn>Таксиметар исклучен / Патници има</Settings.TaxOffPassOn>
-  <Settings.TaxOn>Таксиметар вклучен</Settings.TaxOn>
+  <Settings.TaxOffPassOn>Таксиметар Исклучен / Патници Има</Settings.TaxOffPassOn>
+  <Settings.TaxOn>Таксиметар Вклучен</Settings.TaxOn>
   <Settings.LightBlue>Светло сина</Settings.LightBlue>
   <Settings.Red>Црвена</Settings.Red>
   <Settings.DarkBlue>Темно сина</Settings.DarkBlue>
@@ -1999,7 +1619,7 @@
   <Fm.Reports>Извештаи</Fm.Reports>
   <Fm.Vehicles>Возила</Fm.Vehicles>
   <Fm.Employees>Вработени</Fm.Employees>
-  <Fm.DownloadVeh>Преземи возила</Fm.DownloadVeh>
+  <Fm.DownloadVeh>Превземи возила</Fm.DownloadVeh>
   <Fm.OtherSett>Останати подесувања</Fm.OtherSett>
   <Fm.ChTires>Промена на гуми</Fm.ChTires>
   <Fm.Service>Сервис</Fm.Service>
@@ -2050,7 +1670,7 @@
   <Fm.Costs>Трошоци </Fm.Costs>
   <Fm.StartUse>Почеток на користење</Fm.StartUse>
   <Fm.DurUser>Време на користење</Fm.DurUser>
-  <Fm.YearKm>Годишно дозволени</Fm.YearKm>
+  <Fm.YearKm>Годишно дозволени Km</Fm.YearKm>
   <Fm.TotKm>Вкупно дозволени Km</Fm.TotKm>
   <Fm.FuelCap>Капацитет на гориво</Fm.FuelCap>
   <Fm.SummTir>Предвидени Km на летни гуми</Fm.SummTir>

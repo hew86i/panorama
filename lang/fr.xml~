@@ -1,393 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <note>
-<Settings.ValidMobileOperator> Entrez opérateur mobile valide! </Settings.ValidMobileOperator>
-<Settings.InvalidSMSEmailFormat> Adresse e-mail (s) au format tort! </Settings.InvalidSMSEmailFormat>
-<Reports.SchNoteSms> * Pour entrer plusieurs e-mails séparés par, (br) Exemple: 7133445566 @ operator1.com, 8866445566 @ operator2.com </Reports.SchNoteSms>
-<Tracking.SMSEmails> Email (par sms) </Tracking.SMSEmails>
-	<Settings.CodeMustNo>Le code doit être un nombre.</Settings.CodeMustNo>
-	<Settings.InvalidCode>Code invalide!</Settings.InvalidCode>
-	<Settings.SelectPoint>Sélectionnez un point</Settings.SelectPoint>
-	<Settings.EnterPredefMess>Entrez le message par défaut</Settings.EnterPredefMess>
-	<Settings.GarminComm>La communication Garmin</Settings.GarminComm>
-	<Settings.PredefMess>Messages prédéfinis</Settings.PredefMess>
-	<Settings.ForAllVehicles>Pour tous les véhicules</Settings.ForAllVehicles>
-	<Settings.VehGarminComm>Sélectionnez communication de véhicule par Garmin</Settings.VehGarminComm>
-	<Settings.MessNo>Nombre de messages</Settings.MessNo>
-	<Settings.SnoozeVolume>Volume</Settings.SnoozeVolume>
-	<Settings.OBDAlerts>OBD alarmes</Settings.OBDAlerts>
-	<Settings.PersonalAlerts>Personnel alertes</Settings.PersonalAlerts>
-	<Settings.AssetAlerts>Atout alertes</Settings.AssetAlerts>
-	<Settings.SecurityAlerts>Les alertes de sécurité</Settings.SecurityAlerts>
-	<Settings.AlertFromApp>Alarmes d''application</Settings.AlertFromApp>
-	<Main.AlarmNotCorrect>L''alarme est pas entré correctement dans la base de données !!!</Main.AlarmNotCorrect>
-	<Tracking.RequireSS>Nécessite la vérification de capteurs de sièges</Tracking.RequireSS>
-	<Tracking.MustOdometer>Vous devez entrer une valeur à l''odomètre.</Tracking.MustOdometer>
-	<Tracking.MessNotDelivered>Le message n''a pas été livré avec succès!!!</Tracking.MessNotDelivered>
-	<Tracking.VehNotConn>Le véhicule est pas connecté!!!</Tracking.VehNotConn>
-  <Tracking.GarminSuccPoint>Envoyé avec succès dispositif point à Garmin!</Tracking.GarminSuccPoint>
-  <Tracking.GroupNotEnter>Vous ne sélectionnez pas le groupe qui entrera l''alarme!</Tracking.GroupNotEnter>
-  <Live.Remaining>Restant</Live.Remaining>
-  <Live.UntilNextService>jusqu''au prochain service</Live.UntilNextService>
-  <Login.UserIsNotActive>Cet utilisateur a été désactivé. S'il vous plaît nous contacter par email:</Login.UserIsNotActive>
-  <Lang.MadeChanges>Vous avez apporté des modifications. Êtes-vous sûr que vous voulez les annuler?</Lang.MadeChanges>
-  <Lang.MkLang>Macédonienne langue</Lang.MkLang>
-  <Lang.EnLang>Anglais langue</Lang.EnLang>
-  <Lang.AlLang>Albanais langue</Lang.AlLang>
-  <Lang.FrLang>Français langue</Lang.FrLang>
-  <Lang.Translation>Traduction</Lang.Translation>
-  <Lang.NewLang>Nouvelle langue</Lang.NewLang>
-  <Lang.Choose>Choisir</Lang.Choose>
-  <Lang.Load>Charge</Lang.Load>
-  <Lang.NoLangEdit>Vous ne l'avez pas choisi la langue de traduction que vous souhaitez modifier.</Lang.NoLangEdit>
-  <Lang.EditLang>Changer la traduction</Lang.EditLang>
-  <Lang.EditLangTitle>CHANGEMENT DE TRADUCTION</Lang.EditLangTitle>
-  <Lang.EditSucc>Modifications ont été enregistrées avec succès.</Lang.EditSucc>
-  <Lang.EnterNewLang>SAISIE D'UNE NOUVELLE LANGUE</Lang.EnterNewLang>
-  <Lang.FirstLang>Langage de base</Lang.FirstLang>
-  <Lang.SecondLang>Langue auxiliaire</Lang.SecondLang>
-  <Lang.NoFirstLang>Vous ne l'avez pas choisi la traduction noyau.</Lang.NoFirstLang>
-  <Lang.NameNewLang>Entrez une nouvelle langue.</Lang.NameNewLang>
-  <Lang.SuccTranslate>La traduction a été enregistré avec succès.</Lang.SuccTranslate>
-  <Lang.For>Pour</Lang.For>
-  <Lang.RowsNoLang>lignes ne sont pas entrés traduction.</Lang.RowsNoLang>
-  <Settings.InsertValidLength>Entrez kilométrage valide</Settings.InsertValidLength>
-  <Settings.InvalidPhoneFormat>Format mauvais numéro</Settings.InvalidPhoneFormat>
-  <Tracking.MobileOperator>Réseau mobile</Tracking.MobileOperator>
-  <Tracking.SMSNumber>numéro de SMS</Tracking.SMSNumber>
-  <Settings.SendviaEmail>SMS/email</Settings.SendviaEmail>
-  <Settings.MobileOperator>Choisissez un opérateur mobile</Settings.MobileOperator>
-  <Settings.MobileOperatorMust>S'il vous plaît sélectionner un opérateur mobile</Settings.MobileOperatorMust>
-  <Settings.InsertValidTime>Entrez une heure valide</Settings.InsertValidTime>
-  <Settings.FleetManagement>Gestion de flotte</Settings.FleetManagement>
-  <Settings.RFID>RFID</Settings.RFID>
-  <odlozenablokada>Serrure retardé</odlozenablokada>
-  <zadenpanik>Bouton arrière de panique</zadenpanik>
-  <zadenaodlozenablokada>Serrure retardé arrière</zadenaodlozenablokada>
-  <granicaobrtai>Dépassement de la limite de couple</granicaobrtai>
-  <nacionalnamreza>Réseau national après itinérance</nacionalnamreza>
-  <taxioffpasson>Taximètre off avec des passagers à</taxioffpasson>
-  <LPG>LPG</LPG>
-  <EnterPredefMess>La prise de messages prédéfinis</EnterPredefMess>
-  <ClickNewData>Cliquez sur les nouvelles données</ClickNewData>
-  <Garmin>Garmin</Garmin>
-  <Inactive>Inactif</Inactive>
-  <Estimation>L''estimation</Estimation>
-  <ClickCheckGarmin>Cliquez pour vérifier l''état de Garmin</ClickCheckGarmin>
-  <TheReqInfo>informations nécessaires!</TheReqInfo>
-  <HaveNotEntered>Vous avez pas entré</HaveNotEntered>
-  <SentBlockade>Le blocus est envoyé, le véhicule doit être bloquée au moment où vous réduisez votre vitesse sous</SentBlockade>
-  <CancelBlocking>Si vous voulez annuler l''opération pour bloquer le véhicule, appuyez sur le bouton Annuler.</CancelBlocking>
-  <EngineBlocking>Bloc Moteur</EngineBlocking>
-  <UnblockEngine>Moteur de déblocage</UnblockEngine>
-  <BlockadeEngine>Blocage du moteur</BlockadeEngine>
-  <GarminCommMess>Communication de messagerie Garmin</GarminCommMess>
-  <EngineSuccBlock>Le moteur a été bloqué avec succès!</EngineSuccBlock>
-  <DeactParkArea>désactiver la zone de stationnement?</DeactParkArea>
-  <ActParkArea>pour activer l''aire de stationnement?</ActParkArea>
-  <ToUnBlockVeh>pour débloquer ce véhicule?</ToUnBlockVeh>
-  <ToBlockVeh>pour bloquer ce véhicule?</ToBlockVeh>
-  <SureWant>Êtes-vous sûr que vous voulez</SureWant>
-  <SureActAlarm>Etes-vous sûr que vous voulez activer l''alarme?</SureActAlarm>
-  <AlreadyNewOdometer>Il est déjà importé des données avec la date récente de courant. Êtes-vous sûr vouloir entrer cette date avec cette valeur pour le compteur que la dernière entrée?</AlreadyNewOdometer>
-  <EnterOdometer>Téléchargez votre odomètre</EnterOdometer>
-  <CurrentMileage>Kilométrage actuel sur l''odomètre</CurrentMileage>
-  <Radius>Rayon</Radius>
-  <Only12Months>Vous pouvez sélectionner un maximum de 12 mois !!!</Only12Months>
-  <yearly>annuel</yearly>
-  <Allowed>Permis</Allowed>
-  <Diesel>Diesel</Diesel>
-  <Gasoline>Eessence</Gasoline>
-  <Brand>Marque</Brand>
-  <YearManuf>Année de production</YearManuf>
-  <Predicted>Prédit</Predicted>
-  <Settings.DLNumber>Numéro de permis de conduire</Settings.DLNumber>
-  <SearchEmployeeID>Recherche par code</SearchEmployeeID>
-  <VehNo>Code</VehNo>
-  <Settings.SearchVehNum>Recherche par code</Settings.SearchVehNum>
-  <VehicleNumber>Code</VehicleNumber>
-  <Reports.WithIgnOff>avec moteur à l''arrêt</Reports.WithIgnOff>
-  <Settings.DepartmentID>Code</Settings.DepartmentID>
-  <lenoftraj2>minutes, sélection est possible que dans un véhicule</lenoftraj2>
-  <lenoftraj1>Longueur de la trajectoire en quelques minutes</lenoftraj1>
-  <Settings.EmployeeID>Code</Settings.EmployeeID>
-  <LostConnection>Connexion perdue!</LostConnection>
-  <Settings.AfterLogIn>Après l'annonce</Settings.AfterLogIn>
-  <Settings.HomePage>Page d'accueil</Settings.HomePage>
-  <rangeoflocation>Votre emplacement dans la gamme de</rangeoflocation>
-  <Settings.ClubCardsName>carte de club</Settings.ClubCardsName>
-  <Settings.Temperature>Température</Settings.Temperature>
-  <Login.ActProfile>Profil d`activation</Login.ActProfile>
-  <Reports.ModalInfo>Vous devez changer votre nom d`utilisateur avec une adresse email valide. Il vous servir de votre nouvelle connexion des titres de compétences.</Reports.ModalInfo>
-  <Reports.ModalInfoAlertT1>Vous disposez de</Reports.ModalInfoAlertT1>
-  <Reports.ModalInfoAlertT2>jours pour faire le changement.</Reports.ModalInfoAlertT2>
-  <Reports.ModalInfoAlertLastDay>Vous avez un jour laissé pour faire le changement!</Reports.ModalInfoAlertLastDay>
-  <Reports.PasswordChange>S`il vous plaît changer votre mot de passe. Votre mot de passe doit être plus de 6 caractères.</Reports.PasswordChange>
-  <Reports.NotificationEmail>Vous devez entrer une adresse e-mail!</Reports.NotificationEmail>
-  <Reports.NotificationEmailSuccess>Un lien de confirmation a été envoyé à votre adresse email. S`il vous plaît suivez les instructions dans l`e-mail de confirmation.</Reports.NotificationEmailSuccess>
-  <Reports.NotificationEmailValid>Entrez une adresse email valide!</Reports.NotificationEmailValid>
-  <Settings.EmailValidationFailed>Email existe pas! S`il vous plaît essayer à nouveau.</Settings.EmailValidationFailed>
-  <Settings.EmailChangeSuccess>Merci pour changer votre nom d`utilisateur.</Settings.EmailChangeSuccess>
-  <Settings.EmailBodyLink>S`il vous plaît cliquer sur le lien ci-dessous pour confirmer que vous avez reçu ce message, et pour activer votre compte.</Settings.EmailBodyLink>
-  <Settings.ModalButtonChange>Modifier</Settings.ModalButtonChange>
-  <Reports.WithIgnOn>moteur inclus</Reports.WithIgnOn>
-  <Settings.MustReg>Entrez un enregistrement de véhicule !!!</Settings.MustReg>
-  <Settings.MustCode>Entrer un code de véhicule !!!</Settings.MustCode>
-  <Tracking.FuelDown>Baisse de carburant</Tracking.FuelDown>
-  <Tracking.FuelDownDetails>Détails déclinent dans le carburant</Tracking.FuelDownDetails>
-  <Tracking.Hoist>Treuil</Tracking.Hoist>
-  <Tracking.DetailNewTab>Détails ouvertes sur les véhicules dans un nouvel onglet</Tracking.DetailNewTab>
-  <Tracking.OrdersNewTab>Les ordres ouverts aujourd'hui dans un nouvel onglet</Tracking.OrdersNewTab>
-  <Routes.NotCreatedPreOrders>Ne pas avoir les commandes prédéfinies créées!!!</Routes.NotCreatedPreOrders>
-  <Settings.PeriodFrom>Période de</Settings.PeriodFrom>
-  <Settings.ForVeh>véhicules</Settings.ForVeh>
-  <Settings.CurrYearAllVeh>Année en cours pour tous les véhicules</Settings.CurrYearAllVeh>
-  <Settings.ForAllVeh>pour tous les véhicules</Settings.ForAllVeh>
-  <Reports.LastPhoto>Dernière image</Reports.LastPhoto>
-  <Reports.ClickNewPhoto>Cliquez ici pour une nouvelle image</Reports.ClickNewPhoto>
-  <Reports.VehNoPhoto>Ce véhicule n'a pas une image...</Reports.VehNoPhoto>
-  <Reports.Max3Photos>Sur une base quotidienne, vous pouvez izgenerirate manuellement maximum de trois photos par véhicule.</Reports.Max3Photos>
-  <Reports.LimitPhotos>Pour ce véhicule, vous avez atteint la limite de trois images de la main de la journée.</Reports.LimitPhotos>
-  <Reports.PreviewLastPhoto>Voir la dernière photo</Reports.PreviewLastPhoto>
-  <Reports.PhotoName>Image Nom</Reports.PhotoName>
-  <Reports.NewPhoto>Nouvelle image</Reports.NewPhoto>
-  <Reports.TimeFirstIgnOn>Au cours du premier moteur à allumage</Reports.TimeFirstIgnOn>
-  <Reports.TimeLastData>Lors de la dernière données reçues</Reports.TimeLastData>
-  <Reports.TotalTimeBetween>Temps total entre le premier démarrage du moteur et le dernier données reçues</Reports.TotalTimeBetween>
-  <Reports.OdometerStart>Valeur initiale de l'odomètre</Reports.OdometerStart>
-  <Reports.CurrSpeed>Vitesse actuelle</Reports.CurrSpeed>
-  <Reports.MaxSpeedDay>La vitesse maximale atteinte pendant la journée</Reports.MaxSpeedDay>
-  <Reports.TotalToursDay>Nombre total de touristes pendant la journée</Reports.TotalToursDay>
-  <Reports.TotalPriceDay>Le coût total de toutes les visites pendant la journée</Reports.TotalPriceDay>
-  <Reports.TotalPriceDayTaxi>Le coût total de toutes les visites inclus taximètre</Reports.TotalPriceDayTaxi>
-  <Reports.TotalPriceDayWithout>Le coût total de toutes les visites à l'exclusion taximètre</Reports.TotalPriceDayWithout>
-  <Reports.CurrTaximeter>État actuel du taximètre</Reports.CurrTaximeter>
-  <Reports.CurrPassengers>Nombre actuel de passagers</Reports.CurrPassengers>
-  <Reports.CurrOdometer>Valeur actuelle de l'odomètre</Reports.CurrOdometer>
-  <Reports.PastDistDay>Distance parcourue pendant la journée</Reports.PastDistDay>
-  <Reports.CurrLocation>Localisation Actuelle</Reports.CurrLocation>
-  <Reports.CurrPoi>Point consultée actuel d'intérêt</Reports.CurrPoi>
-  <Reports.CurrZone>Zone visitée instantanée</Reports.CurrZone>
-  <Reports.CameraReport>Rapport de la caméra</Reports.CameraReport>
-  <Reports.VehNotCam>Ce véhicule a pas de caméra intégrée !!!</Reports.VehNotCam>
-  <Reports.CameraImg>Photo</Reports.CameraImg>
-  <Reports.ViewCameraImg>Prévisualisation de l'image</Reports.ViewCameraImg>
-  <hideColVehDetails>Cette colonne se trouve dans la section Détails véhicules. Son spectacle nouveau, vous pouvez l'activer via les paramètres.</hideColVehDetails>
-  <currdataweather>Météo</currdataweather>
-  <garmin>Garmin</garmin>
-  <fueldown>Une chute brutale du carburant!</fueldown>
-  <Settings.FallFuel>Une chute brutale du carburant</Settings.FallFuel>
-  <Reports.NoTours1>Tours</Reports.NoTours1>
-  <tow>Mouvement non autorisé</tow>
-  <weakAccumulator>Accumulateur faible</weakAccumulator>
-  <geolock>Non autorisée de quitter la zone de stationnement</geolock>
-  <changelocation>Changer de lieu</changelocation>
-  <geolockasset>Zone de sortie non autorisée</geolockasset>
-  <weakbattery>Batterie faible</weakbattery>
-  <mainpoweroff>Le dispositif est débranché</mainpoweroff>
-  <mainpoweron>L''appareil est connecté</mainpoweron>
-  <Reports.Fast>Rapide</Reports.Fast>
-  <Reports.Short>Court</Reports.Short>
-  <Reports.StartPoi>Point de départ</Reports.StartPoi>
-  <Reports.Destination>La destination</Reports.Destination>
-  <Reports.SavedDirections>Calculs enregistréesи</Reports.SavedDirections>
-  <incorrectcalculation>Vous ne faites pas un calcul correct!</incorrectcalculation>
-  <invalidendposition>Invalid position de destination!</invalidendposition>
-  <invalidstartposition>Invalid position de départ!</invalidstartposition>
-  <invaliddestination>Point de départ et de destination non valide!</invaliddestination>
-  <directionsaved>Calcul enregistrée réussie</directionsaved>
-  <OneClickDirection>Nécessite un clic sur une carte pour choisir la position</OneClickDirection>
-  <clickforendpoint>Choisir une destination en cliquant sur la carte</clickforendpoint>
-  <clickforstartpoint>Sélection de la position de départ en cliquant sur la carte</clickforstartpoint>
-  <Routes.OptimizedTooltip>L'itinéraire avec le temps d'entraînement/plus brefs délais la distance/marche le plus optimisé qui comprend tous les endroits intermédiaires (l'origine et de destination restent fixes).</Routes.OptimizedTooltip>
-  <Routes.ShortestTooltip>Le plus court itinéraire conduite à distance.</Routes.ShortestTooltip>
-  <Routes.FastestTooltip>Plus rapide lecteur itinéraire à temps.</Routes.FastestTooltip>
-  <WeatherForecast>Prévisions météo</WeatherForecast>
-  <directlive>Directement dans la surveillance en direct</directlive>
-  <Reports.Tooltip13>Le coût total de toutes les visites en termes de distance parcourue inclus taximètre divisée par la distance totale parcourue</Reports.Tooltip13>
-  <Reports.Productivity>Productivité</Reports.Productivity>
-  <feelslike>Feels like</feelslike>
-  <lastupdate>Dernières données du</lastupdate>
-  <wind>Vent</wind>
-  <humidity>Humidité</humidity>
-  <weather>Météo</weather>
-  <ReverseDestinationa>Point de départ et de destination inverse</ReverseDestinationa>
-  <ChooseStartingPoint>Choisissez un point de départ</ChooseStartingPoint>
-  <ChooseDestination>Choisissez une destination</ChooseDestination>
-  <FastRoute>itinéraire rapide</FastRoute>
-  <ShortRoute>itinéraire court</ShortRoute>
-  <calculate>Calculer</calculate>
-  <CalculatingDistance>Calcul de la distance</CalculatingDistance>
-  <directions>Directions</directions>
-  <Routes.OldRoute>Vous ne pouvez pas entrer une route dans le passé !!!</Routes.OldRoute>
-  <Reports.Active>Actif</Reports.Active>
-  <Reports.Completed>Terminé</Reports.Completed>
-  <Reports.Unread>Non lus</Reports.Unread>
-  <Reports.Read>Labourer</Reports.Read>
-  <Reports.Deleted>Supprimé</Reports.Deleted>
-  <Reports.MessNotDel>Le message n'a pas été livré !!!</Reports.MessNotDel>
-  <Reports.DtDelete>Suppression temps</Reports.DtDelete>
-  <Reports.DtEnd>Extrémité</Reports.DtEnd>
-  <Reports.DtStart>Moment de l'activation</Reports.DtStart>
-  <Reports.Checked>Vérifiée</Reports.Checked>
-  <Reports.DtSeen>Heure de lecture</Reports.DtSeen>
-  <Reports.DtDelivery>Poster un temps</Reports.DtDelivery>
-  <Reports.Messages>Postes</Reports.Messages>
-  <Reports.StopStatus>Statut d'arrêt</Reports.StopStatus>
-  <person>Personne</person>
-  <sosalarm>SOS Alarme</sosalarm>
-  <mandown>Un homme à la mer!</mandown>
-  <Routes.NotSelOpt>Vous ne avez sélectionné une option !!!</Routes.NotSelOpt>
-  <Routes.OrdinalNumber>Nombre</Routes.OrdinalNumber>
-  <Routes.TotalArea>Superficie totale</Routes.TotalArea>
-  <Routes.DoneArea>Fait région</Routes.DoneArea>
-  <Routes.TotWorkTime>Temps de travail total</Routes.TotWorkTime>
-  <Routes.Downtime>Temps d'arrêt</Routes.Downtime>
-  <Routes.SelectCulture>Sélectionnez la culture</Routes.SelectCulture>
-  <Routes.RouteAct>Activités autorisées par l'ordonnance</Routes.RouteAct>
-  <Routes.AddedMechanisation>Méc. ajoutée</Routes.AddedMechanisation>
-  <Routes.PopupDO>Télécharger des ordres prédéfinisи</Routes.PopupDO>
-  <Routes.Optimized>Optimisé</Routes.Optimized>
-  <Routes.Short>Court</Routes.Short>
-  <Routes.DownloadOrder>Télécharger l'ordre</Routes.DownloadOrder>
-  <Routes.EnterStartEnd>Entrez le point de la route début et de fin</Routes.EnterStartEnd>
-  <Routes.ToBeEntered>Voulez-vous cet article à être entré comme</Routes.ToBeEntered>
-  <Routes.StartPoiRoute>point de départ</Routes.StartPoiRoute>
-  <Routes.And>et</Routes.And>
-  <Routes.EndPoiRoute>point de la route de fin?</Routes.EndPoiRoute>
-  <Routes.NoSEPoi>Vous ne avez pas entré le point de départ de la route et à la fin !!!</Routes.NoSEPoi>
-  <Routes.NoSPoi>Vous ne avez pas entré le point de la route de départ !!!</Routes.NoSPoi>
-  <Routes.NoEPoi>Vous ne avez pas entré le point final de l'itinéraire !!!</Routes.NoEPoi>
-  <Settings.WaitPrice>Coût de l'attente</Settings.WaitPrice>
-  <Admin.FuelTankHeight>Hauteur Bac</Admin.FuelTankHeight>
-  <Admin.Allow>Permettre</Admin.Allow>
-  <Admin.AllowFuel>Autoriser capteur de carburant</Admin.AllowFuel>
-  <Admin.AllowTemp>Autoriser capteur de température</Admin.AllowTemp>
-  <Admin.AllowRfid>Permettre rfid</Admin.AllowRfid>
-  <Admin.AllowInputVoltage>Permettre accumulateur</Admin.AllowInputVoltage>
-  <Admin.AllowGarmin>Permettre garmin</Admin.AllowGarmin>
-  <Admin.AllowRpm>Permettre rpm</Admin.AllowRpm>
-  <Admin.AllowMotoBlock>Permettre moto-bloc</Admin.AllowMotoBlock>
-  <Admin.AllowMotoAlarm>Permettre moto-alarme</Admin.AllowMotoAlarm>
-  <Admin.AllowBattery>Permettre batterie</Admin.AllowBattery>
-  <Admin.AllowGeoLock>Permettre geo-lock</Admin.AllowGeoLock>
-  <Admin.AddCountry>Ajouter état</Admin.AddCountry>
-  <Admin.AddCity>Ajouter ville</Admin.AddCity>
-  <Settings.MotoAlarms>Alarmes de moto</Settings.MotoAlarms>
-  <Settings.Tow>Remorquage</Settings.Tow>
-  <Settings.WeakAcc>Accumulateur faible</Settings.WeakAcc>
-  <Settings.PoiGroups>Groupes de points d'intérêt</Settings.PoiGroups>
-  <Reports.NoPerm>Vous n'avez pas l'autorisation d'afficher ce menu !!!</Reports.NoPerm>
-  <Settings.AutomResetDriver>Contrôle automatique des conducteurs affectés à des véhicules</Settings.AutomResetDriver>
-  <Settings.OptionsResetDriver>Options pour la déconnexion automatique</Settings.OptionsResetDriver>
-  <Settings.ResetDriver1>Chaque moteur de feu</Settings.ResetDriver1>
-  <Settings.ResetDriver2>Chaque jour à 00:00</Settings.ResetDriver2>
-  <Settings.ResetDriver3>La prochaine mission de pilote</Settings.ResetDriver3>
-  <Settings.FmAlarmInfo1>L'arrivée de cette alarme est nécessaire d'avoir entré le dernier enregistrement de ce véhicule.</Settings.FmAlarmInfo1>
-  <Settings.FmAlarmInfo2>L'arrivée de cette alarme est un must ont conclu au moins un coût de réparer ce véhicule.</Settings.FmAlarmInfo2>
-  <Settings.FmAlarmInfo3>L'arrivée de cette alarme est un proxy doit être entré au moins un des conducteurs admissibles de ce véhicule.</Settings.FmAlarmInfo3>
-  <Settings.MustServiceInterval>Vous devez saisir un intervalle de service pour véhicule !!!</Settings.MustServiceInterval>
-  <Settings.Months>mois</Settings.Months>
-  <Settings.RemindMeMustOne>Vous devez entrer au moins une option pour "Rappelez-moi plus tôt"</Settings.RemindMeMustOne>
-  <Reports.FrontPassenger>Passager avant</Reports.FrontPassenger>
-  <Reports.Yes1>oui</Reports.Yes1>
-  <Reports.No1>aucun</Reports.No1>
-  <Admin.VehiclePutRight>Le véhicule dans l'intervalle a été mis à droite</Admin.VehiclePutRight>
-  <Admin.ChooseFilter>Sélectionnez le filtre pour afficher les véhicules!</Admin.ChooseFilter>
-  <Admin.Valid>valide</Admin.Valid>
-  <Admin.Invalid>invalide</Admin.Invalid>
-  <Admin.Satellites>Satellites</Admin.Satellites>
-  <Admin.MarkAsInactive>Mark inactif</Admin.MarkAsInactive>
-  <Admin.AllClients>Tous les clients</Admin.AllClients>
-  <Admin.History>Histoire</Admin.History>
-  <Admin.CurrentStatus>État actuel de véhicules selon le statut</Admin.CurrentStatus>
-  <Admin.IgnOnMore2>Moteur en marche, les données de plus de 5 min</Admin.IgnOnMore2>
-  <Admin.More2>Données plus de 2 jours</Admin.More2>
-  <Settings.AlreadyFuelCost>Déjà sont entrés dans le coût du carburant !!!</Settings.AlreadyFuelCost>
-  <Settings.AlreadyServiceCost>Déjà sont entrés dans le coût du service !!!</Settings.AlreadyServiceCost>
-  <Settings.AlreadyOthCost>Ont déjà conclu ce coût !!!</Settings.AlreadyOthCost>
-  <Settings.AlreadyCost>Ont déjà conclu ce coût !!!</Settings.AlreadyCost>
-  <Settings.SuccDownloadHolidays1>Les jours fériés ont été téléchargés avec succès et automatiquement tous les calculs dans l'application seront faites pour eux à nouveau !!!</Settings.SuccDownloadHolidays1>
-  <Settings.SuccRemoveHolidays1>Les jours fériés ont bien été supprimés et tous les calculs automatiquement dans l'application seront faites pour eux à nouveau !!!</Settings.SuccRemoveHolidays1>
-  <Settings.RemoveHolidays>Retirer les jours fériés</Settings.RemoveHolidays>
-  <Settings.SuccRemoveHolidays>Les jours fériés ont été supprimés avec succès</Settings.SuccRemoveHolidays>
-  <Settings.AlertRegTitle>Ajouter expiration alerte de l'enregistrement</Settings.AlertRegTitle>
-  <Settings.AlertServiceTitle>Ajouter service d'alerte</Settings.AlertServiceTitle>
-  <Settings.AlertGreenCardTitle>Ajouter une alerte pour la carte verte</Settings.AlertGreenCardTitle>
-  <Settings.RemindMe>Me rappeler</Settings.RemindMe>
-  <Settings.Before>avant</Settings.Before>
-  <Settings.AddShift>La suspension a été ajouté avec succès automatiquement et tous les calculs de la demande sera faite à nouveau pour tous les jours du mois précédent à laquelle le changement !!!</Settings.AddShift>
-  <Settings.ModifyShift>La suspension a été modifié avec succès et l'application automatique dans tous les calculs seront effectués de nouveau tous les jours du mois précédent à laquelle le changement !!!</Settings.ModifyShift>
-  <Settings.DeleteShift>La suspension a été supprimé automatiquement et tous les calculs de la demande sera faite à nouveau pour tous les jours du mois précédent à laquelle le changement !!!</Settings.DeleteShift>
-  <Settings.1>première</Settings.1>
-  <Settings.2>deuxième</Settings.2>
-  <Settings.3>troisième</Settings.3>
-  <Settings.4>quatrième</Settings.4>
-  <Settings.DeleteRecache>Jour a été supprimé comme vacances et tous les calculs automatiquement dans l'application sera faite pour le même !!!</Settings.DeleteRecache>
-  <Settings.AddRecache>Journée a été ajouté avec succès comme un jour férié et tous les calculs automatiquement dans l'application sera faite pour le même !!!</Settings.AddRecache>
-  <Settings.Play>Jouer</Settings.Play>
-  <Settings.Stop>Arrêter</Settings.Stop>
-  <Settings.Louder>Fort</Settings.Louder>
-  <Settings.Quieter>Silencieux</Settings.Quieter>
-  <Settings.SuccDownloadHolidays>Les jours fériés ont été menées avec succès</Settings.SuccDownloadHolidays>
-  <Settings.NameHoliday>Nom de vacances</Settings.NameHoliday>
-  <Settings.DownloadHolidays>Télécharger des jours fériés</Settings.DownloadHolidays>
-  <Settings.Last>Dernier</Settings.Last>
-  <Settings.Next>Suivant</Settings.Next>
-  <Reports.NoDataDayAct>Le jour requis aucun classes actives. Heures passifs:</Reports.NoDataDayAct>
-  <Reports.NoCalcActOption>Ce véhicule a la possibilité de calculer les heures actives !!!</Reports.NoCalcActOption>
-  <Reports.DeleteCostType>Type de dépense de suppression</Reports.DeleteCostType>
-  <Reports.DelExecutor>Supprimer exécuteur</Reports.DelExecutor>
-  <Reports.DelCostType>Supprimer type de dépense</Reports.DelCostType>
-  <Reports.SureDelComp>Etes-vous sûr de vouloir supprimer composant</Reports.SureDelComp>
-  <Reports.DelComp>Supprimer composant</Reports.DelComp>
-  <Reports.DelComp1>Supprimer composant</Reports.DelComp1>
-  <Reports.DelListComp>Obtenez la liste des composants sélectionnés</Reports.DelListComp>
-  <Admin.SelectCalc>Sélectionnez la méthode de calcul des classes actives</Admin.SelectCalc>
-  <Admin.SelectShowRpm>Sélectionnez l'affichage aller</Admin.SelectShowRpm>
-  <Admin.SelectRpmLimit>Sélectionnez la limite de contact</Admin.SelectRpmLimit>
-  <Admin.SelectMinRpm>Sélectionnez un nombre minimum de contacts</Admin.SelectMinRpm>
-  <Admin.SelectMaxRpm>Sélectionnez le nombre maximum de contacts</Admin.SelectMaxRpm>
-  <Admin.SelectSpeedLimit>Sélectionnez la limite de vitesse</Admin.SelectSpeedLimit>
-  <Admin.Limit>Frontière</Admin.Limit>
-  <Admin.NoRPM>Nom. rpm</Admin.NoRPM>
-  <Admin.RpmSpeed>Et la vitesse RPM</Admin.RpmSpeed>
-  <Admin.ShowRPM>Afficher RPM</Admin.ShowRPM>
-  <Admin.CalculateActiveH>Calcul des classes actives sous la limite</Admin.CalculateActiveH>
-  <Admin.VehicleStatus>Statut véhicule</Admin.VehicleStatus>
-  <Reports.TheRPMLimit>La limite de RPM est</Reports.TheRPMLimit>
-  <Reports.Obrtai>rpm</Reports.Obrtai>
-  <Reports.Obrtai1>RPM</Reports.Obrtai1>
-  <Reports.MinRPM>Le nombre minimum de tours</Reports.MinRPM>
-  <Reports.MaxRPM>Nombre maximum de tours</Reports.MaxRPM>
-  <Reports.SpeedLimit>Limitation de vitesse</Reports.SpeedLimit>
-  <Reports.RpmLimit>Limite RPM</Reports.RpmLimit>
-  <Reports.Load>La charge</Reports.Load>
-  <Reports.LockPass>Mot de passe verrou</Reports.LockPass>
-  <Reports.ActiveHours>Heures actives</Reports.ActiveHours>
-  <Reports.PassiveHours>Heures passives</Reports.PassiveHours>
-  <Reports.TotalActiveHours>Nombre total d'heures actives</Reports.TotalActiveHours>
-  <Reports.TotalPassiveHours>Nombre total d'heures de passif</Reports.TotalPassiveHours>
-  <Reports.UnauthUse>L'utilisation non autorisée</Reports.UnauthUse>
-  <Reports.Range>Gamme</Reports.Range>
-  <Settings.VisibleLive>Visibilité en temps réel de surveillance</Settings.VisibleLive>
-  <Reports.DailyFuel>Les données sur le carburant sont calculées sur une base quotidienne.</Reports.DailyFuel>
-  <Reports.TotalDistance>Distance totale</Reports.TotalDistance>
-  <Reports.Intervention>L'intervention</Reports.Intervention>
-  <Reports.Pump>Pompe</Reports.Pump>
-  <Reports.Caps>Couvertures</Reports.Caps>
-  <Reports.Opened>ouvert</Reports.Opened>
-  <Reports.Closed>fermé</Reports.Closed>
-  <Reports.PCReport>Condition pompe/housses</Reports.PCReport>
-  <Reports.ActivePump>actif</Reports.ActivePump>
-  <Reports.InactivePump>inactif</Reports.InactivePump>
-  <Tracking.LostComm>Perdu la communication</Tracking.LostComm>
-  <Reports.Tours1>tours</Reports.Tours1>
-  <Reports.TaxiActivity>Taxi activité</Reports.TaxiActivity>
-  <Reports.TaxiReport2>Frais rapportent 2</Reports.TaxiReport2>
-  <Reports.TaxiReport1>Frais rapportent 1</Reports.TaxiReport1>
-  <Reports.IntervReport>Rapport intervention</Reports.IntervReport>
-  <Reports.TimePI>Durée de IP</Reports.TimePI>
-  <Reports.TimePITooltip>Temps de l'intervention précédente</Reports.TimePITooltip>
+	<Reports.Tours1>tours</Reports.Tours1>
+	<Reports.TaxiActivity>Taxi activité</Reports.TaxiActivity>
+	<Reports.TaxiReport2>Frais rapportent 2</Reports.TaxiReport2>
+	<Reports.TaxiReport1>Frais rapportent 1</Reports.TaxiReport1>
+	<Reports.IntervReport>Rapport intervention</Reports.IntervReport>
+	<Reports.TimePI>Durée de IP</Reports.TimePI>
+	<Reports.TimePITooltip>Temps de l'intervention précédente</Reports.TimePITooltip>
   <Admin.NumberSensorsPassengers>Nombre de capteurs pour les passagers</Admin.NumberSensorsPassengers>
   <Reports.Tours>Tournées</Reports.Tours>
   <Reports.Times>fois</Reports.Times>
@@ -863,8 +482,8 @@
   <Reports.Tu>Ma</Reports.Tu>
   <Reports.Mo>Lu</Reports.Mo>
   <Reports.FromPrevRec>de record précédent</Reports.FromPrevRec>
-  <Reports.NoPass>Nombre de passagers</Reports.NoPass>
-  <Reports.TaxiState>Etat de taximètre</Reports.TaxiState>
+  <Reports.NoPass>Nombre de passagers</Reports.NoPass> 
+  <Reports.TaxiState>Etat de taximètre</Reports.TaxiState>  
   <Reports.TimeFromPT>Temps écoulé depuis la précédente tournée</Reports.TimeFromPT>
   <Reports.DistanceFromPT>Distance parcourue d'une tournée précédente</Reports.DistanceFromPT>
   <Reports.DistanceTooltip>Distance parcourue en tournée</Reports.DistanceTooltip>
@@ -895,6 +514,7 @@
   <Reports.Tooltip31_>(Total - Temps de repos dans toutes les visites)</Reports.Tooltip31_>
   <Reports.Tooltip4_>Distance parcourue toutes les visites</Reports.Tooltip4_>
   <Reports.BetweenTours>entre les deux tours</Reports.BetweenTours>
+  
   <Reports.InTerms1>en fonction de la distance de passé au total</Reports.InTerms1>
   <Reports.InTerms2>en termes de distance au-delà totale avec taximètre sur</Reports.InTerms2>
   <Tracking.rpm>RPM</Tracking.rpm>
@@ -964,7 +584,7 @@
   <Settings.AlarmRegExpire>Immatriculation expirée</Settings.AlarmRegExpire>
   <Settings.AlarmLeaveRoute>En quittant la route</Settings.AlarmLeaveRoute>
   <Settings.AlarmStayMoreThanAllowed>Rétention supérieure à celle permise</Settings.AlarmStayMoreThanAllowed>
-  <Settings.30MinNoDataIgnON>30 minutes pas de données, moteur ON</Settings.30MinNoDataIgnON>
+  <Settings.30MinNoDataIgnON>Plus de 30 minutes sans données et ign = on</Settings.30MinNoDataIgnON>
   <Settings.AlarmVisitPOI>La visite d''un Point d''intérêt</Settings.AlarmVisitPOI>
   <Settings.AlarmLeaveZone>Laissant une zone</Settings.AlarmLeaveZone>
   <Settings.AlarmEnterZone>Saisie d''une zone</Settings.AlarmEnterZone>
@@ -1940,14 +1560,14 @@
   <Routes.SuccAddRoute>L'itinéraire a été ajouté avec succès!!!</Routes.SuccAddRoute>
   <Routes.BIAO>Informations de base sur l'ordre</Routes.BIAO>
   <Routes.CNRoute>Créer un nouveau compte</Routes.CNRoute>
-  <Routes.NName>Nom de l'ordre</Routes.NName>
+  <Routes.NName>Créer un nouveau compte</Routes.NName>
   <Routes.CreationDate>Date de création</Routes.CreationDate>
   <Routes.First>Première</Routes.First>
   <Routes.Second>Deuxième</Routes.Second>
   <Routes.Third>Troisième</Routes.Third>
   <Routes.Driver>Conducteur</Routes.Driver>
   <Routes.Choose>Choisissez</Routes.Choose>
-  <Routes.StartDatetime>Début</Routes.StartDatetime>
+  <Routes.StartDatetime>Début datetime</Routes.StartDatetime>
   <Routes.Vehicle>Véhicule</Routes.Vehicle>
   <Routes.LTBV>Sites à visiter</Routes.LTBV>
   <Routes.DL>Sites à visiter</Routes.DL>
@@ -2048,14 +1668,14 @@
   <Fm.Datetime>Datetime</Fm.Datetime>
   <Fm.Date>Date</Fm.Date>
   <Fm.Costs>Frais</Fm.Costs>
-  <Fm.StartUse>Début de</Fm.StartUse>
-  <Fm.DurUser>Durée d'utilisation</Fm.DurUser>
-  <Fm.YearKm>Annuellement permis</Fm.YearKm>
-  <Fm.TotKm>Km total autorisé</Fm.TotKm>
-  <Fm.FuelCap>Capacité de carburant</Fm.FuelCap>
-  <Fm.SummTir>Pneus d'été kilomètres prévus</Fm.SummTir>
-  <Fm.WinTir>Pneus d'hiver kilomètres prévus</Fm.WinTir>
-  <Fm.ServYear>Service tous les X km</Fm.ServYear>
+  <Fm.StartUse>Modifier véhicule</Fm.StartUse>
+  <Fm.DurUser>Modifier véhicule</Fm.DurUser>
+  <Fm.YearKm>Modifier véhicule</Fm.YearKm>
+  <Fm.TotKm>Modifier véhicule</Fm.TotKm>
+  <Fm.FuelCap>Modifier véhicule</Fm.FuelCap>
+  <Fm.SummTir>Modifier véhicule</Fm.SummTir>
+  <Fm.WinTir>Modifier véhicule</Fm.WinTir>
+  <Fm.ServYear>Modifier véhicule</Fm.ServYear>
   <Fm.Add>Ajouter</Fm.Add>
   <Fm.Cancel>Annuler</Fm.Cancel>
   <Fm.Name>Nom</Fm.Name>
