@@ -1,4 +1,4 @@
-﻿<?php include "../include/db.php" ?>
+<?php include "../include/db.php" ?>
 <?php include "../include/functions.php" ?>
 <?php include "../include/params.php" ?>
 <?php include "../include/dictionary2.php" ?>
@@ -272,7 +272,7 @@ foreach ($AllOU	as $rowOU) {
 			 If ($rV["visible"] == 1)
 			 {
                  $activity = "../images/stikla2.png";
-             } 
+             }
              else
 			 {
                  $activity = "../images/stikla3.png";
@@ -458,7 +458,8 @@ foreach ($AllOU	as $rowOU) {
 
 function modifyVehicle(i, id) {
     top.ShowWait();
-    top.document.getElementById('ifrm-cont').src = "ModifyVehicle.php?id=" + id + "&l=" + lang;
+    if( top.document.getElementById('ifrm-cont') != null) top.document.getElementById('ifrm-cont').src = "ModifyVehicle.php?id=" + id + "&l=" + lang;
+    else window.location.replace("ModifyVehicle.php?id=" + id + "&l=" + lang);
 }
 
 

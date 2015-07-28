@@ -64,6 +64,7 @@
 	$posledno = dlookup("select Max(id)+1 from alarms");
 
 		echo "query : " . "insert into alarms values(".$posledno.", ".$tipNaAlarm .", ".$orgEdinica .", ".$dostapno .", ".$email .", ".$sms .", ".$zvukot .", ".$snooze .", ".$cid .", ".$ednoVozilo .", ".$NadminataBrzina .", ".$vreme .", ".$poiid .", ".$uniqid .", ".$vnesiAlertZa .", ".$remindme .", ".$sendviaEmail .")" ;
+		// die;exit();
 		$ret = query("insert into alarms values(".$posledno.", ".$tipNaAlarm .", ".$orgEdinica .", ".$dostapno .", ".$email .", ".$sms .", ".$zvukot .", ".$snooze .", ".$cid .", ".$ednoVozilo .", ".$NadminataBrzina .", ".$vreme .", ".$poiid .", ".$uniqid .", ".$vnesiAlertZa .", ".$remindme .", ".$sendviaEmail .")");
 
 	} else {  // ako e org. edninica ili cela kompanija

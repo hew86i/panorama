@@ -4,16 +4,20 @@
 <?php include "../include/dictionary2.php" ?>
 
 
-<?php 
+<?php
 	header("Content-type: text/html; charset=utf-8");
 	$ua=getBrowser();
+
+	$cid = session("client_id");
+	$uid = session("user_id");
+
 	$yourbrowser = (bool) strpos($ua['userAgent'], "iPad");
 	$yourbrowser1 = (bool) strpos($ua['userAgent'], "Macintosh");
 ?>
 
-	<html>
-	<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<?php 
 	$id = getQUERY("id");
 	$now = now();
@@ -26,6 +30,15 @@
 		   color: red !important;
 		   font-weight:bold !important;
 		   font-size: 8pt;
+	}
+	.ui-dialog {
+		position: fixed;
+	}
+	.ui-autocomplete-input {
+		margin: 0;
+		padding: 0.48em 0 0.47em 0.45em;
+		width: 82% !important;;
+		height: 25px !important;
 	}
 	</style>
 	
@@ -80,19 +93,20 @@
 	</style>
     <link href="../css/ui-lightness/jquery-ui-1.8.14.custom.css" rel="stylesheet" type="text/css" />
     <script src="js/jquery-ui-timepicker-addon.js" type="text/javascript"></script>
-    
+
     <script>
-    
+
+
    // var dt = $('#odometarDatum').val();
     var dt1 = $('#odometarDatum1').val();
     var dateOdometar = '<?php echo strtotime('2014-05-06 11:36:10') ?>';
-   
+
   	//alert(dateOdometar)
      //Fri Apr 04 2014 02:00:00 GMT+0200 (CEST)
      //Wed May 07 2014 10:45:40 GMT+0200 (CEST)
     var vehId = "<?php echo $id?>";
 	$(function Odometar() {
-	    
+
 	   /*$('#odometarDatum').datetimepicker({
             dateFormat: 'dd-mm-yy',
             timeFormat: 'hh:mm:ss',
@@ -102,7 +116,7 @@
             hourGrid: 4,
             minuteGrid: 10
         });*/
-      
+
        //var queryDate = '2009-11-01 10:15:10';
         $('#odometarDatum1').datetimepicker({
             dateFormat: 'yy-mm-dd',
@@ -119,7 +133,7 @@
             hourGrid: 4,
             minuteGrid: 10, 
             onSelect: function () {
-            	
+
             	var newDate = $('#odometarDatum1').val();
             	/*var date_ = newDate.split(" ")[0];
             	date_ = date_.replace(/-/g, " ");
@@ -169,371 +183,129 @@
 	
 	<script type="text/javascript">
     (function ($) {
-        $.widget("ui.combobox", {
-            _create: function () {
-                     var self = this,
-					 select = this.element.hide(),
-					 selected = select.children(":selected"),
-					 value = selected.val() ? selected.text() : "";
-                	 var input = this.input = $("<input style='height:26px; padding-left: 5px; color: #2F5185'>")
-					 .insertAfter(select)
-					 .val("")
-					 .autocomplete({
-					    delay: 0,
-					    minLength: 0,
-					    source: function (request, response) {
-					        var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
-					        response(select.children("option").map(function () {
-					            var text = $(this).text();
-					            if (this.value && (!request.term || matcher.test(text))) {
-					                return {
-					                    label: text.replace(
-											new RegExp(
-												"(?![^&;]+;)(?!<[^<>]*)(" +
-												$.ui.autocomplete.escapeRegex(request.term) +
-												")(?![^<>]*>)(?![^&;]+;)", "gi"
-											), "<strong>$1</strong>"),
-					                    value: text,
-					                    option: this
-					                };
-					            }
-					        }));
-					        if (Browser()!='iPad')
-					        	$('.ui-autocomplete').css({ width: '340px' });
-				        	else
-				        		$('.ui-autocomplete').css({ width: '230px' });
-					    },
-					    select: function (event, ui) {
-					        ui.item.option.selected = true;
-					        self._trigger("selected", event, {
-					            item: ui.item.option
-					        });
-					    },
-					    change: function (event, ui) {
- 							if (!ui.item) {
-					            var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex($(this).val()) + "$", "i"),
-								valid = false;
-					            select.children("option").each(function () {
-					                if ($(this).text().match(matcher)) {
-					                    this.selected = valid = true;
-					                    return false;
-					                }
-					            });
-					            if (!valid) {
-					                $(this).val("");
-					                select.val("");
-					                input.data("autocomplete").term = "";
-					                return false;
-					            }
-					        }
-					    }
-					})
-					.addClass("ui-widget ui-widget-content ui-corner-left");
-                	input.data("autocomplete")._renderItem = function (ul, item) {
-                    input.autocomplete("widget")[0].style.zIndex = '2000';
-                    input.autocomplete("widget")[0].style.overflowX = 'hidden';
-                    input.autocomplete("widget")[0].style.overflowY = 'auto';
-                    input.autocomplete("widget")[0].style.maxHeight = '210px';
-                    if (Browser()!='iPad')
-                    	input.autocomplete("widget")[0].style.width = '340px';
-                	else
-                		input.autocomplete("widget")[0].style.width = '230px';
-                    return $("<li></li>")
-						.data("item.autocomplete", item)
-						.append("<a>" + item.label + "</a>")
-						.appendTo(ul);
-                	};
-					this.button = $("<button type='button'>&nbsp;</button>")
-					.attr("tabIndex", -1)
-					.attr("title", dic("show", lang) + " " + dic("all", lang) + " " + dic("Pois", lang))
-					.insertAfter(input)
-					.button({
-					    icons: {
-					        primary: "ui-icon-triangle-1-s"
-					    },
-					    text: false
-					})
-					.removeClass("ui-corner-all")
-					.addClass("ui-corner-right ui-button-icon")
-					.click(function () {
-					    if (input.autocomplete("widget").is(":visible")) {
-					        input.autocomplete("close");
-					        return;
-					    }
-						$(this).blur();
-						 input.autocomplete("search", "");
-					    input.focus();
-						input.autocomplete("widget")[0].style.zIndex = '2000';
-					    input.autocomplete("widget")[0].style.overflowX = 'hidden';
-					    input.autocomplete("widget")[0].style.overflowY = 'auto';
-					    input.autocomplete("widget")[0].style.maxHeight = '210px';
-					    if (Browser()!='iPad')
-					    	input.autocomplete("widget")[0].style.width = '340px';
-				    	else
-							input.autocomplete("widget")[0].style.width = '230px';
-					    });
-	            },
-            	destroy: function () {
-                this.input.remove();
-                this.button.remove();
-                this.element.show();
-                $.Widget.prototype.destroy.call(this);
-			  }
-           });
-    	})(jQuery);
+    $.widget("ui.combobox", {
+        _create: function () {
+                 var self = this,
+				 select = this.element.hide(),
+				 selected = select.children(":selected"),
+				 value = selected.val() ? selected.text() : "";
+            	 var input = this.input = $("<input>")
+				 .insertAfter(select)
+				 .val("")
+				 .autocomplete({
+				    delay: 0,
+				    minLength: 0,
+				    source: function (request, response) {
+				        var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
+				        response(select.children("option").map(function () {
+				            var text = $(this).text();
+				            if (this.value && (!request.term || matcher.test(text))) {
+				                return {
+				                    label: text.replace(
+										new RegExp(
+											"(?![^&;]+;)(?!<[^<>]*)(" +
+											$.ui.autocomplete.escapeRegex(request.term) +
+											")(?![^<>]*>)(?![^&;]+;)", "gi"
+										), "<strong>$1</strong>"),
+				                    value: text,
+				                    option: this
+				                };
+				            }
+				        }));
+				    },
+				    select: function (event, ui) {
+				        ui.item.option.selected = true;
+				        self._trigger("selected", event, {
+				            item: ui.item.option
+				        });
+				        select.trigger("change");
+				    },
+				    change: function (event, ui) {
+							if (!ui.item) {
+				            var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex($(this).val()) + "$", "i"),
+							valid = false;
+				            select.children("option").each(function () {
+				                if ($(this).text().match(matcher)) {
+				                    this.selected = valid = true;
+				                    return false;
+				                }
+				            });
+				            if (!valid) {
+				                $(this).val("");
+				                select.val("");
+				                input.data("autocomplete").term = "";
+				                return false;
+				            }
+				        }
+				    }
+				})
+				.addClass("ui-widget ui-widget-content ui-corner-left");
+            	input.data("autocomplete")._renderItem = function (ul, item) {
+                input.autocomplete("widget")[0].style.zIndex = '2000';
+                input.autocomplete("widget")[0].style.overflowX = 'hidden';
+                input.autocomplete("widget")[0].style.overflowY = 'auto';
+                input.autocomplete("widget")[0].style.maxHeight = '210px';
 
-        $(function () {
-        $("#combobox").combobox();
-        $("#toggle").click(function () {
-            $("#combobox").toggle();
-        });
-    });
-	</script>
-	
-	<script type="text/javascript">
-    (function ($) {
-        $.widget("ui.combobox", {
-            _create: function () {
-                     var self = this,
-					 select = this.element.hide(),
-					 selected = select.children(":selected"),
-					 value = selected.val() ? selected.text() : "";
-                	 var input = this.input = $("<input style='height:26px; padding-left: 5px; color: #2F5185'>")
-					 .insertAfter(select)
-					 .val("")
-					 .autocomplete({
-					    delay: 0,
-					    minLength: 0,
-					    source: function (request, response) {
-					        var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
-					        response(select.children("option").map(function () {
-					            var text = $(this).text();
-					            if (this.value && (!request.term || matcher.test(text))) {
-					                return {
-					                    label: text.replace(
-											new RegExp(
-												"(?![^&;]+;)(?!<[^<>]*)(" +
-												$.ui.autocomplete.escapeRegex(request.term) +
-												")(?![^<>]*>)(?![^&;]+;)", "gi"
-											), "<strong>$1</strong>"),
-					                    value: text,
-					                    option: this
-					                };
-					            }
-					        }));
-					        if (Browser()!='iPad')
-					        	$('.ui-autocomplete').css({ width: '340px' });
-				        	else
-				        		$('.ui-autocomplete').css({ width: '230px' });
-					    },
-					    select: function (event, ui) {
-					        ui.item.option.selected = true;
-					        self._trigger("selected", event, {
-					            item: ui.item.option
-					        });
-					    },
-					    change: function (event, ui) {
- 							if (!ui.item) {
-					            var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex($(this).val()) + "$", "i"),
-								valid = false;
-					            select.children("option").each(function () {
-					                if ($(this).text().match(matcher)) {
-					                    this.selected = valid = true;
-					                    return false;
-					                }
-					            });
-					            if (!valid) {
-					                $(this).val("");
-					                select.val("");
-					                input.data("autocomplete").term = "";
-					                return false;
-					            }
-					        }
-					    }
-					})
-					.addClass("ui-widget ui-widget-content ui-corner-left");
-                	input.data("autocomplete")._renderItem = function (ul, item) {
-                    input.autocomplete("widget")[0].style.zIndex = '2000';
-                    input.autocomplete("widget")[0].style.overflowX = 'hidden';
-                    input.autocomplete("widget")[0].style.overflowY = 'auto';
-                    input.autocomplete("widget")[0].style.maxHeight = '210px';
-                    if (Browser()!='iPad')
-                    	input.autocomplete("widget")[0].style.width = '340px';
-                	else
-                		input.autocomplete("widget")[0].style.width = '230px';
-                    return $("<li></li>")
-						.data("item.autocomplete", item)
-						.append("<a>" + item.label + "</a>")
-						.appendTo(ul);
-                	};
-					this.button = $("<button type='button'>&nbsp;</button>")
-					.attr("tabIndex", -1)
-					.attr("title", dic("show", lang) + " " + dic("all", lang) + " " + dic("Pois", lang))
-					.insertAfter(input)
-					.button({
-					    icons: {
-					        primary: "ui-icon-triangle-1-s"
-					    },
-					    text: false
-					})
-					.removeClass("ui-corner-all")
-					.addClass("ui-corner-right ui-button-icon")
-					.click(function () {
-					    if (input.autocomplete("widget").is(":visible")) {
-					        input.autocomplete("close");
-					        return;
-					    }
-						$(this).blur();
-						 input.autocomplete("search", "");
-					    input.focus();
-						input.autocomplete("widget")[0].style.zIndex = '2000';
-					    input.autocomplete("widget")[0].style.overflowX = 'hidden';
-					    input.autocomplete("widget")[0].style.overflowY = 'auto';
-					    input.autocomplete("widget")[0].style.maxHeight = '210px';
-					    if (Browser()!='iPad')
-					    	input.autocomplete("widget")[0].style.width = '340px';
-				    	else
-							input.autocomplete("widget")[0].style.width = '230px';
-					    });
-	            },
-            	destroy: function () {
-                this.input.remove();
-                this.button.remove();
-                this.element.show();
-                $.Widget.prototype.destroy.call(this);
-			  }
-           });
-    	})(jQuery);
+                return $("<li></li>")
+					.data("item.autocomplete", item)
+					.append("<a>" + item.label + "</a>")
+					.appendTo(ul);
+            	};
+				this.button = $("<button type='button'>&nbsp;</button>")
+				.attr("tabIndex", -1)
+				.attr("title", dic("show", lang) + " " + dic("all", lang) + " " + dic("Pois", lang))
+				.insertAfter(input)
+				.button({
+				    icons: {
+				        primary: "ui-icon-triangle-1-s"
+				    },
+				    text: false
+				})
+				.removeClass("ui-corner-all")
+				.addClass("ui-corner-right ui-button-icon")
+				.click(function () {
+				    if (input.autocomplete("widget").is(":visible")) {
+				        input.autocomplete("close");
+				        return;
+				    }
+					$(this).blur();
+					 input.autocomplete("search", "");
+				    input.focus();
+					input.autocomplete("widget")[0].style.zIndex = '2000';
+				    input.autocomplete("widget")[0].style.overflowX = 'hidden';
+				    input.autocomplete("widget")[0].style.overflowY = 'auto';
+				    input.autocomplete("widget")[0].style.maxHeight = '210px';
+				    if (Browser()!='iPad')
+				    	input.autocomplete("widget")[0].style.width = '610px';
+			    	else
+						input.autocomplete("widget")[0].style.width = '500px';
+				    });
+            },
+            setval : function(value) {
+				this.input.val(value);
+        	},
+        	destroy: function () {
+	            this.input.remove();
+	            this.button.remove();
+	            this.element.show();
+	            $.Widget.prototype.destroy.call(this);
+		  }
+       });
+	})(jQuery);
 
-        $(function () {
-        $("#comboboxVlez").combobox();
-        $("#toggle").click(function () {
-            $("#comboboxVlez").toggle();
-        });
-    });
-	</script>
-	
-	<script type="text/javascript">
-    (function ($) {
-        $.widget("ui.combobox", {
-            _create: function () {
-                     var self = this,
-					 select = this.element.hide(),
-					 selected = select.children(":selected"),
-					 value = selected.val() ? selected.text() : "";
-                	 var input = this.input = $("<input style='height:26px; padding-left: 5px; color: #2F5185'>")
-					 .insertAfter(select)
-					 .val("")
-					 .autocomplete({
-					    delay: 0,
-					    minLength: 0,
-					    source: function (request, response) {
-					        var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
-					        response(select.children("option").map(function () {
-					            var text = $(this).text();
-					            if (this.value && (!request.term || matcher.test(text))) {
-					                return {
-					                    label: text.replace(
-											new RegExp(
-												"(?![^&;]+;)(?!<[^<>]*)(" +
-												$.ui.autocomplete.escapeRegex(request.term) +
-												")(?![^<>]*>)(?![^&;]+;)", "gi"
-											), "<strong>$1</strong>"),
-					                    value: text,
-					                    option: this
-					                };
-					            }
-					        }));
-					        if (Browser()!='iPad')
-					        	$('.ui-autocomplete').css({ width: '340px' });
-				        	else
-				        		$('.ui-autocomplete').css({ width: '230px' });
-					    },
-					    select: function (event, ui) {
-					        ui.item.option.selected = true;
-					        self._trigger("selected", event, {
-					            item: ui.item.option
-					        });
-					    },
-					    change: function (event, ui) {
- 							if (!ui.item) {
-					            var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex($(this).val()) + "$", "i"),
-								valid = false;
-					            select.children("option").each(function () {
-					                if ($(this).text().match(matcher)) {
-					                    this.selected = valid = true;
-					                    return false;
-					                }
-					            });
-					            if (!valid) {
-					                $(this).val("");
-					                select.val("");
-					                input.data("autocomplete").term = "";
-					                return false;
-					            }
-					        }
-					    }
-					})
-					.addClass("ui-widget ui-widget-content ui-corner-left");
-                	input.data("autocomplete")._renderItem = function (ul, item) {
-                    input.autocomplete("widget")[0].style.zIndex = '2000';
-                    input.autocomplete("widget")[0].style.overflowX = 'hidden';
-                    input.autocomplete("widget")[0].style.overflowY = 'auto';
-                    input.autocomplete("widget")[0].style.maxHeight = '210px';
-                    if (Browser()!='iPad')
-                    	input.autocomplete("widget")[0].style.width = '340px';
-                	else
-                		input.autocomplete("widget")[0].style.width = '230px';
-                    return $("<li></li>")
-						.data("item.autocomplete", item)
-						.append("<a>" + item.label + "</a>")
-						.appendTo(ul);
-                	};
-					this.button = $("<button type='button'>&nbsp;</button>")
-					.attr("tabIndex", -1)
-					.attr("title", dic("show", lang) + " " + dic("all", lang) + " " + dic("Pois", lang))
-					.insertAfter(input)
-					.button({
-					    icons: {
-					        primary: "ui-icon-triangle-1-s"
-					    },
-					    text: false
-					})
-					.removeClass("ui-corner-all")
-					.addClass("ui-corner-right ui-button-icon")
-					.click(function () {
-					    if (input.autocomplete("widget").is(":visible")) {
-					        input.autocomplete("close");
-					        return;
-					    }
-						$(this).blur();
-						 input.autocomplete("search", "");
-					    input.focus();
-						input.autocomplete("widget")[0].style.zIndex = '2000';
-					    input.autocomplete("widget")[0].style.overflowX = 'hidden';
-					    input.autocomplete("widget")[0].style.overflowY = 'auto';
-					    input.autocomplete("widget")[0].style.maxHeight = '210px';
-					    if (Browser()!='iPad')
-					    	input.autocomplete("widget")[0].style.width = '340px';
-				    	else
-							input.autocomplete("widget")[0].style.width = '230px';
-					    });
-	            },
-            	destroy: function () {
-                this.input.remove();
-                this.button.remove();
-                this.element.show();
-                $.Widget.prototype.destroy.call(this);
-			  }
-           });
-    	})(jQuery);
-
-        $(function () {
-        $("#comboboxIzlez").combobox();
-        $("#toggle").click(function () {
-            $("#comboboxIzlez").toggle();
-        });
-    });
+	function msgboxPetar(msg) {
+	    $("#DivInfoForAll").css({ display: 'none' });
+	    $('#div-msgbox').html(msg);
+	    $("#dialog-message").dialog({
+	        modal: true,
+	        zIndex: 9999, resizable: false,
+	        buttons: {
+	            Ok: function () {
+	                $(this).dialog("close");
+	        	}
+	        }
+	    });
+	}
 	</script>
 	
 	
@@ -557,6 +329,8 @@
 <?php   
   	
   	  opendb();
+
+
 	  $ds = query("select * from clients where id=" . session("client_id"));
 	  $clienttypeid = pg_fetch_result($ds, 0, "clienttypeid");
 	 
@@ -632,7 +406,11 @@
 	  			$range = dlookup("select range from vehiclerange where vehicleid = " . $id);
 	  }
      // $cLang = getQUERY("lang");
-	    
+ 	// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ 	$alarmTypes = pg_fetch_all(query("select * from alarmtypes where isactive='1' order by substring(alarmgroup FROM '^[0-9]+')::int asc"));
+ 	$qGetMobileOperators = query("select * from operators order by name");
+	$getFullOperators = pg_fetch_all($qGetMobileOperators);
+
     ?>
     
     <table class="text2_"  width="75%" style="min-width:900px;">
@@ -1231,7 +1009,7 @@
        
 		<tr colspan=6>
         <td>
-        	<button id="add5" style="margin-top:10px" onclick="addAlerts(1)"><?php dic("Settings.Add") ?></button>
+        	<button id="add5" style="margin-top:10px" onclick="storeAlerts()"><?php dic("Settings.Add") ?></button>
 	        <script>
 	        if (<?php echo $allowedalarms?> == 0) 
 	        {
@@ -1257,17 +1035,30 @@
         //$alerts = query("select * from alarms where clientid= " .session("client_id"). " and vehicleid = ".$id." order by id");
 	$alerts = query("select * from alarms where clientid= " .session("client_id"). " and vehicleid = ".$id." and alarmtypeid <> 11 order by id");
 
-		if(pg_num_rows($alerts)==0)
+	$getQueryUser = pg_fetch_array(query("select * from users where id=" .session("user_id")));
+	$allowedSMSvEmail = $getQueryUser["allowsmsvemail"];
+	$snooze = $getQueryUser["snooze"];
+	$all_alerts = [];
+
+	$alertD = query("select a.*,at.name, at.description, v.registration, cast(v.code as integer) code, v.id vid from alarms a left join alarmtypes at on a.alarmtypeid=at.id left join vehicles v on a.vehicleid=v.id
+				where a.clientid=" .session("client_id"). " and at.id <> 11 and a.vehicleid = ".$id."
+				order by cast(a.uniqid as integer) desc, alarmtypeid, code asc");
+
+	// print_r(pg_fetch_all($alertD)); die;
+	$rowCnt = 0;
+
+		if(pg_num_rows($alertD)==0)
 		{
-		?>	
+
+		?>
 		<tr>
 			<td colspan=6>
 				<div id="noData" style="padding-left:43px; font-size:25px; font-style:italic; padding-bottom:40px" class="text4">
- 		<?php dic("Reports.NoData1")?>
-		</div>	
+		 		<?php dic("Reports.NoData1")?>
+				</div>
 			</td>
 		</tr>
-		
+
 		<?php
 		}
 		else
@@ -1275,299 +1066,92 @@
 		?>
 		<table  <?php if($yourbrowser == "1") { ?> width="98%" style="min-width:900px;padding-left:10px;" <?php } else { ?> width="75%"  style="min-width:900px;padding-left:40px;" <?php } ?> class="text2">
 		<tr>
-        <td align = "left" width="26%" height="25px" align="center" class="text2" style="padding-left:10px; font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><?php dic("Settings.TypeOfAlert") ?></td>
-		<td align = "left" width="30%" height="25px" align="center" class="text2" style="padding-left:10px; font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><?= dic_("Settings.Email")?></td>
-		<?php
-		if ($clienttypeid == 6) {
-			?>
-			<td align = "left" width="20%" height="25px" align="center" class="text2" style="padding-left:10px; font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><?php echo dic_("Settings.SMS")?></td>
+	        <td align = "left" width="26%" height="25px" align="center" class="text2" style="padding-left:10px; font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><?php dic("Settings.TypeOfAlert") ?></td>
+			<td align = "left" width="30%" height="25px" align="center" class="text2" style="padding-left:10px; font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><?= dic_("Settings.Email")?></td>
 			<?php
-		}
-		?>
-		<td align = "left" width="13%" height="25px" align="center" class="text2" style="padding-left:10px; font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><?php dic("Settings.Sound") ?> (Snooze)</td>
-        <td align = "left" width="15%" height="25px" align="center" class="text2" style="padding-left:10px; font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><?php dic("Settings.AvailableFor1")?></td>
-        <td align = "center" width="8%" height="25px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><font color = "#ff6633"><?php dic("Settings.Change")?></font></td> 
-		<td align = "center" width="8%" height="25px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><font color = "#ff6633"><?php dic("Tracking.Delete")?></font></td>
-        </tr>
-  
-        <tr>	
-		<?php
-		while($row3 = pg_fetch_array($alerts))
- 		{
- 			$data[] = ($row3);
-		}
-		foreach ($data as $row3)
-		{
-		?>
-		<tr>
-		<td align = "left" height="30px" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8; padding-left:10px">
-			<?php 
-		
-				if ($row3["alarmtypeid"] == "1"){
-					dic("Settings.AlarmPanic");
-				}
-				if ($row3["alarmtypeid"] == "2"){
-					dic("Settings.AlarmAssistance");
-				}
-				if ($row3["alarmtypeid"] == "3"){
-					dic("Settings.AlarmAcumulator");
-				}
-				if ($row3["alarmtypeid"] == "4"){
-					dic("Settings.AlarmVehicle");
-				}
-				if ($row3["alarmtypeid"] == "5"){
-					dic("Settings.AlarmFuelCap");
-				}
-				if ($row3["alarmtypeid"] == "6"){
-					dic("Settings.AlarmSuddenBraking");
-				}
-				if ($row3["alarmtypeid"] == "7"){
-					dic("Settings.AlarmSpeedExcess");
-				}
-				if ($row3["alarmtypeid"] == "8"){
-					dic("Settings.AlarmEnterZone");
-				}
-				if ($row3["alarmtypeid"] == "9"){
-					dic("Settings.AlarmLeaveZone");
-				}
-				if ($row3["alarmtypeid"] == "10"){
-					dic("Settings.AlarmVisitPOI");
-				}
-				if ($row3["alarmtypeid"] == "11"){
-					dic("Settings.30MinNoDataIgnON");
-				}
-				if ($row3["alarmtypeid"] == "37"){
-					dic("Settings.Tow");
-				}
-				if ($row3["alarmtypeid"] == "38"){
-					dic("Settings.WeakAcc");
-				}
-				if ($row3["alarmtypeid"] == "48"){
-					dic("Settings.FallFuel");
-				}
-				if ($row3["alarmtypeid"] == "12"){
-					dic("Settings.AlarmUnOrdered");
-				}
-				if ($row3["alarmtypeid"] == "13"){
-					dic("Settings.AlarmStayMoreThanAllowed");
-				}
-				if ($row3["alarmtypeid"] == "14"){
-					dic("Settings.AlarmStayOutOfLocation");
-				}
-				if ($row3["alarmtypeid"] == "15"){
-					dic("Settings.AlarmLeaveRoute");
-				}
-				if ($row3["alarmtypeid"] == "16"){
-					dic("Settings.AlarmPause");
-				}
-				if ($row3["alarmtypeid"] == "17"){
-					if ($row3["remindme"] == "") {
-						echo dic_("Settings.AlarmRegExpire");
-					} else {
-						$arr = explode(" ", $row3["remindme"]);
-						if ($arr[1] == "days") $remindme = $arr[0] . " " . dic_("Reports.Days_");
-						else {
-							$remindme = round($arr[0] * $value,0) . " " . $metric;
-						}
-						echo dic_("Settings.AlarmRegExpire") . " (". $remindme ." " . dic_("Settings.Before") . ")";
-					}
-				}
-				if ($row3["alarmtypeid"] == "18"){
-					if ($row3["remindme"] == "") {
-						echo dic_("Settings.AlarmService");
-					} else {
-						$arr = explode("; ", $row3["remindme"]);
-						if(count($arr) == 1) {
-							$arr1 = explode(" ", $arr[0]);
-							if ($arr1[1] == "days") $remindme = $arr1[0] . " " . dic_("Reports.Days_");
-							else $remindme = round($arr1[0] * $value,0) . " " . $metric;
-							echo dic_("Settings.AlarmService") . " (". $remindme ." " . dic_("Settings.Before") . ")";
-						} else {
-							$arr1 = explode(" ", $arr[0]);
-							if ($arr1[1] == "days") $remindme = $arr1[0] . " " . dic_("Reports.Days_");
-							else $remindme = round($arr1[0] * $value,0) . " " . $metric;
-							
-							$arr2 = explode(" ", $arr[1]);
-							if ($arr2[1] == "days") $remindme1 = $arr2[0] . " " . dic_("Reports.Days_");
-							else $remindme1 = round($arr2[0] * $value,0) . " " . $metric;
-							
-							echo dic_("Settings.AlarmService") . " (". $remindme .", " . $remindme1 . " " . dic_("Settings.Before") . ")";
-						}
-						
-						/*if ($arr[1] == "days") $remindme = $arr[0] . " " . dic_("Reports.Days_");
-						else {
-							$remindme = round($arr[0] * $value,0) . " " . $metric;
-						}
-						echo dic_("Settings.AlarmService") . " (". $remindme ." " . dic_("Settings.Before") . ")";*/
-					}
-					
-				}
-				/*if ($row3["alarmtypeid"] == "19"){
-					if ($row3["remindme"] == "") {
-						echo dic_("Settings.AlarmGreenCard");
-					} else {
-						$arr = explode(" ", $row3["remindme"]);
-						if ($arr[1] == "days") $remindme = $arr[0] . " " . dic_("Reports.Days_");
-						else {
-							$remindme = round($arr[0] * $value,0) . " " . $metric;
-						}
-						echo dic_("Settings.AlarmGreenCard") . " (". $remindme ." " . dic_("Settings.Before") . ")";
-					}
-				}*/
-				if ($row3["alarmtypeid"] == "20"){
-					if ($row3["remindme"] == "") {
-						echo dic_("Settings.AlarmPolnomLicense");
-					} else {
-						$arr = explode(" ", $row3["remindme"]);
-						if ($arr[1] == "days") $remindme = $arr[0] . " " . dic_("Reports.Days_");
-						else {
-							$remindme = round($arr[0] * $value,0) . " " . $metric;
-						}
-						echo dic_("Settings.AlarmPolnomLicense") . " (". $remindme ." " . dic_("Settings.Before") . ")";
-					}
-				}
-				if ($row3["alarmtypeid"] == "21"){
-					dic("Settings.AlarmAgreement");
-				}
-				if ($row3["alarmtypeid"] == "22"){
-					dic("Settings.AlarmUnauthorizedUseVehicle");
-				}
-				if ($row3["alarmtypeid"] == "23"){
-					dic("Settings.AlarmNoRFIDVehicle");
-				}
-				if ($row3["alarmtypeid"] == "24"){
-					dic("Settings.AlarmDefect");
-				}
-				if ($row3["alarmtypeid"] == "25"){
-					dic("acumulatorPowerSupplyInterruption");
-				}
-			
-			?>
-			
-			<?php if ($row3["alarmtypeid"] == "7"){
-					?>(<?php echo round($row3['speed']*$value,0);?> <?= $unitSpeed?>)<?php
-				}
-			?>
-			<?php if ($row3["alarmtypeid"] == "10"){
-					?>(<?php 
-						
-						$najdiIme = query("select * from pointsofinterest where id = ".$row3["poiid"]);
-						$imeto = pg_fetch_result($najdiIme, 0, "name");
-						echo $imeto;
-					?>)<br>
-			(<?php echo $row3['timeofpoi']; dic("Settings.minutes");?> )		
-					
-			<?php }?>	
-			
-			<?php if ($row3["alarmtypeid"] == "9" || $row3["alarmtypeid"] == "8"){
-					?>(<?php 
-						
-						$najdiIme = query("select * from pointsofinterest where id = ".$row3["poiid"]);
-						$imeto = pg_fetch_result($najdiIme, 0, "name");
-						echo $imeto;
-					
-					?>)<?php }?>
-				
-		</td>
-		<td align = "left" height="30px" class="text2" style="padding-left:10px; background-color:#fff; border:1px dotted #B8B8B8;">
-			<?php 
-			if($row3["emails"]!="")
-			{
-				echo $row3["emails"];
-			}
-			else
-			{
-			?> &nbsp;
-			<?php
-			}
-			?>
-		</td>
-		<?php
-		if ($clienttypeid == 6) {
-			?>
-			<td width="20%"  align = "left" height="30px" class="text2" style="padding-left:10px;background-color:#fff; border:1px dotted #B8B8B8;">
-				<?= nnull($row3["sms"], "/")?>
-			</td>	
-			<?php
-		}
-		?>
-		<!--td width="20%"  align = "center" height="30px" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;">
-			<?php 
-			if($row3["sms"]>0)
-			{
-				echo $row3["sms"];
-			}
-			else
-			{
-			?> &nbsp;
-			<?php
-			}
-			?>
-		</td-->  
-		<td align = "left" cheight="30px" class="text2" style="padding-left:10px; background-color:#fff; border:1px dotted #B8B8B8; ">
-			<?php echo dic_("Settings.Sound") . " " . $row3["soundid"]; ?>		
-			<?php 
-			$snoozeNajdi = query("select * from users where id=" . session("user_id") ."");
-			$snoozot = pg_fetch_result($snoozeNajdi, 0, "snooze");
-			
-			if($snoozot==0)
-			{
-				echo dic("Settings.NoRepetition");
-			}
-			else 
-			{
-				?> 
-			<?php
-				echo "(" . $snoozot . " " . dic_("Reports.Minutes") . ")";
-			}
-			?>
-			
-		</td>
-		<td align = "left" cheight="30px" class="text2" style="padding-left:10px; background-color:#fff; border:1px dotted #B8B8B8; ">
-			<?php
-			
-			if($row3["available"] ==1)
-			{
-			?>
-				<?php echo dic_("Settings.User")?>
-			<?php
-			}
-			else if($row3["available"]==2)
-			{
-			?>
-				<?php echo dic_("Reports.OrgUnit")?>
-			<?php
-			}
-			else if($row3["available"]==3)
-			{
-			?>
-				<?php echo dic_("Settings.Company")?>
-			<?php
-			}
-			else {
+			if ($clienttypeid == 6) {
 				?>
-				/
-			<?php
+				<td align = "left" width="20%" height="25px" align="center" class="text2" style="padding-left:10px; font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><?php echo dic_("Settings.SMS")?></td>
+				<?php
 			}
 			?>
-			
-		</td>
-		    
-		<td align = "center" height="30px" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8; ">
-			<button id="btnEditA<?php echo $cnt7?>"  onclick="EditAlertClick(<?php echo $row3["id"]?>)" style="height:25px; width:30px"></button>
-		</td>
-		<td align = "center" height="30px" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8; ">
-			<button id="DelBtnA<?php echo $cnt7?>"  onclick="DeleteAlertClick(<?php echo $row3["id"]?>)" style="height:25px; width:30px"></button>
-		</td>
-		</tr>
+			<td align = "left" width="13%" height="25px" align="center" class="text2" style="padding-left:10px; font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><?php dic("Settings.Sound") ?> (Snooze)</td>
+	        <td align = "left" width="15%" height="25px" align="center" class="text2" style="padding-left:10px; font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><?php dic("Settings.AvailableFor1")?></td>
+	        <td align = "center" width="8%" height="25px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><font color = "#ff6633"><?php dic("Settings.Change")?></font></td> 
+			<td align = "center" width="8%" height="25px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><font color = "#ff6633"><?php dic("Tracking.Delete")?></font></td>
+        </tr>
+
+    
 		<?php
-		$cnt7++;
-		}
-		}
-		?>
-        </table>
-		
-		
+		while($alert_row = pg_fetch_assoc($alertD))
+ 		{
+ 			$rowCnt++;
+ 			array_push($all_alerts, $alert_row);
+ 			?>
+ 			<tr>
+				<td align = "left" height="30px" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8; padding-left:10px">
+					<?php dic($alert_row['name']) ?>
+				</td>
+				<td align = "left" height="30px" class="text2" style="padding-left:10px; background-color:#fff; border:1px dotted #B8B8B8;">
+					<?php
+						if($alert_row["emails"]!="") echo $alert_row["emails"];
+					?>
+				</td>
+				<?php
+				if ($allowedSMSvEmail == 1) { ?>
+					<td class="text2 td-row la">
+					<?php
+						if($alert_row["smsviaemail"] != null) {
+							echo str_replace(',', '<br>', $alert_row["smsviaemail"]);
+						} else echo "/";
+					?>
+					</td>
+				<?php
+				}
+				?>
+				<td align = "left" cheight="30px" class="text2" style="padding-left:10px; background-color:#fff; border:1px dotted #B8B8B8; ">
+					<?php echo dic_("Settings.Sound") . "  " . $alert_row["soundid"];
+					echo (($snooze == 0) ? dic("Settings.NoRepetition") : " (" . $snooze . " " . dic_("Reports.Minutes") . ")"); ?>
+				</td>
+					<td align = "left" cheight="30px" class="text2" style="padding-left:10px; background-color:#fff; border:1px dotted #B8B8B8; ">
+					<?php
+						if($alert_row["available"] == 1) {
+							echo dic_("Settings.User");
+						} else
+						if($alert_row["available"] == 2) {
+							echo dic_("Reports.OrgUnit");
+						} else
+						if($alert_row["available"] == 3) {
+							echo dic_("Settings.Company");
+						} else {
+							?> / <?php
+						}
+					?>
+				</td>
+
+				<td align = "center" height="30px" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8; ">
+					<button id="btnEditA<?php echo $rowCnt?>" class="edit-btn" onclick="storeAlerts(true,<?php echo $alert_row["id"]?>)" style="height:22px; width:30px"></button>
+				</td>
+				<td align = "center" height="30px" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8; ">
+					<button id="DelBtnA<?php echo $rowCnt?>" class="del-btn" onclick="DeleteAlertClick(<?php echo $alert_row["id"]?>)" style="height:22px; width:30px"></button>
+				</td>
+
+ 			</tr>
+ 		<?php } ?>
+
+ 		</table>
+
+	<?php
+		 }?>
+
+	<script type="text/javascript">
+		row_array = <?php echo json_encode($all_alerts); ?>;
+		getMO = <?php echo json_encode($getFullOperators); ?>;
+	</script>
+
+	<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>> [END] ALERTS TABLE   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><  -->
+
+
      <div id="div-del-allowed-driver" style="display:none" title="<?php dic("Settings.DeletingAllowedDriver") ?>">
       	<?php dic("Settings.DeletingAllowedDriverQuestion") ?>
      </div>
@@ -1584,211 +1168,262 @@
 		<tr style="height:50px;">
 			 <td colspan=4><div style="border-bottom:1px solid #bebebe"></div></td>
         </tr>
-        
+
         <tr>
         <td colspan=6 align="right">
 	       	 <button id="mod1" onclick="modify()"><?php dic("Fm.Mod") ?></button>
 	         <button id="cancel1" onclick="cancel()"><?php dic("Fm.Cancel") ?></button>
     	 </td>
-    
+
      </tr>
      <tr><td colspan=4 style="height:50px"></td></tr>
      </table>
-     <div id="div-add-alerts" style="display:none" title="<?php dic("Settings.AddAlerts") ?>">
-     <div align = "center">
-     <table cellpadding="3" width="100%" style="padding-top: 25px;">
-     <tr>
-     <td width = "27%" style="font-weight:bold" class ="text2" align="left"><?php dic("Settings.TypeOfAlert") ?>:</td>
-     <td width = "73%">
-     <select id = "TipNaAlarm" style="font-size: 11px; width:373px; position: relative; top: 0px ;visibility: visible;" onchange="OptionsChange()" class="combobox text2">
-      		
-      				<option disabled="disabled">----------------------<?php dic("Settings.CommonAlerts")?>----------------------</option>
-   					<option value="01" selected="selected" <?php echo $t1?>><?php dic("Settings.AlarmPanic")?></option>
-		            <option value="02" <?php echo $t2?>><?php dic("Settings.AlarmAssistance")?></option>
-		            <option value="03" <?php echo $t3?>><?php dic("Settings.AlarmAcumulator")?></option>
-		            <option value="25" <?php echo $t25?>><?php dic("acumulatorPowerSupplyInterruption")?></option>
-		            <option value="24" <?php echo $t24?>><?php dic("Settings.AlarmDefect")?></option>
-                    <option value="04" <?php echo $t4?>><?php dic("Settings.AlarmVehicle")?></option>
-                    <option value="05" <?php if($allowedcapace==0){ ?>disabled="disabled" <?php }?> <?php echo $t5?>><?php dic("Settings.AlarmFuelCap")?></option>
-                    <option value="48" <?php if($allowFuel==0){ ?>disabled="disabled" <?php }?>><?php dic("Settings.FallFuel")?></option>
-                    <option value="06" <?php echo $t6?>><?php dic("Settings.AlarmSuddenBraking")?></option>
-                    <option value="07" <?php echo $t7?>><?php dic("Settings.AlarmSpeedExcess")?></option>
-                    <option value="08" <?php echo $t8?>><?php dic("Settings.AlarmEnterZone")?></option>
-                    <option value="09" <?php echo $t9?>><?php dic("Settings.AlarmLeaveZone")?></option>
-                    <option value="10" <?php echo $t10?>><?php dic("Settings.AlarmVisitPOI")?></option>
-		    <!--display: none na 29.08.2014 - poradi zabelska od polyesterday-->
-                    <option value="11" <?php echo $t11?> style="display:none"><?php dic("Settings.30MinNoDataIgnON")?></option>
-                    <option value="26" style="display: none"><?php dic("prednaleva")?></option>
-                    <option value="27" style="display: none"><?php dic("prednadesna")?></option>
-                    <option value="28" style="display: none"><?php dic("stranicnavrata")?></option>
-                    <option value="29" style="display: none"><?php dic("zadnavrata")?></option>
-                    <option value="30" style="display: none"><?php dic("stanatvozac")?></option>
-                 	<option disabled="disabled">-----------------------------<?php dic("Settings.RoutesCombo")?>---------------------------</option>
-		            <option value="12" <?php if($allowedrouting==0){ ?>disabled="disabled" <?php }?> <?php echo $t12?>><?php dic("Settings.AlarmUnOrdered")?></option>
-		            <option value="13" <?php if($allowedrouting==0){ ?>disabled="disabled" <?php }?> <?php echo $t13?>><?php dic("Settings.AlarmStayMoreThanAllowed")?></option>
-                    <option value="14" <?php if($allowedrouting==0){ ?>disabled="disabled" <?php }?> <?php echo $t14?>><?php dic("Settings.AlarmStayOutOfLocation")?></option>
-                    <option value="15" <?php if($allowedrouting==0){ ?>disabled="disabled" <?php }?> <?php echo $t15?>><?php dic("Settings.AlarmLeaveRoute")?></option>
-                    <option value="16" <?php if($allowedrouting==0){ ?>disabled="disabled" <?php }?> <?php echo $t16?>><?php dic("Settings.AlarmPause")?></option>
-                    <option disabled="disabled">-----------------<?php dic("Main.FleetManagement")?>-----------------</option>
-                    <option value="17" <?php if($allowedfm==0){ ?>disabled="disabled" <?php }?> <?php echo $t17?>><?php dic("Settings.AlarmRegExpire")?></option>
-                    <option value="18" <?php if($allowedfm==0){ ?>disabled="disabled" <?php }?> <?php echo $t18?>><?php dic("Settings.AlarmService")?></option>
-                    <!--option value="19" <?php if($allowedfm==0){ ?>disabled="disabled" <?php }?> <?php echo $t19?>><?php dic("Settings.AlarmGreenCard")?></option-->
-                    <option value="20" <?php if($allowedfm==0){ ?>disabled="disabled" <?php }?> <?php echo $t20?>><?php dic("Settings.AlarmPolnomLicense")?></option>
-		            <option disabled="disabled">-----------------------------RFID-----------------------------</option>
-		            <option value="22" <?php if($allowedrfid==0){ ?>disabled="disabled" <?php }?> <?php echo $t22?>><?php dic("Settings.AlarmUnauthorizedUseVehicle")?></option> 
-		            <option value="23" <?php if($allowedrfid==0){ ?>disabled="disabled" <?php }?> <?php echo $t23?>><?php dic("Settings.AlarmNoRFIDVehicle")?></option>
-     				<option disabled="disabled">-------------------------<?php dic("Settings.MotoAlarms")?>-----------------------</option>
-		            <option value="37" <?php if($clienttypeid!=6){ ?>disabled="disabled" <?php }?> <?php echo $t37?>><?php dic("Settings.Tow")?></option> 
-		            <option value="38" <?php if($clienttypeid!=6){ ?>disabled="disabled" <?php }?> <?php echo $t38?>><?php dic("Settings.WeakAcc")?></option>
-     </select>
-     </td>
-     </tr>
-     <tr id="zonataTockata" style="display:none;">
-     <td width = "27%" style="font-weight:bold" class ="text2" align="left">Избери точка:</td>
-     <td width = "73%" style="font-weight:bold" class ="text2">
-     <div class="ui-widget" style="height: 25px; width: 100%;">
-     <select id="combobox" style="width: 370px;">
-        <option value="">Select one...</option>
-        <?php
-        	$str1 = "";
-			$str1 .= "select * from pointsofinterest where clientid=" . session("client_id") ." and type=1 and active = '1' ORDER BY name";
-			$dsPP = query($str1);
-            while($row = pg_fetch_array($dsPP)) {
-       	    ?>
-            <option value="<?php echo $row["id"] ?>"><?php echo $row["name"]?></option>
-        	<?
-            }
-        ?>
-     </select>
-	 </div>
-	 </td>
-     </tr>
-     <tr id="zonataTockata2" style="display:none;">
-     <td style="font-weight:bold" class ="text2" width="27%" align="left"><?php dic("Routes.RetentionTime")?>:</td>
-     <td style="font-weight:bold" class ="text2" width="73%">
-     <input id = "vreme" class="textboxcalender corner5 text5" type="text" size="5"></input>&nbsp;<?php echo dic("Reports.Minutes")?></td>
-     </tr>
-     <tr id="zonaVlez" style="display:none;">
-     <td width = "27%" style="font-weight:bold" class ="text2" align="left">Избери зона за влез:</td>
-     <td width = "73%" style="font-weight:bold" class ="text2">
-     <div class="ui-widget" style="height: 25px; width: 100%;">
-     <select id="comboboxVlez" style="width: 370px">
-        <option value="">Select one...</option>
-        <?php
-        	$str2 = "";
-			$str2 .= "select * from pointsofinterest where clientid=" . session("client_id") ." and type=2 and active = '1' ORDER BY name";
-			$dsPP2 = query($str2);
-            while($row2 = pg_fetch_array($dsPP2)) {
-        ?>
-            <option value="<?php echo $row2["id"] ?>"><?php echo $row2["name"]?></option>
-        <?
-            }
-        ?>
-     </select>
-	 </div>
-	 </td>
-     </tr>
-     <tr id="zonaIzlez" style="display:none;">
-     <td width = "27%" style="font-weight:bold" class ="text2" align="left">Избери зона за излез:</td>
-     <td width = "73%" style="font-weight:bold" class ="text2">
-     <div class="ui-widget" style="height: 25px; width: 100%;">
-     <select id="comboboxIzlez" style="width: 370px">
-        <option value="">Select one...</option>
-        <?php
-        	$str3 = "";
-			$str3 .= "select * from pointsofinterest where clientid=" . session("client_id") ." and type=2 and active = '1' ORDER BY name";
-			$dsPP3 = query($str3);
-            while($row3 = pg_fetch_array($dsPP3)) {
-        ?>
-            <option value="<?php echo $row3["id"] ?>"><?php echo $row3["name"]?></option>
-        <?
-            }
-        ?>
-     </select>
-	 </div>
-	 </td>
-     </tr>
-     <tr id="nadminuvanjeBrzina" style="display:none;">
-     <td width = "27%" style="font-weight:bold" class ="text2"  align="left"><?php echo dic("Reports.Speed")?>:</td>
-     <td width = "73%" style="font-weight:bold" class ="text2"><input id = "brzinata" class="textboxcalender corner5 text5" type="text" size="10"></input>&nbsp;<?= $unitSpeed?></td>
-     </tr>
-    
-    <?php
-    if ($clienttypeid == 6) {
-    	?>
-    	<tr>
-	     <td width = "27%" style="font-weight:bold" class ="text2"  align="left"><?php echo dic_("Settings.SMS")?></td>
-	     <td width = "73%" style="font-weight:bold" class ="text2"><input id = "sms" class="textboxcalender corner5 text5" type="text" style = "width:373px"></input></td>
-	    </tr>
-    	<?php
-    }
-    ?>
-     <tr>
-     <td width = "27%" valign="middle" style="font-weight:bold" class ="text2" align="left"><?php dic("Settings.Sound")?>:</td>
-     <td width = "73%" valign="middle">
-     <select id = "zvukot" style="font-size: 11px; position: relative; top: 0px ;visibility: visible; float:left" class="combobox text2">
-     <option value = "1"><?php dic("Settings.Sound")?> 1</option>
-     <!--
-     <option value = "2"><?php dic("Settings.Sound")?> 2</option>
-     <option value = "3"><?php dic("Settings.Sound")?> 3</option>
-     <option value = "4"><?php dic("Settings.Sound")?> 4</option>
-     <option value = "5"><?php dic("Settings.Sound")?> 5</option>
-     -->
-     </select>
-     <audio id="demo" src="../tracking/sound/bells_alarm.ogg"></audio>
-	 <button id="play" onclick="document.getElementById('demo').play()" title="<?= dic_("Settings.Play") ?>" style="width: 35px;height: 27px; position: relative; margin-left:10px"></button>
-     <button id="pause" onclick="document.getElementById('demo').pause()" title="<?= dic_("Settings.Stop") ?>" style="width: 35px;height: 27px; position: relative;"></button>
-     <button id="poglasno" onclick="poglasno()" title="<?= dic_("Settings.Louder") ?>" style="width: 35px;height: 27px; position: relative;"></button>
-     <button id="potivko" onclick="potivko()" title="<?= dic_("Settings.Quieter") ?>" style="width: 35px;height: 27px; position: relative;"></button>
-	 </td>
-	 </tr>
-	 <tr>
-     <td width = "27%" style="font-weight:bold" class ="text2"  align="left"><?php dic("Settings.AvailableFor1")?>:</td>
-     <td width = "73%" style="font-weight:bold" class ="text2"><div id="gfAvail" class="corner5">
-        <input type="radio" id="GFcheck1" name="radio" checked="checked" /><label for="GFcheck1"><?php echo dic_("Settings.User")?></label>
-        <input type="radio" id="GFcheck2" name="radio" /><label for="GFcheck2"><?php echo dic_("Reports.OrgUnit")?></label>
-        <input type="radio" id="GFcheck3" name="radio" /><label for="GFcheck3"><?php echo dic_("Settings.Company")?></label>
-     </div>
-     </td>
-     </tr>
-     
-     <tr id="fm" style="display:none;">
-	     <td width = "27%" style="font-weight:bold" class ="text2"  align="left"><?= dic_("Settings.RemindMe")?> <?= dic_("Settings.Before")?>:</td>
-	     <td width = "73%" style="" class ="text2">
-	     	<span id="rmdD">
-	     	 <input id="remindDays" type="checkbox" name="remindme" value="days" style="position: relative; top:4px; display:none" checked /> 
-	     	 <input id = "fmvalueDays" class="textboxCalender corner5 text5" type="text" style="width:40px" value="5"> <?= dic_("Reports.Days_")?>
-	     	</span>
-	     	<span id="rmdKm" style="display: none"> 
-	     	 <input id="remindKm" type="checkbox" name="remindme" value="Km" style="position: relative; top:4px; margin-left: 15px" /> 
-	     	 <input id = "fmvalueKm" class="textboxCalender corner5 text5" type="text" style="width:40px" value="0"> <?= $metric?>
-	     	</span> 	     	
-	     	<!--input id = "fmvalue" class="textboxCalender corner5 text5" type="text" style="width:40px" value="0">
-	     	<select id="remindfm" style="font-size: 11px; width:65px" class="combobox text2">
-	     		<option value="days"><?= dic_("Reports.Days_")?></option>
-	     		<option value="Km"><?= $metric?></option>
-	     	</select-->
-	     	<!--font style="font-weight: normal;"><?= dic_("Settings.Before")?></font-->
-	     </td>
-     </tr>
-     
-     <tr id="noteFmAlarm" style="display:none">
-	     <td width = "27%"></td>	
-	     <td id="textFmAlarm" width = "73%" class="text2" style="color:#ff0000; font-size: 10px"></td>
-     </tr>
-     
-      <tr>
-     <td width = "27%" style="font-weight:bold" class ="text2"  align="left"><?= dic_("Settings.Email")?>:</td>
-     <td width = "73%" style="font-weight:bold" class ="text2"><input id = "emails" class="textboxcalender corner5 text5" type="text" style = "width:373px"></input></td>
-     </tr>
-     <tr>
-     <td width = "27%"></td>	
-     <td width = "73%" style="color:#ff0000; font-size: 10px" class ="text2"><?php echo dic_("Reports.SchNote")?>:</td>
-     </tr>
-   	 </table> 	
-     </div>
-     
-   	 </div>
+
+<!-- >>>>>>>>>>>>>>>>>>>>> OLD DIALOG ADD ALERTS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   -->
+
+  
+
+
+<!-- **************************************   ADD DIALOG   ******************************************** -->
+
+<div id="dialog-alerts" style="display:none" title="<?php dic("Settings.AddAlerts") ?>">
+	<div align = "center">
+
+	<table cellpadding="3" width="100%" style="padding-top: 25px;">
+		<tr>
+			<td width = "25%" style="font-weight:bold" class ="text2" align="left"><?php dic("Settings.TypeOfAlert") ?></td>
+			<td width = "75%">
+			<select id = "TipNaAlarm" style="font-size: 11px; width:365px; position: relative; top: 0px ;visibility: visible;" onchange="OptionsChangeAlarmType()" class="combobox text2">
+			<?php
+
+			$alarmgroup = "";
+			foreach ($alarmTypes as $index => $alarmRow) {
+
+				// proverki za koi opcii da bidat dozvoleni
+				$alarmRow['check'] = 0;
+				$alarmRow['jump'] = 1;
+
+				if($alarmRow['id'] == 48 && $allowFuel == 0) $alarmRow['check'] = 1;	// alarm za dozvoleno gorivo
+				if(($alarmRow['id'] == 23 || $alarmRow['id'] == 22) && $allowedRFID == 0) $alarmRow['check'] = 1;	// alarm za RFID
+				if($alarmRow['id'] == 5  && $allowedCapace == 0) $alarmRow['check'] = 1;  // za dali e dozvoleno kapace za korivo
+
+				if($alarmRow['alarmgroup'] == "3-RoutesCombo" && $allowedrouting == 0) $alarmRow['check'] = 1;
+				if($alarmRow['alarmgroup'] == "4-FleetManagement"  && $allowedfm == 0) $alarmRow['check'] = 1;
+				if($alarmRow['alarmgroup'] == "6-MotoAlarms"  && $clienttypeid != 6) $alarmRow['check'] = 1;
+				if($alarmRow['alarmgroup'] == "8-AssetAlerts"  && $clienttypeid != 7) $alarmRow['jump'] = 0;
+				if($alarmRow['alarmgroup'] == "7-SecurityAlerts"  && $clienttypeid != 8) $alarmRow['jump'] = 0;
+				if($alarmRow['alarmgroup'] == "9-OBDAlerts"  && $clienttypeid != 9) $alarmRow['jump'] = 0;
+				if($alarmRow['alarmgroup'] == "10-PersonalAlerts"  && $clienttypeid != 3) $alarmRow['jump'] = 0;
+				
+				// [END]. proverki --------------------------------------------------------------------------------------
+				if($alarmRow["jump"]==1) {
+					if($alarmRow["alarmgroup"] == $alarmgroup) {
+						// prikazi gi site od ist alarmgroup
+						?>
+							<option value="<?php echo $alarmRow['id'] ?>" <?php if($alarmRow["check"]==1) echo "disabled='disabled'" ?>><?php dic($alarmRow['name']) ?></option>
+						<?php
+					} else {
+						// promeni go
+						$alarmgroup = $alarmRow["alarmgroup"];
+						$alarmgroupShow = explode('-', $alarmgroup);
+						// prikazi ja taa grupa kako disabled vo option
+						?>
+							<option disabled="disabled">----------------------<?php dic("Settings." . $alarmgroupShow[1]) ?>----------------------</option>
+							<option value="<?php echo $alarmRow['id'] ?>" <?php if($alarmRow["check"]==1) echo "disabled='disabled'" ?>><?php dic($alarmRow['name']) ?></option>
+						<?php
+					}
+				}
+			}
+			?>
+			</select>
+			</td>
+		</tr>
+		<tr id="toi-div" style="display:none;">
+			<td width = "25%" style="font-weight:bold" class ="text2" align="left"><?php echo dic_("select")?> <?php echo dic_("Tracking.POI")?></td>
+			<td width = "75%" style="font-weight:bold" class ="text2">
+				<div class="ui-widget" style="height: 25px; width: 100%;">
+					<select id="combobox" style="width: 370px;">
+						<?php
+						$str1 = "";
+						$str1 .= "select * from pointsofinterest where clientid=" . $cid ." and type=1 and active = '1' ORDER BY name";
+						$dsPP = query($str1);
+						while($row = pg_fetch_array($dsPP))
+						{
+						?>
+							<option value="<?php echo $row["id"] ?>"><?php echo $row["name"]?></option>
+						<?
+						}
+						?>
+					</select>
+				</div>
+			</td>
+		</tr>
+		<tr id="toi-div-2" style="display:none;">
+			<td style="font-weight:bold" class ="text2" width="25%" align="left"><?php dic("Routes.RetentionTime")?></td>
+			<td style="font-weight:bold" class ="text2" width="75%">
+				<input id = "vreme" class="textboxcalender corner5 text5" type="text" size="5"></input>&nbsp;<?php echo dic("Reports.Minutes")?>
+			</td>
+		</tr>
+		<tr id="zv-div" style="display:none;">
+			<td width = "25%" style="font-weight:bold" class ="text2" align="left"><?php echo dic_("Settings.SelectEnterGeoF")?></td>
+			<td width = "75%" style="font-weight:bold" class ="text2">
+				<div class="ui-widget" style="height: 25px; width: 100%;">
+					<select id="comboboxVlez" style="width: 365px">
+						<?php
+						$str2 = "";
+						$str2 .= "select * from pointsofinterest where clientid=" . $cid ." and (type=2 or type=3) and active = '1' ORDER BY name";
+						$dsPP2 = query($str2);
+
+						while($row2 = pg_fetch_array($dsPP2)) {
+						?>
+							<option value="<?php echo $row2["id"] ?>" ><?php echo $row2["name"]?></option>
+						<?
+						}
+						?>
+					</select>
+				</div>
+			</td>
+		</tr>
+		<tr id="zi-div" style="display:none;">
+			<td width = "25%" style="font-weight:bold" class ="text2" align="left"><?php echo dic_("Settings.SelectExitGeoF")?></td>
+			<td width = "75%" style="font-weight:bold" class ="text2">
+				<div class="ui-widget" style="height: 25px; width: 100%;">
+					<select id="comboboxIzlez" style="width: 370px">
+						<?php
+						$str3 = "";
+						$str3 .= "select * from pointsofinterest where clientid=" . $cid ." and (type=2 or type=3) and active = '1' ORDER BY name";
+						$dsPP3 = query($str3);
+						while($row3 = pg_fetch_array($dsPP3)) {
+						?>
+							<option value="<?php echo $row3["id"] ?>"><?php echo $row3["name"]?></option>
+						<?
+						}
+						?>
+					</select>
+				</div>
+			</td>
+		</tr>
+		<tr id="nadminuvanjeBrzina" style="display:none;">
+			<td width = "25%" style="font-weight:bold" class ="text2"  align="left"><?php echo dic("Reports.Speed")?></td>
+			<td width = "75%" style="font-weight:bold" class ="text2"><input id = "brzinata" class="textboxcalender corner5 text5" type="text" size="10"></input>&nbsp;<?php echo $unitSpeed ?></td>
+		</tr>
+		
+
+		<tr id="OrganizacionaEdinica" style="display:none;">
+			<td width = "25%" style="font-weight:bold" class ="text2" align="left"><?php echo dic_("Tracking.SelectOrg.Unit")?>:</td>
+			<td width = "75%" style="font-weight:bold" class ="text2">
+			<div class="ui-widget" style="height: 25px; width: 100%">
+			<select id="oEdinica" style="width: 365px;" class="combobox text2">
+				<?php
+				$dsPP2 = query($strOrg);
+
+				$brojRedovi = pg_num_rows($dsPP2);
+				while($row2 = pg_fetch_array($dsPP2)) {
+				?>
+				<option value="<?php echo $row2["id"] ?>"><?php if ($brojRedovi>0){ echo $row2["name"]?>&nbsp;(<?php echo $row2["code"]?><?php }else{ echo dic_("Settings.NoOrgU");}?>)</option>
+				<?
+				}
+				?>
+			</select>
+			</div>
+			</td>
+		</tr>
+		<tr id="fm" style="display:none;">
+			<td width = "27%" style="font-weight:bold" class ="text2"  align="left"><?php echo dic_("Settings.RemindMe")?> <?php echo dic_("Settings.Before")?>:</td>
+			<td width = "73%" style="" class ="text2">
+				<span id="rmdD">
+				 <input id="remindDays" type="checkbox" name="remindme" value="days" style="position: relative; top:4px; display:none" checked /> 
+				 <input id = "fmvalueDays" class="textboxCalender corner5 text5" type="text" style="width:40px" value="5"> <?php echo dic_("Reports.Days_")?>
+				</span>
+				<span id="rmdKm" style="display: none">
+				 <input id="remindKm" type="checkbox" name="remindme" value="Km" style="position: relative; top:4px; margin-left: 15px" /> 
+				 <input id = "fmvalueKm" class="textboxCalender corner5 text5" type="text" style="width:40px" value="0"> <?php echo $metric?>
+				</span>
+			</td>
+		</tr>
+		<tr id="noteFmAlarm" style="display:none">
+			<td width = "27%"></td>
+			<td id="textFmAlarm" width = "73%" class="text2" style="color:#ff0000; font-size: 10px"></td>
+		</tr>
+		<tr>
+			<td width = "25%" style="font-weight:bold" class ="text2"  align="left"><?php echo dic_("Tracking.Emails")?></td>
+			<td width = "75%" style="font-weight:bold" class ="text2"><input id = "emails" class="textboxcalender corner5 text5" type="text" style = "width:365px"></input></td>
+		</tr>
+		<tr>
+			<td width = "25%"></td>
+			<td width = "75%" class ="text2" style="font-size:10px"><font color = "red" ><?php echo dic_("Reports.SchNote")?></font></td>
+		</tr>
+
+		<!-- *************************** SMS VIA EMAIL ******************************************* -->
+
+		<tr class="SMSemail" style="display:none">
+			<td width = "25%" style="font-weight:bold" class ="text2"  align="left"><?php echo dic_("Tracking.SMSEmails")?></td>
+			<td width = "75%" style="font-weight:bold" class ="text2"><input id = "smsviaemail" class="textboxcalender corner5 text5" type="text" style = "width:365px"></input></td>
+		</tr>
+
+		<tr class="SMSemail" style="display:none">
+			<td width = "25%" ></td>
+			<td width = "75%" class ="text2" style="font-size:10px"><font color = "red" ><?php echo dic_("Reports.SchNoteSms")?></font></td>
+		</tr>
+
+		<!-- <tr class="SMSemail" style="display:none;">
+			<td width = "25%" style="font-weight:bold" class ="text2" align="left"><?php echo dic_("Tracking.MobileOperator")?>:</td>
+			<td width = "75%" style="font-weight:bold" class ="text2">
+				<div class="ui-widget" style="height: 25px; width: 100%">
+				<select id="mobilenoperator" style="width: 365px;" class="combobox text2">
+					<option value="0" selected="selected"><?php echo dic_("Settings.MobileOperator")?></option>
+					<?php
+
+					while($operator = pg_fetch_array($qGetMobileOperators)) {
+					?>
+					<option value="<?php echo $operator["id"] ?>"><?php echo $operator["name"]; ?></option>
+					<?
+					}
+					?>
+				</select>
+				</div>
+			</td>
+		</tr> -->
+
+		<!-- *************************** SMS VIA EMAIL ******************************************* -->
+		<tr>
+			<td width = "25%" valign="middle" style="font-weight:bold" class ="text2" align="left"><?php dic("Settings.Sound")?></td>
+			<td width = "75%" valign="middle">
+			<select id = "zvukot" style="font-size: 11px; position: relative; top: 0px ;visibility: visible; float:left" class="combobox text2">
+			<option value = "1"><?php dic("Settings.Sound")?> 1</option>
+
+			<option value = "2"><?php dic("Settings.Sound")?> 2</option>
+			<option value = "3"><?php dic("Settings.Sound")?> 3</option>
+			<option value = "4"><?php dic("Settings.Sound")?> 4</option>
+			<option value = "5"><?php dic("Settings.Sound")?> 5</option>
+
+			</select>
+			<audio id="demo" src="../tracking/sound/bells_alarm.ogg"></audio>
+			<button id="play" onclick="document.getElementById('demo').play()" style="position: relative; width: 35px;height: 28px; margin-left:10px;"></button>
+			<button id="pause" onclick="document.getElementById('demo').pause()" style="position: relative; width: 35px;height: 28px;"></button>
+			<button id="poglasno" onclick="document.getElementById('demo').volume+=0.1" style="position: relative; width: 35px;height: 28px;"></button>
+			<button id="potivko" onclick="document.getElementById('demo').volume-=0.1" style="position: relative; width: 35px;height: 28px;"></button>
+			</td>
+		</tr>
+		<tr>
+			<td width = "25%" style="font-weight:bold" class ="text2"  align="left"><?php echo dic_("Settings.AvailableFor1")?>:</td>
+			<td width = "75%" style="font-weight:bold" class ="text2"><div id="gfAvail" class="corner5">
+			<input type="radio" value="1" id="GFcheck1" name="radio" checked="checked" /><label for="GFcheck1"><?php echo dic_("Settings.User")?></label>
+			<input type="radio" value="2" id="GFcheck2" name="radio" /><label for="GFcheck2"><?php echo dic_("Reports.OrgUnit")?></label>
+			<input type="radio" value="3" id="GFcheck3" name="radio" /><label for="GFcheck3"><?php echo dic_("Settings.Company")?></label>
+			</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+</div>
+
+<!-- ************************************************************************************************** -->
+
+
+
+
+
      <!-- OVDE ZAVRSUVAAT ALERTITE !!!-->
      <div id="div-del-alert" style="display:none" title="<?php echo dic("Settings.AlertDeleteQuestion")?>">
         <?php echo dic("Settings.DelAlert")?>
@@ -2514,6 +2149,419 @@
     </script>
     
     <script>      
+
+// koga nasokata e zapis vo baza (klient - > server)
+function convertMetric( edinica, vrednost) {
+	return (edinica.toLowerCase() == 'mi') ?  (Number(vrednost) * 1.60934) : Number(vrednost);
+}
+
+function email_validate(value) {
+    var emailovi = value.split(",");
+    var izlez;
+    emailovi.forEach(function(mejl) {
+        var filter = new RegExp(/^(("[\w-+\s]+")|([\w-+]+(?:\.[\w-+]+)*)|("[\w-+\s]+")([\w-+]+(?:\.[\w-+]+)*))(@((?:[\w-+]+\.)*\w[\w-+]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][\d]\.|1[\d]{2}\.|[\d]{1,2}\.))((25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\.){2}(25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\]?$)/i);
+        izlez = filter.test(mejl.trim());
+    });
+    return izlez;
+}
+
+function validate_smsvemails(value, operators) {
+	var mails = value.split(',');
+	var ret = true;
+	var new_data = "";
+	mails.forEach(function(data){
+		var filter = new RegExp(/^(("[\w-+\s]+")|([\w-+]+(?:\.[\w-+]+)*)|("[\w-+\s]+")([\w-+]+(?:\.[\w-+]+)*))(@((?:[\w-+]+\.)*\w[\w-+]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][\d]\.|1[\d]{2}\.|[\d]{1,2}\.))((25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\.){2}(25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\]?$)/i);
+		ret = ret && filter.test(data.trim());
+		new_data+=data.trim()+",";
+		var cell_numb = data.split('@');
+		ret = ret && validate_phone(Number(cell_numb[0]));
+	    var op = cell_numb[1];
+	    console.log("operator @ :"+op);
+	    validate_smsvemails.check = check_operator(operators,op);
+	});
+	validate_smsvemails.v = new_data.slice(0,-1); // za poslednata zapirka
+	return ret;
+}
+
+function check_operator(operators,value){
+	var ret = false;
+	operators.forEach(function(data){
+		if(data.email == value) ret = ret || true;
+	});
+	return ret;
+}
+
+function timed_refresh (delay) {
+	setTimeout(function(){
+	   	window.location.reload(1);
+	}, delay);
+}
+
+
+// --------------- MAIN FUNCTION -------------------------
+
+function storeAlerts(isEdit, _id) {
+
+	if (typeof(isEdit)==='undefined') isEdit = false;	// default value for addAlert
+   	if (typeof(_id)==='undefined') _id = 0;
+
+   	dialogPosition = $(window).scrollTop();
+
+   	if(isEdit){
+
+		for(i=0; i<row_array.length; ++i){
+			if(row_array[i].id == Number(_id)) {
+				objID = i;
+			}
+		}
+   		console.log(row_array[objID]);
+   	}
+
+    $('#dialog-alerts').dialog({
+        modal: true,
+        width: 590,
+        height: 525,
+        resizable: false,
+        title: (isEdit) ? dic("Settings.ChangeAlert",lang) : dic("Settings.AddAlerts",lang) ,
+        open: function() {
+        	window.scrollTo(0,0);
+        	var win = $(window);
+            $(this).parent().css({   position:'absolute',
+            	left: (win.width() - $(this).parent().outerWidth())/2,
+            	top: (win.height() - $(this).parent().outerHeight())/2
+            });
+
+        	allowedSMSviaEmail = Number('<?php echo $allowedSMSvEmail; ?>');
+   			if(allowedSMSviaEmail == 1) {
+   				$('.SMSemail').show();
+
+   			}
+
+    	    $(function () {
+		        $("#combobox").combobox();
+		        if(isEdit) {
+		        	$("#combobox").combobox('setval',$('#combobox option[value="'+ row_array[objID].poiid +'"]').text());
+		        	$("select#combobox").val(row_array[objID].poiid);
+		    	}
+		        $("#toggle").click(function () {
+		            $("#combobox").toggle();
+		        });
+		    });
+		    $(function () {
+		        $("#comboboxVlez").combobox();
+		        if(isEdit) {
+		        	$("#comboboxVlez").combobox('setval',$('#comboboxVlez option[value="'+ row_array[objID].poiid +'"]').text());
+		        	$("select#comboboxVlez").val(row_array[objID].poiid);
+		        }
+		        $("#toggle").click(function () {
+		            $("#comboboxVlez").toggle();
+		        });
+		    });
+		    $(function () {
+		        $("#comboboxIzlez").combobox();
+		        if(isEdit) {
+		        	$("#comboboxIzlez").combobox('setval',$('#comboboxIzlez option[value="'+ row_array[objID].poiid +'"]').text());
+		        	$("select#comboboxIzlez").val(row_array[objID].poiid);
+		        }
+		        $("#toggle").click(function () {
+		            $("#comboboxIzlez").toggle();
+		        });
+		    });
+  			if(isEdit) {
+
+  				$("#TipNaAlarm option[value="+row_array[objID].alarmtypeid+"]").attr('selected','selected');
+		    	$('#TipNaAlarm').attr('disabled', 'disabled');
+		    	OptionsChangeAlarmType();
+		    	$('#brzinata').val(Math.round(row_array[objID].speed * Number('<?php echo $value ?>')));
+		    	$('#vreme').val(row_array[objID].timeofpoi);
+
+		    	$("#oEdinica option[value="+row_array[objID].settings+"]").attr('selected','selected');
+
+		    	if(row_array[objID].remindme !== null){
+
+		    		if(row_array[objID].remindme.indexOf(";") != -1){ // ako ima ";"
+		    			var gservice = row_array[objID].remindme.split(";");
+		    			$("#fmvalueDays").val(gservice[0].split(" ")[0]);
+		    			var fmvaluemetric = gservice[1].trim().split(" ")[0];
+		    			$('#fmvalueKm').val(Math.round(fmvaluemetric * Number('<?php echo $value ?>')));
+		    			$('#remindDays').attr('checked',true);
+		    			$('#remindKm').attr('checked',true);
+		    		} else {
+		    			if(row_array[objID].remindme.indexOf("days") != -1) { // ima samo denovi
+		    				$("#fmvalueDays").val(row_array[objID].remindme.split(" ")[0]);
+		    				$('#remindDays').attr('checked',true);
+		    			}
+		    			if(row_array[objID].remindme.indexOf("Km") != -1) { // ima samo Km
+		    				var fmvaluemetric2 = row_array[objID].remindme.split(" ")[0];
+		    				$('#fmvalueKm').val(Math.round(fmvaluemetric2 * Number('<?php echo $value ?>')));
+							$('#remindKm').attr('checked',true);
+							$('#remindDays').attr('checked',false);
+							$("#fmvalueDays").val("");
+		    			}
+		    		}
+		    	}
+
+		    	$('#emails').val(row_array[objID].emails);
+
+		    	// ako e dozvolena ovaa opcija
+		    	if(allowedSMSviaEmail == 1 && row_array[objID].smsviaemail != null && row_array[objID].smsviaemail != "") {
+		    		$('#smsviaemail').val(row_array[objID].smsviaemail);
+		    	}
+
+		    	$('#GFcheck' + row_array[objID].available).attr('checked',true);
+		    	$('input:radio[name=radio]').button('refresh');
+  			}
+
+  			else {	// ako ne e edit (dodavanje)
+  				ClearDialog();	// se povukuva za da se iscisti od prethodno ako ne e povikano window.reload
+   			}
+        },
+        close: function() {
+        	$("#combobox").combobox('destroy');
+        	$("#comboboxVlez").combobox('destroy');
+        	$("#comboboxIzlez").combobox('destroy');
+        	ClearDialog();
+        	console.log("destroyed...");
+			window.scrollTo(0,dialogPosition);
+        },
+        buttons: [{
+            text: (isEdit) ? dic('Fm.Mod', lang) : dic('Settings.Add', lang),
+            click: function(data) {
+
+                var tipNaAlarm = $('#TipNaAlarm').val();
+                var email = $.map($('#emails').val().split(","), $.trim);	//clear the whitespaces in between
+                var sms = '';
+                if (Number('<?php echo $clienttypeid ?>') == 6) sms = $('#sms').val();
+                var zvukot = $('#zvukot').val();
+                var ImeNaTocka = $('#combobox').val();
+                var ImeNaTockaProverka = document.getElementById('combobox').selectedIndex;
+                var ImeNaZonaIzlez = $('#comboboxIzlez').val();
+                var ImeNaZonaIzlezProverka = document.getElementById('comboboxIzlez').selectedIndex;
+                var ImeNaZonaVlez = $('#comboboxVlez').val();
+                var ImeNaZonaVlezProverka = document.getElementById('comboboxVlez').selectedIndex;
+                var orgEdinica = '';
+                var NadminataBrzina = convertMetric('<?php echo $metric ?>', $('#brzinata').val());
+                var vreme = $('#vreme').val();
+                var alarmSelect = document.getElementById('TipNaAlarm').selectedIndex;
+                var voziloOdbrano = row_array[0]['vid'];
+                console.log(voziloOdbrano);
+                var dostapno = getCheckedRadio('radio');
+                var valueDays = $('#fmvalueDays').val();
+                var valueKm = convertMetric('<?php echo $metric ?>', $('#fmvalueKm').val());
+
+                var smsviaemail = (allowedSMSviaEmail == 1) ? $('#smsviaemail').val(): "";
+
+                //------------------------------------------------------------------------//
+                ////////////////////////////////////////////////////////////////////////////
+
+
+                var validation = [];
+
+                if(email === '') validation.push("Settings.AlertsEmailHaveTo");
+                if(email.length > 0 && !email_validate($('#emails').val())) validation.push("uncorrEmail");
+
+                // validate sms via email multi
+                if(allowedSMSviaEmail == 1 && smsviaemail !== "") {
+                	if(!validate_smsvemails(smsviaemail,getMO)) validation.push("Settings.InvalidSMSEmailFormat");
+                	if(!validate_smsvemails.check) validation.push("Settings.ValidMobileOperator");
+                }
+
+	 			if(tipNaAlarm == 7 && !isNormalInteger(Math.round(NadminataBrzina).toString())){
+	 				validation.push("Settings.InsertSpeedOver");
+	 			}
+	 			if(tipNaAlarm == 8 && ImeNaZonaVlezProverka == ""){
+	 				validation.push("Settings.SelectEnterGeoF");
+	 			}
+	 			if(tipNaAlarm === 9 && ImeNaZonaIzlezProverka == ""){
+	 				validation.push("Settings.SelectExitGeoF");
+				}
+	 			if(tipNaAlarm == 10){
+	 				if (ImeNaTockaProverka == "") validation.push("Settings.SelectPOI2");
+	 				else {
+		 				if(!isNum(vreme)) validation.push("Settings.InsertRetTime");
+	 				}
+	 			}
+	 			if((tipNaAlarm == 17 || tipNaAlarm == 20) && !isNormalInteger(valueDays)){
+	 				validation.push("Settings.InsertValidTime");
+	 			}
+
+	 			if(tipNaAlarm == 18) {
+	 				if(isChecked("remindKm") === false && isChecked("remindDays") === false) validation.push("Settings.RemindMeMustOne");
+	 				if(isChecked("remindDays") === true && !isNormalInteger(Math.round(valueDays).toString())) validation.push("Settings.InsertValidTime");
+	 				if(isChecked("remindKm") === true && !isNormalInteger(Math.round(valueKm).toString())) validation.push("Settings.InsertValidLength");
+	 			}
+
+	 			//------------------------------[END] validation ------------------------------------//
+                ///////////////////////////////////////////////////////////////////////////////////////
+
+	 			console.log(validation);
+	 			console.log(validation.length);
+
+				var remindme = '';
+			  	if (tipNaAlarm == 17 || tipNaAlarm == 18 || tipNaAlarm == 20) {
+			  		var fmvalueDays = "";
+
+			  		if (tipNaAlarm == 18) {
+			  			if ($('#remindDays').is(':checked')) {
+			  				fmvalueDays = $('#fmvalueDays').val() + " days";
+			  			}
+			  		} else {
+			  			if ($('#fmvalueDays').val() != "") {
+				  			fmvalueDays = $('#fmvalueDays').val() + " days";
+				  		}
+			  		}
+
+				  	var fmvalueKm = "";
+				  	if ($('#rmdKm').css('display') != 'none') {
+				  		if (tipNaAlarm == 18) {
+				  			if ($('#remindKm').is(':checked')) {
+				  				if (fmvalueDays != "")
+				  					fmvalueKm += "; " + Math.round($('#fmvalueKm').val()/ Number('<?php echo $value?>')) + " Km";
+				  				else
+				  					fmvalueKm = Math.round($('#fmvalueKm').val()/ Number('<?php echo $value?>')) + " Km";
+				  			}
+				  		} else {
+				  			if ($('#fmvalueKm').val() != "") {
+					  			if (fmvalueKm != "")
+					  				fmvalueKm += "; " + Math.round($('#fmvalueKm').val()/ Number('<?php echo $value?>')) + " Km";
+					  			else
+					  				fmvalueKm = Math.round($('#fmvalueKm').val()/ Number('<?php echo $value?>')) + " Km";
+					  		}
+				  		}
+				  	}
+			  		remindme = fmvalueDays + fmvalueKm;
+			  	}
+
+	 			// get and construct the sms via email format
+	 			var sendSMS = '';
+	 			validate_smsvemails($('#smsviaemail').val(),getMO);
+	 			smsviaemail = validate_smsvemails.v;
+	 			if(validation.length === 0 && allowedSMSviaEmail == 1 && smsviaemail != "") sendSMS = smsviaemail;
+				console.log("SEND SMS: " + sendSMS);
+
+			  	var qurl = "storeAlert.php?tipNaAlarm=" + tipNaAlarm + "&email=" + email + "&sms=" + sms + "&zvukot=" + zvukot + "&ImeNaTocka=" + ImeNaTocka + "&ImeNaZonaIzlez=" + ImeNaZonaIzlez + "&ImeNaZonaVlez=" + ImeNaZonaVlez + "&NadminataBrzina=" + NadminataBrzina + "&vreme=" + vreme + "&dostapno=" + dostapno + "&orgEdinica=" + orgEdinica + "&odbraniVozila=1" + "&voziloOdbrano=" + voziloOdbrano + "&remindme=" + remindme + "&sendviaEmail=" + sendSMS;
+
+			  	if(isEdit) {
+			  		var uniqid = row_array[objID].uniqid;
+			  		qurl += "&isEdit=true&uniqid=" + uniqid + "&id=" + _id;
+			  	}
+
+	 			if (validation.length === 0) {
+
+			  		console.log(qurl);
+		 			$.ajax({
+		                    url: qurl,
+		                    context: document.body,
+		                    success: function(data) {
+		                    	console.log(data);
+		                    	var t;
+		                    	if (isEdit) t = dic("Admin.SuccUpdate", lang);
+		                    	else t = dic("Settings.SuccAdd", lang);	
+		                    	t = t.substr(0,1).toUpperCase() + t.substr(1);
+
+		                    	msgboxPetar(t);
+
+		                        timed_refresh(1600);
+		                    }
+		                });
+	 			} else {
+	 				msgboxPetar(dic(validation[0],lang));
+	 			}
+
+             }
+        }, {
+            text: dic('cancel', lang),
+            click: function() {
+                $(this).dialog("close");
+            }
+        }
+        ]
+    });
+}
+
+function ClearDialog() {
+	$("#TipNaAlarm option[value='1']").attr('selected','selected');
+	OptionsChangeAlarmType();
+	$('#TipNaAlarm').attr('disabled', false);
+	$('#oEdinica option').attr('selected',false);
+	$('#vreme').val("");
+	$("#fmvalueDays").val("5");
+	$("#fmvalueKm").val("");
+	$('#emails').val("");
+	$('#remindKm').attr('checked',false);
+	$('#brzinata').val("");
+
+	$("#smsviaemail").val("");
+
+	$('#GFcheck1').attr('checked',true);
+	$('input:radio[name=radio]').button('refresh');
+}
+
+function OptionsChangeAlarmType() {
+
+	  	var tipNaAlarm = $('#TipNaAlarm').val();
+		console.log("tip na alarm: " + tipNaAlarm);
+
+		document.getElementById('noteFmAlarm').style.display = "none";
+   		document.getElementById('textFmAlarm').innerHTML = "";
+
+	    if (tipNaAlarm == 10) {
+	        document.getElementById('toi-div').style.display = '';
+	        document.getElementById('toi-div-2').style.display = '';
+	    }
+	    if (tipNaAlarm == 9) {
+	        document.getElementById('zi-div').style.display = '';
+	    }
+	    if (tipNaAlarm == 8) {
+	        document.getElementById('zv-div').style.display = '';
+	    }
+	    if (tipNaAlarm == 7)  {
+	        document.getElementById('nadminuvanjeBrzina').style.display = '';
+	    }
+		if (tipNaAlarm == 17 || tipNaAlarm == 18 || tipNaAlarm == 20) {
+	        document.getElementById('fm').style.display = '';
+	        document.getElementById('rmdD').style.display = '';
+
+	        if (tipNaAlarm == 18) {
+	        	document.getElementById('rmdKm').style.display = '';
+	        	document.getElementById('remindDays').style.display = '';
+	        } else {
+	        	document.getElementById('rmdKm').style.display = 'none';
+	        	document.getElementById('remindDays').style.display = 'none';
+	        }
+	        document.getElementById('noteFmAlarm').style.display="";
+	        if (tipNaAlarm == 17) {
+	       		document.getElementById('textFmAlarm').innerHTML = "* " + dic("Settings.FmAlarmInfo1", lang);
+	        }
+	        if (tipNaAlarm == 18) {
+	       		document.getElementById('textFmAlarm').innerHTML = "* " + dic("Settings.FmAlarmInfo2", lang);
+	        }
+	        if (tipNaAlarm == 20) {
+	       		document.getElementById('textFmAlarm').innerHTML = "* " + dic("Settings.FmAlarmInfo3", lang);
+	        }
+   		}
+
+	    if(tipNaAlarm != 10) {
+	        document.getElementById('toi-div').style.display = 'none';
+	        document.getElementById('toi-div-2').style.display = 'none';
+	  	}
+	  	if(tipNaAlarm != 09) {
+	        document.getElementById('zi-div').style.display = 'none';
+		}
+		if(tipNaAlarm != 08) {
+	        document.getElementById('zv-div').style.display = 'none';
+		}
+		if(tipNaAlarm != 07) {
+	        document.getElementById('nadminuvanjeBrzina').style.display = 'none';
+		}
+		if(tipNaAlarm != 17 && tipNaAlarm != 18 && tipNaAlarm != 20) {
+	        document.getElementById('fm').style.display = 'none';
+	        document.getElementById('rmdKm').style.display = 'none';
+		}
+
+}
+
+
    
     function addAlerts(_id) {
     	document.getElementById('noteFmAlarm').style.display = "none";
@@ -3175,7 +3223,9 @@ clientid = '<?=session("client_id")?>';
     $('#potivko').button({ icons: { primary: "ui-icon-minus"} })
     $('#gfAvail').buttonset();
     $('#promeniOdometar').button({ icons: { primary: "ui-icon-pencil"} })
-    
+
+  	$('.del-btn').button({ icons: { primary: "ui-icon-trash"} });
+	$('.edit-btn').button({ icons: { primary: "ui-icon-pencil"} });
 	setDates();
     top.HideWait();
     SetHeightLite();

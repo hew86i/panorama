@@ -38,7 +38,7 @@
 		}
 	$snooze = $getQueryUser["snooze"];
 
-	$alarmTypes = pg_fetch_all(query("select * from alarmtypes where isactive='1' order by alarmgroup,code"));
+	$alarmTypes = pg_fetch_all(query("select * from alarmtypes where isactive='1' order by substring(alarmgroup FROM '^[0-9]+')::int asc"));
 
 	$qGetMobileOperators = query("select * from operators order by name");
 	$getFullOperators = pg_fetch_all($qGetMobileOperators);
@@ -590,9 +590,7 @@ if ($condVeh > 0) //da se smeni
 			<td class="text2 td-row la">
 			<?php
 				if($tableRow['data']["smsviaemail"] != null) {
-					$gsse = explode('@',$tableRow['data']["smsviaemail"]);
-					echo $gsse[0] . "<br>";
-				echo "(<b>" . dlookup("select name from operators where email='" . $gsse[1] . "'") . "</b>)";
+					echo str_replace(',', '<br>', $tableRow['data']["smsviaemail"]);
 				} else echo "/";
 			?>
 			</td>
@@ -676,30 +674,37 @@ if ($condVeh > 0) //da se smeni
 
 				// proverki za koi opcii da bidat dozvoleni
 				$alarmRow['check'] = 0;
+				$alarmRow['jump'] = 1;
 
 				if($alarmRow['id'] == 48 && $allowFuel == 0) $alarmRow['check'] = 1;	// alarm za dozvoleno gorivo
-				if($alarmRow['id'] == 23 && $allowedRFID == 0) $alarmRow['check'] = 1;	// alarm za RFID
+				if(($alarmRow['id'] == 23 || $alarmRow['id'] == 22) && $allowedRFID == 0) $alarmRow['check'] = 1;	// alarm za RFID
 				if($alarmRow['id'] == 5  && $allowedCapace == 0) $alarmRow['check'] = 1;  // za dali e dozvoleno kapace za korivo
 
-				if($alarmRow['alarmgroup'] == "2-RoutesCombo" && $allowedrouting == 0) $alarmRow['check'] = 1;
-				if($alarmRow['alarmgroup'] == "3-FleetManagement"  && $allowedfm == 0) $alarmRow['check'] = 1;
-				if($alarmRow['alarmgroup'] == "5-MotoAlarms"  && $clienttypeid != 6) $alarmRow['check'] = 1;
+				if($alarmRow['alarmgroup'] == "3-RoutesCombo" && $allowedrouting == 0) $alarmRow['check'] = 1;
+				if($alarmRow['alarmgroup'] == "4-FleetManagement"  && $allowedfm == 0) $alarmRow['check'] = 1;
+				if($alarmRow['alarmgroup'] == "6-MotoAlarms"  && $clienttypeid != 6) $alarmRow['check'] = 1;
+				if($alarmRow['alarmgroup'] == "8-AssetAlerts"  && $clienttypeid != 7) $alarmRow['jump'] = 0;
+				if($alarmRow['alarmgroup'] == "7-SecurityAlerts"  && $clienttypeid != 8) $alarmRow['jump'] = 0;
+				if($alarmRow['alarmgroup'] == "9-OBDAlerts"  && $clienttypeid != 9) $alarmRow['jump'] = 0;
+				if($alarmRow['alarmgroup'] == "10-PersonalAlerts"  && $clienttypeid != 3) $alarmRow['jump'] = 0;
+				
 				// [END]. proverki --------------------------------------------------------------------------------------
-
-				if($alarmRow["alarmgroup"] == $alarmgroup) {
-					// prikazi gi site od ist alarmgroup
-					?>
-						<option value="<?php echo $alarmRow['id'] ?>" <?php if($alarmRow["check"]==1) echo "disabled='disabled'" ?>><?php dic($alarmRow['name']) ?></option>
-					<?php
-				} else {
-					// promeni go
-					$alarmgroup = $alarmRow["alarmgroup"];
-					$alarmgroupShow = explode('-', $alarmgroup);
-					// prikazi ja taa grupa kako disabled vo option
-					?>
-						<option disabled="disabled">----------------------<?php dic("Settings." . $alarmgroupShow[1]) ?>----------------------</option>
-						<option value="<?php echo $alarmRow['id'] ?>" <?php if($alarmRow["check"]==1) echo "disabled='disabled'" ?>><?php dic($alarmRow['name']) ?></option>
-					<?php
+				if($alarmRow["jump"]==1) {
+					if($alarmRow["alarmgroup"] == $alarmgroup) {
+						// prikazi gi site od ist alarmgroup
+						?>
+							<option value="<?php echo $alarmRow['id'] ?>" <?php if($alarmRow["check"]==1) echo "disabled='disabled'" ?>><?php dic($alarmRow['name']) ?></option>
+						<?php
+					} else {
+						// promeni go
+						$alarmgroup = $alarmRow["alarmgroup"];
+						$alarmgroupShow = explode('-', $alarmgroup);
+						// prikazi ja taa grupa kako disabled vo option
+						?>
+							<option disabled="disabled">----------------------<?php dic("Settings." . $alarmgroupShow[1]) ?>----------------------</option>
+							<option value="<?php echo $alarmRow['id'] ?>" <?php if($alarmRow["check"]==1) echo "disabled='disabled'" ?>><?php dic($alarmRow['name']) ?></option>
+						<?php
+					}
 				}
 			}
 			?>
@@ -859,10 +864,16 @@ if ($condVeh > 0) //da se smeni
 		<!-- *************************** SMS VIA EMAIL ******************************************* -->
 
 		<tr class="SMSemail" style="display:none">
-			<td width = "25%" style="font-weight:bold" class ="text2"  align="left"><?php echo dic_("Tracking.SMSNumber")?></td>
+			<td width = "25%" style="font-weight:bold" class ="text2"  align="left"><?php echo dic_("Tracking.SMSEmails")?></td>
 			<td width = "75%" style="font-weight:bold" class ="text2"><input id = "smsviaemail" class="textboxcalender corner5 text5" type="text" style = "width:365px"></input></td>
 		</tr>
-		<tr class="SMSemail" style="display:none;">
+
+		<tr class="SMSemail" style="display:none">
+			<td width = "25%" ></td>
+			<td width = "75%" class ="text2" style="font-size:10px"><font color = "red" ><?php echo dic_("Reports.SchNoteSms")?></font></td>
+		</tr>
+
+		<!-- <tr class="SMSemail" style="display:none;">
 			<td width = "25%" style="font-weight:bold" class ="text2" align="left"><?php echo dic_("Tracking.MobileOperator")?>:</td>
 			<td width = "75%" style="font-weight:bold" class ="text2">
 				<div class="ui-widget" style="height: 25px; width: 100%">
@@ -879,7 +890,7 @@ if ($condVeh > 0) //da se smeni
 				</select>
 				</div>
 			</td>
-		</tr>
+		</tr> -->
 
 		<!-- *************************** SMS VIA EMAIL ******************************************* -->
 		<tr>
@@ -920,7 +931,7 @@ if ($condVeh > 0) //da se smeni
 
 <script>
 
-function email_validate( value) {
+function email_validate(value) {
     var emailovi = value.split(",");
     var izlez;
     emailovi.forEach(function(mejl) {
@@ -928,6 +939,32 @@ function email_validate( value) {
         izlez = filter.test(mejl.trim());
     });
     return izlez;
+}
+
+function check_operator(operators,value){
+	var ret = false;
+	operators.forEach(function(data){
+		if(data.email == value) ret = ret || true;
+	});
+	return ret;
+}
+
+function validate_smsvemails(value, operators) {
+	var mails = value.split(',');
+	var ret = true;
+	var new_data = "";
+	mails.forEach(function(data){
+		var filter = new RegExp(/^(("[\w-+\s]+")|([\w-+]+(?:\.[\w-+]+)*)|("[\w-+\s]+")([\w-+]+(?:\.[\w-+]+)*))(@((?:[\w-+]+\.)*\w[\w-+]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][\d]\.|1[\d]{2}\.|[\d]{1,2}\.))((25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\.){2}(25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\]?$)/i);
+		ret = ret && filter.test(data.trim());
+		new_data+=data.trim()+",";
+		var cell_numb = data.split('@');
+		ret = ret && validate_phone(Number(cell_numb[0]));
+	    var op = cell_numb[1];
+	    console.log("operator @ :"+op);
+	    validate_smsvemails.check = check_operator(operators,op);
+	});
+	validate_smsvemails.v = new_data.slice(0,-1); // za poslednata zapirka
+	return ret;
 }
 
 function validate_phone( value ) {
@@ -1014,7 +1051,11 @@ function storeAlerts(isEdit, _id) {
             });
 
         	allowedSMSviaEmail = Number('<?php echo $allowedSMSvEmail; ?>');
-   			if(allowedSMSviaEmail == 1) $('.SMSemail').show();
+   			if(allowedSMSviaEmail == 1) {
+   				$('.SMSemail').show();
+
+   			} 
+   				
 
     	    $(function () {
 		        $("#combobox").combobox();
@@ -1096,9 +1137,7 @@ function storeAlerts(isEdit, _id) {
 
 		    	// ako e dozvolena ovaa opcija
 		    	if(allowedSMSviaEmail == 1 && row_array[objID].data.smsviaemail != null && row_array[objID].data.smsviaemail != "") {
-		    		var getSMS = row_array[objID].data.smsviaemail.split('@');
-		    		$('#smsviaemail').val(getSMS[0]);
-		    		$("#mobilenoperator option[value='"+getMO[get_operator_email(getMO,getSMS[1])].id+"']").attr('selected','selected');
+		    		$('#smsviaemail').val(row_array[objID].data.smsviaemail);
 		    	}
 
 		    	$('#GFcheck' + row_array[objID].data.available).attr('checked',true);
@@ -1121,7 +1160,6 @@ function storeAlerts(isEdit, _id) {
             text: (isEdit) ? dic('Fm.Mod', lang) : dic('Settings.Add', lang),
             click: function(data) {
 
-            	smschange();
                 var tipNaAlarm = $('#TipNaAlarm').val();
                 var email = $.map($('#emails').val().split(","), $.trim);	//clear the whitespaces in between
                 var sms = '';
@@ -1143,7 +1181,7 @@ function storeAlerts(isEdit, _id) {
                 var dostapno = getCheckedRadio('radio');
                 var valueDays = $('#fmvalueDays').val();
                 var valueKm = convertMetric('<?php echo $metric ?>', $('#fmvalueKm').val());
-                var mobilenoperator = (allowedSMSviaEmail == 1) ? $('#mobilenoperator').val(): "";
+
                 var smsviaemail = (allowedSMSviaEmail == 1) ? $('#smsviaemail').val(): "";
 
                 //------------------------------------------------------------------------//
@@ -1155,9 +1193,10 @@ function storeAlerts(isEdit, _id) {
                 if(email === '') validation.push("Settings.AlertsEmailHaveTo");
                 if(email.length > 0 && !email_validate($('#emails').val())) validation.push("uncorrEmail");
 
+                // validate sms via email multi
                 if(allowedSMSviaEmail == 1 && smsviaemail !== "") {
-                	if(!validate_phone(smsviaemail)) validation.push("Settings.InvalidPhoneFormat");
-                	if(mobilenoperator == 0) validation.push("Settings.MobileOperator");
+                	if(!validate_smsvemails(smsviaemail,getMO)) validation.push("Settings.InvalidSMSEmailFormat");
+                	if(!validate_smsvemails.check) validation.push("Settings.ValidMobileOperator");
                 }
 
 	 			if(Number(odbraniVozila) === 0) validation.push("Settings.SelectAlert1");
@@ -1270,7 +1309,9 @@ function storeAlerts(isEdit, _id) {
 
 	 			// get and construct the sms via email format
 	 			var sendSMS = '';
-	 			if(validation.length === 0 && allowedSMSviaEmail == 1 && Number(mobilenoperator.value) != 0 && smsviaemail != "") sendSMS = smsviaemail + "@" + getMO[get_operator_id(getMO,Number(mobilenoperator))].email;
+	 			validate_smsvemails($('#smsviaemail').val(),getMO);
+	 			smsviaemail = validate_smsvemails.v;
+	 			if(validation.length === 0 && allowedSMSviaEmail == 1 && smsviaemail != "") sendSMS = smsviaemail;
 				console.log("SEND SMS: " + sendSMS);
 
 			  	var qurl = "storeAlert.php?tipNaAlarm=" + tipNaAlarm + "&email=" + email + "&sms=" + sms + "&zvukot=" + zvukot + "&ImeNaTocka=" + ImeNaTocka + "&ImeNaZonaIzlez=" + ImeNaZonaIzlez + "&ImeNaZonaVlez=" + ImeNaZonaVlez + "&NadminataBrzina=" + NadminataBrzina + "&vreme=" + vreme + "&dostapno=" + dostapno + "&orgEdinica=" + orgEdinica + "&odbraniVozila=" + odbraniVozila + "&voziloOdbrano=" + voziloOdbrano + "&remindme=" + remindme + "&sendviaEmail=" + sendSMS;
@@ -1329,7 +1370,6 @@ function ClearDialog() {
 	$('#brzinata').val("");
 
 	$("#smsviaemail").val("");
-	$("#mobilenoperator option[value='0']").attr('selected','selected');
 
 	$('#GFcheck1').attr('checked',true);
 	$('input:radio[name=radio]').button('refresh');
