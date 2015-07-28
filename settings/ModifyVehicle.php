@@ -293,25 +293,12 @@
        });
 	})(jQuery);
 
-	function msgboxPetar(msg) {
-	    $("#DivInfoForAll").css({ display: 'none' });
-	    $('#div-msgbox').html(msg);
-	    $("#dialog-message").dialog({
-	        modal: true,
-	        zIndex: 9999, resizable: false,
-	        buttons: {
-	            Ok: function () {
-	                $(this).dialog("close");
-	        	}
-	        }
-	    });
-	}
 	</script>
-	
-	
+
 </head>
-	
+
 <body onload="DatumPocetok()">
+
 <div id="div-tip-praznik" style="display:none" title="<?php echo dic_("Settings.ConfSMS")?>"><br>
 	<table align = "center" width = "100%">
 	<tr><td colspan = "2" class ="text2" align = "center" style="color:#414141">
@@ -325,15 +312,14 @@
 	</tr>
 	</table>
 </div>
-    
-<?php   
-  	
-  	  opendb();
 
+<?php
+
+  	  opendb();
 
 	  $ds = query("select * from clients where id=" . session("client_id"));
 	  $clienttypeid = pg_fetch_result($ds, 0, "clienttypeid");
-	 
+
 	  $allowedalarms = pg_fetch_result($ds, 0, "allowedalarms");
 	  $allowedfm = pg_fetch_result($ds, 0, "allowedfm");
       $allowedrouting = pg_fetch_result($ds, 0, "allowedrouting");
@@ -342,7 +328,7 @@
 	  $gsmnum = nnull(dlookup("select gsmnumber from vehicles where id=" . $id), "0");
 	  $allowedcapace = dlookup("select count(*) from vehicleport where vehicleid=".$id." and porttypeid=17");
 	  $allowFuel = nnull(dlookup("select allowfuel from vehicles where id=" . $id), "");
-	  	
+
 	  $metric = nnull(dlookup("select metric from users where id = " . session("user_id")), "1");	
 	  if ($metric == 'mi') {
 		$value = 0.621371;
@@ -354,33 +340,33 @@
       } Else {
           $unitSpeed = "mph";
       }
-						   
+
       $LastDay = DatetimeFormat(addDay(-1), 'd-m-Y');
       $reg = nnull(dlookup("select registration from vehicles where id=" . $id), "");
       $code = nnull(dlookup("select code from vehicles where id=" . $id), "");
 	  $aliasName = "select alias from vehicles where id=" . $id;
       $model = nnull(dlookup("select model from vehicles where id=" . $id), "");
-	  
+
       $orgUnit = nnull(dlookup("select organisationid from vehicles where id=" . $id), "");
       $checkOrg = dlookup("select count(*) from organisation where id=" . $orgUnit);    
 
       $lastReg = nnull(DateTimeFormat(dlookup("select lastregistration from vehicles where id=" . $id), "d-m-Y"), "");
-        
+
       $greenCard = nnull(dlookup("select greencard from vehicles where id=" . $id), "");
 	  $activity = nnull(dlookup("select visible from vehicles where id=" . $id), "");
-   
+
       If ($greenCard == false) {
           $greenCard = 0;
       } else{
           $greenCard = 1;
       }
-	  
+
 	  If ($activity == false) {
           $activity = 0;
       } else{
           $activity = 1;
       }
-            
+
       $chassis = nnull(dlookup("select chassisnumber from vehicles where id=" . $id), "");
       $motor = nnull(dlookup("select motornumber from vehicles where id=" . $id), "");
       $capacity = nnull(dlookup("select fuelcapacity from vehicles where id=" . $id), "0");
@@ -394,10 +380,9 @@
 			$nextService = $nextService / 1.609344498;
 		}
       $nextServiceMonths= nnull(dlookup("select nextservicemonths from vehicles where id=" . $id), "12"); //na kolku meseci se vrsi servis
-      
+
       $gorivo = nnull(dlookup("select fueltypeid from vehicles where id=" . $id), "");
-	  
-	  //$clienttypeid = dlookup("select clienttypeid from clients where id = (select clientid from vehicles where id = " . $id . ")");
+
 	  $range = 0;
 	  if($clienttypeid == 4)
 	  {
@@ -412,7 +397,7 @@
 	$getFullOperators = pg_fetch_all($qGetMobileOperators);
 
     ?>
-    
+
     <table class="text2_"  width="75%" style="min-width:900px;">
     <tr>
     <td width="50%" align="left"><div class="textTitle" <?php if($yourbrowser == "1") {?>style="padding-left:10px; padding-top:10px;" <?php }else {?>style="padding-left:40px; padding-top:10px;"<?php };?>><?php echo dic_("Fm.ModVeh")?></div></td>
@@ -431,8 +416,7 @@
 	    <td></td>
 	    <td></td>
 	</tr>
-	</table>	
-            
+	</table>
             <br/>
 			<table  width="75%" <?php if($yourbrowser == "1") {?>style="min-width:900px; padding-left:10px;"<?php }else {?>style="min-width:900px; padding-left:40px;"<?php };?> class="text2_">
                   <tr style="height:10px"></tr>
@@ -449,11 +433,11 @@
                       <td style=""><input id="code" value="<?php echo $code ?>" type="text" size="22" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px"/></td>
                       <td style="font-weight:bold; <?php if($yourbrowser == "1") {?> <?php }else{?>padding-left:30px<?php } ;?>"><?php dic("Fm.LastReg") ?>:</td><td style="">
                             <input id="lastReg" type="text" class="textboxCalender1 text2" value="<?php echo $lastReg ?>" style = "z-index: 999"/>
-                            <!--img src='../images/alarm1.png' width=16px height=16px style="opacity:0.7; position:relative; left:-14px; top:4px; cursor: pointer" title="Додади алерт за истекување на регистрација" onclick="addAlerts(26)"/-->
+
                       		<?php
                       		if ($allowedalarms == '1') {
                       		?>
-                      		<span onclick="addAlerts(26)" title="<?= dic_("Settings.AlertRegTitle")?>" style="background-image: url('../images/icons.png'); background-position: -204px -50px; width: 16px; height: 16px; cursor: pointer; display: inline-block; position:relative; top:4px; left:-16px"></span>
+                      		<span onclick="storeAlerts(false,17)" title="<?= dic_("Settings.AlertRegTitle")?>" style="background-image: url('../images/icons.png'); background-position: -204px -50px; width: 16px; height: 16px; cursor: pointer; display: inline-block; position:relative; top:4px; left:-16px"></span>
                       		<?php
 							}
                       		?>
@@ -588,11 +572,11 @@
 	                            <!--input id="serIntervalDays" type="checkbox" name="remindme" value="days" style="position: relative; top:4px" <?php echo $chSerInt2?> /--> 
 	                            <input id="nextServiceMonths" value= "<?php echo $valSerInt2 ?>" type="text" size="22" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px;  border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:40px; padding-left:2px"/> <?php echo dic_("Settings.Months")?>
                             </div>
-                      		<!--img src='../images/alarm1.png' width=16px height=16px style="opacity:0.7; position:relative; left:2px; top:4px; cursor: pointer" title="Додади алерт за сервис" onclick="addAlerts(27)"/-->
+                      		
                       		<?php
                       		if ($allowedalarms == '1') {
                       		?>
-                      		<span onclick="addAlerts(27)" title="<?= dic_("Settings.AlertServiceTitle")?>" style="background-image: url('../images/icons.png'); background-position: -204px -50px; width: 16px; height: 16px; cursor: pointer; display: inline-block; position:relative; top:4px; left:0px"></span>
+                      		<span onclick="storeAlerts(false,18)" title="<?= dic_("Settings.AlertServiceTitle")?>" style="background-image: url('../images/icons.png'); background-position: -204px -50px; width: 16px; height: 16px; cursor: pointer; display: inline-block; position:relative; top:4px; left:0px"></span>
                       		<?php
 							}
                       		?>
@@ -695,37 +679,13 @@
                     <td style="font-weight:bold;<?php if($yourbrowser == "1") {?> <?php }else{?>padding-left:30px<?php } ;?>">&nbsp;</td>
 					<td style="">&nbsp;</td>
                   </tr>
-                 
-                  <!--tr>
-                  <td colspan="4">
-                  <table cellpadding="5" <?php if($yourbrowser == "1") {?>style="padding-left:20px;border:1px solid #2F5185;"<?php }else {?>style="padding-right:5px;border:1px solid #2F5185;"<?php };?> class="text2_">	
-                  <tr style="display: block; ">	
-                  	<td style="font-weight:bold;">(<?php dic("Reports.Odometer")?>) <?php dic("Settigns.SelectDate")?>:&nbsp;&nbsp; </td>
-                  	<td style="font-weight:bold;">
-                    	<input type="text" id="odometarDatum" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px" value = "<?php echo $denes;?>"></input>
-                    </td>
-                    <td style="font-weight:bold;<?php if($yourbrowser == "1") {?> <?php }else{?>padding-left:30px<?php } ;?>">
-                    	<?php dic("Settings.PastKm")?>: (km)
-                    </td>
-                   	<td style="font-weight:bold;">
-                   		<input type="text" id="odometarVrednost" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px"/>
-                    </td>
-                    <td style="font-weight:bold;">
-                   		 <button id="promeniOdometar" onclick="promeniOdometar(<?php echo $id ?>)"><?php dic("Fm.Change")?></button>
-                    </td>
-                   </td>
-                   </tr>
-                   </table>
-                  </tr-->
-
-
 
 <?php
-                  
+
                   if ($clienttypeid == 5) {
                   	$dsVehicle = query("select * from vehicles where id = " . $id);
                   ?>
-                	
+
                  <?php
                  if (pg_fetch_result($dsVehicle, 0, "showrpm") == "rpm") {
                  ?>
@@ -750,7 +710,7 @@
 							<?php	
 							}
 	                  		?>
-	                  		
+
                  		</tr>
                  	</table>
  			   	  </td>
@@ -758,7 +718,7 @@
                   <?php
                   }
 				  ?>
- 				
+
 				<?php
 				if (pg_fetch_result($dsVehicle, 0, "showrpm") == "percent") {
                  ?>
@@ -782,10 +742,9 @@
 								<?php	
 								}
 		                  		?>
-		                  		
-		                  		
+
                   	 		 </tr>
-                  	 		 
+
                   		</table>
  			   	 	</td>
                  </tr>
@@ -818,7 +777,7 @@
                                  <td></td>
                              </tr>
                              <tr><td colspan=2 style="height:10px"></td></tr>
-                             
+
   <?php
 	 
 	  $totalDr = dlookup("select count(*) from drivers where clientid=" . session("client_id"));
@@ -930,7 +889,7 @@
 				    		<br><br>
 						<?php
 						    $quckmess = query("select * from quickmessage where vehicleid = ".$id." order by messageid asc"); ?>
-							
+
 							<table style="width: 100%; position: relative; display: block; overflow-x: hidden; overflow-y: auto; min-height: 60px;">
 								<tr>
 						        	<td align = "left" width="10%" height="25px" align="center" class="text2_" style="padding-left:10px; font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;">Број на порака</td>
@@ -989,51 +948,45 @@
 				</table>
 			</td>
         </tr>
-       	
-        
+
+
         <?php
-        
+
         } ?>
-        
+
         <tr style="height:50px;">
              <td colspan=6><div style="border-bottom:1px solid #bebebe"></div></td>
         </tr>
-        
-       
-        
-		<!-- OD OVDE POCNUVAAT ALERTITE !!! -->
-			  
-		<tr>
-        	<td colspan=6 class="textTitle" style="font-size:16px;"><?php dic("Settings.Alerts") ?></td>
-        </tr>
-       
-		<tr colspan=6>
-        <td>
-        	<button id="add5" style="margin-top:10px" onclick="storeAlerts()"><?php dic("Settings.Add") ?></button>
-	        <script>
-	        if (<?php echo $allowedalarms?> == 0) 
-	        {
-	        	document.getElementById('add5').disabled="disabled";
-	        }
-	        else
-	        {
-	        	document.getElementById('add5').disabled="";
-	        }
-	        </script>	
-        </td>
-        </tr>
-        <tr><td height=10px colspan=6></td></tr>
-      
-        
-        <?php
-        
-        if($allowedalarms!=0)
+
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.>>>   ALERTS    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+
+	<tr>
+    	<td colspan=6 class="textTitle" style="font-size:16px;"><?php dic("Settings.Alerts") ?></td>
+    </tr>
+
+	<tr colspan=6>
+    <td>
+    	<button id="add5" style="margin-top:10px" onclick="storeAlerts()"><?php dic("Settings.Add") ?></button>
+        <script>
+        if (<?php echo $allowedalarms?> == 0)
         {
-        	
-        $cnt7 = 1;
-	//zakomentirano na 29.08.2014 - poradi zabelska od polyesterday
-        //$alerts = query("select * from alarms where clientid= " .session("client_id"). " and vehicleid = ".$id." order by id");
-	$alerts = query("select * from alarms where clientid= " .session("client_id"). " and vehicleid = ".$id." and alarmtypeid <> 11 order by id");
+        	document.getElementById('add5').disabled="disabled";
+        }
+        else
+        {
+        	document.getElementById('add5').disabled="";
+        }
+        </script>
+    </td>
+    </tr>
+    <tr><td height=10px colspan=6></td></tr>
+
+    <?php
+
+    if($allowedalarms!=0)
+    {
+
+    $cnt7 = 1;
 
 	$getQueryUser = pg_fetch_array(query("select * from users where id=" .session("user_id")));
 	$allowedSMSvEmail = $getQueryUser["allowsmsvemail"];
@@ -1044,12 +997,10 @@
 				where a.clientid=" .session("client_id"). " and at.id <> 11 and a.vehicleid = ".$id."
 				order by cast(a.uniqid as integer) desc, alarmtypeid, code asc");
 
-	// print_r(pg_fetch_all($alertD)); die;
 	$rowCnt = 0;
 
 		if(pg_num_rows($alertD)==0)
 		{
-
 		?>
 		<tr>
 			<td colspan=6>
@@ -1081,17 +1032,83 @@
 			<td align = "center" width="8%" height="25px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><font color = "#ff6633"><?php dic("Tracking.Delete")?></font></td>
         </tr>
 
-    
 		<?php
 		while($alert_row = pg_fetch_assoc($alertD))
  		{
  			$rowCnt++;
  			array_push($all_alerts, $alert_row);
  			?>
- 			<tr>
+ 			<tr id="<?php echo $alert_row["id"]?>">
 				<td align = "left" height="30px" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8; padding-left:10px">
-					<?php dic($alert_row['name']) ?>
+					<?php dic($alert_row['name']) ?>&nbsp;
+					<?php
+					if ($alert_row["alarmtypeid"] == 17){
+						if ($alert_row["remindme"] != "") {
+							$arr = explode(" ", $alert_row["remindme"]);
+							if ($arr[1] == "days") $remindme = $arr[0] . " " . dic_("Reports.Days_");
+							else {
+								$remindme = round($arr[0] * $value,0) . " " . $metric;
+							}
+							echo " (". $remindme ." " . dic_("Settings.Before") . ")";
+						}
+
+					}
+
+					if ($alert_row["alarmtypeid"] == 18){
+						if ($alert_row["remindme"] != "") {
+
+							$arr = explode("; ", $alert_row["remindme"]);
+							if(count($arr) == 1) {
+								$arr1 = explode(" ", $arr[0]);
+								if ($arr1[1] == "days") $remindme = $arr1[0] . " " . dic_("Reports.Days_");
+								else $remindme = round($arr1[0] * $value,0) . " " . $metric;
+								echo " (". $remindme ." " . dic_("Settings.Before") . ")";
+							} else {
+								$arr1 = explode(" ", $arr[0]);
+								if ($arr1[1] == "days") $remindme = $arr1[0] . " " . dic_("Reports.Days_");
+								else $remindme = round($arr1[0] * $value,0) . " " . $metric;
+
+								$arr2 = explode(" ", $arr[1]);
+								if ($arr2[1] == "days") $remindme1 = $arr2[0] . " " . dic_("Reports.Days_");
+								else $remindme1 = round($arr2[0] * $value,0) . " " . $metric;
+
+								echo " (". $remindme .", " . $remindme1 . " " . dic_("Settings.Before") . ")";
+							}
+						}
+
+					}
+
+					if ($alert_row["alarmtypeid"] == 20){
+						if ($alert_row["remindme"] != "") {
+
+						$arr = explode(" ", $alert_row["remindme"]);
+							if ($arr[1] == "days") $remindme = $arr[0] . " " . dic_("Reports.Days_");
+							else {
+								$remindme = round($arr[0] * $value,0) . " " . $metric;
+							}
+							echo " (". $remindme ." " . dic_("Settings.Before") . ")";
+						}
+					}
+
+					if ($alert_row["alarmtypeid"] == 7){
+						echo "(". round($alert_row['speed'] * $value) . " " .$unitSpeed.")";
+					}
+
+					if ($alert_row["alarmtypeid"] == 10){
+						echo "(" . dlookup("select name from pointsofinterest where id = ".$alert_row["poiid"]) . ")<br>(" . $alert_row['timeofpoi'] . " " . dic_("Settings.minutes") . ")";
+					}
+
+					if ($alert_row["alarmtypeid"] == 9){
+						echo "(" . dlookup("select name from pointsofinterest where id = ".$alert_row["poiid"]) . ")";
+					}
+
+					if ($alert_row["alarmtypeid"] == 8){
+						echo "(" . dlookup("select name from pointsofinterest where id = " . $alert_row["poiid"]) . ")";
+
+					}
+					?>
 				</td>
+
 				<td align = "left" height="30px" class="text2" style="padding-left:10px; background-color:#fff; border:1px dotted #B8B8B8;">
 					<?php
 						if($alert_row["emails"]!="") echo $alert_row["emails"];
@@ -1155,12 +1172,7 @@
      <div id="div-del-allowed-driver" style="display:none" title="<?php dic("Settings.DeletingAllowedDriver") ?>">
       	<?php dic("Settings.DeletingAllowedDriverQuestion") ?>
      </div>
-     <script>
-     for (var k=0; k < <?php echo $cnt7 ?>; k++) {
-		$('#btnEditA'+k).button({ icons: { primary: "ui-icon-pencil"} })
-   		$('#DelBtnA' + k).button({ icons: { primary: "ui-icon-trash"} })
-	 }
-	 </script>
+
      <?php
      }
      ?>
@@ -1180,9 +1192,6 @@
      </table>
 
 <!-- >>>>>>>>>>>>>>>>>>>>> OLD DIALOG ADD ALERTS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   -->
-
-  
-
 
 <!-- **************************************   ADD DIALOG   ******************************************** -->
 
@@ -1214,7 +1223,7 @@
 				if($alarmRow['alarmgroup'] == "7-SecurityAlerts"  && $clienttypeid != 8) $alarmRow['jump'] = 0;
 				if($alarmRow['alarmgroup'] == "9-OBDAlerts"  && $clienttypeid != 9) $alarmRow['jump'] = 0;
 				if($alarmRow['alarmgroup'] == "10-PersonalAlerts"  && $clienttypeid != 3) $alarmRow['jump'] = 0;
-				
+
 				// [END]. proverki --------------------------------------------------------------------------------------
 				if($alarmRow["jump"]==1) {
 					if($alarmRow["alarmgroup"] == $alarmgroup) {
@@ -1307,7 +1316,6 @@
 			<td width = "25%" style="font-weight:bold" class ="text2"  align="left"><?php echo dic("Reports.Speed")?></td>
 			<td width = "75%" style="font-weight:bold" class ="text2"><input id = "brzinata" class="textboxcalender corner5 text5" type="text" size="10"></input>&nbsp;<?php echo $unitSpeed ?></td>
 		</tr>
-		
 
 		<tr id="OrganizacionaEdinica" style="display:none;">
 			<td width = "25%" style="font-weight:bold" class ="text2" align="left"><?php echo dic_("Tracking.SelectOrg.Unit")?>:</td>
@@ -1366,25 +1374,6 @@
 			<td width = "75%" class ="text2" style="font-size:10px"><font color = "red" ><?php echo dic_("Reports.SchNoteSms")?></font></td>
 		</tr>
 
-		<!-- <tr class="SMSemail" style="display:none;">
-			<td width = "25%" style="font-weight:bold" class ="text2" align="left"><?php echo dic_("Tracking.MobileOperator")?>:</td>
-			<td width = "75%" style="font-weight:bold" class ="text2">
-				<div class="ui-widget" style="height: 25px; width: 100%">
-				<select id="mobilenoperator" style="width: 365px;" class="combobox text2">
-					<option value="0" selected="selected"><?php echo dic_("Settings.MobileOperator")?></option>
-					<?php
-
-					while($operator = pg_fetch_array($qGetMobileOperators)) {
-					?>
-					<option value="<?php echo $operator["id"] ?>"><?php echo $operator["name"]; ?></option>
-					<?
-					}
-					?>
-				</select>
-				</div>
-			</td>
-		</tr> -->
-
 		<!-- *************************** SMS VIA EMAIL ******************************************* -->
 		<tr>
 			<td width = "25%" valign="middle" style="font-weight:bold" class ="text2" align="left"><?php dic("Settings.Sound")?></td>
@@ -1421,16 +1410,12 @@
 <!-- ************************************************************************************************** -->
 
 
-
-
-
-     <!-- OVDE ZAVRSUVAAT ALERTITE !!!-->
-     <div id="div-del-alert" style="display:none" title="<?php echo dic("Settings.AlertDeleteQuestion")?>">
+    <!--  <div id="div-del-alert" style="display:none" title="<?php echo dic("Settings.AlertDeleteQuestion")?>">
         <?php echo dic("Settings.DelAlert")?>
-     </div>
+     </div> -->
      <div id="div-edit-alert" style="display:none" title="<?php dic("Settings.ChangeAlert")?>"></div>
      <div id="div-add" style="display:none" title="<?php dic("Fm.AddAllDriver")?>"></div>
-     
+
      <div id="div-ask-confirmation" style="display:none" title="<?php echo dic("Settings.Action")?>">
     	Постои веќе внесен податок со понов датум од тој што го имате Вие одбрано.Дали сте сигурни дека
     	сакате да го внесете овој датум со оваа вредност за одометар како последен запис ?
@@ -1451,7 +1436,7 @@
 				<?php
 				$tovehicles = "select * from vehicles where id in (select distinct vehicleid from uservehicles where userid=(" . session("user_id") . ")) and allowgarmin='1'";
               	$dsVehicles = query($tovehicles);
-				  
+
               	while ($drVehicles = pg_fetch_array($dsVehicles)) {
               	?>
                       <option id="<?= $drVehicles["id"] ?>" value="<?=$drVehicles["registration"]?>"><?= $drVehicles["registration"]?> (<?= $drVehicles["code"]?>)</option>
@@ -1461,694 +1446,162 @@
 		</p>
 	</div>
 </body>
-	
-	<script>
-	function DeleteQuickmessClick(_messid, _gsmnum){
-		if(ws != null) {
-			if (confirm("Дали сте сигурни дека сакате да ја избришете оваа предефинирана порака?") == true) {
-				ShowWait();
-				ws.send('quickmessdel', _gsmnum + '$*^' + _messid);
-		   	}
-	   	}
-	}
-	function EditQuickMessClick(_text, _id, _messid, _gsmnum){
-		$('#txtCanned').val(_text);
-	    $('#addCanned').dialog({ modal: true, width: 370, height: 200, resizable: false, zIndex: 9998,
-	        buttons:
-	        [{
-	            text:dic("Insert"),
-	            click: function() {
-	                ButtonEditCanned(_id, _messid, _gsmnum);
-	                $(this).dialog("close");
-	            }
-	        }]
-	    });
-	}
-	function ButtonEditCanned(_id, _messid, _gsmnum) {
-		if(ws != null) {
-		    $.ajax({
-		        url: "../main/AddCanned.php?action=edit&id=" +_id + "&name=" + kescape($('#txtCanned').val()) + "&tpoint=..",
-		        context: document.body,
-		        success: function (data) {
-	                ws.send('quickmess', _gsmnum + '$*^' + $('#txtCanned').val() + '$*^' + _messid);
-	                window.location.reload();
-		        }
-		    });
-	   	}
-	}
-
-	function msgboxPetar(msg) {
-    $("#DivInfoForAll").css({ display: 'none' });
-    $('#div-msgbox').html(msg)
-    $("#dialog-message").dialog({
-        modal: true,
-        zIndex: 9999, resizable: false,
-        buttons: {
-            Ok: function () {
-                $(this).dialog("close");
-        	}
-        }
-    });
-	}
-	</script>
-	
-	<script>
-	function promeniOdometar(id){
-
-	var odometarVrednost = $('#odometarKm').val().replace(/\,/g,'').replace(/\./g,'');
-	if ('<?php echo $metric?>' == 'mi') {
-		odometarVrednost = odometarVrednost * 1.609344498;
-	}
-	var datumce = $('#odometarDatum1').val();
-	//var datumce1 = $('#odometarDatum1').val();
-	
-	if(odometarVrednost=="")
-	{
-		msgboxPetar("Мора да внесете километри за одометарот.")
-	}
-	else
-	{
-	//top.ShowWait();
-	$.ajax({
-	    url: "UpdateOdometar.php?id="+ id+"&odometarVrednost="+odometarVrednost+"&datumce="+datumce,
-	    context: document.body,
-	    success: function(data){
-	    if(data == 1)
-	    {
-		    $('#div-ask-confirmation').dialog({ modal: true, width: 370, height: 190, resizable: false,
-	        buttons: 
-	        [
-	        {
-                	text:dic("Settings.Yes"),
-				    click: function() {
-                            $.ajax({
-					        url: "UpdateOdometar2.php?id="+ id+"&odometarVrednost="+odometarVrednost+"&datumce="+datumce,
-					        context: document.body,
-					        success: function(data){
-					        msgboxPetar(dic("Settings.SuccChanged",lang))
-					        window.location.reload();
-				    		}
-			       	       });	
-                          $( this ).dialog( "close" );
-                        }
-				      },
-				    {
-				    text:dic("Settings.No",lang),
-                    click: function() {
-					    $( this ).dialog( "close" );
-				    }
-                 }
-              ]
-           });
-	    }
-	    
-	    if(data == 0)
-	    {
-	    	$.ajax({
-		        url: "UpdateOdometar2.php?id="+ id+"&odometarVrednost="+odometarVrednost+"&datumce="+datumce,
-		        context: document.body,
-		        success: function(data){
-		        msgboxPetar(dic("Settings.SuccChanged",lang))
-		        window.location.reload();
-			}
-	       });
-	    }
-	    //top.HideWait();
-	    }
-	   });	
-	  }
-	}
-	</script>
 
 <script>
-	
-	function OptionsChange() {
+function DeleteQuickmessClick(_messid, _gsmnum){
+	if(ws != null) {
+		if (confirm("Дали сте сигурни дека сакате да ја избришете оваа предефинирана порака?") == true) {
+			ShowWait();
+			ws.send('quickmessdel', _gsmnum + '$*^' + _messid);
+	   	}
+   	}
+}
+function EditQuickMessClick(_text, _id, _messid, _gsmnum){
+	$('#txtCanned').val(_text);
+    $('#addCanned').dialog({ modal: true, width: 370, height: 200, resizable: false, zIndex: 9998,
+        buttons:
+        [{
+            text:dic("Insert"),
+            click: function() {
+                ButtonEditCanned(_id, _messid, _gsmnum);
+                $(this).dialog("close");
+            }
+        }]
+    });
+}
+function ButtonEditCanned(_id, _messid, _gsmnum) {
+	if(ws != null) {
+	    $.ajax({
+	        url: "../main/AddCanned.php?action=edit&id=" +_id + "&name=" + kescape($('#txtCanned').val()) + "&tpoint=..",
+	        context: document.body,
+	        success: function (data) {
+                ws.send('quickmess', _gsmnum + '$*^' + $('#txtCanned').val() + '$*^' + _messid);
+                window.location.reload();
+	        }
+	    });
+   	}
+}
 
-	document.getElementById('noteFmAlarm').style.display = "none";
-    document.getElementById('textFmAlarm').innerHTML = "";
-        
-	var zonaTockata = document.getElementById('TipNaAlarm').selectedIndex;
-    if (zonaTockata == "13")
-    {
-        document.getElementById('zonataTockata').style.display = '';
-        document.getElementById('zonataTockata2').style.display = '';
-        
+function msgboxPetar(msg) {
+$("#DivInfoForAll").css({ display: 'none' });
+$('#div-msgbox').html(msg)
+$("#dialog-message").dialog({
+    modal: true,
+    zIndex: 9999, resizable: false,
+    buttons: {
+        Ok: function () {
+            $(this).dialog("close");
+    	}
     }
-    if (zonaTockata == "12")
+});
+}
+
+function promeniOdometar(id){
+
+var odometarVrednost = $('#odometarKm').val().replace(/\,/g,'').replace(/\./g,'');
+if ('<?php echo $metric?>' == 'mi') {
+	odometarVrednost = odometarVrednost * 1.609344498;
+}
+var datumce = $('#odometarDatum1').val();
+//var datumce1 = $('#odometarDatum1').val();
+
+if(odometarVrednost=="")
+{
+	msgboxPetar("Мора да внесете километри за одометарот.")
+}
+else
+{
+//top.ShowWait();
+$.ajax({
+    url: "UpdateOdometar.php?id="+ id+"&odometarVrednost="+odometarVrednost+"&datumce="+datumce,
+    context: document.body,
+    success: function(data){
+    if(data == 1)
     {
-        document.getElementById('zonaIzlez').style.display = '';
+	    $('#div-ask-confirmation').dialog({ modal: true, width: 370, height: 190, resizable: false,
+        buttons: 
+        [
+        {
+            	text:dic("Settings.Yes"),
+			    click: function() {
+                        $.ajax({
+				        url: "UpdateOdometar2.php?id="+ id+"&odometarVrednost="+odometarVrednost+"&datumce="+datumce,
+				        context: document.body,
+				        success: function(data){
+				        msgboxPetar(dic("Settings.SuccChanged",lang))
+				        window.location.reload();
+			    		}
+		       	       });	
+                      $( this ).dialog( "close" );
+                    }
+			      },
+			    {
+			    text:dic("Settings.No",lang),
+                click: function() {
+				    $( this ).dialog( "close" );
+			    }
+             }
+          ]
+       });
     }
-    if (zonaTockata == "11")
+
+    if(data == 0)
     {
-        document.getElementById('zonaVlez').style.display = '';
+    	$.ajax({
+	        url: "UpdateOdometar2.php?id="+ id+"&odometarVrednost="+odometarVrednost+"&datumce="+datumce,
+	        context: document.body,
+	        success: function(data){
+	        msgboxPetar(dic("Settings.SuccChanged",lang))
+	        window.location.reload();
+		}
+       });
     }
-    if (zonaTockata == "10")
-    {
-        document.getElementById('nadminuvanjeBrzina').style.display = '';
-    } 
-    if (zonaTockata == "27" || zonaTockata == "28" || zonaTockata == "29" || zonaTockata == "30")
-    {
-        document.getElementById('fm').style.display = '';
-        document.getElementById('rmdD').style.display = '';
-        
-        if (zonaTockata == "28") {
-        	document.getElementById('rmdKm').style.display = '';
-        	document.getElementById('remindDays').style.display = '';
-        } else {
-        	document.getElementById('rmdKm').style.display = 'none';
-        	document.getElementById('remindDays').style.display = 'none';
-        }
-        document.getElementById('noteFmAlarm').style.display="";
-        if (zonaTockata == "27") {
-       		document.getElementById('textFmAlarm').innerHTML = "* " + dic("Settings.FmAlarmInfo1", lang);
-        }
-        if (zonaTockata == "28") {
-       		document.getElementById('textFmAlarm').innerHTML = "* " + dic("Settings.FmAlarmInfo2", lang);
-        }
-        if (zonaTockata == "29") {
-       		document.getElementById('textFmAlarm').innerHTML = "* " + dic("Settings.FmAlarmInfo3", lang);
-        }
-    } 
-    if(zonaTockata != "13")
-    {
-        document.getElementById('zonataTockata').style.display = 'none';
-        document.getElementById('zonataTockata2').style.display = 'none';
-  	}
-  	if(zonaTockata != "12")
-    {
-        document.getElementById('zonaIzlez').style.display = 'none';
-	}
-	if(zonaTockata != "11")
-    {
-        document.getElementById('zonaVlez').style.display = 'none';
-	}
-	if(zonaTockata != "10")
-    {
-        document.getElementById('nadminuvanjeBrzina').style.display = 'none';
-	}
-	if(zonaTockata != "27" && zonaTockata != "28" && zonaTockata != "29" && zonaTockata != "30")
-    {
-        document.getElementById('fm').style.display = 'none';
-        document.getElementById('rmdKm').style.display = 'none';
-	}
-	}
-	
-	var vehicleid2 = "<?php echo $id?>";
-	var tipNaAlarm = document.getElementById('TipNaAlarm').selectedIndex;
-	
-	
-	function EditAlertClick(id){
-    ShowWait()
-    $.ajax({
-	    url: "EditAlarm.php?id="+id+"&tipNaAlarm="+tipNaAlarm+"&l="+lang,
-	    context: document.body,
-	    success: function(data){
-            HideWait()
-            $('#div-edit-alert').html(data)
-		    document.getElementById('div-edit-alert').title = dic("Settings.ChangeAlert")
-		    document.getElementById('noteFmAlarm1').style.display = "none";
-    		document.getElementById('textFmAlarm1').innerHTML = "";
-    		
-	        if (document.getElementById('TipNaAlarm2').selectedIndex == "27") {
-	        	document.getElementById('noteFmAlarm1').style.display="";
-	       		document.getElementById('textFmAlarm1').innerHTML = "* " + dic("Settings.FmAlarmInfo1", lang);
-	        }
-	        if (document.getElementById('TipNaAlarm2').selectedIndex == "28") {
-	        	document.getElementById('noteFmAlarm1').style.display="";
-	       		document.getElementById('textFmAlarm1').innerHTML = "* " + dic("Settings.FmAlarmInfo2", lang);
-	        }
-	        if (document.getElementById('TipNaAlarm2').selectedIndex == "29") {
-	        	document.getElementById('noteFmAlarm1').style.display="";
-	       		document.getElementById('textFmAlarm1').innerHTML = "* " + dic("Settings.FmAlarmInfo3", lang);
-	        }
-			var oldsms2 = $('#sms2').val();		        
-            $('#div-edit-alert').dialog({ modal: true, width: 550, height: 450, resizable: false,
-                 buttons: 
-			        [
-                    {
-			        text: dic("Fm.Mod", lang),
-                        click: function() {
-			        	var tipNaAlarm2 = $('#TipNaAlarm2').val()
-	                    var email2 = $('#emails2').val()
-	                    var sms2 = '';//$('#sms2').val()
-	                    if (<?= $clienttypeid?> == 6)
-	                    	sms2 = $('#sms2').val();
-	                 	                    
-	                    var zvukot2 = $('#zvukot2').val()
-	                    var vehicleid2 = "<?php echo $id?>";
-                    	var ImeNaTocka2 = $('#zonaTocka2').val()
-                    	var NadminataBrzina2 = $('#brzinata2').val()
-                    	NadminataBrzina2 = Math.round(NadminataBrzina2/'<?php echo $value?>')
-                    	var odbranataOpcija2 = document.getElementById('TipNaAlarm2').selectedIndex;
-                    	if (odbranataOpcija2 == 28 && ($('#remindKm1').is(':checked') == false && $('#remindDays1').is(':checked') == false)) {
-				  			msgboxPetar(dic("Settings.RemindMeMustOne",lang));
-				  		} else {
-                    	
-                    	var remindme1 = '';
-					  	if (odbranataOpcija2 == 27 || odbranataOpcija2 == 28 || odbranataOpcija2 == 29 || odbranataOpcija2 == 30) {
-					  		var fmvalueDays1 = "";
-					  		if ($('#remindDays1').is(':checked')) {
-					  			fmvalueDays1 = $('#fmvalueDays1').val() + " days";
-					  		}
-					  						  		
-						  	var fmvalueKm1 = "";
-						  	if ($('#rmdKm1').css('display') != 'none') {
-						  		if ($('#remindKm1').is(':checked')) {
-						  			if (fmvalueDays1 != "")
-						  				fmvalueKm1 += "; " + Math.round($('#fmvalueKm1').val()/ <?= $value?>) + " Km";
-						  			else
-						  				fmvalueKm1 = Math.round($('#fmvalueKm1').val()/ <?= $value?>) + " Km";	
-						  		}
-						  	}
-					  		remindme1 = fmvalueDays1 + fmvalueKm1;
-					  	}
-							  					  					  	
-                    	var vreme2 = $('#vreme2').val()
-                    	
-                    	var ImeNaTocka2 = $('#zonaTocka2').val()
-                    	var ImeNaZonaIzlez2 = $('#zonataIzlezot').val()
-                    	var ImeNaZonaVlez2 = $('#zonataVlezot').val()
-                
-                		var dostapno2 = '1';
-					    if(document.getElementById("tipKorisnik1").checked == true){dostapno2='1'}
-				    	if(document.getElementById("tipKorisnik2").checked == true){dostapno2='2'}
-				    	if(document.getElementById("tipKorisnik3").checked == true){dostapno2='3'}
-                    	
-                    	
-	                    
-	                    function validacija2(){
-						var emails2 = $('#emails2').val();
-						var emailovi2 = emails2.split(",");
-						var izlez2;
-						emailovi2.forEach(function (mejl2) {
-						var filter2 = new RegExp(/^(("[\w-+\s]+")|([\w-+]+(?:\.[\w-+]+)*)|("[\w-+\s]+")([\w-+]+(?:\.[\w-+]+)*))(@((?:[\w-+]+\.)*\w[\w-+]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][\d]\.|1[\d]{2}\.|[\d]{1,2}\.))((25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\.){2}(25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\]?$)/i);
-						izlez2 = filter2.test(mejl2.trim());
-						});
-						return izlez2;
+    //top.HideWait();
+    }
+   });
+  }
+}
+
+function DeleteAlertClick(id) {
+	$('<div></div>').dialog({
+	modal: true,
+	width: 350,
+	height: 170,
+	resizable: false,
+	title: dic("Settings.AlertDeleteQuestion"),
+	open: function() {
+      $(this).html(dic("Settings.DelAlert"));
+    },
+	    buttons:
+	    [
+	    {
+	    	text:dic("Settings.Yes",lang),
+		    click: function() {
+	                $.ajax({
+	                    url: "DelAlerts.php?id="+ id ,
+	                    context: document.body,
+	                    success: function(data){
+	                    $('#' + id).fadeOut(400, function(){
+	                    	$(this).remove();
+	                    	});
 						}
-	                    
-	                    if(email2==''){
-                        msgboxPetar(dic("Settings.AlertsEmailHaveTo",lang))
-                            }else{
-                            	if(email2.length>0 && !validacija2())
-                          			{
-									msgboxPetar(dic("uncorrEmail",lang))
-									}
-								else{
-							 		if(odbranataOpcija2==13){
-							 		if(vreme2==""){
-							 			msgboxPetar(dic("Settings.InsertRetTime",lang))
-							 		}
-							 		else{
-							 			if(sms2!="" && (oldsms2 != sms2)) {
-						   		document.getElementById('div-tip-praznik').title = dic("Settings.ConfSMS",lang)
-						        $('#div-tip-praznik').dialog({ modal: true, width: 300, height: 230, resizable: false,
-					                  buttons: 
-					                  [
-					                  {
-					                  text:dic("Reports.Confirm"),
-									  click: function() {
-									    	
-									    	pass = encodeURIComponent($('#dodTipPraznik').val());
-									    	tipPraznikID = document.getElementById("dodTipPraznik");
-									    	if(pass=="")
-									    	{
-									    		msgboxPetar(dic("Settings.InsertPass",lang))
-									    		tipPraznikID.focus();
-									    	}
-									    	else
-					                        {   
-					                            $.ajax({
-							                        url: "checkPassword2.php?pass="+pass+"&l="+lang,
-							                        context: document.body,
-							                        success: function(data){
-							                        
-							                        if(data==1)	
-							                        {
-							                        	msgboxPetar(dic("Settings.VaildPassSucAlert",lang))
-							                        	 $.ajax({
-	                              url: "UpAlert.php?tipNaAlarm2="+tipNaAlarm2+"&email2="+email2+"&sms2="+sms2+"&zvukot2="+zvukot2+"&vehicleid2="+vehicleid2+"&id="+id+"&ImeNaTocka2="+ImeNaTocka2+"&vreme2="+vreme2+"&dostapno2="+dostapno2+"&remindme="+remindme1,
-	                              context: document.body,
-	                              success: function(data){
-	                              msgboxPetar(dic("Settings.SuccChanged",lang))
-				    			  window.location.reload();
-		                          }
-	                             });	 
-							                        }
-							                        else
-							                        {
-							                        	msgboxPetar(dic("Settings.Incorrectpass",lang))
-							                        	exit;
-							                        }
-							                      }
-							                    });	
-							                   }
-					                         }
-									      },
-									    {
-									    	text:dic("Fm.Cancel",lang),
-					                   		click: function() {
-										    $( this ).dialog( "close" );
-									    }
-					               }
-					              ]
-					   		  })
-					   		  return;
-							} else {
-								$.ajax({
-	                              url: "UpAlert.php?tipNaAlarm2="+tipNaAlarm2+"&email2="+email2+"&sms2="+sms2+"&zvukot2="+zvukot2+"&vehicleid2="+vehicleid2+"&id="+id+"&ImeNaTocka2="+ImeNaTocka2+"&vreme2="+vreme2+"&dostapno2="+dostapno2+"&remindme="+remindme1,
-	                              context: document.body,
-	                              success: function(data){
-	                              msgboxPetar(dic("Settings.SuccChanged",lang))
-				    			  window.location.reload();
-		                          }
-	                             });
-							}
-                               	 
-                             }
-                             }else{
-					 		 if(odbranataOpcija2==12){
-					 		 	if(sms2!="" && (oldsms2 != sms2)) {
-						   		document.getElementById('div-tip-praznik').title = dic("Settings.ConfSMS",lang)
-						        $('#div-tip-praznik').dialog({ modal: true, width: 300, height: 230, resizable: false,
-					                  buttons: 
-					                  [
-					                  {
-					                  text:dic("Reports.Confirm"),
-									  click: function() {
-									    	
-									    	pass = encodeURIComponent($('#dodTipPraznik').val());
-									    	tipPraznikID = document.getElementById("dodTipPraznik");
-									    	if(pass=="")
-									    	{
-									    		msgboxPetar(dic("Settings.InsertPass",lang))
-									    		tipPraznikID.focus();
-									    	}
-									    	else
-					                        {   
-					                            $.ajax({
-							                        url: "checkPassword2.php?pass="+pass+"&l="+lang,
-							                        context: document.body,
-							                        success: function(data){
-							                        
-							                        if(data==1)	
-							                        {
-							                        	msgboxPetar(dic("Settings.VaildPassSucAlert",lang))
-							                        	 $.ajax({
-	                              url: "UpAlert.php?tipNaAlarm2="+tipNaAlarm2+"&email2="+email2+"&sms2="+sms2+"&zvukot2="+zvukot2+"&vehicleid2="+vehicleid2+"&id="+id+"&ImeNaZonaIzlez2="+ImeNaZonaIzlez2+"&dostapno2="+dostapno2+"&remindme="+remindme1,
-	                              context: document.body,
-	                              success: function(data){
-	                              msgboxPetar(dic("Settings.SuccChanged",lang))
-				    			  window.location.reload();
-		                          }
-	                            });	 
-                             }
-							                        else
-							                        {
-							                        	msgboxPetar(dic("Settings.Incorrectpass",lang))
-							                        	exit;
-							                        }
-							                      }
-							                    });	
-							                   }
-					                         }
-									      },
-									    {
-									    	text:dic("Fm.Cancel",lang),
-					                   		click: function() {
-										    $( this ).dialog( "close" );
-									    }
-					               }
-					              ]
-					   		  })
-					   		  return;
-							} else {
-								$.ajax({
-	                              url: "UpAlert.php?tipNaAlarm2="+tipNaAlarm2+"&email2="+email2+"&sms2="+sms2+"&zvukot2="+zvukot2+"&vehicleid2="+vehicleid2+"&id="+id+"&ImeNaZonaIzlez2="+ImeNaZonaIzlez2+"&dostapno2="+dostapno2+"&remindme="+remindme1,
-	                              context: document.body,
-	                              success: function(data){
-	                              msgboxPetar(dic("Settings.SuccChanged",lang))
-				    			  window.location.reload();
-		                          }
-	                            });
-							}
-					 				 
-                             }
-                             else{
-					 		 if(odbranataOpcija2==11){
-					 			if(sms2!="" && (oldsms2 != sms2)) {
-						   		document.getElementById('div-tip-praznik').title = dic("Settings.ConfSMS",lang)
-						        $('#div-tip-praznik').dialog({ modal: true, width: 300, height: 230, resizable: false,
-					                  buttons: 
-					                  [
-					                  {
-					                  text:dic("Reports.Confirm"),
-									  click: function() {
-									    	
-									    	pass = encodeURIComponent($('#dodTipPraznik').val());
-									    	tipPraznikID = document.getElementById("dodTipPraznik");
-									    	if(pass=="")
-									    	{
-									    		msgboxPetar(dic("Settings.InsertPass",lang))
-									    		tipPraznikID.focus();
-									    	}
-									    	else
-					                        {   
-					                            $.ajax({
-							                        url: "checkPassword2.php?pass="+pass+"&l="+lang,
-							                        context: document.body,
-							                        success: function(data){
-							                        
-							                        if(data==1)	
-							                        {
-							                        	msgboxPetar(dic("Settings.VaildPassSucAlert",lang))
-							                        	 $.ajax({
-	                              url: "UpAlert.php?tipNaAlarm2="+tipNaAlarm2+"&email2="+email2+"&sms2="+sms2+"&zvukot2="+zvukot2+"&vehicleid2="+vehicleid2+"&id="+id+"&ImeNaZonaVlez2="+ImeNaZonaVlez2+"&dostapno2="+dostapno2+"&remindme="+remindme1,
-	                              context: document.body,
-	                              success: function(data){
-	                              msgboxPetar(dic("Settings.SuccChanged",lang))
-				    			  window.location.reload();
-		                          }
-	                            });	 
-							                        }
-							                        else
-							                        {
-							                        	msgboxPetar(dic("Settings.Incorrectpass",lang))
-							                        	exit;
-							                        }
-							                      }
-							                    });	
-							                   }
-					                         }
-									      },
-									    {
-									    	text:dic("Fm.Cancel",lang),
-					                   		click: function() {
-										    $( this ).dialog( "close" );
-									    }
-					               }
-					              ]
-					   		  })
-					   		  return;
-							} else {
-								$.ajax({
-	                              url: "UpAlert.php?tipNaAlarm2="+tipNaAlarm2+"&email2="+email2+"&sms2="+sms2+"&zvukot2="+zvukot2+"&vehicleid2="+vehicleid2+"&id="+id+"&ImeNaZonaVlez2="+ImeNaZonaVlez2+"&dostapno2="+dostapno2+"&remindme="+remindme1,
-	                              context: document.body,
-	                              success: function(data){
-	                              msgboxPetar(dic("Settings.SuccChanged",lang))
-				    			  window.location.reload();
-		                          }
-	                            });	 
-							}
-                             }else  
-					 		 {
-							 if(odbranataOpcija2==10){
-							 if(NadminataBrzina2==""){
-							 		msgboxPetar(dic("Settings.InsertSpeedOver",lang))
-							 }
-							 else{
-							 	if(sms2!="" && (oldsms2 != sms2)) {
-						   		document.getElementById('div-tip-praznik').title = dic("Settings.ConfSMS",lang)
-						        $('#div-tip-praznik').dialog({ modal: true, width: 300, height: 230, resizable: false,
-					                  buttons: 
-					                  [
-					                  {
-					                  text:dic("Reports.Confirm"),
-									  click: function() {
-									    	
-									    	pass = encodeURIComponent($('#dodTipPraznik').val());
-									    	tipPraznikID = document.getElementById("dodTipPraznik");
-									    	if(pass=="")
-									    	{
-									    		msgboxPetar(dic("Settings.InsertPass",lang))
-									    		tipPraznikID.focus();
-									    	}
-									    	else
-					                        {   
-					                            $.ajax({
-							                        url: "checkPassword2.php?pass="+pass+"&l="+lang,
-							                        context: document.body,
-							                        success: function(data){
-							                        
-							                        if(data==1)	
-							                        {
-							                        	msgboxPetar(dic("Settings.VaildPassSucAlert",lang))
-							                        	 $.ajax({
-	                              url: "UpAlert.php?tipNaAlarm2="+tipNaAlarm2+"&email2="+email2+"&sms2="+sms2+"&zvukot2="+zvukot2+"&vehicleid2="+vehicleid2+"&id="+id+"&NadminataBrzina2="+NadminataBrzina2+"&dostapno2="+dostapno2+"&remindme="+remindme1,
-	                              context: document.body,
-	                              success: function(data){
-	                              msgboxPetar(dic("Settings.SuccChanged",lang))
-				    			  window.location.reload();
-		                          }
-	                             });	
-                               }
-							                        else
-							                        {
-							                        	msgboxPetar(dic("Settings.Incorrectpass",lang))
-							                        	exit;
-							                        }
-							                      }
-							                    });	
-							                   }
-					                         }
-									      },
-									    {
-									    	text:dic("Fm.Cancel",lang),
-					                   		click: function() {
-										    $( this ).dialog( "close" );
-									    }
-					               }
-					              ]
-					   		  })
-					   		  return;
-							} else {
-								$.ajax({
-	                              url: "UpAlert.php?tipNaAlarm2="+tipNaAlarm2+"&email2="+email2+"&sms2="+sms2+"&zvukot2="+zvukot2+"&vehicleid2="+vehicleid2+"&id="+id+"&NadminataBrzina2="+NadminataBrzina2+"&dostapno2="+dostapno2+"&remindme="+remindme1,
-	                              context: document.body,
-	                              success: function(data){
-	                              msgboxPetar(dic("Settings.SuccChanged",lang))
-				    			  window.location.reload();
-		                          }
-	                             });	
-							}
-                             
-                               }
-                             }else{
-                             	if(sms2!="" && (oldsms2 != sms2)) {
-						   		document.getElementById('div-tip-praznik').title = dic("Settings.ConfSMS",lang)
-						        $('#div-tip-praznik').dialog({ modal: true, width: 300, height: 230, resizable: false,
-					                  buttons: 
-					                  [
-					                  {
-					                  text:dic("Reports.Confirm"),
-									  click: function() {
-									    	
-									    	pass = encodeURIComponent($('#dodTipPraznik').val());
-									    	tipPraznikID = document.getElementById("dodTipPraznik");
-									    	if(pass=="")
-									    	{
-									    		msgboxPetar(dic("Settings.InsertPass",lang))
-									    		tipPraznikID.focus();
-									    	}
-									    	else
-					                        {   
-					                            $.ajax({
-							                        url: "checkPassword2.php?pass="+pass+"&l="+lang,
-							                        context: document.body,
-							                        success: function(data){
-							                        
-							                        if(data==1)	
-							                        {
-							                        	msgboxPetar(dic("Settings.VaildPassSucAlert",lang))
-							                        	$.ajax({
-	                         url: "UpAlert.php?tipNaAlarm2="+tipNaAlarm2+"&email2="+email2+"&sms2="+sms2+"&zvukot2="+zvukot2+"&vehicleid2="+vehicleid2+"&id="+id+"&dostapno2="+dostapno2+"&remindme="+remindme1,
-	                         context: document.body,
-	                         success: function(data){
-	                         msgboxPetar(dic("Settings.SuccChanged",lang))
-		                     window.location.reload();
-					    	         }
-	                                });
-							                        }
-							                        else
-							                        {
-							                        	msgboxPetar(dic("Settings.Incorrectpass",lang))
-							                        	exit;
-							                        }
-							                      }
-							                    });	
-							                   }
-					                         }
-									      },
-									    {
-									    	text:dic("Fm.Cancel",lang),
-					                   		click: function() {
-										    $( this ).dialog( "close" );
-									    }
-					               }
-					              ]
-					   		  })
-					   		  return;
-                             }else{
-                		     $.ajax({
-	                         url: "UpAlert.php?tipNaAlarm2="+tipNaAlarm2+"&email2="+email2+"&sms2="+sms2+"&zvukot2="+zvukot2+"&vehicleid2="+vehicleid2+"&id="+id+"&dostapno2="+dostapno2+"&remindme="+remindme1,
-	                         context: document.body,
-	                         success: function(data){
-	                         msgboxPetar(dic("Settings.SuccChanged",lang))
-		                     window.location.reload();
-					    	         }
-	                                });
-							}
-	                               }
-    	                          }
-    	                         }
-    	                        }
-    	                       }
-                              }
-                            }
-                           }
-                          },
-                    	{
-                    text: dic("Fm.Cancel", lang),
-                         click: function() {
-				        $( this ).dialog( "close" );
-			            }
-                      }
-                    ] 
-                  })
-                }      
-              });
-			}
-	function DeleteAlertClick(id) {
-          document.getElementById('div-del-alert').title = dic("Settings.AlertDeleteQuestion")
-		  $('#div-del-alert').dialog({ modal: true, width: 350, height: 170, resizable: false,
-                buttons: 
-                [
-                {
-                	text:dic("Settings.Yes",lang),
-				    click: function() {
-                            $.ajax({
-		                        url: "DelAlerts.php?id="+ id ,
-		                        context: document.body,
-		                        success: function(data){
-		                        msgboxPetar(dic("Settings.SuccDeleted",lang))
-		                        window.location.reload();
-								}
-		                    });	
-                            $( this ).dialog( "close" );
-                           }
-				    },
-				    {
-				    	text:dic("Settings.No",lang),
-                    click: function() {
-					    $( this ).dialog( "close" );
-				    }
-               }
-               ]
-          });
-    }
-    </script>
-    
-    <script>      
+	                });
+	                $( this ).dialog( "close" );
+	               }
+		    },
+		    {
+		    text:dic("Settings.No",lang),
+	        click: function() {
+			    $( this ).dialog( "close" );
+		    }
+	   }
+	   ]
+	});
+}
+
+/*
+	>>>>>>>>>>>>>>>>>>>>  DODADENI FUNKCII  >>>>>>>>>>>>>>>>>>>>
+ */
 
 // koga nasokata e zapis vo baza (klient - > server)
 function convertMetric( edinica, vrednost) {
@@ -2197,10 +1650,49 @@ function timed_refresh (delay) {
 	}, delay);
 }
 
+function isNum( obj ) {
+    return !jQuery.isArray( obj ) && (obj - parseFloat( obj ) + 1) >= 0;
+}
 
-// --------------- MAIN FUNCTION -------------------------
+function isNormalInteger(str) {
+    var n = ~~Number(str);
+    return String(n) === str && n > 0;
+}
+
+function isChecked( obj ) {		// samo za id
+	return ($('#'+obj).is(':checked'));
+}
+
+function hideVeh(id) {
+	$('#'+ id + " td:nth-child(3) div").slideToggle(280);
+}
+
+function get_operator_id (obj_arr, mobilenoperator) {
+	for(i=0; i<obj_arr.length; ++i){
+		if(obj_arr[i].id == mobilenoperator) {
+			return i;
+		}
+	}
+}
+
+function get_operator_email (obj_arr, operatoremail) {
+	for(i=0; i<obj_arr.length; ++i){
+		if(obj_arr[i].email === operatoremail) {
+			return i;
+		}
+	}
+}
+
+
+/**
+ *     |----------------------------------------------|
+ * 	   |>>>>>>>>>   MAIN FUNCTION STORE/EDIT   >>>>>>>|
+ * 	   |----------------------------------------------|
+ */
 
 function storeAlerts(isEdit, _id) {
+
+	var args = arguments.length
 
 	if (typeof(isEdit)==='undefined') isEdit = false;	// default value for addAlert
    	if (typeof(_id)==='undefined') _id = 0;
@@ -2234,7 +1726,6 @@ function storeAlerts(isEdit, _id) {
         	allowedSMSviaEmail = Number('<?php echo $allowedSMSvEmail; ?>');
    			if(allowedSMSviaEmail == 1) {
    				$('.SMSemail').show();
-
    			}
 
     	    $(function () {
@@ -2312,8 +1803,17 @@ function storeAlerts(isEdit, _id) {
 		    	$('input:radio[name=radio]').button('refresh');
   			}
 
-  			else {	// ako ne e edit (dodavanje)
-  				ClearDialog();	// se povukuva za da se iscisti od prethodno ako ne e povikano window.reload
+  			else {	// ako ne e edit (dodavanje / specificno dodavanje)
+  				if(!isEdit && args == 2) {
+
+  					console.log("arguments : "+isEdit+"-"+_id);
+  					$("#TipNaAlarm option[value="+_id+"]").attr('selected','selected');
+			    	$('#TipNaAlarm').attr('disabled', 'disabled');
+
+			    	OptionsChangeAlarmType();
+			    	$("#fmvalueDays").val(5);
+
+  				} else ClearDialog();	// se povukuva za da se iscisti od prethodno ako ne e povikano window.reload
    			}
         },
         close: function() {
@@ -2562,7 +2062,6 @@ function OptionsChangeAlarmType() {
 }
 
 
-   
     function addAlerts(_id) {
     	document.getElementById('noteFmAlarm').style.display = "none";
     	document.getElementById('textFmAlarm').innerHTML = "";
