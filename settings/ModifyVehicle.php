@@ -312,21 +312,21 @@
 	</table>
 </div>
     
-<?php   
-  	
+<?php
+
   	  opendb();
 	  $ds = query("select * from clients where id=" . session("client_id"));
 	  $clienttypeid = pg_fetch_result($ds, 0, "clienttypeid");
-	 
+
 	  $allowedalarms = pg_fetch_result($ds, 0, "allowedalarms");
 	  $allowedfm = pg_fetch_result($ds, 0, "allowedfm");
       $allowedrouting = pg_fetch_result($ds, 0, "allowedrouting");
-	  $allowedrfid = nnull(dlookup("select allowrfid from vehicles where id=" . $id), "0");
+	  $allowedRFID = nnull(dlookup("select allowrfid from vehicles where id=" . $id), "0");
 	  $allowgarmin = nnull(dlookup("select allowgarmin from vehicles where id=" . $id), "0");
 	  $gsmnum = nnull(dlookup("select gsmnumber from vehicles where id=" . $id), "0");
-	  $allowedcapace = dlookup("select count(*) from vehicleport where vehicleid=".$id." and porttypeid=17");
+	  $allowedCapace = dlookup("select count(*) from vehicleport where vehicleid=".$id." and porttypeid=17");
 	  $allowFuel = nnull(dlookup("select allowfuel from vehicles where id=" . $id), "");
-	  	
+
 	  $metric = nnull(dlookup("select metric from users where id = " . session("user_id")), "1");	
 	$datetimeformat = dlookup("select datetimeformat from users where id = " . session("user_id"));
 	$datfor = explode(" ", $datetimeformat);
@@ -891,7 +891,7 @@
                      <td height=25px align=left style="background-color:#fff; border:1px dotted #B8B8B8; padding-left:10px"><?php echo nnull(pg_fetch_result($dsDrivers, 0, "code"), "/") ?></td>
                      <td height=25px align=left style="background-color:#fff; border:1px dotted #B8B8B8; padding-left:10px; width:200px"><?php echo nnull(pg_fetch_result($dsDrivers, 0, "fullname"), "/") ?></td>
                      <td height=25px  align=center style="background-color:#fff; border:1px dotted #B8B8B8; ">
-                         <button id="btn<?php echo $cnt ?>" style="height:27px; margin-left:8px; margin-right:8px; width:30px" onclick="DelAllowedDriver(<?php echo $cnt ?>, <?php echo $drAd["id"] ?>)"></button>
+                         <button id="btn<?php echo $cnt ?>" class="btn-driver" style="height:27px; margin-left:8px; margin-right:8px; width:30px" onclick="DelAllowedDriver(<?php echo $cnt ?>, <?php echo $drAd["id"] ?>)"></button>
                      </td>
                  </tr>
           <?php
@@ -910,10 +910,10 @@
         ?>
 
                 </table>
-                
+
             </td>
         </tr>
-        
+
 		<?php
 		if ( $allowgarmin == "1")
         { ?>
@@ -1391,25 +1391,6 @@
 			<td width = "75%" style="font-weight:bold" class ="text2"><input id = "brzinata" class="textboxcalender corner5 text5" type="text" size="10"></input>&nbsp;<?php echo $unitSpeed ?></td>
 		</tr>
 
-		<tr id="OrganizacionaEdinica" style="display:none;">
-			<td width = "25%" style="font-weight:bold" class ="text2" align="left"><?php echo dic_("Tracking.SelectOrg.Unit")?>:</td>
-			<td width = "75%" style="font-weight:bold" class ="text2">
-			<div class="ui-widget" style="height: 25px; width: 100%">
-			<select id="oEdinica" style="width: 365px;" class="combobox text2">
-				<?php
-				$dsPP2 = query($strOrg);
-
-				$brojRedovi = pg_num_rows($dsPP2);
-				while($row2 = pg_fetch_array($dsPP2)) {
-				?>
-				<option value="<?php echo $row2["id"] ?>"><?php if ($brojRedovi>0){ echo $row2["name"]?>&nbsp;(<?php echo $row2["code"]?><?php }else{ echo dic_("Settings.NoOrgU");}?>)</option>
-				<?
-				}
-				?>
-			</select>
-			</div>
-			</td>
-		</tr>
 		<tr id="fm" style="display:none;">
 			<td width = "27%" style="font-weight:bold" class ="text2"  align="left"><?php echo dic_("Settings.RemindMe")?> <?php echo dic_("Settings.Before")?>:</td>
 			<td width = "73%" style="" class ="text2">
@@ -1670,6 +1651,8 @@ function DeleteAlertClick(id) {
 	});
 }
 
+var allRemoved = "";
+
 /*
 	>>>>>>>>>>>>>>>>>>>>  DODADENI FUNKCII  >>>>>>>>>>>>>>>>>>>>
  */
@@ -1776,7 +1759,7 @@ function storeAlerts(isEdit, _id) {
 				objID = i;
 			}
 		}
-   		console.log(row_array[objID]);
+   		// console.log(row_array[objID]);
    	}
 
     $('#dialog-alerts').dialog({
@@ -1876,7 +1859,7 @@ function storeAlerts(isEdit, _id) {
   			else {	// ako ne e edit (dodavanje / specificno dodavanje)
   				if(!isEdit && args == 2) {
 
-  					console.log("arguments : "+isEdit+"-"+_id);
+  					// console.log("arguments : "+isEdit+"-"+_id);
   					$("#TipNaAlarm option[value="+_id+"]").attr('selected','selected');
 			    	$('#TipNaAlarm').attr('disabled', 'disabled');
 
@@ -1891,7 +1874,7 @@ function storeAlerts(isEdit, _id) {
         	$("#comboboxVlez").combobox('destroy');
         	$("#comboboxIzlez").combobox('destroy');
         	ClearDialog();
-        	console.log("destroyed...");
+        	// console.log("destroyed...");
 			window.scrollTo(0,dialogPosition);
         },
         buttons: [{
@@ -1914,7 +1897,6 @@ function storeAlerts(isEdit, _id) {
                 var vreme = $('#vreme').val();
                 var alarmSelect = document.getElementById('TipNaAlarm').selectedIndex;
                 var voziloOdbrano = row_array[0]['vid'];
-                console.log(voziloOdbrano);
                 var dostapno = getCheckedRadio('radio');
                 var valueDays = $('#fmvalueDays').val();
                 var valueKm = convertMetric('<?php echo $metric ?>', $('#fmvalueKm').val());
@@ -1965,7 +1947,7 @@ function storeAlerts(isEdit, _id) {
                 ///////////////////////////////////////////////////////////////////////////////////////
 
 	 			console.log(validation);
-	 			console.log(validation.length);
+	 			// console.log(validation.length);
 
 				var remindme = '';
 			  	if (tipNaAlarm == 17 || tipNaAlarm == 18 || tipNaAlarm == 20) {
@@ -2007,7 +1989,7 @@ function storeAlerts(isEdit, _id) {
 	 			validate_smsvemails($('#smsviaemail').val(),getMO);
 	 			smsviaemail = validate_smsvemails.v;
 	 			if(validation.length === 0 && allowedSMSviaEmail == 1 && smsviaemail != "") sendSMS = smsviaemail;
-				console.log("SEND SMS: " + sendSMS);
+				// console.log("SEND SMS: " + sendSMS);
 
 			  	var qurl = "storeAlert.php?tipNaAlarm=" + tipNaAlarm + "&email=" + email + "&sms=" + sms + "&zvukot=" + zvukot + "&ImeNaTocka=" + ImeNaTocka + "&ImeNaZonaIzlez=" + ImeNaZonaIzlez + "&ImeNaZonaVlez=" + ImeNaZonaVlez + "&NadminataBrzina=" + NadminataBrzina + "&vreme=" + vreme + "&dostapno=" + dostapno + "&orgEdinica=" + orgEdinica + "&odbraniVozila=1" + "&voziloOdbrano=" + voziloOdbrano + "&remindme=" + remindme + "&sendviaEmail=" + sendSMS;
 
@@ -2070,7 +2052,7 @@ function ClearDialog() {
 function OptionsChangeAlarmType() {
 
 	  	var tipNaAlarm = $('#TipNaAlarm').val();
-		console.log("tip na alarm: " + tipNaAlarm);
+		// console.log("tip na alarm: " + tipNaAlarm);
 
 		document.getElementById('noteFmAlarm').style.display = "none";
    		document.getElementById('textFmAlarm').innerHTML = "";
@@ -2131,258 +2113,235 @@ function OptionsChangeAlarmType() {
 
 }
 
+function DelAllowedDriver(i, id) {
+	$('#div-del-allowed-driver').dialog({ modal: true, width: 350, height: 170, resizable: false,
+	    buttons: 
+	    [
+	    {
+	    	text:dic("Settings.Yes",lang),
+		    click: function(){
+	                $.ajax({
+	                    url: "DelAllowedDriver.php?id="+id+ "&i=" + i,
+	                    context: document.body,
+	                    success: function(data){
+	                    msgboxPetar(dic("Settings.DeleteAllowenceSuccess",lang));
+	                    window.location.reload();
+						}
+	                });	
+	                $( this ).dialog( "close" );
+	               }
+		    },
+		    {
+		    	text:dic("Settings.No",lang),
+	        click: function() {
+			    $( this ).dialog( "close" );
+		    }
+	   }
+	   ]
+	});
 
-	</script>
-	<script>
-	
-clientid = '<?=session("client_id")?>';
-	    lang = '<?php echo $cLang?>';
-    var allRemoved = "";
+}
 
-    document.getElementById("registration").focus();
-    document.getElementById('fuelType').selectedIndex = <?php echo $gorivo?>-1;
-     
-   	if (<?php echo $totalAlDr ?> == <?php echo $totalDr ?>) document.getElementById('addAllDri').disabled="disabled";
-    else document.getElementById('addAllDri').disabled="";
-    
-     
-   
-    //    if (document.getElementById("opt-" + i).value == "<php echo $orgUnit ?>") {
-    //        document.getElementById("orgUnit").selectedIndex = i;
-    //    }
-    //}
-      
-     /* if (<php echo $checkOrg ?> == 0) {
-            document.getElementById("orgUnit").selectedIndex = -1;
-      }*/
-      
-      
-       function DelAllowedDriver(i, id) {
-  	   $('#div-del-allowed-driver').dialog({ modal: true, width: 350, height: 170, resizable: false,
-                buttons: 
-                [
-                {
-                	text:dic("Settings.Yes",lang),
-				    click: function(){
-                            $.ajax({
-		                        url: "DelAllowedDriver.php?id="+id+ "&i=" + i,
-		                        context: document.body,
-		                        success: function(data){
-		                        msgboxPetar(dic("Settings.DeleteAllowenceSuccess",lang));
-		                        window.location.reload();
-								}
-		                    });	
-                            $( this ).dialog( "close" );
-                           }
-				    },
-				    {
-				    	text:dic("Settings.No",lang),
-                    click: function() {
-					    $( this ).dialog( "close" );
-				    }
-               }
-               ]
-         });
-         //var element = document.getElementById("tr" + i);
-       //  element.parentNode.removeChild(element);
-       //  allRemoved += id + ";";
+function modify() {
+
+    var reg = document.getElementById("registration").value;
+    var code = document.getElementById("code").value;
+    if(reg == "")
+    {
+    	msgboxPetar(dic("Settings.MustReg"),lang);
+    	return false;
     }
-        function modify() {
-    	
-    	
-        var reg = document.getElementById("registration").value;
-        var code = document.getElementById("code").value;
-        if(reg == "")
-        {
-        	msgboxPetar(dic("Settings.MustReg"),lang);
-        	return false;
-        }
-        if(code == "")
-        {
-        	msgboxPetar(dic("Settings.MustCode"),lang);
-        	return false;
-        }
-        if(!(code % 1 === 0))
-        {
-        	msgboxPetar(dic("Settings.InvalidCode", lang)+"<br>"+dic("Settings.CodeMustNo", lang),lang);
-        	return false;
-        }
-        var model = document.getElementById("model").value;
-        var brand = document.getElementById("brand").value;
-        var yearmanuf = document.getElementById("yearmanuf").value;
-
-        var prekar = document.getElementById("aliasName").value;
-        var chassis = document.getElementById("chassis").value;
-        var motor = document.getElementById("motor").value;
-        var fuelType = document.getElementById("fuelType").selectedIndex + 1;
-        
-        var capacity = document.getElementById("capacity").value.replace(",", "");
-        var orgUnit = document.getElementById("orgUnit").value;
-        var firstReg = formatdate13(document.getElementById("firstReg").value, '<?=$dateformat?>');
-        var lastReg = formatdate13(document.getElementById("lastReg").value, '<?=$dateformat?>');
-        var kmPerYear = document.getElementById("kmPerYear").value.replace(",", "");
-        var sprTires = document.getElementById("sprTires").value.replace(",", ""); //sumTir
-        var winTires = document.getElementById("winTires").value.replace(",", "");
-        var nextService = document.getElementById("nextService").value.replace(",", "");
-        if ('<?php echo $metric?>' == 'mi') {
-			nextService = nextService * 1.609344498;
-		}
-        var nextServiceMonths = document.getElementById("nextServiceMonths").value.replace(",", "");
-              
-        var greenCard = $('input[name=greenCard]:radio:checked').val();
-        var activity = $('input[name=activity]:radio:checked').val();
-		var range = 0;
-		
-		if (document.getElementById("range"))
-        	range = document.getElementById("range").value;
-
-		if (nextService == "") {
-			nextService = 10000;
-		}
-		if (nextServiceMonths == "") {
-			nextServiceMonths = 12;
-		}
-				
-		//if (nextService == "" || nextServiceMonths == "") {
-        //	msgboxPetar(dic("Settings.MustServiceInterval"),lang)
-      // } else {
-
-       		top.ShowWait();
-       		promeniOdometar(<?php echo $id ?>)
-			$.ajax({
-              url: "UpdateVehicle.php?reg=" + reg + "&code=" + code + "&model=" + model + "&range=" + range + "&chassis=" + chassis + "&motor=" + motor + "&fuelType=" + fuelType + "&capacity=" + capacity + "&orgUnit=" + orgUnit + "&firstReg=" + firstReg + "&lastReg=" + lastReg + "&kmPerYear=" + kmPerYear + "&sprTires=" + sprTires + "&winTires=" + winTires + "&nextService=" + nextService + "&nextServiceMonths=" + nextServiceMonths + "&greenCard=" + greenCard + "&id=" + <?php echo $id ?> + "&removed=" + allRemoved+ "&prekar=" + prekar+ "&activity=" + activity + "&brand=" + brand + "&yearmanuf=" + yearmanuf,
-              context: document.body,
-              success: function(data) {
-              		if(data == 1)
-                    {
-           				msgboxPetar(dic("Settings.VehicleAlreadyCode"),lang);
-           				top.HideWait();
-                    }
-                    else
-                    {
-                    	top.document.getElementById('ifrm-cont').src = "Vehicles.php?l=" + '<?php echo $cLang ?>';   
-                    	//top.HideWait();
-                    }
-              	}
-        	});
-      // }
+    if(code == "")
+    {
+    	msgboxPetar(dic("Settings.MustCode"),lang);
+    	return false;
     }
-
-   function removeItem(i, id) {
-         var element = document.getElementById("tr" + i);
-         element.parentNode.removeChild(element);
-         allRemoved += id + ";";
+    if(!(code % 1 === 0))
+    {
+    	msgboxPetar(dic("Settings.InvalidCode", lang)+"<br>"+dic("Settings.CodeMustNo", lang),lang);
+    	return false;
     }
+    var model = document.getElementById("model").value;
+    var brand = document.getElementById("brand").value;
+    var yearmanuf = document.getElementById("yearmanuf").value;
 
-    function cancel() {
-        top.ShowWait();
-        top.document.getElementById('ifrm-cont').src = "Vehicles.php?l=" + '<?php echo $cLang ?>';
-    }
+    var prekar = document.getElementById("aliasName").value;
+    var chassis = document.getElementById("chassis").value;
+    var motor = document.getElementById("motor").value;
+    var fuelType = document.getElementById("fuelType").selectedIndex + 1;
 
-	function poglasno () {
-		document.getElementById('potivko').disabled = false;
-		document.getElementById('potivko').style.opacity = 1;
-		
-		if ((document.getElementById('demo').volume + 0.1) > 1) {
-			document.getElementById('poglasno').disabled = true;
-			document.getElementById('poglasno').style.opacity = 0.5;
-			$("#poglasno").removeClass("ui-state-focus ui-state-hover")
-		} else {
-			document.getElementById('demo').volume += 0.1;
-			document.getElementById('poglasno').disabled = false;
-			document.getElementById('poglasno').style.opacity = 1;
-		}	
+    var capacity = document.getElementById("capacity").value.replace(",", "");
+    var orgUnit = document.getElementById("orgUnit").value;
+    var firstReg = formatdate13(document.getElementById("firstReg").value, '<?=$dateformat?>');
+    var lastReg = formatdate13(document.getElementById("lastReg").value, '<?=$dateformat?>');
+    var kmPerYear = document.getElementById("kmPerYear").value.replace(",", "");
+    var sprTires = document.getElementById("sprTires").value.replace(",", ""); //sumTir
+    var winTires = document.getElementById("winTires").value.replace(",", "");
+    var nextService = document.getElementById("nextService").value.replace(",", "");
+    if ('<?php echo $metric?>' == 'mi') {
+		nextService = nextService * 1.609344498;
 	}
-	
-	function potivko () {
+    var nextServiceMonths = document.getElementById("nextServiceMonths").value.replace(",", "");
+
+    var greenCard = $('input[name=greenCard]:radio:checked').val();
+    var activity = $('input[name=activity]:radio:checked').val();
+	var range = 0;
+
+	if (document.getElementById("range"))
+    	range = document.getElementById("range").value;
+
+	if (nextService == "") {
+		nextService = 10000;
+	}
+	if (nextServiceMonths == "") {
+		nextServiceMonths = 12;
+	}
+
+   		top.ShowWait();
+   		promeniOdometar(<?php echo $id ?>)
+   		console.log("UpdateVehicle.php?reg=" + reg + "&code=" + code + "&model=" + model + "&range=" + range + "&chassis=" + chassis + "&motor=" + motor + "&fuelType=" + fuelType + "&capacity=" + capacity + "&orgUnit=" + orgUnit + "&firstReg=" + firstReg + "&lastReg=" + lastReg + "&kmPerYear=" + kmPerYear + "&sprTires=" + sprTires + "&winTires=" + winTires + "&nextService=" + nextService + "&nextServiceMonths=" + nextServiceMonths + "&greenCard=" + greenCard + "&id=" + <?php echo $id ?> + "&removed=" + allRemoved+ "&prekar=" + prekar+ "&activity=" + activity + "&brand=" + brand + "&yearmanuf=" + yearmanuf);
+		$.ajax({
+          url: "UpdateVehicle.php?reg=" + reg + "&code=" + code + "&model=" + model + "&range=" + range + "&chassis=" + chassis + "&motor=" + motor + "&fuelType=" + fuelType + "&capacity=" + capacity + "&orgUnit=" + orgUnit + "&firstReg=" + firstReg + "&lastReg=" + lastReg + "&kmPerYear=" + kmPerYear + "&sprTires=" + sprTires + "&winTires=" + winTires + "&nextService=" + nextService + "&nextServiceMonths=" + nextServiceMonths + "&greenCard=" + greenCard + "&id=" + <?php echo $id ?> + "&removed=" + allRemoved+ "&prekar=" + prekar+ "&activity=" + activity + "&brand=" + brand + "&yearmanuf=" + yearmanuf,
+          context: document.body,
+          success: function(data) {
+          		if(data == 1)
+                {
+       				msgboxPetar(dic("Settings.VehicleAlreadyCode"),lang);
+       				top.HideWait();
+                }
+                else
+                {
+                	top.document.getElementById('ifrm-cont').src = "Vehicles.php?l=" + '<?php echo $cLang ?>';   
+                	//top.HideWait();
+                }
+          	}
+    	});
+  // }
+}
+
+function removeItem(i, id) {
+     var element = document.getElementById("tr" + i);
+     element.parentNode.removeChild(element);
+     allRemoved += id + ";";
+}
+
+function cancel() {
+    top.ShowWait();
+    top.document.getElementById('ifrm-cont').src = "Vehicles.php?l=" + '<?php echo $cLang ?>';
+}
+
+function poglasno () {
+	document.getElementById('potivko').disabled = false;
+	document.getElementById('potivko').style.opacity = 1;
+
+	if ((document.getElementById('demo').volume + 0.1) > 1) {
+		document.getElementById('poglasno').disabled = true;
+		document.getElementById('poglasno').style.opacity = 0.5;
+		$("#poglasno").removeClass("ui-state-focus ui-state-hover")
+	} else {
+		document.getElementById('demo').volume += 0.1;
 		document.getElementById('poglasno').disabled = false;
 		document.getElementById('poglasno').style.opacity = 1;
-			
-		if ((document.getElementById('demo').volume - 0.1) < 0) {
-			document.getElementById('potivko').disabled = true;
-			document.getElementById('potivko').style.opacity = 0.5;
-			$("#potivko").removeClass("ui-state-focus ui-state-hover")
-		} else {
-			document.getElementById('demo').volume -= 0.1;
-			document.getElementById('potivko').disabled = false;
-			document.getElementById('potivko').style.opacity = 1;
-		}
 	}
+}
+function potivko () {
+	document.getElementById('poglasno').disabled = false;
+	document.getElementById('poglasno').style.opacity = 1;
 
-    for (var i=0; i < <?php echo $cnt?>; i++) {
-        $('#btn' + i).button({ icons: { primary: "ui-icon-trash"} })
-    }
+	if ((document.getElementById('demo').volume - 0.1) < 0) {
+		document.getElementById('potivko').disabled = true;
+		document.getElementById('potivko').style.opacity = 0.5;
+		$("#potivko").removeClass("ui-state-focus ui-state-hover")
+	} else {
+		document.getElementById('demo').volume -= 0.1;
+		document.getElementById('potivko').disabled = false;
+		document.getElementById('potivko').style.opacity = 1;
+	}
+}
 
-	$('#mod1').button({ icons: { primary: "ui-icon-pencil"} })
-	$('#mod2').button({ icons: { primary: "ui-icon-pencil"} })
-    $('#ok').button({ icons: { primary: "ui-icon-check"} })
-    $('#addAllDri').button({ icons: { primary: "ui-icon-plusthick"} })
-    $('#add5').button({ icons: { primary: "ui-icon-plusthick"} })
-    $('#cancel1').button({ icons: { primary: "ui-icon-arrowreturnthick-1-w"} })
-    $('#cancel2').button({ icons: { primary: "ui-icon-arrowreturnthick-1-w"} })
-    $('#play').button({ icons: { primary: "ui-icon-play"} })
-    $('#pause').button({ icons: { primary: "ui-icon-pause"} })
-    $('#poglasno').button({ icons: { primary: "ui-icon-plus"} })
-    $('#potivko').button({ icons: { primary: "ui-icon-minus"} })
-    $('#gfAvail').buttonset();
-    $('#promeniOdometar').button({ icons: { primary: "ui-icon-pencil"} })
+function setDates() {
+    $('#firstReg').datepicker({
+        dateFormat: '<?=$datejs?>',
+        showOn: "button",
+        buttonImage: "../images/cal1.png",
+        buttonImageOnly: true,
+        monthNames: [dic("Reports.January", lang), dic("Reports.February", lang), dic("Reports.March", lang), dic("Reports.April", lang), dic("Reports.May", lang), dic("Reports.June", lang), dic("Reports.July", lang), dic("Reports.August", lang), dic("Reports.September", lang), dic("Reports.October", lang), dic("Reports.November", lang), dic("Reports.December", lang)],
+        monthNamesShort: [dic("Reports.January", lang), dic("Reports.February", lang), dic("Reports.March", lang), dic("Reports.April", lang), dic("Reports.May", lang), dic("Reports.June", lang), dic("Reports.July", lang), dic("Reports.August", lang), dic("Reports.September", lang), dic("Reports.October", lang), dic("Reports.November", lang), dic("Reports.December", lang)],
+        dayNames: [dic("Reports.Sunday", lang), dic("Reports.Monday", lang), dic("Reports.Tuesday", lang), dic("Reports.Wednesday", lang), dic("Reports.Thursday", lang), dic("Reports.Friday", lang), dic("Reports.Saturday", lang)],
+        dayNamesShort: [dic("Reports.Sunday", lang).substring(0, 2), dic("Reports.Monday", lang).substring(0, 2), dic("Reports.Tuesday", lang).substring(0, 2), dic("Reports.Wednesday", lang).substring(0, 2), dic("Reports.Thursday", lang).substring(0, 2), dic("Reports.Friday", lang).substring(0, 2), dic("Reports.Saturday", lang).substring(0, 2)],
+        dayNamesMin: [dic("Reports.Sunday", lang).substring(0, 2), dic("Reports.Monday", lang).substring(0, 2), dic("Reports.Tuesday", lang).substring(0, 2), dic("Reports.Wednesday", lang).substring(0, 2), dic("Reports.Thursday", lang).substring(0, 2), dic("Reports.Friday", lang).substring(0, 2), dic("Reports.Saturday", lang).substring(0, 2)],
+        hourGrid: 4,
+        firstDay: 1,
+        minuteGrid: 10
+    });
+    $('#lastReg').datepicker({
+        dateFormat: '<?=$datejs?>',
+        showOn: "button",
+        buttonImage: "../images/cal1.png",
+        buttonImageOnly: true,
+        monthNames: [dic("Reports.January", lang), dic("Reports.February", lang), dic("Reports.March", lang), dic("Reports.April", lang), dic("Reports.May", lang), dic("Reports.June", lang), dic("Reports.July", lang), dic("Reports.August", lang), dic("Reports.September", lang), dic("Reports.October", lang), dic("Reports.November", lang), dic("Reports.December", lang)],
+        monthNamesShort: [dic("Reports.January", lang), dic("Reports.February", lang), dic("Reports.March", lang), dic("Reports.April", lang), dic("Reports.May", lang), dic("Reports.June", lang), dic("Reports.July", lang), dic("Reports.August", lang), dic("Reports.September", lang), dic("Reports.October", lang), dic("Reports.November", lang), dic("Reports.December", lang)],
+        dayNames: [dic("Reports.Sunday", lang), dic("Reports.Monday", lang), dic("Reports.Tuesday", lang), dic("Reports.Wednesday", lang), dic("Reports.Thursday", lang), dic("Reports.Friday", lang), dic("Reports.Saturday", lang)],
+        dayNamesShort: [dic("Reports.Sunday", lang).substring(0, 2), dic("Reports.Monday", lang).substring(0, 2), dic("Reports.Tuesday", lang).substring(0, 2), dic("Reports.Wednesday", lang).substring(0, 2), dic("Reports.Thursday", lang).substring(0, 2), dic("Reports.Friday", lang).substring(0, 2), dic("Reports.Saturday", lang).substring(0, 2)],
+        dayNamesMin: [dic("Reports.Sunday", lang).substring(0, 2), dic("Reports.Monday", lang).substring(0, 2), dic("Reports.Tuesday", lang).substring(0, 2), dic("Reports.Wednesday", lang).substring(0, 2), dic("Reports.Thursday", lang).substring(0, 2), dic("Reports.Friday", lang).substring(0, 2), dic("Reports.Saturday", lang).substring(0, 2)],
+        hourGrid: 4,
+        firstDay: 1,
+        minuteGrid: 10
+    });
+    $('#startUse').datepicker({
+        dateFormat: '<?=$datejs?>',
+        showOn: "button",
+        buttonImage: "../images/cal1.png",
+        buttonImageOnly: true,
+        monthNames: [dic("Reports.January", lang), dic("Reports.February", lang), dic("Reports.March", lang), dic("Reports.April", lang), dic("Reports.May", lang), dic("Reports.June", lang), dic("Reports.July", lang), dic("Reports.August", lang), dic("Reports.September", lang), dic("Reports.October", lang), dic("Reports.November", lang), dic("Reports.December", lang)],
+        monthNamesShort: [dic("Reports.January", lang), dic("Reports.February", lang), dic("Reports.March", lang), dic("Reports.April", lang), dic("Reports.May", lang), dic("Reports.June", lang), dic("Reports.July", lang), dic("Reports.August", lang), dic("Reports.September", lang), dic("Reports.October", lang), dic("Reports.November", lang), dic("Reports.December", lang)],
+        dayNames: [dic("Reports.Sunday", lang), dic("Reports.Monday", lang), dic("Reports.Tuesday", lang), dic("Reports.Wednesday", lang), dic("Reports.Thursday", lang), dic("Reports.Friday", lang), dic("Reports.Saturday", lang)],
+        dayNamesShort: [dic("Reports.Sunday", lang).substring(0, 2), dic("Reports.Monday", lang).substring(0, 2), dic("Reports.Tuesday", lang).substring(0, 2), dic("Reports.Wednesday", lang).substring(0, 2), dic("Reports.Thursday", lang).substring(0, 2), dic("Reports.Friday", lang).substring(0, 2), dic("Reports.Saturday", lang).substring(0, 2)],
+        dayNamesMin: [dic("Reports.Sunday", lang).substring(0, 2), dic("Reports.Monday", lang).substring(0, 2), dic("Reports.Tuesday", lang).substring(0, 2), dic("Reports.Wednesday", lang).substring(0, 2), dic("Reports.Thursday", lang).substring(0, 2), dic("Reports.Friday", lang).substring(0, 2), dic("Reports.Saturday", lang).substring(0, 2)],
+        hourGrid: 4,
+        firstDay: 1,
+        minuteGrid: 10
+    });
+}
 
-  	$('.del-btn').button({ icons: { primary: "ui-icon-trash"} });
-	$('.edit-btn').button({ icons: { primary: "ui-icon-pencil"} });
+$(document).ready(function(){
+
+document.getElementById("registration").focus();
+document.getElementById('fuelType').selectedIndex = <?php echo $gorivo?>-1;
+
+if (<?php echo $totalAlDr ?> == <?php echo $totalDr ?>) document.getElementById('addAllDri').disabled="disabled";
+else document.getElementById('addAllDri').disabled="";
 
 
-    function setDates() {
-        $('#firstReg').datepicker({
-            dateFormat: '<?=$datejs?>',
-            showOn: "button",
-            buttonImage: "../images/cal1.png",
-            buttonImageOnly: true,
-            monthNames: [dic("Reports.January", lang), dic("Reports.February", lang), dic("Reports.March", lang), dic("Reports.April", lang), dic("Reports.May", lang), dic("Reports.June", lang), dic("Reports.July", lang), dic("Reports.August", lang), dic("Reports.September", lang), dic("Reports.October", lang), dic("Reports.November", lang), dic("Reports.December", lang)],
-            monthNamesShort: [dic("Reports.January", lang), dic("Reports.February", lang), dic("Reports.March", lang), dic("Reports.April", lang), dic("Reports.May", lang), dic("Reports.June", lang), dic("Reports.July", lang), dic("Reports.August", lang), dic("Reports.September", lang), dic("Reports.October", lang), dic("Reports.November", lang), dic("Reports.December", lang)],
-            dayNames: [dic("Reports.Sunday", lang), dic("Reports.Monday", lang), dic("Reports.Tuesday", lang), dic("Reports.Wednesday", lang), dic("Reports.Thursday", lang), dic("Reports.Friday", lang), dic("Reports.Saturday", lang)],
-            dayNamesShort: [dic("Reports.Sunday", lang).substring(0, 2), dic("Reports.Monday", lang).substring(0, 2), dic("Reports.Tuesday", lang).substring(0, 2), dic("Reports.Wednesday", lang).substring(0, 2), dic("Reports.Thursday", lang).substring(0, 2), dic("Reports.Friday", lang).substring(0, 2), dic("Reports.Saturday", lang).substring(0, 2)],
-            dayNamesMin: [dic("Reports.Sunday", lang).substring(0, 2), dic("Reports.Monday", lang).substring(0, 2), dic("Reports.Tuesday", lang).substring(0, 2), dic("Reports.Wednesday", lang).substring(0, 2), dic("Reports.Thursday", lang).substring(0, 2), dic("Reports.Friday", lang).substring(0, 2), dic("Reports.Saturday", lang).substring(0, 2)],
-            hourGrid: 4,
-	        firstDay: 1,
-            minuteGrid: 10
-        });
-        $('#lastReg').datepicker({
-            dateFormat: '<?=$datejs?>',
-            showOn: "button",
-            buttonImage: "../images/cal1.png",
-            buttonImageOnly: true,
-            monthNames: [dic("Reports.January", lang), dic("Reports.February", lang), dic("Reports.March", lang), dic("Reports.April", lang), dic("Reports.May", lang), dic("Reports.June", lang), dic("Reports.July", lang), dic("Reports.August", lang), dic("Reports.September", lang), dic("Reports.October", lang), dic("Reports.November", lang), dic("Reports.December", lang)],
-            monthNamesShort: [dic("Reports.January", lang), dic("Reports.February", lang), dic("Reports.March", lang), dic("Reports.April", lang), dic("Reports.May", lang), dic("Reports.June", lang), dic("Reports.July", lang), dic("Reports.August", lang), dic("Reports.September", lang), dic("Reports.October", lang), dic("Reports.November", lang), dic("Reports.December", lang)],
-            dayNames: [dic("Reports.Sunday", lang), dic("Reports.Monday", lang), dic("Reports.Tuesday", lang), dic("Reports.Wednesday", lang), dic("Reports.Thursday", lang), dic("Reports.Friday", lang), dic("Reports.Saturday", lang)],
-            dayNamesShort: [dic("Reports.Sunday", lang).substring(0, 2), dic("Reports.Monday", lang).substring(0, 2), dic("Reports.Tuesday", lang).substring(0, 2), dic("Reports.Wednesday", lang).substring(0, 2), dic("Reports.Thursday", lang).substring(0, 2), dic("Reports.Friday", lang).substring(0, 2), dic("Reports.Saturday", lang).substring(0, 2)],
-            dayNamesMin: [dic("Reports.Sunday", lang).substring(0, 2), dic("Reports.Monday", lang).substring(0, 2), dic("Reports.Tuesday", lang).substring(0, 2), dic("Reports.Wednesday", lang).substring(0, 2), dic("Reports.Thursday", lang).substring(0, 2), dic("Reports.Friday", lang).substring(0, 2), dic("Reports.Saturday", lang).substring(0, 2)],
-            hourGrid: 4,
-            firstDay: 1,
-            minuteGrid: 10
-        });
-        $('#startUse').datepicker({
-            dateFormat: '<?=$datejs?>',
-            showOn: "button",
-            buttonImage: "../images/cal1.png",
-            buttonImageOnly: true,
-            monthNames: [dic("Reports.January", lang), dic("Reports.February", lang), dic("Reports.March", lang), dic("Reports.April", lang), dic("Reports.May", lang), dic("Reports.June", lang), dic("Reports.July", lang), dic("Reports.August", lang), dic("Reports.September", lang), dic("Reports.October", lang), dic("Reports.November", lang), dic("Reports.December", lang)],
-            monthNamesShort: [dic("Reports.January", lang), dic("Reports.February", lang), dic("Reports.March", lang), dic("Reports.April", lang), dic("Reports.May", lang), dic("Reports.June", lang), dic("Reports.July", lang), dic("Reports.August", lang), dic("Reports.September", lang), dic("Reports.October", lang), dic("Reports.November", lang), dic("Reports.December", lang)],
-            dayNames: [dic("Reports.Sunday", lang), dic("Reports.Monday", lang), dic("Reports.Tuesday", lang), dic("Reports.Wednesday", lang), dic("Reports.Thursday", lang), dic("Reports.Friday", lang), dic("Reports.Saturday", lang)],
-            dayNamesShort: [dic("Reports.Sunday", lang).substring(0, 2), dic("Reports.Monday", lang).substring(0, 2), dic("Reports.Tuesday", lang).substring(0, 2), dic("Reports.Wednesday", lang).substring(0, 2), dic("Reports.Thursday", lang).substring(0, 2), dic("Reports.Friday", lang).substring(0, 2), dic("Reports.Saturday", lang).substring(0, 2)],
-            dayNamesMin: [dic("Reports.Sunday", lang).substring(0, 2), dic("Reports.Monday", lang).substring(0, 2), dic("Reports.Tuesday", lang).substring(0, 2), dic("Reports.Wednesday", lang).substring(0, 2), dic("Reports.Thursday", lang).substring(0, 2), dic("Reports.Friday", lang).substring(0, 2), dic("Reports.Saturday", lang).substring(0, 2)],
-            hourGrid: 4,
-            firstDay: 1,
-            minuteGrid: 10
-        });
-    }
-	setDates();
-    top.HideWait();
-    SetHeightLite();
-    iPadSettingsLite();
-    livetracking = false;
-    var allowgarmin = '<?=$allowgarmin?>';
-    if(allowgarmin == '1')
-    IsConnected();
+$('#mod1').button({ icons: { primary: "ui-icon-pencil"} })
+$('#mod2').button({ icons: { primary: "ui-icon-pencil"} })
+$('#ok').button({ icons: { primary: "ui-icon-check"} })
+$('#addAllDri').button({ icons: { primary: "ui-icon-plusthick"} })
+$('#add5').button({ icons: { primary: "ui-icon-plusthick"} })
+$('#cancel1').button({ icons: { primary: "ui-icon-arrowreturnthick-1-w"} })
+$('#cancel2').button({ icons: { primary: "ui-icon-arrowreturnthick-1-w"} })
+$('#play').button({ icons: { primary: "ui-icon-play"} })
+$('#pause').button({ icons: { primary: "ui-icon-pause"} })
+$('#poglasno').button({ icons: { primary: "ui-icon-plus"} })
+$('#potivko').button({ icons: { primary: "ui-icon-minus"} })
+$('#gfAvail').buttonset();
+$('#promeniOdometar').button({ icons: { primary: "ui-icon-pencil"} })
+
+$('.del-btn').button({ icons: { primary: "ui-icon-trash"} });
+$('.edit-btn').button({ icons: { primary: "ui-icon-pencil"} });
+$('.btn-driver').button({ icons: { primary: "ui-icon-trash"} });
+
+
+setDates();
+top.HideWait();
+SetHeightLite();
+iPadSettingsLite();
+livetracking = false;
+var allowgarmin = '<?=$allowgarmin?>';
+if(allowgarmin == '1')
+IsConnected();
+
+});
 
 </script>
 

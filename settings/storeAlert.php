@@ -10,9 +10,9 @@
 	$cid = Session("client_id");
 	$role_id = $_SESSION['role_id'];
 
-	$isEdit = str_replace("'", "''", NNull($_GET['isEdit'], false));  //default = false (add alert)
-	$id = str_replace("'", "''", NNull($_GET['id'], 'null'));
-	$uniqidDel = str_replace("'", "''", NNull($_GET['uniqid'], ''));
+	$isEdit = (isset($_GET['isEdit'])) ? str_replace("'", "''", NNull($_GET['isEdit'], false)) : false;  //default = false (add alert)
+	$id = (isset($_GET['id'])) ? str_replace("'", "''", NNull($_GET['id'], 'null')) : '';
+	$uniqidDel = (isset($_GET['uniqid'])) ? str_replace("'", "''", NNull($_GET['uniqid'], '')) : '';
 
 	$sendviaEmail = str_replace("'", "''", NNull($_GET['sendviaEmail'], null));
 
