@@ -298,7 +298,6 @@
 </head>
 
 <body onload="DatumPocetok()">
-
 <div id="div-tip-praznik" style="display:none" title="<?php echo dic_("Settings.ConfSMS")?>"><br>
 	<table align = "center" width = "100%">
 	<tr><td colspan = "2" class ="text2" align = "center" style="color:#414141">
@@ -312,14 +311,13 @@
 	</tr>
 	</table>
 </div>
-
-<?php
-
+    
+<?php   
+  	
   	  opendb();
-
 	  $ds = query("select * from clients where id=" . session("client_id"));
 	  $clienttypeid = pg_fetch_result($ds, 0, "clienttypeid");
-
+	 
 	  $allowedalarms = pg_fetch_result($ds, 0, "allowedalarms");
 	  $allowedfm = pg_fetch_result($ds, 0, "allowedfm");
       $allowedrouting = pg_fetch_result($ds, 0, "allowedrouting");
@@ -328,8 +326,24 @@
 	  $gsmnum = nnull(dlookup("select gsmnumber from vehicles where id=" . $id), "0");
 	  $allowedcapace = dlookup("select count(*) from vehicleport where vehicleid=".$id." and porttypeid=17");
 	  $allowFuel = nnull(dlookup("select allowfuel from vehicles where id=" . $id), "");
-
+	  	
 	  $metric = nnull(dlookup("select metric from users where id = " . session("user_id")), "1");	
+	$datetimeformat = dlookup("select datetimeformat from users where id = " . session("user_id"));
+	$datfor = explode(" ", $datetimeformat);
+	$dateformat = $datfor[0];
+	$timeformat =  $datfor[1];
+	if ($timeformat == 'h:i:s') $timeformat = $timeformat . " A";
+	if ($timeformat == "H:i:s") {
+		$tf = " H:i";
+	}	else {
+		$tf = " h:i A";
+	}
+	$datejs = str_replace('d', 'dd', $dateformat);	
+	$datejs = str_replace('m', 'mm', $datejs);
+	$datejs = str_replace('Y', 'yy', $datejs);
+	  $americaUser = dlookup("select count(*) from cities where id = (select cityid from users where id=".session("user_id").") and countryid = 4");
+      $americaUserStyle = "";
+      if ($americaUser == 1) $americaUserStyle = "display: none";
 	  if ($metric == 'mi') {
 		$value = 0.621371;
 	  }	else {
@@ -340,37 +354,39 @@
       } Else {
           $unitSpeed = "mph";
       }
-
+						   
       $LastDay = DatetimeFormat(addDay(-1), 'd-m-Y');
       $reg = nnull(dlookup("select registration from vehicles where id=" . $id), "");
       $code = nnull(dlookup("select code from vehicles where id=" . $id), "");
 	  $aliasName = "select alias from vehicles where id=" . $id;
       $model = nnull(dlookup("select model from vehicles where id=" . $id), "");
-
+	  $brand = nnull(dlookup("select brand from vehicles where id=" . $id), "");
+	  $yearmanuf = nnull(dlookup("select pyear from vehicles where id=" . $id), "");
+	  
       $orgUnit = nnull(dlookup("select organisationid from vehicles where id=" . $id), "");
       $checkOrg = dlookup("select count(*) from organisation where id=" . $orgUnit);    
 
-      $lastReg = nnull(DateTimeFormat(dlookup("select lastregistration from vehicles where id=" . $id), "d-m-Y"), "");
-
+      $lastReg = nnull(DateTimeFormat(dlookup("select lastregistration from vehicles where id=" . $id), $dateformat), "");
+        
       $greenCard = nnull(dlookup("select greencard from vehicles where id=" . $id), "");
 	  $activity = nnull(dlookup("select visible from vehicles where id=" . $id), "");
-
+   
       If ($greenCard == false) {
           $greenCard = 0;
       } else{
           $greenCard = 1;
       }
-
+	  
 	  If ($activity == false) {
           $activity = 0;
       } else{
           $activity = 1;
       }
-
+            
       $chassis = nnull(dlookup("select chassisnumber from vehicles where id=" . $id), "");
       $motor = nnull(dlookup("select motornumber from vehicles where id=" . $id), "");
       $capacity = nnull(dlookup("select fuelcapacity from vehicles where id=" . $id), "0");
-      $firstReg = DateTimeFormat(nnull(dlookup("select firstregistration from vehicles where id=" . $id), now()), "d-m-Y");
+      $firstReg = DateTimeFormat(nnull(dlookup("select firstregistration from vehicles where id=" . $id), now()), $dateformat);
 
       $kmPerYear = nnull(dlookup("select kmperyear from vehicles where id=" . $id), "0"); //godisno dozvoleni km
       $springT = nnull(dlookup("select springtires from vehicles where id=" . $id), "30000"); //predvideni km za letni gumi
@@ -391,13 +407,13 @@
 	  			$range = dlookup("select range from vehiclerange where vehicleid = " . $id);
 	  }
      // $cLang = getQUERY("lang");
- 	// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     // // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
  	$alarmTypes = pg_fetch_all(query("select * from alarmtypes where isactive='1' order by substring(alarmgroup FROM '^[0-9]+')::int asc"));
  	$qGetMobileOperators = query("select * from operators order by name");
 	$getFullOperators = pg_fetch_all($qGetMobileOperators);
-
+	    
     ?>
-
+    
     <table class="text2_"  width="75%" style="min-width:900px;">
     <tr>
     <td width="50%" align="left"><div class="textTitle" <?php if($yourbrowser == "1") {?>style="padding-left:10px; padding-top:10px;" <?php }else {?>style="padding-left:40px; padding-top:10px;"<?php };?>><?php echo dic_("Fm.ModVeh")?></div></td>
@@ -416,24 +432,48 @@
 	    <td></td>
 	    <td></td>
 	</tr>
-	</table>
+	</table>	
+            
             <br/>
 			<table  width="75%" <?php if($yourbrowser == "1") {?>style="min-width:900px; padding-left:10px;"<?php }else {?>style="min-width:900px; padding-left:40px;"<?php };?> class="text2_">
                   <tr style="height:10px"></tr>
                   <tr >
                       <td style="font-weight:bold"><?php dic("Fm.Registration")?>:</td>
-                      <td style=""><input type="text" id="registration" value="<?php echo $reg ?>"  size="22" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px"/></td>
+                      <td style="">
+                      	<input type="text" id="registration" value="<?php echo $reg ?>"  size="22" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px"/>
+                      	<span style="color:red; font-size:14px;">&nbsp;*</span>
+                      </td>
+					<td style="font-weight:bold; <?php if($yourbrowser == "1") {?> <?php }else{?>padding-left:30px<?php } ;?>"><?php dic("Fm.Sasija")?>:</td>
+                      	<td style="min-width:341px; ">
+                      		<input id="chassis" type="text" value="<?php echo $chassis ?>" size="22" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px"/>
+                     </td>
+                  </tr>
+                  <tr>
+                      <td style="font-weight:bold"><?php dic("VehicleNumber")?>:</td>
+                      <td style="">
+                      	<input id="code" value="<?php echo $code ?>" type="text" size="22" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px"/>
+                      	<span style="color:red; font-size:14px;">&nbsp;*</span>
+                      </td>
                       <td style="font-weight:bold; <?php if($yourbrowser == "1") {?> <?php }else{?> <?php if($yourbrowser == "1") {?> <?php }else{?>padding-left:30px<?php } ;?><?php } ;?>"><?php dic("Fm.FirstReg")?>:</td>
                       <td style="">
                              <input id="firstReg" type="text" class="textboxCalender1 text2" value="<?php echo $firstReg?>" />
                       </td>
+                       
+                      
                   </tr>
                   <tr>
-                      <td style="font-weight:bold"><?php dic("Fm.Code")?>:</td>
-                      <td style=""><input id="code" value="<?php echo $code ?>" type="text" size="22" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px"/></td>
+                  <?php
+                  $alias = query($aliasName);
+                  $aliasot = pg_fetch_array($alias)
+                  ?>
+                     <td style="font-weight:bold;"><?php dic("Reports.Alias") ?>:</td>
+                     <td style="">
+                     <input id="aliasName" type="text" value="<?php echo $aliasot["alias"] ?>" size="22" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px"/>
+                     </td>
+                      
                       <td style="font-weight:bold; <?php if($yourbrowser == "1") {?> <?php }else{?>padding-left:30px<?php } ;?>"><?php dic("Fm.LastReg") ?>:</td><td style="">
                             <input id="lastReg" type="text" class="textboxCalender1 text2" value="<?php echo $lastReg ?>" style = "z-index: 999"/>
-
+                            <!--img src='../images/alarm1.png' width=16px height=16px style="opacity:0.7; position:relative; left:-14px; top:4px; cursor: pointer" title="Додади алерт за истекување на регистрација" onclick="addAlerts(26)"/-->
                       		<?php
                       		if ($allowedalarms == '1') {
                       		?>
@@ -442,20 +482,7 @@
 							}
                       		?>
                       </td>
-                  </tr>
-                  <tr>
-                  <?php
-                  $alias = query($aliasName);
-                  $aliasot = pg_fetch_array($alias)
-                  ?>
-                     <td style="font-weight:bold;"><?php dic("Reports.Alias") ?></td>
-                     <td style="">
-                     <input id="aliasName" type="text" value="<?php echo $aliasot["alias"] ?>" size="22" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px"/>
-                     </td>
-                     <td style="font-weight:bold; <?php if($yourbrowser == "1") {?> <?php }else{?>padding-left:30px<?php } ;?>"><?php dic("Fm.YearKm")?>:</td>
-                     <td style="">
-                            <input id="kmPerYear" type="text" value="<?php echo number_format($kmPerYear) ?>" size="22" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px"/>
-                     </td>
+
                   </tr>
                   <tr>
                   <td style="font-weight:bold"></td><td style="">
@@ -469,39 +496,100 @@
                       <td style="">
                             <input id="model" type="text" value="<?php echo $model ?>" size="22" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px"/>
                       </td>
-                      <td style="font-weight:bold; <?php if($yourbrowser == "1") {?> <?php }else{?>padding-left:30px<?php } ;?>"><?php dic("Fm.SummTir")?>:</td>
-                      <td style="">
-                            <input id="sprTires" type="text" size="22" value="<?php echo number_format($springT) ?>" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px"/>
-                      </td>
+
+<td style="font-weight:bold; <?php if($yourbrowser == "1") {?> <?php }else{?>padding-left:30px<?php } ;?>"><?php echo dic_("Allowed") . " " . $metric . " " . dic_("yearly") ?>:</td>
+                     <td style="">
+                            <input id="kmPerYear" type="text" value="<?php echo number_format($kmPerYear*$value) ?>" size="22" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px"/>
+                     </td>
+                     
+                     
                  </tr>
                  
                  <tr>
-                   <td style="font-weight:bold"><?php dic("Fm.FuelType")?>:</td>
+                   <td style="font-weight:bold"><?=dic_("Brand")?>:</td>
                       <td>
-                            <select id="fuelType" style="width: 161px; font-size: 11px; position: relative; top: 0px; z-index: 999; " class="combobox text2">
+                           <input id="brand" type="text" value="<?php echo $brand ?>" size="22" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px"/>
+                      </td>
+                     
+ <td style="font-weight:bold; <?php if($yourbrowser == "1") {?> <?php }else{?>padding-left:30px<?php } ;?>"><?php echo dic_("Predicted") . " " . $metric . " " . dic_("Reports.email3") . " " . dic_("Fm.SummTires")?>:</td>
+                      <td style="">
+                            <input id="sprTires" type="text" size="22" value="<?php echo number_format($springT*$value) ?>" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px"/>
+                      </td>
+
+                 </tr>
+                 <tr>
+                 	 <td style="font-weight:bold"><?=dic_("YearManuf")?>:</td>
+                     <td style="">
+                     <input id="yearmanuf" type="text" size="22" value="<?php echo $yearmanuf ?>" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px"/>
+                      </td>
+                
+
+                <td style="font-weight:bold; <?php if($yourbrowser == "1") {?> <?php }else{?>padding-left:30px<?php } ;?>"><?php echo dic_("Predicted") . " " . $metric . " " . dic_("Reports.email3") . " " . dic_("Fm.WinTires")?>:</td>
+                      <td style="">
+                            <input id="winTires" type="text" value = "<?php echo number_format($winterT*$value) ?>" size="22" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px"/>
+                      </td>
+                
+                      
+                </tr>
+                  <tr>
+                  	<td style="font-weight:bold"><?php dic("Fm.FuelType")?>:</td>
+                      <td>
+                           <select id="fuelType" style="width: 161px; font-size: 11px; position: relative; top: 0px; z-index: 999; " class="combobox text2">
                             <?php
-                                $fuelTip = "select name from fueltypes";
+                                $fuelTip = "select trans from fueltypes order by id asc";
                                 $dsfuelTip = query($fuelTip);
 								while ($drfuelTip = pg_fetch_array($dsfuelTip))
 								{       
                                 ?>
-                                    <option><?php echo $drfuelTip["name"] ?></option>
+                                    <option><?php echo dic_($drfuelTip["trans"]) ?></option>
                                 <?php
                                 }
                                 ?>      
                        		</select>
                       </td>
-                     
-                      <td style="font-weight:bold; <?php if($yourbrowser == "1") {?> <?php }else{?>padding-left:30px<?php } ;?>"><?php dic("Fm.WinTir")?>:</td>
+
+
+                      <td style="font-weight:bold; <?php if($yourbrowser == "1") {?> <?php }else{?>padding-left:30px<?php } ;?>"><?php echo dic("Settings.NextService")?>:</td>
                       <td style="">
-                            <input id="winTires" type="text" value = "<?php echo number_format($winterT) ?>" size="22" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px"/>
+                      		<div style="width:161px; float:left;">
+	                      		<?php 
+	                      		if($nextService <> -1) {
+	                      			$chSerInt1 = "checked"; 
+									$valSerInt1 = number_format($nextService);
+	                      		} else {
+	                      			$chSerInt1 = "";
+									$valSerInt1 = "";
+								}
+	                      		?>
+	                      		<!--input id="serIntervalKm"" type="checkbox" name="remindme" value="days" style="position: relative; top:4px" <?php echo $chSerInt1?> /--> 
+	                            <input id="nextService" value= "<?php echo $valSerInt1 ?>" type="text" size="22" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px;  border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:55px; padding-left:2px"/> <?php echo $metric?>&nbsp;&nbsp;&nbsp;
+	                            <?php 
+	                      		if($nextServiceMonths <> -1) {
+	                      			$chSerInt2 = "checked"; 
+									$valSerInt2 = number_format($nextServiceMonths);
+	                      		}else {
+	                      			$chSerInt2 = "";
+									$valSerInt2 = "";
+								}
+	                      		?>
+	                            <!--input id="serIntervalDays" type="checkbox" name="remindme" value="days" style="position: relative; top:4px" <?php echo $chSerInt2?> /--> 
+	                            <input id="nextServiceMonths" value= "<?php echo $valSerInt2 ?>" type="text" size="22" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px;  border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:40px; padding-left:2px"/> <?php echo dic_("Settings.Months")?>
+                            </div>
+                      		<!--img src='../images/alarm1.png' width=16px height=16px style="opacity:0.7; position:relative; left:2px; top:4px; cursor: pointer" title="Додади алерт за сервис" onclick="addAlerts(27)"/-->
+                      		<?php
+                      		if ($allowedalarms == '1') {
+                      		?>
+                      		<span onclick="storeAlerts(false,18)" title="<?= dic_("Settings.AlertServiceTitle")?>" style="background-image: url('../images/icons.png'); background-position: -204px -50px; width: 16px; height: 16px; cursor: pointer; display: inline-block; position:relative; top:4px; left:0px"></span>
+                      		<?php
+							}
+                      		?>
                       </td>
-                 </tr>
-                 <tr>
-                 	 <td style="font-weight:bold"><?php dic("Fm.OrgUnit")?>:</td>
-                     <td style="">
-                     
-                     	<select id="orgUnit" style="width: 161px; font-size: 11px; position: relative; top: 0px; z-index: 1; visibility: visible;" class="combobox text2">
+                      
+                  </tr>
+                  <tr>
+                  	  <td style="font-weight:bold;"><?php dic("Fm.OrgUnit")?>:</td>
+                      <td style="">
+                         <select id="orgUnit" style="width: 161px; font-size: 11px; position: relative; top: 0px; z-index: 1; visibility: visible;" class="combobox text2">
                         
                         <?php
                         // Ako pripaga vo negrupirani vozila
@@ -545,79 +633,21 @@
 				        ?>
 				        </select>
                       </td>
-                
-                      <td style="font-weight:bold; <?php if($yourbrowser == "1") {?> <?php }else{?>padding-left:30px<?php } ;?>"><?php echo dic("Settings.NextService")?>:</td>
-                      <td style="">
-                      		<div style="width:161px; float:left;">
-	                      		<?php 
-	                      		if($nextService <> -1) {
-	                      			$chSerInt1 = "checked"; 
-									$valSerInt1 = number_format($nextService);
-	                      		} else {
-	                      			$chSerInt1 = "";
-									$valSerInt1 = "";
-								}
-	                      		?>
-	                      		<!--input id="serIntervalKm"" type="checkbox" name="remindme" value="days" style="position: relative; top:4px" <?php echo $chSerInt1?> /--> 
-	                            <input id="nextService" value= "<?php echo $valSerInt1 ?>" type="text" size="22" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px;  border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:55px; padding-left:2px"/> <?php echo $metric?>&nbsp;&nbsp;&nbsp;
-	                            <?php 
-	                      		if($nextServiceMonths <> -1) {
-	                      			$chSerInt2 = "checked"; 
-									$valSerInt2 = number_format($nextServiceMonths);
-	                      		}else {
-	                      			$chSerInt2 = "";
-									$valSerInt2 = "";
-								}
-	                      		?>
-	                            <!--input id="serIntervalDays" type="checkbox" name="remindme" value="days" style="position: relative; top:4px" <?php echo $chSerInt2?> /--> 
-	                            <input id="nextServiceMonths" value= "<?php echo $valSerInt2 ?>" type="text" size="22" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px;  border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:40px; padding-left:2px"/> <?php echo dic_("Settings.Months")?>
-                            </div>
-                      		
-                      		<?php
-                      		if ($allowedalarms == '1') {
-                      		?>
-                      		<span onclick="storeAlerts(false,18)" title="<?= dic_("Settings.AlertServiceTitle")?>" style="background-image: url('../images/icons.png'); background-position: -204px -50px; width: 16px; height: 16px; cursor: pointer; display: inline-block; position:relative; top:4px; left:0px"></span>
-                      		<?php
-							}
-                      		?>
-                      </td>
-                </tr>
+
+                      <td style="font-weight:bold; <?php if($yourbrowser == "1") {?> <?php }else{?>padding-left:30px<?php } ;?>"><?php dic("Reports.Odometer")?> (<?php echo $metric?>):</td>
+                      	<td style="min-width:341px; ">
+                      		<input type="text" id="odometarDatum1" style="opacity:0; color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px" value = ""></input>
+                     		<input id="odometarKm" type="text" value="" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px; position:relative; left:-179px">
+                     </td>	
+                      
+
+                      
+                  </tr>
+
                   <tr>
                   	<td style="font-weight:bold"><?php dic("Fm.Motor")?>:</td>
                       <td style="">
-                            <input id="motor" type="text" value="<?php echo $motor ?>" size="22" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px"/>
-                      </td>
-                      <td style="font-weight:bold; <?php if($yourbrowser == "1") {?> <?php }else{?>padding-left:30px<?php } ;?>"><?php echo dic("Settings.GreenCard")?>:</td>
-                      <td style="">
-                      	<table width=100% class="text2">
-                      		<tr>
-                      			<td width=158px>
-                      				<?php
-			                          If ($greenCard == 1) {
-			                       ?>
-			                           <input type="radio" name="greenCard" value="1" checked="checked" style="margin-left:-3px" /><?php dic("Fm.Yes") ?>
-			                           <input type="radio" name="greenCard" value="0" style="margin-left:20px"/><?php dic("Fm.No") ?>
-			                       <?php
-			                          } Else {
-			                           ?>
-			                           <input type="radio" name="greenCard" value="1" style="margin-left:-3px" /><?php dic("Fm.Yes") ?>
-			                           <input type="radio" name="greenCard" value="0" checked="checked" style="margin-left:20px"/><?php dic("Fm.No") ?>
-			                           <?php
-			                          }
-			                       ?>
-                      			</td>
-                      			<td>
-                      				 <!--img src='../images/alarm1.png' width=16px height=16px style="opacity:0.7; position:relative; left:75px; cursor: pointer" title="Додади алерт за зелен картон" onclick="addAlerts(28)"/-->
-                      				 <!--span onclick="addAlerts(28)" title="<?= dic_("Settings.AlertGreenCardTitle")?>" style="background-image: url('../images/icons.png'); background-position: -204px -50px; width: 16px; height: 16px; cursor: pointer; display: inline-block; position:relative;"></span-->
-                      			</td>
-                      		</tr>
-                      	</table>
-                      </td>
-                  </tr>
-                  <tr>
-                  	  <td style="font-weight:bold;"><?php dic("Fm.FuelCap")?>:</td>
-                      <td style="">
-                            <input id="capacity" type="text" value="<?php echo $capacity ?>" size="22" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px;  border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px" />
+                        <input id="motor" type="text" value="<?php echo $motor ?>" size="22" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px"/>
                       </td>
                       <?php
                       if ($activity == 1)
@@ -644,16 +674,39 @@
 	                  }
 	                  ?> 
                   </tr>
+
                   <tr>
-                  	<td style="font-weight:bold"><?php dic("Fm.Sasija")?>:</td>
+                  	<td style="font-weight:bold"><?php dic("Fm.FuelCap")?>:</td>
                       <td style="">
-                            <input id="chassis" type="text" value="<?php echo $chassis ?>" size="22" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px"/>
+                            <input id="capacity" type="text" value="<?php echo $capacity ?>" size="22" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px;  border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px" />
                       </td>
-                    	<td style="font-weight:bold; <?php if($yourbrowser == "1") {?> <?php }else{?>padding-left:30px<?php } ;?>"><?php dic("Reports.Odometer")?> (<?php echo $metric?>):</td>
-	                      	<td style="min-width:341px; ">
-	                      		<input type="text" id="odometarDatum1" style="opacity:0; color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px" value = ""></input>
-	                     		<input id="odometarKm" type="text" value="" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px; position:relative; left:-179px">
-	                     </td>
+                    	
+                      <td style="<?=$americaUserStyle?>; font-weight:bold; <?php if($yourbrowser == "1") {?> <?php }else{?>padding-left:30px<?php } ;?>"><?php echo dic("Settings.GreenCard")?>:</td>
+                      <td style="<?=$americaUserStyle?>; ">
+                      	<table width=100% class="text2">
+                      		<tr>
+                      			<td width=158px>
+                      				<?php
+			                          If ($greenCard == 1) {
+			                       ?>
+			                           <input type="radio" name="greenCard" value="1" checked="checked" style="margin-left:-3px" /><?php dic("Fm.Yes") ?>
+			                           <input type="radio" name="greenCard" value="0" style="margin-left:20px"/><?php dic("Fm.No") ?>
+			                       <?php
+			                          } Else {
+			                           ?>
+			                           <input type="radio" name="greenCard" value="1" style="margin-left:-3px" /><?php dic("Fm.Yes") ?>
+			                           <input type="radio" name="greenCard" value="0" checked="checked" style="margin-left:20px"/><?php dic("Fm.No") ?>
+			                           <?php
+			                          }
+			                       ?>
+                      			</td>
+                      			<td>
+                      				 <!--img src='../images/alarm1.png' width=16px height=16px style="opacity:0.7; position:relative; left:75px; cursor: pointer" title="Додади алерт за зелен картон" onclick="addAlerts(28)"/-->
+                      				 <!--span onclick="addAlerts(28)" title="<?= dic_("Settings.AlertGreenCardTitle")?>" style="background-image: url('../images/icons.png'); background-position: -204px -50px; width: 16px; height: 16px; cursor: pointer; display: inline-block; position:relative;"></span-->
+                      			</td>
+                      		</tr>
+                      	</table>
+                      </td>		
 					
                   </tr>
                                 
@@ -679,13 +732,37 @@
                     <td style="font-weight:bold;<?php if($yourbrowser == "1") {?> <?php }else{?>padding-left:30px<?php } ;?>">&nbsp;</td>
 					<td style="">&nbsp;</td>
                   </tr>
+                 
+                  <!--tr>
+                  <td colspan="4">
+                  <table cellpadding="5" <?php if($yourbrowser == "1") {?>style="padding-left:20px;border:1px solid #2F5185;"<?php }else {?>style="padding-right:5px;border:1px solid #2F5185;"<?php };?> class="text2_">	
+                  <tr style="display: block; ">	
+                  	<td style="font-weight:bold;">(<?php dic("Reports.Odometer")?>) <?php dic("Settigns.SelectDate")?>:&nbsp;&nbsp; </td>
+                  	<td style="font-weight:bold;">
+                    	<input type="text" id="odometarDatum" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px" value = "<?php echo $denes;?>"></input>
+                    </td>
+                    <td style="font-weight:bold;<?php if($yourbrowser == "1") {?> <?php }else{?>padding-left:30px<?php } ;?>">
+                    	<?php dic("Settings.PastKm")?>: (km)
+                    </td>
+                   	<td style="font-weight:bold;">
+                   		<input type="text" id="odometarVrednost" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px"/>
+                    </td>
+                    <td style="font-weight:bold;">
+                   		 <button id="promeniOdometar" onclick="promeniOdometar(<?php echo $id ?>)"><?php dic("Fm.Change")?></button>
+                    </td>
+                   </td>
+                   </tr>
+                   </table>
+                  </tr-->
+
+
 
 <?php
-
+                  
                   if ($clienttypeid == 5) {
                   	$dsVehicle = query("select * from vehicles where id = " . $id);
                   ?>
-
+                	
                  <?php
                  if (pg_fetch_result($dsVehicle, 0, "showrpm") == "rpm") {
                  ?>
@@ -710,7 +787,7 @@
 							<?php	
 							}
 	                  		?>
-
+	                  		
                  		</tr>
                  	</table>
  			   	  </td>
@@ -718,7 +795,7 @@
                   <?php
                   }
 				  ?>
-
+ 				
 				<?php
 				if (pg_fetch_result($dsVehicle, 0, "showrpm") == "percent") {
                  ?>
@@ -742,9 +819,10 @@
 								<?php	
 								}
 		                  		?>
-
+		                  		
+		                  		
                   	 		 </tr>
-
+                  	 		 
                   		</table>
  			   	 	</td>
                  </tr>
@@ -777,7 +855,7 @@
                                  <td></td>
                              </tr>
                              <tr><td colspan=2 style="height:10px"></td></tr>
-
+                             
   <?php
 	 
 	  $totalDr = dlookup("select count(*) from drivers where clientid=" . session("client_id"));
@@ -800,16 +878,14 @@
           </tr>
 
           <?php
-       
-          while ($drAd=pg_fetch_array($dsAD)) {       
+
+          while ($drAd=pg_fetch_array($dsAD)) {
          		 $idDriver = $drAd["driverid"];
                  $cntDr = dlookup("select count(*) from drivers where ID=" . $idDriver);
          		 $sqlDrivers = "select fullname, code from drivers where id=" . $idDriver;
           		 $dsDrivers = query($sqlDrivers);
                  If ($cntDr > 0) {
           			//drDrivers = dsDrivers.Tables(0).Rows(0)
-        
-          
                ?>
                  <tr id="tr<?php echo $cnt ?>"  style=" color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; ">
                      <td height=25px align=left style="background-color:#fff; border:1px dotted #B8B8B8; padding-left:10px"><?php echo nnull(pg_fetch_result($dsDrivers, 0, "code"), "/") ?></td>
@@ -839,22 +915,22 @@
         </tr>
         
 		<?php
-		if ( $allowgarmin == "1") 
+		if ( $allowgarmin == "1")
         { ?>
 
         <tr style="height:50px;">
              <td colspan=6><div style="border-bottom:1px solid #bebebe"></div></td>
         </tr>
-        <tr><td colspan=6><div class="textTitle" style="font-size:16px;">Гармин комуникација</div><br><br></td></tr>
+        <tr><td colspan=6><div class="textTitle" style="font-size:16px;"><?=dic_("Settings.GarminComm")?></div><br><br></td></tr>
         <tr>
         	<td colspan=6 class="textTitle" style="font-size:16px;">
         		<table width="99%" height="99%" class="text2_" style="margin:5px; overflow: hidden;">
 					<tr>
 				    	<td height="90px">
-							<font class="text2_" style="font-size:16px;">Предефинирани пораки</font><br><br><br>
-							<input id="txtCanned" class="corner5" style="width: 233px; height: 28px; padding: 5px; margin-left: 8px; color: #2f5185; border: 1px solid #ccc;" type="text" value="" placeholder="Внесете предефинирана порака" />
+							<font class="text2_" style="font-size:16px;"><?=dic_("Settings.PredefMess")?></font><br><br><br>
+							<input id="txtCanned" class="corner5" style="width: 233px; height: 28px; padding: 5px; margin-left: 8px; color: #2f5185; border: 1px solid #ccc;" type="text" value="" placeholder="<?=dic_('Settings.EnterPredefMess')?>" />
 							<button id="addquickmess" style="margin-left: 20px; cursor: pointer;" onclick="ShowWait(); ButtonAddCanned(<?=$id?>, '<?=$gsmnum?>', '0')"><?php dic("Settings.Add") ?></button><br>
-							<input id="txtCannedToAll" type="checkbox" style="margin-left: 8px; color: #2f5185;" />&nbsp;За сите возила
+							<input id="txtCannedToAll" type="checkbox" style="margin-left: 8px; color: #2f5185;" />&nbsp;<?=dic_("Settings.ForAllVehicles")?>
 							<br><br>
 							<script>
 				    			$('#addquickmess').button({ icons: { primary: "ui-icon-plusthick"} })
@@ -863,9 +939,9 @@
 				    </tr>
 				   	<tr>
 				    	<td>
-							<font class="text2_" style="font-size:16px;">Изберете возило за комуникација преку гармин</font><br><br><br>
+							<font class="text2_" style="font-size:16px;"><?=dic_("Settings.VehGarminComm")?></font><br><br><br>
 							<select id="txtCannedReg" data-placeholder="" style="margin-right:5px; margin-left:8px; width: 235px; font-size: 11px; position: relative; top: 0px; z-index: 0; visibility: visible; background-color:white" class="combobox text2_">
-								<option id="0" selected value="Изберете возило">Изберете возило</option>
+								<option id="0" selected value="<?=dic_('SelectVeh')?>"><?=dic_("SelectVeh")?></option>
 								<?php
 								if (session("role_id")."" == "2") {
 									$tovehicles = "select * from vehicles where clientid=" . session("client_id") . " and allowgarmin='1' and id <> " . $id . " and id not in (select toid from quickmessage where vehicleid=" . $id . " and toid is not null)";
@@ -889,11 +965,11 @@
 				    		<br><br>
 						<?php
 						    $quckmess = query("select * from quickmessage where vehicleid = ".$id." order by messageid asc"); ?>
-
+							
 							<table style="width: 100%; position: relative; display: block; overflow-x: hidden; overflow-y: auto; min-height: 60px;">
 								<tr>
-						        	<td align = "left" width="10%" height="25px" align="center" class="text2_" style="padding-left:10px; font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;">Број на порака</td>
-									<td align = "left" width="80%" height="25px" align="center" class="text2_" style="padding-left:10px; font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;">Порака</td>
+						        	<td align = "left" width="10%" height="25px" align="center" class="text2_" style="padding-left:10px; font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><?=dic_("Settings.MessNo")?></td>
+									<td align = "left" width="80%" height="25px" align="center" class="text2_" style="padding-left:10px; font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><?=dic_("Message")?></td>
 									<!--td align = "center" width="8%" height="25px" align="center" class="text2_" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><font color = "#ff6633"><?php dic("Settings.Change")?></font></td--> 
 									<td align = "center" width="10%" height="25px" align="center" class="text2_" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><font color = "#ff6633"><?php dic("Tracking.Delete")?></font></td>
 						        </tr>
@@ -902,8 +978,8 @@
 					  			if(pg_num_rows($quckmess) == 0)
 								{
 								?>
-									<tr><td>
-										<div id="noDataquickmess" style="padding: 40px; font-size:20px; font-style:italic;" class="text4">
+									<tr><td colspan=2>
+										<div id="noDataquickmess" style="padding: 10px; font-size:20px; font-style:italic;" class="text4">
 											<?php dic("Reports.NoData1")?>
 										</div>
 									</td></tr>
@@ -929,14 +1005,11 @@
 									<td align="left" width="80%" height="30px" class="text2_" style="padding-left:10px; background-color:#fff; border:1px dotted #B8B8B8;">
 										<?= $row3["body"] ?>
 									</td>
-									<!--td align = "center" height="30px" class="text2_" style="background-color:#fff; border:1px dotted #B8B8B8; ">
-										<button id="btnEditQM<?= $row3["id"] ?>"  onclick="EditQuickMessClick('<?= $row3["body"]?>', <?= $row3["id"]?>, <?= $row3["messageid"]?>, '<?= $gsmnum?>')" style="height:25px; width:30px"></button>
-									</td-->
+
 									<td align="center" width="10%" height="30px" class="text2_" style="background-color:#fff; border:1px dotted #B8B8B8; ">
 										<button id="DelBtnQM<?= $row3["id"] ?>"  onclick="DeleteQuickmessClick(<?= $row3["messageid"]?>, '<?= $gsmnum?>')" style="height:25px; width:30px"></button>
 									</td>
 									 <script>
-										//$('#btnEditQM' + '<?= $row3["id"] ?>').button({ icons: { primary: "ui-icon-pencil"} })
 								   		$('#DelBtnQM' + '<?= $row3["id"] ?>').button({ icons: { primary: "ui-icon-trash"} })
 									 </script>
 								 </tr>
@@ -948,15 +1021,16 @@
 				</table>
 			</td>
         </tr>
-
-
+       	
+        
         <?php
-
+        
         } ?>
-
+        
         <tr style="height:50px;">
              <td colspan=6><div style="border-bottom:1px solid #bebebe"></div></td>
         </tr>
+        
 
 <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.>>>   ALERTS    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
 
@@ -1410,10 +1484,6 @@
 <!-- ************************************************************************************************** -->
 
 
-    <!--  <div id="div-del-alert" style="display:none" title="<?php echo dic("Settings.AlertDeleteQuestion")?>">
-        <?php echo dic("Settings.DelAlert")?>
-     </div> -->
-     <div id="div-edit-alert" style="display:none" title="<?php dic("Settings.ChangeAlert")?>"></div>
      <div id="div-add" style="display:none" title="<?php dic("Fm.AddAllDriver")?>"></div>
 
      <div id="div-ask-confirmation" style="display:none" title="<?php echo dic("Settings.Action")?>">
@@ -1426,10 +1496,10 @@
 		<div id="div-msgbox" style="font-size:14px"></div>
 	 </p>
 	</div>
-	<div id="addCanned" title="Гармин комуникација" style="display:none">
+	<div id="addCanned" title="<?=dic_('Settings.GarminComm')?>" style="display:none">
 		 <p>
 			<div align="center" style="font-size:14px">
-				Изберете возило за комуникација преку гармин
+				<?=dic_("Settings.VehGarminComm")?>
 				<br><br>
 				<select id="sendto" data-placeholder="" style="margin-right:5px; margin-left:8px; width: 235px; font-size: 11px; position: relative; top: 0px; z-index: 0; visibility: visible; background-color:white" class="combobox text2">
 				<!--input id="txtCanned" type="text" class="textboxCalender corner5" style="width:300px" /-->
@@ -1448,6 +1518,7 @@
 </body>
 
 <script>
+
 function DeleteQuickmessClick(_messid, _gsmnum){
 	if(ws != null) {
 		if (confirm("Дали сте сигурни дека сакате да ја избришете оваа предефинирана порака?") == true) {
@@ -1500,7 +1571,7 @@ function promeniOdometar(id){
 
 var odometarVrednost = $('#odometarKm').val().replace(/\,/g,'').replace(/\./g,'');
 if ('<?php echo $metric?>' == 'mi') {
-	odometarVrednost = odometarVrednost * 1.609344498;
+	odometarVrednost = parseInt(odometarVrednost * 1.609344498);
 }
 var datumce = $('#odometarDatum1').val();
 //var datumce1 = $('#odometarDatum1').val();
@@ -1629,7 +1700,6 @@ function validate_smsvemails(value, operators) {
 		var cell_numb = data.split('@');
 		ret = ret && validate_phone(Number(cell_numb[0]));
 	    var op = cell_numb[1];
-	    console.log("operator @ :"+op);
 	    validate_smsvemails.check = check_operator(operators,op);
 	});
 	validate_smsvemails.v = new_data.slice(0,-1); // za poslednata zapirka
@@ -2062,485 +2132,6 @@ function OptionsChangeAlarmType() {
 }
 
 
-    function addAlerts(_id) {
-    	document.getElementById('noteFmAlarm').style.display = "none";
-    	document.getElementById('textFmAlarm').innerHTML = "";
-    	
- 	document.getElementById('div-add-alerts').title = dic("Settings.AddAlerts")	
-
- 	document.getElementById('TipNaAlarm').selectedIndex = _id;
-
- 	if(_id == 27 || _id == 28) {
- 		document.getElementById('fm').style.display = '';
- 		document.getElementById('rmdD').style.display = '';
- 		if (_id == 28) {
- 			document.getElementById('remindDays').style.display = '';
- 		} else {
- 			document.getElementById('remindDays').style.display = 'none';
- 		}
- 	} else {
- 		document.getElementById('fm').style.display = 'none';
- 		document.getElementById('rmdD').style.display = 'none';
- 		document.getElementById('remindDays').style.display = 'none';
- 	}
- 	
- 	if (_id == 28) {
- 		document.getElementById('rmdKm').style.display = '';
- 	} else {
- 		document.getElementById('rmdKm').style.display = 'none';
- 	}
- 	
- 	 if (_id == "27") {
- 	 	document.getElementById('noteFmAlarm').style.display = "";
-   		document.getElementById('textFmAlarm').innerHTML = "* " + dic("Settings.FmAlarmInfo1", lang);
-    }
-    if (_id == "28") {
-    	document.getElementById('noteFmAlarm').style.display = "";
-   		document.getElementById('textFmAlarm').innerHTML = "* " + dic("Settings.FmAlarmInfo2", lang);
-    }
-    if (_id == "29") {
-    	document.getElementById('noteFmAlarm').style.display = "";
-   		document.getElementById('textFmAlarm').innerHTML = "* " + dic("Settings.FmAlarmInfo3", lang);
-    }
-        
- 	$('#div-add-alerts').dialog({ modal: true, width: 550, height: 450, resizable: false,
-            buttons: 
-            [
-            {
-             	text: dic('Settings.Add',lang),
-				click: function(data) {
-					
-                    var tipNaAlarm = $('#TipNaAlarm').val()
-                    var email = $('#emails').val()
-                    var sms = '';//$('#sms').val()
-                    if (<?=$clienttypeid?> == 6)
-                    	sms = $('#sms').val();
-                    var zvukot = $('#zvukot').val()
-                    var vehicleid = "<?php echo $id?>";
-                    var ImeNaTocka = $('#combobox').val()
-                    var ImeNaZonaIzlez = $('#comboboxIzlez').val()
-                    var ImeNaZonaVlez = $('#comboboxVlez').val()
-                    var NadminataBrzina = $('#brzinata').val()
-                    NadminataBrzina = Math.round(NadminataBrzina/'<?php echo $value?>')
-                    var vreme = $('#vreme').val()
-                    var odbranataOpcija = document.getElementById('TipNaAlarm').selectedIndex;
-                    var dostapno = '1'
-				    if(document.getElementById("GFcheck1").checked == true){dostapno='1'}
-				    if(document.getElementById("GFcheck2").checked == true){dostapno='2'}
-				    if(document.getElementById("GFcheck3").checked == true){dostapno='3'}
-				  	
-				  	if (odbranataOpcija == 28 && ($('#remindKm').is(':checked') == false && $('#remindDays').is(':checked') == false)) {
-				  		msgboxPetar(dic("Settings.RemindMeMustOne",lang));
-				  	} else {			  	
-					  	var remindme = '';
-					  	if (odbranataOpcija == 27 || odbranataOpcija == 28 || odbranataOpcija == 29 || odbranataOpcija == 30) {
-					  		var fmvalueDays = "";
-					  		
-					  		if (odbranataOpcija == 28) {
-					  			if ($('#remindDays').is(':checked')) {	
-					  				fmvalueDays = $('#fmvalueDays').val() + " days";
-					  			}
-					  		} else {
-					  			if ($('#fmvalueDays').val() != "") {
-						  			fmvalueDays = $('#fmvalueDays').val() + " days";
-						  		}
-					  		}	
-					  							  					  		
-						  	var fmvalueKm = "";
-						  	if ($('#rmdKm').css('display') != 'none') {
-						  		if (odbranataOpcija == 28) {
-						  			if ($('#remindKm').is(':checked')) {	
-						  				if (fmvalueKm != "")
-						  					fmvalueKm += "; " + Math.round($('#fmvalueKm').val()/ <?= $value?>) + " Km";
-						  				else
-						  					fmvalueKm = Math.round($('#fmvalueKm').val()/ <?= $value?>) + " Km";
-						  			}
-						  		} else {
-						  			if ($('#fmvalueKm').val() != "") {
-							  			if (fmvalueKm != "")
-							  				fmvalueKm += "; " + Math.round($('#fmvalueKm').val()/ <?= $value?>) + " Km";
-							  			else
-							  				fmvalueKm = Math.round($('#fmvalueKm').val()/ <?= $value?>) + " Km";
-							  		}
-						  		}							  		
-						  	}
-					  		remindme = fmvalueDays + fmvalueKm;
-					  	}
-					  					                     
-						function validacija(){
-						var emails = $('#emails').val();
-						var emailovi = emails.split(",");
-						var izlez;
-						emailovi.forEach(function (mejl) {
-						var filter = new RegExp(/^(("[\w-+\s]+")|([\w-+]+(?:\.[\w-+]+)*)|("[\w-+\s]+")([\w-+]+(?:\.[\w-+]+)*))(@((?:[\w-+]+\.)*\w[\w-+]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][\d]\.|1[\d]{2}\.|[\d]{1,2}\.))((25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\.){2}(25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\]?$)/i);
-						izlez = filter.test(mejl.trim());
-						});
-						return izlez;
-						}
-											
-	                    if(email==''){
-	                        msgboxPetar(dic("Settings.AlertsEmailHaveTo",lang))
-	                        }else{
-	                   
-	                          	 if(email.length>0 && !validacija())
-	                          	 {
-								 msgboxPetar(dic("uncorrEmail",lang))
-								 }
-								 	else{
-								 		if(odbranataOpcija==13){
-								 		
-								 		if(vreme==""){
-								 			msgboxPetar(dic("Settings.InsertRetTime",lang))
-								 		}
-								 		//
-								 		if(sms!="")
-		                          	 {
-									   	document.getElementById('div-tip-praznik').title = dic("Settings.ConfSMS",lang)
-									        $('#div-tip-praznik').dialog({ modal: true, width: 300, height: 230, resizable: false,
-									                  buttons: 
-									                  [
-									                  {
-									                  text:dic("Reports.Confirm"),
-													  click: function() {
-													    	
-													    	pass = encodeURIComponent($('#dodTipPraznik').val());
-													    	tipPraznikID = document.getElementById("dodTipPraznik");
-													    	if(pass=="")
-													    	{
-													    		msgboxPetar(dic("Settings.InsertPass",lang))
-													    		tipPraznikID.focus();
-													    	}
-													    	else
-									                        {   
-									                            $.ajax({
-											                        url: "checkPassword2.php?pass="+pass+"&l="+lang,
-											                        context: document.body,
-											                        success: function(data){
-											                        if(data==1)	
-											                        {
-											                        	msgboxPetar(dic("Settings.VaildPassSucAlert",lang))
-											                             $.ajax({
-											                              url: "AddAlert.php?tipNaAlarm="+tipNaAlarm+"&email="+email+"&sms="+sms+"&zvukot="+zvukot+"&vehicleid="+vehicleid+"&ImeNaTocka="+ImeNaTocka+"&vreme="+vreme+"&dostapno="+dostapno+"&remindme="+remindme,
-											                              context: document.body,
-											                              success: function(data){
-											                              msgboxPetar(dic("Settings.SuccAdd",lang))
-														    			  window.location.reload();
-												                          }
-											                              });	
-																	}
-											                        else
-											                        {
-											                        	msgboxPetar(dic("Settings.Incorrectpass",lang))
-											                        	exit;
-											                        }
-											                      }
-											                    });	
-											                   }
-									                         }
-													      },
-													    {
-													    	text:dic("Fm.Cancel",lang),
-									                    click: function() {
-														    $( this ).dialog( "close" );
-													    }
-									               }
-									              ]
-									   		  })
-										}
-								 		//
-								 		else{
-	                                    $.ajax({
-				                              url: "AddAlert.php?tipNaAlarm="+tipNaAlarm+"&email="+email+"&sms="+sms+"&zvukot="+zvukot+"&vehicleid="+vehicleid+"&ImeNaTocka="+ImeNaTocka+"&vreme="+vreme+"&dostapno="+dostapno+"&remindme="+remindme,
-				                              context: document.body,
-				                              success: function(data){
-				                              msgboxPetar(dic("Settings.SuccAdd",lang))
-							    			  window.location.reload();
-					                          }
-				                              });	 
-	                                    }
-	                                    }else{
-								 			if(odbranataOpcija==12){
-								 				if(sms!="")
-		                          	 {
-									   	document.getElementById('div-tip-praznik').title = dic("Settings.ConfSMS",lang)
-									        $('#div-tip-praznik').dialog({ modal: true, width: 300, height: 230, resizable: false,
-									                  buttons: 
-									                  [
-									                  {
-									                  text:dic("Reports.Confirm"),
-													  click: function() {
-													    	
-													    	pass = encodeURIComponent($('#dodTipPraznik').val());
-													    	tipPraznikID = document.getElementById("dodTipPraznik");
-													    	if(pass=="")
-													    	{
-													    		msgboxPetar(dic("Settings.InsertPass",lang))
-													    		tipPraznikID.focus();
-													    	}
-													    	else
-									                        {   
-									                            $.ajax({
-											                        url: "checkPassword2.php?pass="+pass+"&l="+lang,
-											                        context: document.body,
-											                        success: function(data){
-											                        if(data==1)	
-											                        {
-											                        	msgboxPetar(dic("Settings.VaildPassSucAlert",lang))
-											                            $.ajax({
-				                              url: "AddAlert.php?tipNaAlarm="+tipNaAlarm+"&email="+email+"&sms="+sms+"&zvukot="+zvukot+"&vehicleid="+vehicleid+"&ImeNaZonaIzlez="+ImeNaZonaIzlez+"&dostapno="+dostapno+"&remindme="+remindme,
-				                              context: document.body,
-				                              success: function(data){
-				                              msgboxPetar(dic("Settings.SuccAdd",lang))
-							    			  window.location.reload();
-					                          }
-				                              });	
-																	}
-											                        else
-											                        {
-											                        	msgboxPetar(dic("Settings.Incorrectpass",lang))
-											                        	exit;
-											                        }
-											                      }
-											                    });	
-											                   }
-									                         }
-													      },
-													    {
-													    	text:dic("Fm.Cancel",lang),
-									                    click: function() {
-														    $( this ).dialog( "close" );
-													    }
-									               }
-									              ]
-									   		  })
-										} else {
-	                                   		  $.ajax({
-				                              url: "AddAlert.php?tipNaAlarm="+tipNaAlarm+"&email="+email+"&sms="+sms+"&zvukot="+zvukot+"&vehicleid="+vehicleid+"&ImeNaZonaIzlez="+ImeNaZonaIzlez+"&dostapno="+dostapno+"&remindme="+remindme,
-				                              context: document.body,
-				                              success: function(data){
-				                              msgboxPetar(dic("Settings.SuccAdd",lang))
-							    			  window.location.reload();
-					                          }
-				                              });	
-				                          }
-	                                    }else{
-								 			if(odbranataOpcija==11){	
-								 				if(sms!="")
-		                          	 {
-									   	document.getElementById('div-tip-praznik').title = dic("Settings.ConfSMS",lang)
-									        $('#div-tip-praznik').dialog({ modal: true, width: 300, height: 230, resizable: false,
-									                  buttons: 
-									                  [
-									                  {
-									                  text:dic("Reports.Confirm"),
-													  click: function() {
-													    	
-													    	pass = encodeURIComponent($('#dodTipPraznik').val());
-													    	tipPraznikID = document.getElementById("dodTipPraznik");
-													    	if(pass=="")
-													    	{
-													    		msgboxPetar(dic("Settings.InsertPass",lang))
-													    		tipPraznikID.focus();
-													    	}
-													    	else
-									                        {   
-									                            $.ajax({
-											                        url: "checkPassword2.php?pass="+pass+"&l="+lang,
-											                        context: document.body,
-											                        success: function(data){
-											                        if(data==1)	
-											                        {
-											                        	msgboxPetar(dic("Settings.VaildPassSucAlert",lang))
-											                           $.ajax({
-										                              url: "AddAlert.php?tipNaAlarm="+tipNaAlarm+"&email="+email+"&sms="+sms+"&zvukot="+zvukot+"&vehicleid="+vehicleid+"&ImeNaZonaVlez="+ImeNaZonaVlez+"&dostapno="+dostapno+"&remindme="+remindme,
-										                              context: document.body,
-										                              success: function(data){
-										                              msgboxPetar(dic("Settings.SuccAdd",lang))
-													    			  window.location.reload();
-											                          }
-										                              });			
-																	}
-											                        else
-											                        {
-											                        	msgboxPetar(dic("Settings.Incorrectpass",lang))
-											                        	exit;
-											                        }
-											                      }
-											                    });	
-											                   }
-									                         }
-													      },
-													    {
-													    	text:dic("Fm.Cancel",lang),
-									                    click: function() {
-														    $( this ).dialog( "close" );
-													    }
-									               }
-									              ]
-									   		  })
-										} else {	
-								 			  $.ajax({
-				                              url: "AddAlert.php?tipNaAlarm="+tipNaAlarm+"&email="+email+"&sms="+sms+"&zvukot="+zvukot+"&vehicleid="+vehicleid+"&ImeNaZonaVlez="+ImeNaZonaVlez+"&dostapno="+dostapno+"&remindme="+remindme,
-				                              context: document.body,
-				                              success: function(data){
-				                              msgboxPetar(dic("Settings.SuccAdd",lang))
-							    			  window.location.reload();
-					                          }
-				                              });	
-				                             }
-	                                    }
-	                                    else{
-								 			if(odbranataOpcija==10){
-								 			if(NadminataBrzina==""){
-								 			msgboxPetar(dic("Settings.InsertSpeedOver",lang))
-								 			}
-								 			if(sms!="")
-		                          	 {
-									   	document.getElementById('div-tip-praznik').title = dic("Settings.ConfSMS",lang)
-									        $('#div-tip-praznik').dialog({ modal: true, width: 300, height: 230, resizable: false,
-									                  buttons: 
-									                  [
-									                  {
-									                  text:dic("Reports.Confirm"),
-													  click: function() {
-													    	
-													    	pass = encodeURIComponent($('#dodTipPraznik').val());
-													    	tipPraznikID = document.getElementById("dodTipPraznik");
-													    	if(pass=="")
-													    	{
-													    		msgboxPetar(dic("Settings.InsertPass",lang))
-													    		tipPraznikID.focus();
-													    	}
-													    	else
-									                        {   
-									                            $.ajax({
-											                        url: "checkPassword2.php?pass="+pass+"&l="+lang,
-											                        context: document.body,
-											                        success: function(data){
-											                        if(data==1)	
-											                        {
-											                        	msgboxPetar(dic("Settings.VaildPassSucAlert",lang))
-											                           $.ajax({
-										                              url: "AddAlert.php?tipNaAlarm="+tipNaAlarm+"&email="+email+"&sms="+sms+"&zvukot="+zvukot+"&vehicleid="+vehicleid+"&NadminataBrzina="+NadminataBrzina+"&dostapno="+dostapno+"&remindme="+remindme,
-										                              context: document.body,
-										                              success: function(data){
-										                              msgboxPetar(dic("Settings.SuccAdd",lang))
-													    			  window.location.reload();
-											                          }
-										                              });		
-																	}
-											                        else
-											                        {
-											                        	msgboxPetar(dic("Settings.Incorrectpass",lang))
-											                        	exit;
-											                        }
-											                      }
-											                    });	
-											                   }
-									                         }
-													      },
-													    {
-													    	text:dic("Fm.Cancel",lang),
-									                    click: function() {
-														    $( this ).dialog( "close" );
-													    }
-									               }
-									              ]
-									   		  })
-								 			}
-								 			else{	
-								 			  $.ajax({
-				                              url: "AddAlert.php?tipNaAlarm="+tipNaAlarm+"&email="+email+"&sms="+sms+"&zvukot="+zvukot+"&vehicleid="+vehicleid+"&NadminataBrzina="+NadminataBrzina+"&dostapno="+dostapno+"&remindme="+remindme,
-				                              context: document.body,
-				                              success: function(data){
-				                              msgboxPetar(dic("Settings.SuccAdd",lang))
-							    			  window.location.reload();
-					                          }
-				                              });	
-	                                    }
-	                                    }else{
-	                                    	if(sms!="")
-		                          	 {
-									   	document.getElementById('div-tip-praznik').title = dic("Settings.ConfSMS",lang)
-									        $('#div-tip-praznik').dialog({ modal: true, width: 300, height: 230, resizable: false,
-									                  buttons: 
-									                  [
-									                  {
-									                  text:dic("Reports.Confirm"),
-													  click: function() {
-													    	
-													    	pass = encodeURIComponent($('#dodTipPraznik').val());
-													    	tipPraznikID = document.getElementById("dodTipPraznik");
-													    	if(pass=="")
-													    	{
-													    		msgboxPetar(dic("Settings.InsertPass",lang))
-													    		tipPraznikID.focus();
-													    	}
-													    	else
-									                        {   
-									                            $.ajax({
-											                        url: "checkPassword2.php?pass="+pass+"&l="+lang,
-											                        context: document.body,
-											                        success: function(data){
-											                        if(data==1)	
-											                        {
-											                        	msgboxPetar(dic("Settings.VaildPassSucAlert",lang))
-											                           $.ajax({
-											                              url: "AddAlert.php?tipNaAlarm="+tipNaAlarm+"&email="+email+"&sms="+sms+"&zvukot="+zvukot+"&vehicleid="+vehicleid+"&dostapno="+dostapno+"&remindme="+remindme,
-											                              context: document.body,
-											                              success: function(data){
-											                              msgboxPetar(dic("Settings.SuccAdd",lang))
-														    			  window.location.reload();
-												                          }
-											                              });	
-																	}
-											                        else
-											                        {
-											                        	msgboxPetar(dic("Settings.Incorrectpass",lang))
-											                        	exit;
-											                        }
-											                      }
-											                    });	
-											                   }
-									                         }
-													      },
-													    {
-													    	text:dic("Fm.Cancel",lang),
-									                    click: function() {
-														    $( this ).dialog( "close" );
-													    }
-									               }
-									              ]
-									   		  })
-										} else {
-	                                    	$.ajax({
-				                              url: "AddAlert.php?tipNaAlarm="+tipNaAlarm+"&email="+email+"&sms="+sms+"&zvukot="+zvukot+"&vehicleid="+vehicleid+"&dostapno="+dostapno+"&remindme="+remindme,
-				                              context: document.body,
-				                              success: function(data){
-				                              msgboxPetar(dic("Settings.SuccAdd",lang))
-							    			  window.location.reload();
-					                          }
-				                              });	
-				                             }
-		                                     }
-	    	                                }
-	    	                              }
-	    	                             }
-	    	                           }
-	    	                          }
-	                               }
-                              }
-                           },
-                           {
-                         	text:dic('cancel',lang),
-       			 			click:function() {
-					    $( this ).dialog( "close" );
-				    }
-                  }
-               ]
-             
-            });    
-   		 }  
 	</script>
 	<script>
 	
@@ -2596,17 +2187,30 @@ clientid = '<?=session("client_id")?>';
        //  element.parentNode.removeChild(element);
        //  allRemoved += id + ";";
     }
-    function modify() {
+        function modify() {
     	
     	
         var reg = document.getElementById("registration").value;
         var code = document.getElementById("code").value;
+        if(reg == "")
+        {
+        	msgboxPetar(dic("Settings.MustReg"),lang);
+        	return false;
+        }
+        if(code == "")
+        {
+        	msgboxPetar(dic("Settings.MustCode"),lang);
+        	return false;
+        }
         if(!(code % 1 === 0))
         {
-        	msgboxPetar("Невалиден код!<br>Кодот мора да биде бројка.",lang);
+        	msgboxPetar(dic("Settings.InvalidCode", lang)+"<br>"+dic("Settings.CodeMustNo", lang),lang);
         	return false;
         }
         var model = document.getElementById("model").value;
+        var brand = document.getElementById("brand").value;
+        var yearmanuf = document.getElementById("yearmanuf").value;
+
         var prekar = document.getElementById("aliasName").value;
         var chassis = document.getElementById("chassis").value;
         var motor = document.getElementById("motor").value;
@@ -2614,8 +2218,8 @@ clientid = '<?=session("client_id")?>';
         
         var capacity = document.getElementById("capacity").value.replace(",", "");
         var orgUnit = document.getElementById("orgUnit").value;
-        var firstReg = document.getElementById("firstReg").value;
-        var lastReg = document.getElementById("lastReg").value;
+        var firstReg = formatdate13(document.getElementById("firstReg").value, '<?=$dateformat?>');
+        var lastReg = formatdate13(document.getElementById("lastReg").value, '<?=$dateformat?>');
         var kmPerYear = document.getElementById("kmPerYear").value.replace(",", "");
         var sprTires = document.getElementById("sprTires").value.replace(",", ""); //sumTir
         var winTires = document.getElementById("winTires").value.replace(",", "");
@@ -2642,10 +2246,11 @@ clientid = '<?=session("client_id")?>';
 		//if (nextService == "" || nextServiceMonths == "") {
         //	msgboxPetar(dic("Settings.MustServiceInterval"),lang)
       // } else {
+
        		top.ShowWait();
        		promeniOdometar(<?php echo $id ?>)
 			$.ajax({
-              url: "UpdateVehicle.php?reg=" + reg + "&code=" + code + "&model=" + model + "&range=" + range + "&chassis=" + chassis + "&motor=" + motor + "&fuelType=" + fuelType + "&capacity=" + capacity + "&orgUnit=" + orgUnit + "&firstReg=" + firstReg + "&lastReg=" + lastReg + "&kmPerYear=" + kmPerYear + "&sprTires=" + sprTires + "&winTires=" + winTires + "&nextService=" + nextService + "&nextServiceMonths=" + nextServiceMonths + "&greenCard=" + greenCard + "&id=" + <?php echo $id ?> + "&removed=" + allRemoved+ "&prekar=" + prekar+ "&activity=" + activity,
+              url: "UpdateVehicle.php?reg=" + reg + "&code=" + code + "&model=" + model + "&range=" + range + "&chassis=" + chassis + "&motor=" + motor + "&fuelType=" + fuelType + "&capacity=" + capacity + "&orgUnit=" + orgUnit + "&firstReg=" + firstReg + "&lastReg=" + lastReg + "&kmPerYear=" + kmPerYear + "&sprTires=" + sprTires + "&winTires=" + winTires + "&nextService=" + nextService + "&nextServiceMonths=" + nextServiceMonths + "&greenCard=" + greenCard + "&id=" + <?php echo $id ?> + "&removed=" + allRemoved+ "&prekar=" + prekar+ "&activity=" + activity + "&brand=" + brand + "&yearmanuf=" + yearmanuf,
               context: document.body,
               success: function(data) {
               		if(data == 1)
@@ -2703,12 +2308,11 @@ clientid = '<?=session("client_id")?>';
 			document.getElementById('potivko').style.opacity = 1;
 		}
 	}
-	
+
     for (var i=0; i < <?php echo $cnt?>; i++) {
         $('#btn' + i).button({ icons: { primary: "ui-icon-trash"} })
     }
-    
-	
+
 	$('#mod1').button({ icons: { primary: "ui-icon-pencil"} })
 	$('#mod2').button({ icons: { primary: "ui-icon-pencil"} })
     $('#ok').button({ icons: { primary: "ui-icon-check"} })
@@ -2725,13 +2329,61 @@ clientid = '<?=session("client_id")?>';
 
   	$('.del-btn').button({ icons: { primary: "ui-icon-trash"} });
 	$('.edit-btn').button({ icons: { primary: "ui-icon-pencil"} });
+
+
+    function setDates() {
+        $('#firstReg').datepicker({
+            dateFormat: '<?=$datejs?>',
+            showOn: "button",
+            buttonImage: "../images/cal1.png",
+            buttonImageOnly: true,
+            monthNames: [dic("Reports.January", lang), dic("Reports.February", lang), dic("Reports.March", lang), dic("Reports.April", lang), dic("Reports.May", lang), dic("Reports.June", lang), dic("Reports.July", lang), dic("Reports.August", lang), dic("Reports.September", lang), dic("Reports.October", lang), dic("Reports.November", lang), dic("Reports.December", lang)],
+            monthNamesShort: [dic("Reports.January", lang), dic("Reports.February", lang), dic("Reports.March", lang), dic("Reports.April", lang), dic("Reports.May", lang), dic("Reports.June", lang), dic("Reports.July", lang), dic("Reports.August", lang), dic("Reports.September", lang), dic("Reports.October", lang), dic("Reports.November", lang), dic("Reports.December", lang)],
+            dayNames: [dic("Reports.Sunday", lang), dic("Reports.Monday", lang), dic("Reports.Tuesday", lang), dic("Reports.Wednesday", lang), dic("Reports.Thursday", lang), dic("Reports.Friday", lang), dic("Reports.Saturday", lang)],
+            dayNamesShort: [dic("Reports.Sunday", lang).substring(0, 2), dic("Reports.Monday", lang).substring(0, 2), dic("Reports.Tuesday", lang).substring(0, 2), dic("Reports.Wednesday", lang).substring(0, 2), dic("Reports.Thursday", lang).substring(0, 2), dic("Reports.Friday", lang).substring(0, 2), dic("Reports.Saturday", lang).substring(0, 2)],
+            dayNamesMin: [dic("Reports.Sunday", lang).substring(0, 2), dic("Reports.Monday", lang).substring(0, 2), dic("Reports.Tuesday", lang).substring(0, 2), dic("Reports.Wednesday", lang).substring(0, 2), dic("Reports.Thursday", lang).substring(0, 2), dic("Reports.Friday", lang).substring(0, 2), dic("Reports.Saturday", lang).substring(0, 2)],
+            hourGrid: 4,
+	        firstDay: 1,
+            minuteGrid: 10
+        });
+        $('#lastReg').datepicker({
+            dateFormat: '<?=$datejs?>',
+            showOn: "button",
+            buttonImage: "../images/cal1.png",
+            buttonImageOnly: true,
+            monthNames: [dic("Reports.January", lang), dic("Reports.February", lang), dic("Reports.March", lang), dic("Reports.April", lang), dic("Reports.May", lang), dic("Reports.June", lang), dic("Reports.July", lang), dic("Reports.August", lang), dic("Reports.September", lang), dic("Reports.October", lang), dic("Reports.November", lang), dic("Reports.December", lang)],
+            monthNamesShort: [dic("Reports.January", lang), dic("Reports.February", lang), dic("Reports.March", lang), dic("Reports.April", lang), dic("Reports.May", lang), dic("Reports.June", lang), dic("Reports.July", lang), dic("Reports.August", lang), dic("Reports.September", lang), dic("Reports.October", lang), dic("Reports.November", lang), dic("Reports.December", lang)],
+            dayNames: [dic("Reports.Sunday", lang), dic("Reports.Monday", lang), dic("Reports.Tuesday", lang), dic("Reports.Wednesday", lang), dic("Reports.Thursday", lang), dic("Reports.Friday", lang), dic("Reports.Saturday", lang)],
+            dayNamesShort: [dic("Reports.Sunday", lang).substring(0, 2), dic("Reports.Monday", lang).substring(0, 2), dic("Reports.Tuesday", lang).substring(0, 2), dic("Reports.Wednesday", lang).substring(0, 2), dic("Reports.Thursday", lang).substring(0, 2), dic("Reports.Friday", lang).substring(0, 2), dic("Reports.Saturday", lang).substring(0, 2)],
+            dayNamesMin: [dic("Reports.Sunday", lang).substring(0, 2), dic("Reports.Monday", lang).substring(0, 2), dic("Reports.Tuesday", lang).substring(0, 2), dic("Reports.Wednesday", lang).substring(0, 2), dic("Reports.Thursday", lang).substring(0, 2), dic("Reports.Friday", lang).substring(0, 2), dic("Reports.Saturday", lang).substring(0, 2)],
+            hourGrid: 4,
+            firstDay: 1,
+            minuteGrid: 10
+        });
+        $('#startUse').datepicker({
+            dateFormat: '<?=$datejs?>',
+            showOn: "button",
+            buttonImage: "../images/cal1.png",
+            buttonImageOnly: true,
+            monthNames: [dic("Reports.January", lang), dic("Reports.February", lang), dic("Reports.March", lang), dic("Reports.April", lang), dic("Reports.May", lang), dic("Reports.June", lang), dic("Reports.July", lang), dic("Reports.August", lang), dic("Reports.September", lang), dic("Reports.October", lang), dic("Reports.November", lang), dic("Reports.December", lang)],
+            monthNamesShort: [dic("Reports.January", lang), dic("Reports.February", lang), dic("Reports.March", lang), dic("Reports.April", lang), dic("Reports.May", lang), dic("Reports.June", lang), dic("Reports.July", lang), dic("Reports.August", lang), dic("Reports.September", lang), dic("Reports.October", lang), dic("Reports.November", lang), dic("Reports.December", lang)],
+            dayNames: [dic("Reports.Sunday", lang), dic("Reports.Monday", lang), dic("Reports.Tuesday", lang), dic("Reports.Wednesday", lang), dic("Reports.Thursday", lang), dic("Reports.Friday", lang), dic("Reports.Saturday", lang)],
+            dayNamesShort: [dic("Reports.Sunday", lang).substring(0, 2), dic("Reports.Monday", lang).substring(0, 2), dic("Reports.Tuesday", lang).substring(0, 2), dic("Reports.Wednesday", lang).substring(0, 2), dic("Reports.Thursday", lang).substring(0, 2), dic("Reports.Friday", lang).substring(0, 2), dic("Reports.Saturday", lang).substring(0, 2)],
+            dayNamesMin: [dic("Reports.Sunday", lang).substring(0, 2), dic("Reports.Monday", lang).substring(0, 2), dic("Reports.Tuesday", lang).substring(0, 2), dic("Reports.Wednesday", lang).substring(0, 2), dic("Reports.Thursday", lang).substring(0, 2), dic("Reports.Friday", lang).substring(0, 2), dic("Reports.Saturday", lang).substring(0, 2)],
+            hourGrid: 4,
+            firstDay: 1,
+            minuteGrid: 10
+        });
+    }
 	setDates();
     top.HideWait();
     SetHeightLite();
     iPadSettingsLite();
     livetracking = false;
-    IsConnected()   
-   
+    var allowgarmin = '<?=$allowgarmin?>';
+    if(allowgarmin == '1')
+    IsConnected();
+
 </script>
 
 	<?php
