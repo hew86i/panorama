@@ -3,11 +3,9 @@
 <?php include "../include/params.php" ?>
 <?php include "../include/dictionary2.php" ?>
 
-<?php session_start()?>
-<?php 
+<?php
 	header("Content-type: text/html; charset=utf-8");
 	opendb();
-	
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml">

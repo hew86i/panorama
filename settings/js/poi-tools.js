@@ -915,11 +915,12 @@ function edit_poi_dialog(name, avail, ppgid, id, desc, num, addinfo, radiusID) {
 		position: "relative",
 		open: function(){ // za da se poramni iconata na negrupirani tocki
 			$("#poiGroup dd ul li a img").css({"top":"-1px"});
+			$('.resmenucol3', window.parent.document).parents('table').hide(); // za top level status bar
 		},
 		close: function(){
 			window.scrollTo(0,dialogPosition);
-         }
-
+			$('.resmenucol3', window.parent.document).parents('table').show();
+         },
 	});
 }
 

@@ -3,7 +3,6 @@
 <?php include "../include/params.php" ?>
 <?php include "../include/dictionary2.php" ?>
 
-<?php session_start()?>
 <?php 
 	header("Content-type: text/html; charset=utf-8");
 ?>

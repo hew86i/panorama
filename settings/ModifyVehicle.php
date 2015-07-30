@@ -22,7 +22,6 @@
 	$id = getQUERY("id");
 	$now = now();
 	$nowMiliSec = round(microtime('2014-05-06 11:30:00') * 1000);
-        
 	?>
 	<style>
 	.ui-datepicker-next,.ui-datepicker-prev,.ui-datepicker-today {display:block;}
@@ -1500,6 +1499,8 @@
 
 <script>
 
+vehicleID = <?php echo $id; ?>
+
 function DeleteQuickmessClick(_messid, _gsmnum){
 	if(ws != null) {
 		if (confirm("Дали сте сигурни дека сакате да ја избришете оваа предефинирана порака?") == true) {
@@ -1896,7 +1897,7 @@ function storeAlerts(isEdit, _id) {
                 var NadminataBrzina = convertMetric('<?php echo $metric ?>', $('#brzinata').val());
                 var vreme = $('#vreme').val();
                 var alarmSelect = document.getElementById('TipNaAlarm').selectedIndex;
-                var voziloOdbrano = row_array[0]['vid'];
+                var voziloOdbrano = vehicleID;
                 var dostapno = getCheckedRadio('radio');
                 var valueDays = $('#fmvalueDays').val();
                 var valueKm = convertMetric('<?php echo $metric ?>', $('#fmvalueKm').val());

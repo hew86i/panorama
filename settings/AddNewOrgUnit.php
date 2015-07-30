@@ -3,8 +3,7 @@
 <?php include "../include/params.php" ?>
 <?php include "../include/dictionary2.php" ?>
 
-<?php session_start()?>
-<?php 
+<?php
 	header("Content-type: text/html; charset=utf-8");
 ?>
 
@@ -64,9 +63,7 @@
       </td>
      
   </tr>
-  
- 
-  
+
   </table>
 
 </body>
@@ -77,12 +74,9 @@
     setDates();
     top.HideWait();
 
-</script>
+    $('#add1').button({ icons: { primary: "ui-icon-plus"} });
+    $('#cancel1').button({ icons: { primary: "ui-icon-arrowreturnthick-1-w"} });
 
-
-<script>
-    $('#add1').button({ icons: { primary: "ui-icon-plus"} })
-    $('#cancel1').button({ icons: { primary: "ui-icon-arrowreturnthick-1-w"} })
 
 </script>
 

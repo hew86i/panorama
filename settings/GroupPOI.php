@@ -549,7 +549,7 @@ if($numPointsInactive != 0) { ?>
 <input type="hidden" id="numPoi" value="" />
 <div align="right" style="display:block; width:380px; height: 30px; padding-top: 5px; position: relative; float: right; right: 15px;">
     <img id="loading" style="display: none; width: 140px; position: absolute; left: 10px; margin-top: 7px;" src="../images/loading_bar1.gif" alt="" />
-	<input type="button" style="position: relative; float: right;" class="BlackText corner5" id="btnCancelPOI" value="<?php echo dic("Tracking.Cancel")?>" onclick="$('#div-Add-POI').dialog('destroy'); $('body').css({overflow: 'auto'}); window.scrollTo(0,dialogPosition);" />&nbsp;&nbsp;
+	<input type="button" style="position: relative; float: right;" class="BlackText corner5" id="btnCancelPOI" value="<?php echo dic("Tracking.Cancel")?>" onclick="$('#div-Add-POI').dialog('destroy'); $('body').css({overflow: 'auto'}); window.scrollTo(0,dialogPosition); $('.resmenucol3', window.parent.document).parents('table').show();" />&nbsp;&nbsp;
 	<input type="button" style="position: relative; float: right;" class="BlackText corner5" id="btnAddPOI" value="<?php echo dic("Tracking.Add")?>" onclick="ButtonAddEditPOIokClickPetar()" />
 </div><br/><br/>
 </div>
@@ -888,7 +888,6 @@ $(document).ready(function () {
 
 	 $("#poiGroup dt a").click(function() {
         $("#poiGroup dd ul").toggle();
-
     });
 
 	 $("#poiGroup dd ul li a").click(function() {
