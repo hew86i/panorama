@@ -68,8 +68,14 @@
 	});
 </script>
 <body>
+	<div id="dialog-message" title="<?php dic("Reports.Message")?>" style="display:none">
+         <p>
+             <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+             <div id="div-msgbox" style="font-size:14px"></div>
+         </p>
+    </div>
   <?php
-      $LastDay = DateTimeFormat(addDay(-1), "d-m-Y");
+      
   ?>
 
    <?php if($yourbrowser == "1") {?><div class="textTitle" style="padding-left:8px; padding-top:15px;" ><?php }else{?><div class="textTitle"style="padding-left:40px; padding-top:20px;"> <?php };?><?php echo dic_("Fm.AddDri")?></div><br />
@@ -80,29 +86,51 @@
 	  <tr >
           <td style="font-weight:bold"><?php dic("Fm.FullName") ?>:</td>
           <td style=""><input id="FullName" type="text" size=22 style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px"/></td>
-          <td style="font-weight:bold; padding-left:60px"><?php dic("Fm.StartCom") ?>:</td>
-          <td style="">
-                 <input id="startCom" type="text" class="textboxCalender1 text2" value="<?php echo $LastDay ?>" />
-          </td>
-      </tr>
-
-      <tr>
-      <td style="font-weight:bold"><?php dic("Fm.Code") ?>:</td>
-          <td style=""><input id="code" type="text" size=22 style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px"/></td>
-          
           <td style="font-weight:bold; padding-left:60px"><?php dic("Fm.DurContract")?>:</td>
           <td style="">
-            <select id="durContract" style="width: 161px; font-size: 11px; position: relative; top: 0px; z-index: 1; visibility: visible; " class="combobox text2">
+              <select id="durContract" style="width: 161px; font-size: 11px; position: relative; top: 0px; z-index: 1; visibility: visible; " class="combobox text2">
                         <option value="1">1 <?php dic("Fm.Month") ?>  
                         <option value="3">3 <?php dic("Fm.Months") ?>  
                         <option value="6">6 <?php dic("Fm.Months") ?>  
                         <option value="12">1 <?php dic("Fm.Year") ?> 
                         <option value="0"><?php dic("Fm.Indef")?> 
             </select>
+          </td>
+      </tr>
+
+      <tr>
+      <td style="font-weight:bold"><?php dic("Settings.EmployeeID") ?>:</td>
+          <td style=""><input id="code" type="text" size=22 style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px"/></td>
+          
+          <td style="font-weight:bold; padding-left:60px"><?php dic("Fm.LicenceType") ?>:</td>
+          <td style="">
+            <input type="checkbox" name="category" value="A" />A
+            <input type="checkbox" name="category" value="B" checked=checked style="margin-left:7px" />B
+            <input type="checkbox" name="category" value="C" style="margin-left:7px" />C
+            <input type="checkbox" name="category" value="D" style="margin-left:7px" />D
+            <input type="checkbox" name="category" value="E" style="margin-left:7px" />E
       	  </td>
       </tr>
 <?php
 	opendb();
+  $datetimeformat = dlookup("select datetimeformat from users where ID = " . session("user_id"));
+  $datfor = explode(" ", $datetimeformat);
+  $dateformat = $datfor[0];
+  $timeformat =  $datfor[1];
+  if ($timeformat == 'h:i:s') $timeformat = $timeformat . " A";
+  if ($timeformat == "H:i:s") {
+    $tf = " H:i";
+  } else {
+    $tf = " h:i A";
+  }
+  $datejs = str_replace('d', 'dd', $dateformat);  
+  $datejs = str_replace('m', 'mm', $datejs);
+  $datejs = str_replace('Y', 'yy', $datejs);
+  $americaUser = dlookup("select count(*) from cities where id = (select cityid from users where id=".session("user_id").") and countryid = 4");
+  $americaUserStyle = "";
+  if ($americaUser == 1) $americaUserStyle = "display: none";
+  $LastDay = DateTimeFormat(addDay(-1), $dateformat);
+
 ?>
       <tr>
       <td style="font-weight:bold;"><?php dic("Fm.OrgUnit")?>:</td>
@@ -125,14 +153,10 @@
 
          
 
-        <td style="font-weight:bold; padding-left:60px"><?php dic("Fm.LicenceType") ?>:</td>
-          <td style="">
-                <input type="checkbox" name="category" value="A" />A
-                <input type="checkbox" name="category" value="B" checked=checked style="margin-left:7px" />B
-                <input type="checkbox" name="category" value="C" style="margin-left:7px" />C
-                <input type="checkbox" name="category" value="D" style="margin-left:7px" />D
-                <input type="checkbox" name="category" value="E" style="margin-left:7px" />E
-          </td>
+        <td style="font-weight:bold; padding-left:60px"><?php dic("Settings.DLNumber")?>:</td>
+        <td style="">
+          <input id="dlnumber" type="text" value="" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px" />        
+        </td>
           
       </tr>
 
@@ -166,30 +190,64 @@
 
       <tr>
 
-     <td style="font-weight:bold">RFID:</td><td style="">
+          <td style="font-weight:bold">RFID:</td><td style="">
             <input id="RfId" type="text" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px" />
           </td>
 
-          <td style="font-weight:bold; padding-left:60px"><?php dic("Fm.IntLicence")?>:</td>
-          <td style="">
-             <input type="radio" name="IntLic" value="1"  onmousedown="ShowHideRow()" /><?php dic("Fm.Yes") ?>
-             <input type="radio" name="IntLic" value="0" style="margin-left:20px" checked=checked onmousedown="ShowHideRow()" /><?php dic("Fm.No") ?>
-         </td>
-     </tr>
-
-
-     <tr id = "IntLicExp1" style="visibility:hidden">
-          <td style="font-weight:bold"></td>
-          <td style="">
-                
-          </td>
+          <?php
+          if ($americaUser == 1) {
+          ?>  
+             <td style="font-weight:bold; padding-left:60px;"><?php dic("Fm.StartCom") ?>:</td>
+            <td style="">
+               <input id="startCom" type="text" class="textboxCalender1 text2" value="<?php echo $LastDay ?>" />
+            </td>
+          <?php  
+          } else {
+          ?>
+            <td style="font-weight:bold; padding-left:60px;"><?php dic("Fm.IntLicence")?>:</td>
+            <td style="">
+               <input type="radio" name="IntLic" value="1"  onmouseup="ShowHideRow()" /><?php dic("Fm.Yes") ?>
+               <input type="radio" name="IntLic" value="0" style="margin-left:20px" checked=checked onmouseup="ShowHideRow()" /><?php dic("Fm.No") ?>
+            </td>
+          <?php  
+          }
+          ?>
          
-         <td style="font-weight:bold; padding-left:60px"><?php echo dic("Settings.ExpiryDrivingLicense")?>:</td>
-         <td style="">
-             <input id="IntLicExp" type="text" class="textboxCalender1 text2" value="<?php echo $LastDay ?>" />
-         </td>
-
      </tr>
+
+     <tr style="<?= $americaUserStyle?>">
+         <td width = "210" style="font-weight:bold"><?php dic("Fm.StartCom")?>:</td>
+         <td width = "210" style="">
+             <input id="startCom" type="text" class="textboxCalender1 text2" value="<?php echo $LastDay ?>" style="z-index:999;" />
+          </td>
+         <td id="IntLicExp11" width = "210" style="display:none; font-weight:bold; padding-left:60px;"><?php echo dic("Settings.ExpiryDrivingLicense")?>:</td>
+         <td id="IntLicExp12" width = "210" style="display:none;">
+              <input id="IntLicExp" type="text" class="textboxCalender1 text2" value="<?php echo $LastDay?>" />
+         </td>
+     </tr>
+
+	 <?php
+       $allowdriverasuser = dlookup("select allowdriverasuser from clients where id=".session("client_id"));
+	   if ($allowdriverasuser == '1') {
+       ?>
+       <tr>
+		  <td style="font-weight:bold"><?php echo dic_("Login.Username")?>:</td>
+		  <td>
+              <input id="dUsername" type="text" value="" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px" /><span style="color: red;width: 1%; padding-left: 0px"> *</span>
+          </td>
+          <td style="font-weight:bold; padding-left:60px"><?php echo dic_("Login.Password")?>:</td>
+          <td>
+         	 <input id="dPassword" type="text" value="" style="color: #2F5185; font-family: Arial,Helvetica,sans-serif; font-size: 11px; height:25px; border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; width:161px; padding-left:5px" /><span style="color: red;width: 1%; padding-left: 0px"> *</span>
+          </td>
+       </tr>
+       <tr>
+       	<td colspan=2></td>
+       	<td colspan=2 style="padding-left:60px; color: red; font-size: 10px; font-style: italic"><?php echo dic("Settings.PasswordMust")?>.</td>
+       </tr>
+       <?php
+       }
+     ?>
+     
 
       <tr style="height:70px;">
          <td colspan=4><div style="border-bottom:1px solid #bebebe"></div></td>
@@ -277,54 +335,110 @@
 
     var il = $('input[name=IntLic]:radio:checked').val()
     if (il == "1") {
-        document.getElementById('IntLicExp1').style.visibility = "visible";
+        document.getElementById('IntLicExp11').style.display = "";
+        document.getElementById('IntLicExp12').style.display = "";
     }
     else {
-        document.getElementById('IntLicExp1').style.visibility = "hidden";
+        document.getElementById('IntLicExp11').style.display = "none";
+        document.getElementById('IntLicExp12').style.display = "none";
     }
 
     function ShowHideRow() {
         var il = $('input[name=IntLic]:radio:checked').val()
         if (il == "0") {
-            document.getElementById('IntLicExp1').style.visibility = "visible";
+            document.getElementById('IntLicExp11').style.display = "";
+            document.getElementById('IntLicExp12').style.display = "";
         }
         else {
-            document.getElementById('IntLicExp1').style.visibility = "hidden";
+            document.getElementById('IntLicExp11').style.display = "none";
+            document.getElementById('IntLicExp12').style.display = "none";
         }
     }
+    function checkForm() {
+    	var _tmp = true;
+    	if($("#dUsername").val()=='')
+		{
+			mymsg(dic("Admin.HaveToEnter",lang)+ " " + dic("Login.Username",lang)+"!!!")
+			_tmp = false;
+			return false;
+		}
+	  	var password=$("#dPassword").val();
+	  	if(password == '') { 
+	  	 	mymsg(dic("Admin.HaveToEnter",lang)+ " " + dic("Login.Password").toLowerCase() + "!!!");
+	  	 	_tmp = false;
+		 	return false;
+	  	} 
+  	 	var i=/(?=.*[!@#$%^&*-])/;
+  	 	var re = /(?=.*[A-Z])/;
+  	 	if(!i.test(password)) {
+  	 	 	mymsg(dic("Admin.HaveToEnter",lang)+ " " + dic("Admin.OneSpecChar")+ "(!@#$%^&*)")
+  	 	 	_tmp = false;
+  	 	 	return false;
+  	 	}
+  	 	if(password.length<6) {
+  	 	 	mymsg(dic("Admin.SixChar",lang))
+  	 	 	_tmp = false;
+  	 	 	return false;
+  	 	}
+  	 	if( !re.test(password)) {
+  	 	  	mymsg(dic("Admin.HaveToEnter",lang)+ " " + dic("Admin.onecapitalLetter",lang))
+  	 	  	_tmp = false;
+    		return false;
+  	 	}	
+  	 	return _tmp; 	
+    }
     function add() {
+        if (document.getElementById('dUsername')) {
+	        var tt=checkForm()
+			if(!tt)
+				return false;
+		}	
         top.ShowWait();
 
         var name = document.getElementById("FullName").value;
         var code = document.getElementById("code").value;
         var orgUnit = document.getElementById("orgUnit").value;
-        var dateBorn = document.getElementById("dateBorn").value;
+        var dateBorn = formatdate13(document.getElementById("dateBorn").value, '<?=$dateformat?>');
+
+        var dlnumber = document.getElementById("dlnumber").value;
         var gender = $('input[name=gender]:radio:checked').val();
         var rfId = document.getElementById("RfId").value;
-        var startCom = document.getElementById("startCom").value;
         var durContract = document.getElementById("durContract").value;
-        var firstLicence = document.getElementById("firstLicence").value;
-        var licenceExpire = document.getElementById("licenceExpire").value;
-        var interLicence = $('input[name=IntLic]:radio:checked').val();
-        var IntLicExp = document.getElementById("IntLicExp").value;
 
-       
+        var firstLicence = formatdate13(document.getElementById("firstLicence").value, '<?=$dateformat?>');
+        var licenceExpire = formatdate13(document.getElementById("licenceExpire").value, '<?=$dateformat?>');
+        var startCom = formatdate13(document.getElementById("startCom").value, '<?=$dateformat?>');
+
+        var interLicence = 0;
+        if (<?=$americaUser?> == 0) 
+          interLicence = $('input[name=IntLic]:radio:checked').val();
+
+        var IntLicExp = formatdate13(document.getElementById("IntLicExp").value, '<?=$dateformat?>');
+
+        var dUsername = "";
+		var dPassword = "";
+		if (document.getElementById('dUsername')) {
+			dUsername = document.getElementById('dUsername').value;
+			dPassword = document.getElementById('dPassword').value;
+			dPassword = encodeURIComponent(dPassword);
+		}
         var categories = new Array();
         $("input:checkbox[name=category]:checked").each(function () {
             categories.push($(this).val());
         });
 
         $.ajax({
-            url: "InsertDriver.php?name=" + name + "&dateBorn=" + dateBorn + "&code=" + code + "&gender=" + gender + "&rfId=" + rfId + "&startCom=" + startCom + "&durContract=" + durContract + "&firstLicence=" + firstLicence + "&licenceExpire=" + licenceExpire + "&interLicence=" + interLicence + "&IntLicExp=" + IntLicExp + "&categories=" + categories + "&orgUnit=" + orgUnit,
+            url: "InsertDriver.php?name=" + name + "&dateBorn=" + dateBorn + "&code=" + code + "&gender=" + gender + "&rfId=" + rfId + "&startCom=" + startCom + "&durContract=" + durContract + "&firstLicence=" + firstLicence + "&licenceExpire=" + licenceExpire + "&interLicence=" + interLicence + "&IntLicExp=" + IntLicExp + "&categories=" + categories + "&orgUnit=" + orgUnit + "&dUsername=" + dUsername + "&dPassword=" + dPassword + "&dlnumber=" + dlnumber,
               context: document.body,
               success: function (data) {
-              	  if(data == 1)
+              	//alert(data.indexOf("1"))
+              	
+              	  if(data.indexOf("existcode") != -1)
                   {
            			alert(dic("Settings.AlreadyCodeEmployee"),lang)
            			top.HideWait();
 				return false;
-                  }
-                  {
+                  } else {
                   			alert(dic("Settings.SuccAdd"),lang)
 					top.document.getElementById('ifrm-cont').src = "Drivers.php?l=" + lang;
 				  }
@@ -337,6 +451,48 @@
         top.document.getElementById('ifrm-cont').src = "Drivers.php?l=" + lang;
     }
 
+function setDates1() {
+        $('#dateBorn').datetimepicker({
+            dateFormat: '<?=$datejs?>',
+            showOn: "button",
+            buttonImage: "../images/cal1.png",
+            buttonImageOnly: true,
+            hourGrid: 4,
+            minuteGrid: 10
+        });
+        $('#firstLicence').datetimepicker({
+            dateFormat: '<?=$datejs?>',
+            showOn: "button",
+            buttonImage: "../images/cal1.png",
+            buttonImageOnly: true,
+            hourGrid: 4,
+            minuteGrid: 10
+        });
+        $('#licenceExpire').datetimepicker({
+            dateFormat: '<?=$datejs?>',
+            showOn: "button",
+            buttonImage: "../images/cal1.png",
+            buttonImageOnly: true,
+            hourGrid: 4,
+            minuteGrid: 10
+        });
+        $('#startCom').datetimepicker({
+            dateFormat: '<?=$datejs?>',
+            showOn: "button",
+            buttonImage: "../images/cal1.png",
+            buttonImageOnly: true,
+            hourGrid: 4,
+            minuteGrid: 10
+        });   
+        $('#IntLicExp').datetimepicker({
+            dateFormat: '<?=$datejs?>',
+            showOn: "button",
+            buttonImage: "../images/cal1.png",
+            buttonImageOnly: true,
+            hourGrid: 4,
+            minuteGrid: 10
+        });
+    }
     setDates1();
     top.HideWait();
 

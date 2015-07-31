@@ -905,9 +905,8 @@ function ShowVehicles(_uid)
                                     url: "InsertUserVehicles.php?selected=" + selected + "&uid="+uid,
                                 	context: document.body,
 		                        	success: function(){
-    		                        	mymsg(dic("succSaved",lang))
-                                        setTimeout("location.reload(true);",1200);
-
+		                        	alert(dic("succSaved",lang))
+                                    window.location.reload();
 		                        }
 		                    });	
                          $( this ).dialog( "close" );
@@ -1027,65 +1026,62 @@ function LoadData(_i, _j, _equal, _first){
 	var page = ''
 	//alert(PrevHash)
 	if (PrevHash == 'menu_set_1') {
-	    page = './USettings.php?l='+lang;
-        //if(document.getElementById('ifrm-cont'))
-	    //   document.getElementById('ifrm-cont').src = './USettings.php?l='+lang;
+	    page = 'USettings.php'
+	    document.getElementById('ifrm-cont').src = './USettings.php?l='+lang;
+	    
 	}
 
 	if (PrevHash == 'menu_set_2') {
-	    page = './CSettings.php?l='+lang;
-	    //document.getElementById('ifrm-cont').src = './CSettings.php?l='+lang;
+	    page = 'CSettings.php'
+	     document.getElementById('ifrm-cont').src = './CSettings.php?l='+lang;
 	}
 	if(PrevHash=='menu_set_3')
 	{
-		page='./GroupPOI.php?l='+lang;
-		//document.getElementById('ifrm-cont').src = './GroupPOI.php?l='+lang;
+		page='GroupPOI.php'
+		document.getElementById('ifrm-cont').src = './GroupPOI.php?l='+lang;
 	}
 	if(PrevHash=='menu_set_4')
 	{
-		page='./Vehicles.php?l='+lang;
-		//document.getElementById('ifrm-cont').src = './Vehicles.php?l='+lang;
+		page='Vehicles.php'
+		document.getElementById('ifrm-cont').src = './Vehicles.php?l='+lang;
 	}
 	if(PrevHash=='menu_set_5')
 	{
-		page='./Organisation.php?l='+lang;
-		//document.getElementById('ifrm-cont').src = './Organisation.php?l='+lang;
+		page='Organisation.php'
+		document.getElementById('ifrm-cont').src = './Organisation.php?l='+lang;
 	}
 	if(PrevHash=='menu_set_6')
 	{
-		page='./Drivers.php?l='+lang;
-		//document.getElementById('ifrm-cont').src='./Drivers.php?l='+lang;
+		page='Drivers.php'
+		document.getElementById('ifrm-cont').src='./Drivers.php?l='+lang;
 	}
 	if(PrevHash=='menu_set_7')
 	{
-		page='./WorkTime.php?l='+lang;
-		//document.getElementById('ifrm-cont').src='./WorkTime.php?l='+lang;
+		page='WorkTime.php'
+		document.getElementById('ifrm-cont').src='./WorkTime.php?l='+lang;
 	}
 	if(PrevHash=='menu_set_8')
 	{
-		page='./Schedulers.php?l='+lang;
-		//document.getElementById('ifrm-cont').src='./Schedulers.php?l='+lang;
+		page='Schedulers.php'
+		document.getElementById('ifrm-cont').src='./Schedulers.php?l='+lang;
 	}
 	if(PrevHash=='menu_set_9')
 	{
-		page='./AllAlerts.php?l='+lang;
-		//document.getElementById('ifrm-cont').src='./AllAlerts.php?l='+lang;
+		page='AllAlerts.php'
+		document.getElementById('ifrm-cont').src='./AllAlerts.php?l='+lang;
 	}
 	if(PrevHash=='menu_set_10')
 	{
-		page='./LogReport.php?l='+lang;
-		//document.getElementById('ifrm-cont').src='./LogReport.php?l='+lang;
+		page='LogReport.php'
+		document.getElementById('ifrm-cont').src='./LogReport.php?l='+lang;
 		loadReport();
 	}
 	if(PrevHash=='menu_set_11')
 	{
-		page='./MessageReport.php?l='+lang;
-		//document.getElementById('ifrm-cont').src='./MessageReport.php?l='+lang;
+		page='MessageReport.php'
+		document.getElementById('ifrm-cont').src='./MessageReport.php?l='+lang;
 		loadReport();
 	}
-    if(document.getElementById('ifrm-cont')) {
-        document.getElementById('ifrm-cont').src=page;
-    }
 }
  function modifyUnit_(i, id, l) {
         top.ShowWait();

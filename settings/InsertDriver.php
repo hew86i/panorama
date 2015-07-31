@@ -17,8 +17,11 @@
     $code = getQUERY("code");
     $orgUnit = getQUERY("orgUnit");
     
+	$dUsername = getQUERY("dUsername");
+	$dPassword = getQUERY("dPassword");
     $db = DateTimeFormat(getQUERY("dateBorn"), 'Y-m-d');
-    
+    $dlnumber = getQUERY("dlnumber");
+
     $gender = getQUERY("gender");
     $rfId = getQUERY("rfId");
     
@@ -41,17 +44,20 @@
    
    	if($CheckCode > 0)
 		{
-			echo 1;
+			echo "existcode";
 			exit();
 		}
 	else
 		{
 
-    $vnesi = query("INSERT INTO drivers (id, clientid, fullname, organisationid, code, borndate, gender, startincompany, jobcontract, 
-    rfid, licensetype, firstlicense, licenseexp, interlicense, interlicenseexp) 
+    $vnesi = runSQL("INSERT INTO drivers (id, clientid, fullname, organisationid, code, borndate, gender, startincompany, jobcontract, 
+    rfid, licensetype, firstlicense, licenseexp, interlicense, interlicenseexp, dlnumber) 
     VALUES ('" . $zaIdto . "', " . Session("client_id") . ", '" . $name . "', " . intval($orgUnit) . ", '" . $code . "', '" . DateTimeFormat($db, "Y-m-d") . "', 
     '" . $gender . "', '" . DateTimeFormat($sc, "Y-m-d") . "', " . $durContract . ", '" . $rfId . "', '" . $licCategories . "', 
-    '" . DateTimeFormat($fl, "Y-m-d") . "', '" . DateTimeFormat($le, "Y-m-d") . "', '" . $interLicence . "', '" . DateTimeFormat($ie, "Y-m-d") . "')");
+    '" . DateTimeFormat($fl, "Y-m-d") . "', '" . DateTimeFormat($le, "Y-m-d") . "', '" . $interLicence . "', '" . DateTimeFormat($ie, "Y-m-d") . "', '".$dlnumber."')");
+
+if (dlookup("select count(*) from clients where allowdriverasuser='1' and id=".Session("client_id")) > 0)
+	runSQL("insert into driverasuser(clientid, driverid, username, password) values (" . session("client_id") . ", " . $zaIdto . ", '" . $dUsername . "', '" . $dPassword . "')");
 		}
 	closedb();
 	

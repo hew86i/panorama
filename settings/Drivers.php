@@ -83,7 +83,7 @@
 			<table width="94%" style="margin-left:32px; margin-top:30px; ">
 				<tr class="text2" >
                      <td align = "center" width="80%"></td>
-                     <td align = "center" width="10%"><?php dic("Fm.SearchCode") ?>:</td>
+                     <td align = "center" width="10%"><?php dic("SearchEmployeeID") ?>:</td>
                 	 <td align = "center" width="10%"><?php dic("Fm.SearchName") ?>:</td>
                 </tr>
 	       		<tr class="text2" >
@@ -94,6 +94,14 @@
             </table>
 
 		<?php
+            $datetimeformat = dlookup("select datetimeformat from users where id=" . session('user_id'));
+            $datfor = explode(" ", $datetimeformat);
+            $dateformat = $datfor[0];
+            $timeformat =  $datfor[1];
+            if ($timeformat == 'h:i:s') {
+                $timeformat = $timeformat . " A";
+                $datetimeformat = $datetimeformat . " A";
+            }
 		   $cnt  = 1;
            $cnt1 = 1;
            $cnt2 = 1;
@@ -116,7 +124,7 @@
             </tr>
            
             <tr>
-         		<td width="7%"  height="22px" align="left" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185; padding-left:20px;" ><?php dic("Fm.Code")?></td>
+         		<td width="7%"  height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;" ><?php dic("Settings.EmployeeID")?></td>
                 <td width="16%" height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><?php dic("Fm.FullName")?></td> 
                 <td width="16%" height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><?php dic("Fm.OrgUnit")?></td>
                 <td width="16%" height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><?php dic("Fm.DateBorn")?></td>
@@ -138,12 +146,12 @@
                  
              <tr id="veh<?php echo $cnt ?>" style="cursor:pointer" onmouseover="over(<?php echo $cnt ?>)" onmouseout="out(<?php echo $cnt ?>)">
                
-                <td id="td-1-<?php echo $cnt ?>" width="6%" height="30px" align="left" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8; padding-left:20px"><?php echo nnull($rD["code"], "/") ?></td>
+                <td id="td-1-<?php echo $cnt ?>" width="6%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;"><?php echo nnull($rD["code"], "/") ?></td>
                 <td id="td-2-<?php echo $cnt ?>" width="16%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;"><?php echo nnull($rD["fullname"], "/") ?></td>
                 <td id="td-3-<?php echo $cnt ?>" width="16%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;"><?php echo $drOU["name"]?></td>          
-                <td id="td-4-<?php echo $cnt ?>" width="16%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;"><?php echo DateTimeFormat($rD["borndate"], "d-m-Y")?></td>
+                <td id="td-4-<?php echo $cnt ?>" width="16%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;"><?php echo DateTimeFormat($rD["borndate"], $dateformat)?></td>
                 <td id="td-5-<?php echo $cnt ?>" width="12%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;"><?php echo nnull($rD["licensetype"], "/")?></td>
-                <td id="td-6-<?php echo $cnt ?>" width="15%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;"><?php echo DateTimeFormat($rD["licenseexp"], "d-m-Y") ?></td>
+                <td id="td-6-<?php echo $cnt ?>" width="15%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;"><?php echo DateTimeFormat($rD["licenseexp"], $dateformat) ?></td>
                 <td id="td-7-<?php echo $cnt ?>" width="8%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;">
                     <button id="modBtn<?php echo $cnt ?>" onclick="modifyDriver(<?php echo $cnt ?>, <?php echo $id ?>)" style="height:22px; width:30px"></button>
                 </td>
@@ -177,7 +185,7 @@
             <tr><td height="22px" class="text2" colspan=9 style="color:#fff; font-weight:bold; font-size:14px; border:1px solid #ff6633; padding-left:7px; background-color:#f7962b;"><?php dic("Fm.UngroupedDri") ?></td></tr>
          
 			<tr>
-          	    <td width="7%" height="22px" align="left" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185; padding-left:20px;"><?php dic("Fm.Code") ?></td>
+          	    <td width="7%" height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><?php dic("Settings.EmployeeID") ?></td>
                 <td width="16%" height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><?php dic("Fm.FullName") ?></td> 
                 <td width="16%" height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><?php dic("Fm.OrgUnit") ?></td>
                 <td width="16%" height="22px" align="center" class="text2" style="font-weight:bold; background-color:#E5E3E3; border:1px dotted #2f5185;"><?php dic("Fm.DateBorn") ?></td>
@@ -204,12 +212,12 @@
                           ?>
                              
               	<tr id="veh<?php echo $cnt_1 ?>" style="cursor:pointer" onmouseover="over(<?php echo $cnt_ ?>, 1)" onmouseout="out(<?php echo $cnt_ ?>, 1)">
-       			<td id="_td-1-<?php echo $cnt_ ?>" width="6%" height="30px" align="left" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8; padding-left:20px"><?php echo $drOD["code"] ?></td>
+       			<td id="_td-1-<?php echo $cnt_ ?>" width="6%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;"><?php echo $drOD["code"] ?></td>
                 <td id="_td-2-<?php echo $cnt_ ?>" width="16%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;"><?php echo $drOD["fullname"] ?></td>
                 <td id="_td-3-<?php echo $cnt_ ?>" width="16%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;"><?php echo nnull($drOU["name"], "/") ?></td>          
-                <td id="_td-4-<?php echo $cnt_ ?>" width="16%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;"><?php echo DateTimeFormat($drOD["borndate"], "d-m-Y") ?></td>
+                <td id="_td-4-<?php echo $cnt_ ?>" width="16%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;"><?php echo DateTimeFormat($drOD["borndate"], $dateformat) ?></td>
                 <td id="_td-5-<?php echo $cnt_ ?>" width="12%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;"><?php echo nnull($drOD["licensetype"], "/")?></td>
-                <td id="_td-6-<?php echo $cnt_ ?>" width="15%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;"><?php echo DateTimeFormat($drOD["licenseexp"], "d-m-Y") ?></td>
+                <td id="_td-6-<?php echo $cnt_ ?>" width="15%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;"><?php echo DateTimeFormat($drOD["licenseexp"], $dateformat) ?></td>
                 <td id="_td-7-<?php echo $cnt_ ?>" width="8%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;">
                     <button id="_modBtn-<?php echo $cnt_ ?>" onclick="modifyDriver(<?php echo $cnt_1 ?>, <?php echo $id ?>)" style="height:22px; width:30px"></button>
                 </td>
