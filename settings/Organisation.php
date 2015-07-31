@@ -161,7 +161,7 @@
                     <button id="modBtn<?php echo $cnt?>" onclick="modifyUnit(<?php echo $cnt ?>, <?php echo $id ?>, '<?php echo $cLang ?>')" style="height:22px; width:30px"></button>
                 </td>
                 <td id="td-6-<?php echo $cnt?>" width="8%" height="30px" align="center" class="text2" style="background-color:#fff; border:1px dotted #B8B8B8;">
-                    <button id="delBtn<?php echo $cnt?>" onclick="del(<?php echo $rO["id"] ?>, '<?php echo $cLang ?>', 'organisation')" style="height:22px; width:30px"></button>
+                    <button id="delBtn<?php echo $cnt?>" onclick="deleteOrgUnit(<?php echo $rO["id"] ?>, <?php echo $cnt ?>)" style="height:22px; width:30px"></button>
                 </td>
              </tr>
 
@@ -349,14 +349,56 @@ function modifyUnit(i, id, l) {
     });
 }
 
-function deleteOrgUnit(id) {
+function deleteOrgUnit(id, tblnum) {
+	var validate = "";
 	$.ajax({
 		url: "DeleteOrgUnit.php?id=" + id,
 		context: document.body,
-		success:function(){
-
+		async: false,
+		success:function(data){
+			validate = JSON.parse(data);
+			console.log(validate);
 		}
 	});
+
+	$('<div></div>').dialog({
+		modal: true,
+		width: 350,
+		height: 170,
+		resizable: false,
+		title: dic("delEnt",lang),
+		open: function() {
+			$(this).html(dic("Fm.SureDel"));
+			if(validate.haveAlarms > 0) {
+				msgboxnew(dic("Settings.HaveActiveOrgAlarms"),lang);
+			}
+	    },
+	    buttons:
+	    [
+	    {
+	    	text:dic("Settings.Yes",lang),
+		    click: function() {
+	                $.ajax({
+	                    url: "DeleteOrgUnit.php?id=" + id + "&delete=true",
+	                    context: document.body,
+	                    success: function(){
+		                    $('#unit' + tblnum).fadeOut(400, function(){
+		                    	$(this).remove();
+		                    });
+						}
+	                });
+	                $( this ).dialog( "close" );
+	               }
+		    },
+		    {
+		    text:dic("Settings.No",lang),
+	        click: function() {
+			    $( this ).dialog( "close" );
+		    }
+	   }
+	   ]
+	});
+
 }
 
 
