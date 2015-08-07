@@ -148,7 +148,8 @@
                                         
                                    $cLang = getQUERY("lang");
                                 ?>   
-                            </select>
+                                <option value="0"><?php dic("Fm.UngroupedVeh") ?></option>
+                  </select>
          </td>
 
          
