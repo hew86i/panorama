@@ -1085,6 +1085,7 @@ function ButtonAddEditPOIokClickPetar() {
 				break;
 			}
 		var _radius = $(".dropdownRadius dt a")[0].title.substring($(".dropdownRadius dt a")[0].title.lastIndexOf("_") + 1, $(".dropdownRadius dt a")[0].title.length);
+		console.log("poiradius: " + _radius);
 		if ($('#btnAddPOI').val() == dic("Update", lang)) {
 			$.ajax({
 				url: "EditPoiNew.php?lat=" + $('#poiLat').val() + "&lon=" + $('#poiLon').val() + "&name=" + $('#poiName').val() + "&avail=" + avail + "&ppgid=" + _title + "&id=" + $('#idPoi').val() + "&description=" + $('#poiAddress').val() + "&additional=&l=" + lang + "&radius=" + _radius,

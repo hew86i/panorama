@@ -422,7 +422,7 @@ function EditUserClick(id){
             HideWait()
 		    $('#div-edit-user').html(data)
 		    document.getElementById('div-edit-user').title = dic("Settings.EditUser")
-            $('#div-edit-user').dialog({ modal: true, width: 430, height: 460, resizable: false,
+            $('#div-edit-user').dialog({ modal: true, width: 430, height: 490, resizable: false,
                  buttons: 
 			        [
                     {

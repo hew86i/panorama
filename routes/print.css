@@ -1,0 +1,6 @@
+#header, #menu, #entry-content, .noprint {display: none;}
+
+#beforeprint:before {
+    display: none;
+    
+}

@@ -453,6 +453,7 @@
 		</head>
 		<body>
 		<?php
+	
    		$ds="SELECT * from pointsofinterestgroups where clientid = " . Session("client_id");
 		$dsRez = query($ds);
 		$search = "select * from pointsofinterest where clientid = " . Session("client_id");
@@ -469,7 +470,7 @@
 		{
 		?>
 	<div id="dialog-map" style="display:none" title="<?php echo dic_("Reports.ViewOnMap")?>"></div>
-	<div style="padding-left:35px; padding-top:30px;"><span class="textTitle"><?php echo dic("Settings.Pois")?></span>
+	<div style="padding-left:35px; padding-top:30px;"><span class="textTitle"><?php echo dic("Settings.ddPois")?></span>
 	</div>
 	<div align = "center">	
 	<table width="70%" style="margin-top:20px; margin-left:30px;padding-left:5px">

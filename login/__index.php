@@ -6,7 +6,7 @@
 <?php header("Content-type: text/html; charset=utf-8");?>
 <html>
 <head>
-	<script> 
+	<script>
 		lang = "<?php echo $cLang?>";
 	</script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -24,20 +24,52 @@
 	<script type="text/javascript" src="../js/utility.js"></script>
 	<link rel="apple-touch-icon" href="../panoramaIcon.png" />
 	<link rel="stylesheet" type="text/css" href="../css/jquery.powertip-blue.css" />
-</head>
-<?php 
 
-	$errorString = "style=\"display:none\"";;
+	<!-- my links -->
+  	<link href="../css/ui-lightness/jquery-ui-1.8.14.custom.css" rel="stylesheet" type="text/css"/>
+    <script src="../js/jquery-ui.js"></script>
+
+	<script type="text/javascript" src="../js/toastr.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/toastr.css" />
+	<!-- <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css" /> -->
+
+
+</head>
+<?php
+
+	$errorString = "";
 	$r14Chk = "";
 	$un = getPOST("txtusername");
 	$pass = getPOST("txtpassword");
 	$rem14 = getPOST("chkRememberMe");
-	$ShowMessage = 0;
+	$ShowMessage = "False";
 	$cnt = 0;
 	$HaveUser = 0;
-	$isActive = 1; //new
+	// my custom vars
+	$pass_strength = 1;
+	$username ="";
 
 	opendb();
+
+//echo $_GET['sendMail'] . "***";
+
+	// *****************************************************
+	//				sendEmail promenliva i zapis
+	//******************************************************
+
+	if(isset($_GET['sendMail'])/* && isset($_SESSION['user_id'])*/) {
+
+		// update the user with the new username
+    	$username = encrypt_decrypt('decrypt', $_GET['sendMail'], '0123456789abcdefg');
+		$userid = encrypt_decrypt('decrypt', $_GET['uid'], '0123456789abcdefg');
+
+		//$userid = $_SESSION['user_id'];
+
+		$updateEmail = query("update users set username = '" . $username . "', emailflag='1' where id = " . $userid);
+
+
+	};
+
 
 	if (($un!="") || ($pass!="")) {
 		$loggedClient = dlookup("select clientid from users where username='".$un."' and password='".$pass."'");
@@ -47,48 +79,51 @@
 				$pass = str_replace('"', '', $pass);
 			$cnt = dlookup("select count(*) from users where username='".$un."' and password = '".$pass."' and active='1'");
 			if ($cnt==0){
-				$isActive = dlookup("select count(*) from users where username='".$un."' and password = '".$pass."' and active='0'");//new
-				$ShowMessage = ($isActive == 0) ? 0 : 1;//new
-				// $ShowMessage = "True";
+				$ShowMessage = "True";
 				session_destroy();
 			} else {
 				$HaveUser = 1;
 				$ruser = query("select * from users where username='".$un."' and password = '".$pass."' and active='1'");
-				
+				$pass_strength = strlen($pass);
 				$_SESSION['user_id']= pg_fetch_result($ruser, 0, 'id');
 				$_SESSION['role_id']= pg_fetch_result($ruser, 0, 'roleid');
 				$_SESSION['client_id']= pg_fetch_result($ruser, 0, 'clientid');
 				$_SESSION['user_fullname']= pg_fetch_result($ruser, 0, 'fullname');
+				$_SESSION['emailflag'] = pg_fetch_result($ruser, 0, 'emailflag');
 				$_SESSION['company']=dlookup("select name from clients where id in (select clientID from users where id=".pg_fetch_result($ruser, 0, 'id')." limit 1) limit 1");
-				$ShowMessage = 0;
+				$_SESSION['pass_strength'] = $pass_strength;
+				$ShowMessage = "False";
 			};
 			if ($HaveUser==1) header( 'Location: ../admin/?l='.$cLang);
-			 
+
 		}else
 		{
 			if($pass[0] == "\"")
 				$pass = str_replace('"', '', $pass);
+				$pass_strength = strlen($pass);
 			$cnt = dlookup("select count(*) from users where username='".$un."' and password = '".$pass."' and active='1'");
 			if ($cnt==0){
-				$isActive = dlookup("select count(*) from users where username='".$un."' and password = '".$pass."' and active='0'");//new
-				$ShowMessage = ($isActive == 0) ? 0 : 1;//new
-				// $ShowMessage = "True";
+				$ShowMessage = "True";
 				session_destroy();
 			} else {
 				$HaveUser = 1;
 				$ruser = query("select * from users where username='".$un."' and password = '".$pass."' and active='1'");
-				
+
 				$_SESSION['user_id'] = pg_fetch_result($ruser, 0, 'id');
 				$_SESSION['role_id'] = pg_fetch_result($ruser, 0, 'roleid');
 				$_SESSION['client_id'] = pg_fetch_result($ruser, 0, 'clientid');
 				$_SESSION['user_fullname'] = pg_fetch_result($ruser, 0, 'fullname');
-				$directlive = pg_fetch_result($ruser, 0, 'directlive');
+				$_SESSION['emailflag'] = pg_fetch_result($ruser, 0, 'emailflag');
+				// pass strength specific
+				$_SESSION['pass_strength'] = $pass_strength;
+				$directlive = 0;// pg_fetch_result($ruser, 0, 'directlive');
+
 				//echo odbc_result($ruser,"FullName");
 				//exit();
 				//die();
 				//flush();
 				$_SESSION['company']=dlookup("select name from clients where id in (select clientID from users where id=".pg_fetch_result($ruser, 0, 'id')." limit 1) limit 1");
-				$ShowMessage = 0;
+				$ShowMessage = "False";
 				if ($rem14 == "on"){
 					WriteCookies("LogedIn14Days", "on", 14);
 					WriteCookies("LogedIn14DaysChecked", "on", 14);
@@ -98,6 +133,7 @@
 					WriteCookies("client_id", $_SESSION['client_id'], 14);
 					WriteCookies("user_fullname", $_SESSION['user_fullname'], 14);
 					WriteCookies("company", $_SESSION['company'], 14);
+					
 				}
 			};
 			if ($HaveUser==1)
@@ -111,15 +147,11 @@
 		} 
 	}
 	closedb();
-	if ($ShowMessage == 0 && $isActive == 1) {
-		$errorString = "style=\"display:none\"";
-	} else {
-		$errorString = "";
-	}
+	if ($ShowMessage == "False") ($errorString = "style=\"display:none\"");
 
 	if(ReadCookies("LogedIn14DaysChecked") == "on")
 		$r14Chk = "Checked='checked'";
-
+		
 	if($cLang == "al")
 		$language = 'Shqip';
 	else
@@ -133,9 +165,9 @@
 ?>
 
 <body onResize="setElementToCenter()">
-	
-	<div id="main-blue-track"></div>	
-	
+
+	<div id="main-blue-track"></div>
+
 	<div id="main-container">
 		<img id="img-logo" src="../images/GeonetLogo.png" style="margin-top: 20px;" alt="" />
 		<img id="img-advert" src="../images/advert.png" width="450" height="331" alt="" />
@@ -150,14 +182,14 @@
 			<a href="./?l=fr"><img src="../images/fr.png" width="30" height="30" border="0" align="absmiddle"/></a>&nbsp;&nbsp;&nbsp;
 			<a href="./?l=al"><img src="../images/al.png" width="30" height="30" border="0" align="absmiddle"/></a>
 		</div-->
-		<form id="frmlogin" name="frmlogin" method="post" action="../login/?l=<?php echo $cLang?>" onSubmit="">
+		<form id="frmlogin" name="frmlogin" method="post" action="../login/?l=<?php echo $cLang?>" onSubmit="gloob()">
 			<span id="lblusername" class="BlackText2"><?php dic("Login.Username")?></span>
 			<span id="lblpassword" class="BlackText2"><?php dic("Login.Password")?></span>
 			
-			<input id="txtusername" type="text" name="txtusername" class="BlackText corner5">
+			<input id="txtusername" type="text" name="txtusername" class="BlackText corner5" value="<?PHP echo $username; ?>">
 			<input id="txtpassword" type="password" name="txtpassword" class="BlackText corner5">
 			<input type="submit" class="BlackText corner5" id="btnlogin" name="btnlogin" value="<?php dic("Login.Button")?>">
-			<span id="lbl-error-login-msg" class="BlackText2" <?php echo $errorString ?>><?php echo ($isActive == 0) ? dic_("Login.WrongPassword") . "!!!" : dic_("Login.UserIsNotActive") . " <a href=\"mailto:support@gps.mk\">support@gps.mk</a>"?></span> <!-- new -->
+			<span id="lbl-error-login-msg" class="BlackText2" <?php echo $errorString?>><?php dic("Login.WrongPassword")?> !!!</span>
 			<label id="lbl-remember-me" class="BlackText1" style="position:absolute; left:190px; top:65px; color:#000; font-weight:bold; width:200px"><input name="chkRememberMe" id="chkRememberMe" type="checkbox" <?php echo $r14Chk?>><?php  dic("Login.keepLogged")?></label>
 
 		</form>
@@ -167,15 +199,21 @@
 	<div id="footer-legacy" class="textFooter"> <a href="#" class="textFooter"><?php echo dic("Login.Legal")?></a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#" class="textFooter"><?php echo dic("Login.Privacy")?></a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#" class="textFooter"><?php echo dic("Login.Help")?></a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#"  class="textFooter"><?php echo dic("Login.Support")?></a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 		<a href="#" class="textFooter languageNew"><?php echo $language?></a>
 	</div>
+
 </body>
 <script>
 function kiklopSetCookie (c_name,value,expiredays) {
 	var exdate=new Date();
 	exdate.setDate(exdate.getDate()+expiredays);
 	document.cookie=c_name+ "=" +escape(value)+
-	((expiredays==null) ? "" : ";expires="+exdate.toGMTString());
+	((expiredays===null) ? "" : ";expires="+exdate.toGMTString());
 }
 	$(document).ready(function () {
+		var usernameField = '<?php echo $username; ?>';
+		if(usernameField!==""){
+			$('#txtpassword').focus();
+			toastr.info('<?php echo dic("Settings.InsertPass"); ?>');
+		}
 		$(document.body).click(function(event) {
 			var hide = true;
 			for(var i=0; i<event.target.attributes.length; i++)

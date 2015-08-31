@@ -4,8 +4,8 @@
 <?php include "../include/dictionary2.php" ?>
 <?php session_start()?>
 <?php
-		session_destroy();
-		WriteCookies("LogedIn14Days", "off", 14);
-		header( 'Location: ../login/?l='.$cLang) ;
-		exit;
+        session_destroy();
+        WriteCookies("LogedIn14Days", "off", 14);
+        header('Location: ../login/?l='.$cLang) ;
+        exit;
 ?>

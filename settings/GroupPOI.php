@@ -254,6 +254,11 @@ if($numPointsU != 0) { ?>
 
 <?php
 
+$unit = 1;
+$qSm = dlookup("select metric from users where id=" . $uid);
+if($qSm == 'mi') $unit = 1.09361;
+
+
 while ($poiRow = pg_fetch_assoc($dsPoigroups)) {
 
 if($poiRow['id'] != 1) {  // za da gi otfrli negrupiranite
@@ -506,10 +511,10 @@ if($numPointsInactive != 0) { ?>
 		        <dt><a href="#" title="" class="combobox1"><span><?php echo dic("Tracking.SelectRadius")?></span></a></dt>
 		        <dd>
 		            <ul>
-		                <li><a id="RadiusID_50" href="#">50&nbsp;<?php echo dic("Tracking.Meters")?></a></li>
-		                <li><a id="RadiusID_70" href="#">70&nbsp;<?php echo dic("Tracking.Meters")?></a></li>
-		                <li><a id="RadiusID_100" href="#">100&nbsp;<?php echo dic("Tracking.Meters")?></a></li>
-		                <li><a id="RadiusID_150" href="#">150&nbsp;<?php echo dic("Tracking.Meters")?></a></li>
+		                <li><a id="RadiusID_50" href="#"><?php echo round($unit*50) ?>&nbsp;<?php echo ($unit == 1) ? dic("Tracking.Meters") : Yards?></a></li>
+		                <li><a id="RadiusID_70" href="#"><?php echo round($unit*70) ?>&nbsp;<?php echo ($unit == 1) ? dic("Tracking.Meters") : Yards?></a></li>
+		                <li><a id="RadiusID_100" href="#"><?php echo round($unit*100) ?>&nbsp;<?php echo ($unit == 1) ? dic("Tracking.Meters") : Yards?></a></li>
+		                <li><a id="RadiusID_150" href="#"><?php echo round($unit*150) ?>&nbsp;<?php echo ($unit == 1) ? dic("Tracking.Meters") : Yards?></a></li>
 		            </ul>
 		        </dd>
 		    </dl>

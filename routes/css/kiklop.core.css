@@ -1,0 +1,600 @@
+@font-face { font-family: GeonetFont; src: url('./DejaVuSans.ttf'); }
+
+* {
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+input, textarea /*.contenteditable?*/ {
+    -webkit-touch-callout:default;
+    -webkit-user-select:text;
+    -moz-user-select:text;
+    -ms-user-select:text;
+    user-select:text;
+}
+textarea:focus, input:focus{ outline: 0; }
+
+body{
+	
+	padding:0px 0px 0px 0px; margin:0px  0px 0px 0px; background-color:#CFD2D6;
+	/*font:75% 'Lucida Sans Unicode','Lucida Grande',arial,helvetica,sans-serif;*/
+	font: 70% GeonetFont;
+	/*background-image: url(../images/tafoma-pecat.png);
+	background-position: right bottom; background-repeat:no-repeat;*/
+	height:100%;
+	
+	
+}
+
+h3 a {
+	outline:none
+}
+
+/*h3 a {
+    background: url(../images/ext/aclose.png) no-repeat scroll 2px 6px rgba(0, 0, 0, 0);
+    display: block;
+    padding: 0 0;
+}
+h3.open a {
+    background-image: url(../images/ext/aopen.png) ;
+}*/
+
+.editableelement {
+    -webkit-touch-callout:text;
+    -webkit-user-select:text;
+    -moz-user-select:text;
+    -ms-user-select:text;
+    user-select:text;
+    border: 1px solid #B7B7B7;
+    padding: 5px;
+    background-color: #F4F4F4;
+    outline: none;
+}
+.editableelementdesc {
+    -webkit-touch-callout:text;
+    -webkit-user-select:text;
+    -moz-user-select:text;
+    -ms-user-select:text;
+    user-select:text;
+    border: 1px solid #B7B7B7;
+    padding: 5px;
+    background-color: #F4F4F4;
+    outline: none;
+    text-align: justify;
+    z-index: 1;
+    width: 549px;
+    position: absolute;
+    height: auto;
+}
+.kiklop-welcome-workspace{
+	background-color: #FFFF99;
+	font-size: 12px;
+	height: 25px;
+	margin-bottom: 0px;
+	padding: 3px 0px 3px 0px;
+	position: relative;
+	text-align: left;
+	top: 0px;
+	width: 100%;
+	cursor: pointer;
+	z-index: 1;
+}
+
+.kiklop-shadow {-moz-box-shadow: 1px 1px 5px #888888; -webkit-box-shadow: 1px 1px 5px #888888; box-shadow: 1px 1px 5px #888888}
+.kiklop-shadowOld {-moz-box-shadow: 3px 3px 6px #B7B7B7; -webkit-box-shadow: 3px 3px 6px #B7B7B7; box-shadow: 3px 3px 6px #B7B7B7}
+.kiklop-shadowBig {-moz-box-shadow: 3px 3px 10px #888888; -webkit-box-shadow: 3px 3px 10px #888888; box-shadow: 3px 3px 10px #888888}
+.kiklop-corner{-moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px}
+.kiklop-cornerBig{-moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px}
+
+
+.kiklo-cornerDown{
+	-moz-border-radius-bottomright: 5px; -webkit-bottom-right-border-radius: 5px; border-bottom-right-radius: 5px;
+	-moz-border-radius-bottomleft: 5px; -webkit-bottom-left-border-radius: 5px; border-bottom-left-radius: 5px;
+}
+.kiklo-cornerUpBig{
+	-moz-border-radius-topright: 5px; -webkit-top-right-border-radius: 5px; border-top-right-radius: 5px;
+	-moz-border-radius-topleft: 5px; -webkit-top-left-border-radius: 5px; border-top-left-radius: 5px;
+}
+
+
+.kiklop-button, .kiklop-buttonCancel, .kiklop-buttonLogin, .kiklop-buttonDelete{
+	display: inline-table; height:40px; min-width: 50px; border: none; cursor: pointer;
+	vertical-align: middle; text-align: center; padding-left:10px; padding-right:10px; line-height: 40px;
+	text-decoration: none
+}
+.kiklop-in{text-decoration: none}
+.kiklop-textbox{
+	display:inline-table; border:none; height:40px
+}
+
+.kiklop-dropdownbox{
+	display:inline-table; border:none; height:38px; position: relative; top:9px; cursor:pointer;
+}
+.kiklop-dropdownbox-opened, .kiklop-calendar-opened{
+	display:inline-table; border:none; height:38px; position: relative; top:9px; cursor:pointer;
+}
+
+.kiklop-dropdown-arrow{ margin-top:7px; margin-right:-5px }
+.kiklop-dropdown-caption{ float:left; margin-top:9px; text-overflow:ellipsis; white-space:nowrap; overflow:hidden }
+.kiklop-dropdown-list{display:block; position:absolute; max-height:200px; min-height:40px; overflow-x: hidden; overflow-y: auto}
+.kiklop-dropdown-list-add{display:block; position:absolute; max-height:200px; min-height:40px; overflow: hidden;}
+
+.kiklop-dropdown-list-up{position:absolute; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 5px solid #14a3bc; ; z-index: 20}
+
+.kiklop-dropdown-list-down{position:absolute; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 5px solid #14a3bc; ; z-index: 20}
+.kiklop-list-item{display:block; width:100%; height:20px; padding:10px; overflow: hidden; text-overflow:ellipsis; white-space:nowrap}
+
+.kiklop-menu-up{position:absolute; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 5px solid #00afd1; }
+
+
+.kiklop-icon30{display:inline-block; height: 15px; font-size: 11px; float: left; margin-left: 5px; width: 15px; top: 10px; position: relative;}
+.kiklop-icon30:hover{cursor:pointer}
+
+
+.kiklop-icon{display:inline-block; width:25px; height:25px;}
+.kiklop-icon20{display:inline-block; width:20px; height:20px;}
+
+
+.kiklop-icon:hover{cursor:pointer}
+.k-arrow-down{background-position: 0px 0px;}
+.k-arrow-down:hover{background-position: -24px 0px;}
+.k-arrow-up{background-position: 0px -24px;}
+.k-arrow-up:hover{background-position: -24px -24px;}
+.k-calendar{background-position: -53px -3px}
+.k-calendar-white{background-position: -88px -3px}
+.k-bell-on{background-position: -125px 0px}
+.k-bell-on:hover{background-position: -157px 0px}
+.k-bell-off{background-position: -125px -35px}
+.k-bell-off:hover{background-position: -157px -35px}
+
+.k-stopwatch{background-position: -129px -73px}
+.k-stopwatch2{background-position: -161px -73px}
+
+.k-down-tiny{background-position: -247px -300px}
+.k-down-tiny:hover{background-position: -247px -269px}
+
+.k-right-tiny:hover{background-position: -248px -329px}
+.k-right-tiny{background-position: -248px -354px}
+
+.k-left-tiny:hover{background-position: -55px -273px}
+.k-left-tiny{background-position: -94px -273px}
+
+
+.k-left{background-position: 0px -70px}
+.k-left:hover{background-position: -25px -70px}
+.k-right{background-position: 0px -45px}
+.k-right:hover{background-position: -25px -45px}
+.k-cloud{background-position: -87px -35px}
+/*.k-cloud:hover{background-position: -54px -29px}*/
+.k-client{background-position: -89px -59px}
+.k-project{background-position: -90px -93px}
+.k-newmessage{background-position: -3px -102px}
+.k-task{background-position: -164px -229px}
+.k-taskactive{background-position: -192px -229px}
+.k-home{background-position: -203px -379px}
+
+.k-follow{background-position: -2px -130px}
+.k-inbox{background-position: -2px -155px}
+
+.k-right2{background-position: 0px -45px}
+
+
+.k-project-blue{background-position: -56px -93px}
+.k-client-blue{background-position: -54px -59px}
+.k-cloud-blue{background-position: -54px -35px}
+.k-calendar-blue{background-position: -53px -3px}
+
+.k-close{background-position: -90px -124px}
+.k-close:hover{background-position: -54px -124px}
+
+.k-close2{background-position: -57px -124px}
+.k-close2:hover{background-position: -129px -124px}
+
+.k-info{background-position: -360px -206px}
+
+.k-close-small{background-position: -278px -271px}
+.k-close-small:hover{background-position: -278px -245px}
+
+.k-download-big{background-position: -280px -215px}
+.k-download-big:hover{background-position: -280px -186px}
+
+.k-opentab{background-position: -335px -264px}
+.k-opentab:hover{background-position: -335px -294px}
+
+.k-download-big1{background-position: -61px -434px}
+.k-download-big1:hover{background-position: -89px -434px}
+
+.k-usr-accept{background-position: -278px -117px}
+.k-usr-deny{background-position: -278px -137px}
+.k-usr-wait{background-position: -278px -157px}
+
+
+.k-plus{background-position: -90px -150px}
+.k-plus:hover{background-position: -53px -150px}
+
+.k-gantt{background-position: -279px -296px}
+.k-gantt:hover{background-position: -280px -322px}
+
+
+.k-refresh{background-position: -360px -175px}
+.k-refresh:hover{background-position: -331px -175px}
+
+.k-edit{background-position: -126px -99px}
+.k-edit:hover{background-position: -156px -99px}
+
+.k-sort{background-position: -90px -175px}
+.k-sort:hover{background-position: -54px -175px}
+.k-filter{background-position: -93px -204px}
+.k-filter:hover{background-position: -54px -204px}
+.k-more{background-position: -94px -227px}
+.k-more:hover{background-position: -57px -227px}
+.k-more2{background-position: -57px -227px}
+.k-more2:hover{background-position: -132px -227px}
+
+.k-arrow-d{background-position: -27px -99px}
+.k-workspace{background-position: -131px -185px}
+
+.k-no-check{background-position: -30px -153px }
+
+.k-check:hover{background-position: -28px -307px}
+.k-check{background-position: -1px -307px}
+
+.k-go-back2{background-position: -271px -38px}
+.k-go-back2:hover{background-position: -294px -38px}
+
+.k-go-back{background-position: -271px -1px}
+.k-go-back:hover{background-position: -294px -1px}
+
+
+.k-lock{background-position: -3px -330px}
+.k-lock:hover{background-position: -31px -330px}
+.k-unlock{background-position: -139px -330px}
+.k-unlock:hover{background-position: -167px -330px}
+
+.k-lock2:hover{background-position: -3px -330px}
+.k-lock2{background-position: -31px -330px}
+.k-unlock2:hover{background-position: -139px -330px}
+.k-unlock2{background-position: -167px -330px}
+
+.k-trash{background-position: -254px -148px}
+.k-trash:hover{background-position: -254px -172px}
+.k-edit2{background-position: -254px -191px}
+.k-edit2:hover{background-position: -254px -211px}
+
+.k-trash3{background-position: -252px -143px}
+.k-trash3:hover{background-position: -252px -167px}
+.k-edit3{background-position: -251px -187px}
+.k-edit3:hover{background-position: -251px -207px}
+
+.k-delete{background-position: -55px -330px}
+.k-delete:hover{background-position: -97px -330px}
+.k-dolu{background-position: -1px -357px}
+.k-dolu:hover{background-position: -28px -357px}
+.k-search{background-position: -62px -381px}
+.k-search:hover{background-position: -99px -381px}
+.k-help{background-position: -134px -379px}
+.k-help:hover{background-position: -166px -379px}
+
+.k-share:hover{background-position: -1px -414px}
+.k-share{background-position: -1px -383px}
+.k-download{background-position: -30px -383px}
+.k-download:hover{background-position: -30px -414px}
+.k-task2{background-position: -63px -414px}
+.k-task2:hover{background-position: -92px -414px}
+.k-follow2{background-position: -123px -414px}
+.k-follow2:hover{background-position: -153px -414px}
+
+.k-followers{background-position: -120px -411px}
+.k-followers:hover{background-position: -150px -411px}
+
+.k-invites{background-position: -280px -70px}
+
+.k-add-task-white:hover, .k-add-task-white-hoverred{background-position: -358px -147px}
+.k-add-task-white{background-position: -331px -147px}
+.k-add-proj-white:hover, .k-add-proj-white-hoverred{background-position: -359px -7px}
+.k-add-proj-white{background-position: -331px -7px}
+.k-add-cli-white:hover, .k-add-cli-white-hoverred{background-position: -359px -35px}
+.k-add-cli-white{background-position: -331px -35px}
+.k-add-mem-white:hover, .k-add-mem-white-hoverred{background-position: -359px -63px}
+.k-add-mem-white{background-position: -331px -63px}
+
+.k-add-team-white:hover, .k-add-team-white-hoverred{background-position: -359px -89px}
+.k-add-team-white{background-position: -331px -89px}
+.k-add-ws-white:hover, .k-add-ws-white-hoverred{background-position: -359px -118px}
+.k-add-ws-white{background-position: -331px -118px}
+
+.k-workspace-ml{background-position: -331px -118px}
+
+.k-add-event-white:hover, .k-add-event-white-hoverred{background-position: -30px -227px}
+.k-add-event-white{background-position: -5px -227px}
+
+.k-plus-white:hover, .k-plus-white-hoverred{background-position: -90px -150px}
+.k-plus-white{background-position: -53px -150px}
+.k-sort-white:hover, .k-sort-white-hoverred{background-position: -90px -175px}
+.k-sort-white{background-position: -54px -175px}
+.k-filter-white:hover, .k-filter-white-hoverred{background-position: -93px -204px}
+.k-filter-white{background-position: -54px -204px}
+
+.k-settings-white:hover, .k-settings-white-hoverred{background-position: -94px -250px}
+.k-settings-white{background-position: -56px -250px}
+
+.k-logout-white:hover, .k-logout-white-hoverred{background-position: -94px -274px}
+.k-logout-white{background-position: -56px -274px}
+
+.k-flag-white:hover, .k-flag-white-hoverred{background-position: -98px -300px}
+.k-flag-white{background-position: -58px -300px}
+
+.k-edit-white:hover, .k-edit-white-hoverred{background-position: -126px -99px}
+.k-edit-white{background-position: -156px -99px}
+
+.k-lock-white:hover, .k-lock-white-hoverred{background-position: -31px -330px}
+.k-lock-white{background-position: -3px -330px}
+
+.k-unlock-white:hover, .k-unlock-white-hoverred{background-position: -167px -330px}
+.k-unlock-white{background-position: -139px -330px}
+
+.k-delete-white:hover, .k-delete-white-hoverred{background-position: -99px -330px}
+.k-delete-white{background-position: -57px -330px}
+
+.k-delete-white1:hover, .k-delete-white-hoverred{background-position: -57px -330px}
+.k-delete-white1{background-position: -100px -330px}
+
+.k-archive-white:hover, .k-archive-white-hoverred{background-position: -201px -152px}
+.k-archive-white{background-position: -167px -152px}
+
+.k-check2-white:hover, .k-check2-white-hoverred{background-position: -136px -297px}
+.k-check2-white{background-position: -164px -297px}
+
+.k-nocheck2-white:hover, .k-nocheck2-white-hoverred{background-position: -180px -107px}
+.k-nocheck2-white{background-position: -180px -107px}
+
+.k-follow-white:hover, .k-follow-white-hoverred{background-position: -3px -442px}
+.k-follow-white{background-position: -31px -442px}
+
+.k-add-folder{background-position: -182px -413px}
+.k-add-folder:hover{background-position: -207px -413px}
+
+.k-plus-blue{background-position: -54px -151px}
+.k-plus-blue:hover{background-position: -128px -151px}
+
+.k-plus-blue-gen{background-position: -54px -151px}
+.k-plus-blue-gen:hover{background-position: -128px -151px}
+
+
+.k-cloud20{background-position: -6px -182px}
+.k-cloud20:hover{background-position: -203px -271px}
+
+.k-client20:hover{background-position: -203px -294px}
+.k-client20{background-position: -8px -206px}
+
+.k-client100{background-position: -251px -382px}
+.k-personal100{background-position: -251px -405px}
+
+.k-client20-white{background-position: -29px -205px}
+.k-client20-small{background-position: -59px -360px}
+.k-me20-small{background-position: -135px -274px}
+
+.k-calendar20{background-position: -5px -227px}
+.k-calendar20:hover{background-position: -202px -316px}
+
+.k-project20{background-position: -6px -253px}
+.k-project20:hover{background-position: -203px -342px}
+
+.k-cloud20w{background-position: -31px -182px}
+.k-client20w{background-position: -31px -205px}
+.k-calendar20w{background-position: -30px -227px}
+.k-project20w{background-position: -31px -253px}
+.k-lock20{background-position: -30px -279px}
+.k-user20{background-position: -5px -279px}
+.k-proj20{background-position: -31px -132px}
+.k-check20{background-position: -137px -298px}
+.k-timer-green{background-position: -128px -74px}
+.k-timer-red{background-position: -160px -74px}
+
+.k-attachment16{width:16px; height:16px; background-position: -202px -3px}
+.k-attachment16:hover{width:16px; height:16px; background-position: -228px -3px; color:#14A3BC}
+.k-follow16{width:16px; height:16px; background-position: -203px -24px}
+.k-follow16:hover{width:16px; height:16px; background-position: -229px -24px; color:#14A3BC}
+
+.k-costs16{width:16px; height:16px; background-position: -318px -336px}
+.k-costs16:hover{width:16px; height:16px; background-position: -348px -336px; color:#14A3BC}
+
+.k-worktime16{width:16px; height:16px; background-position: -318px -368px}
+.k-worktime16:hover{width:16px; height:16px; background-position: -348px -368px; color:#14A3BC}
+
+.k-reminder16{width:16px; height:16px; background-position: -204px -50px}
+.k-reminder16:hover{width:16px; height:16px; background-position: -230px -50px; color:#14A3BC}
+.k-message16{width:16px; height:16px; background-position: -203px -76px}
+.k-message16:hover{width:16px; height:16px; background-position: -229px -76px; color:#14A3BC}
+
+.k-chk16{width:16px; height:16px; background-position: -209px -103px}
+.k-chk16:hover{width:16px; height:16px; background-position: -231px -103px}
+
+.k-reminder16b{width:16px; height:16px; background-position: -337px -208px; color:#14A3BC}
+
+.k-event16{width:16px; height:16px; background-position: -208px -123px; color:#14A3BC}
+
+
+.k-attachment16a{width:16px; height:16px; background-position: -252px -3px}
+.k-message16a{width:16px; height:16px; background-position: -252px -76px}
+.k-reminder16a{width:16px; height:16px; background-position: -253px -50px}
+.k-history16a{width:16px; height:16px; background-position: -253px -99px}
+.k-check16a{width:16px; height:16px; background-position: -256px -124px}
+.k-follow16a{width:16px; height:16px; background-position: -6px -135px}
+.k-timer16a{width:16px; height:16px; background-position: -231px -124px}
+.k-cost16a{width:16px; height:16px; background-position: -377px -336px}
+
+.k-middle-right-first{margin-top: 7px; margin-right: 5px; margin-left: 5px; float:right}
+.k-middle-right{margin-top: 7px; float:right; margin-left: 5px; }
+.k-middle-left{margin-top: 7px; float:left; margin-left: 5px; margin-right:5px}
+.k-middle-left-menu{margin-top: -4px; float:left; margin-left: 5px; margin-right:5px}
+
+.k-middle-header{margin-top: 5px; margin-right: 5px; margin-left: 5px}
+.kiklop-right{float:right;}
+
+.kiklop-windowBackground{ position:absolute; left:0px; top:0px; background-color:#cccccc; opacity:0.3 }
+
+.kiklop-window-caption1{
+	font-size: 20px; height:35px; width:100%; padding-top:5px;
+	overflow:hidden; text-overflow: ellipsis; white-space: nowrap; color:#FFFFFF; background-color: #313B45;
+	line-height: 30px
+}
+.kiklop-window-body1{width:100%; height: calc(100% - 44px); height: -webkit-calc(100% - 44px); height: -moz-calc(100% - 44px); padding:10px; overflow-y: auto}
+
+
+.kiklop-window{ position:absolute; z-index: 10; background-color:#FFFFFF; min-width: 300px; }
+.kiklop-window-caption{
+	font-size: 20px; height:35px; width:100%; padding-top:5px;
+	overflow:hidden; text-overflow: ellipsis; white-space: nowrap; color:#FFFFFF; background-color: #313B45;
+	line-height: 30px
+}
+
+.kiklop-wnd-button1{float:right; position:relative; margin-top:-25px; margin-right:33px;}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	.kiklop-wnd-button1{float:right; position:relative; top:27px; margin-right: -30px; right: 63px;}	
+}
+
+.kiklop-wnd-button3{float:right; margin-right:33px; margin-top:-27px}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	.kiklop-wnd-button3{float:right; position:relative; top:27px; margin-right: -30px; right: 63px;}	
+}
+
+.kiklop-wnd-button2{float:right; position:relative; margin-top:-25px; margin-right:63px;}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	.kiklop-wnd-button2{float:right; position:relative; top:28px; margin-right: -25px; right: 90px;}	
+}
+
+.kiklop-wnd-close{float:right; position:relative; top:-27px; margin-right:7px; right: 0px;}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	.kiklop-wnd-close{float:right; position:relative; top:0px; margin-right:7px; right: 0px;}	
+}
+.kiklop-window-body{width:100%; height: calc(100% - 44px); height: -webkit-calc(100% - 44px); height: -moz-calc(100% - 44px); padding:10px; overflow-y: auto}
+.kiklop-message-caption{font-size: 20px; height:35px; width:100%; padding-top:5px}
+.kiklop-message-body{width:100%; height: calc(100% - 44px); height: -webkit-calc(100% - 44px); height: -moz-calc(100% - 44px); padding:10px; overflow-y: auto}
+
+.kiklop-message-caption1{font-size: 20px; height:35px; width:100%; padding-top:5px}
+.kiklop-message-body1{width:100%; height: calc(100% - 44px); height: -webkit-calc(100% - 44px); height: -moz-calc(100% - 44px); padding:10px; overflow-y: auto}
+
+.kiklop-more-border{background-color:#FFFFFF; position:relative; top:10px}
+.kiklop-more-border:hover{background-color:#14a3bc}
+
+.kiklop-calendar{
+	display:inline-table; border:none; height:38px; position: relative; top:9px; cursor:pointer;
+}
+
+.kiklop-colorbox{
+	display:inline-table; border:none; height:38px; background-color: #FFFFFF;
+}
+
+.kiklop-more-right{top:-27px; position: relative; }
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	.kiklop-more-right{top:-10px; position: relative; }	
+}
+
+.kiklop-checkbox{
+	display:inline-table; border:none; height:38px; background-color: #EAF9FB;
+}
+.kiklop-checkbox:hover{background-color:#f7decf}
+
+
+
+.datepickerViewDays{
+	padding:0px 0px 0px 0px; margin:0px  0px 0px 0px; background-color:#FFFFFF;
+	/*font:75% 'Lucida Sans Unicode','Lucida Grande',arial,helvetica,sans-serif;*/
+	font: 70% GeonetFont;
+}
+
+.kiklop-splitter-horizontal{display:block; ; width:100%; height: 7px; cursor:ns-resize}
+.kiklop-splitter-vertical{display:block; ; width:7px; height: 100%; cursor:we-resize}
+
+
+
+#kiklop-menu-container{
+	display:block; position:absolute; background-color: #FFFFFF; overflow-x:hidden; overflow-y: auto 
+}
+
+.kiklop-check-icon{position:relative; left:4px; top:4px}
+
+
+/* DATE PICKER */
+div.datepicker {
+	position: relative; 
+	font: 70% GeonetFont;
+	/*font:75% 'Lucida Sans Unicode','Lucida Grande',arial,helvetica,sans-serif;*/
+	width: 196px; height: 147px; position: absolute; cursor: default; top: 0; left: 0; display: none;
+}
+.datepickerContainer { background: #fff; position: absolute; top: 0px; left: 0px;}
+.datepickerBorderT, .datepickerBorderB, .datepickerBorderL, .datepickerBorderR { position: absolute; left: 0px; top: 0; right: 0px; height: 0px; }
+.datepickerBorderTL,  .datepickerBorderTR, .datepickerBorderBL, .datepickerBorderBR{position: absolute; left: 0px; top: 0; right: 0px; height: 0px; }
+
+.datepickerHidden { display: none; }
+div.datepicker table { border-collapse:collapse; }
+div.datepicker a { color: #000; text-decoration: none; cursor: pointer; outline: none; }
+div.datepicker table td { text-align: center; padding: 0; margin: 0;}
+div.datepicker th {text-align: center; color: #4fc4f6; font-weight: normal; }
+div.datepicker tbody th { text-align: center; }
+div.datepicker tbody a { display: inline; line-height:30px}
+.datepickerDays a { width: 35px; line-height: 35px; height: 35px; padding-right: 2px; text-align:center; cursor:pointer}
+.datepickerYears a, .datepickerMonths a{width: 44px; line-height: 36px; height: 36px; text-align: center;}
+td.datepickerNotInMonth a {color: #e0e1dd; background-color: #FFF}
+tbody.datepickerDays td.datepickerSelected{ outline: 1px solid #f27935; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px}
+tbody.datepickerDays td.datepickerNotInMonth.datepickerSelected {background: #fff; }
+tbody.datepickerYears td.datepickerSelected, tbody.datepickerMonths td.datepickerSelected{background: #17384d; }
+div.datepicker a:hover, div.datepicker a:hover {color: #51c4d4}
+div.datepicker td.datepickerNotInMonth a:hover {color: #999; }
+div.datepicker tbody th {text-align: center;}
+.datepickerSpace div { width: 20px; }
+.datepickerGoNext a, .datepickerGoPrev a, .datepickerMonth a {text-align: center; height: 40px;line-height: 20px;}
+.datepickerGoNext a {float: right; width: 20px;}
+.datepickerGoPrev a {float: left; width: 20px;}
+table.datepickerViewDays tbody.datepickerMonths, table.datepickerViewDays tbody.datepickerYears { display: none;}
+table.datepickerViewMonths tbody.datepickerDays, table.datepickerViewMonths tbody.datepickerYears, table.datepickerViewMonths tr.datepickerDoW {display: none; }
+table.datepickerViewYears tbody.datepickerDays, table.datepickerViewYears tbody.datepickerMonths, table.datepickerViewYears tr.datepickerDoW {display: none; }
+td.datepickerDisabled a, td.datepickerDisabled.datepickerNotInMonth a{color: #333;}
+td.datepickerDisabled a:hover {color: #333;}
+td.datepickerSpecial a {background: #700;}
+td.datepickerSpecial.datepickerSelected a {background: #a00;}
+
+/*SPLITER*/
+.splitter_panel {
+  position: relative;
+}
+.splitter_panel .vsplitter {
+    background-color: grey;
+    cursor: col-resize;
+    z-index:900;
+    width: 4px;
+}
+
+.splitter_panel .hsplitter {
+    background-color: #5F5F5F;
+    cursor: row-resize;
+    z-index: 800;
+    height: 4px;
+}
+.splitter_panel .vsplitter, .splitter_panel .left_panel, .splitter_panel .right_panel,
+.splitter_panel .hsplitter, .splitter_panel .top_panel, .splitter_panel .bottom_panel {
+    position: absolute;
+    overflow: auto;
+}
+.splitter_panel .vsplitter, .splitter_panel .left_panel, .splitter_panel .right_panel {
+  height: 100%;
+}
+.splitter_panel .hsplitter, .splitter_panel .top_panel, .splitter_panel .bottom_panel {
+  width: 100%;
+}
+.splitter_panel .top_panel, .splitter_panel .left_panel, .splitter_panel .vsplitter {
+   top: 0;
+}
+.splitter_panel .top_panel, .splitter_panel .bottom_panel, .splitter_panel .left_panel, .splitter_panel .hsplitter {
+   left: 0;
+}
+.splitter_panel .bottom_panel {
+   bottom: 0;
+}
+.splitter_panel .right_panel {
+   right: 0;
+}
+

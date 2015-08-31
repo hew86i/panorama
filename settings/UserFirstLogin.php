@@ -19,6 +19,6 @@ $recordDate = dlookup("select firstlogin from userfirstlogin where userid=" . $u
 $days = DateDiffDays($recordDate, now());
 echo json_encode($days);
 closedb();
-exit();
+exit(); 
 
 ?>

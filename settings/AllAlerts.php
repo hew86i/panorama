@@ -1,52 +1,53 @@
-<?php include "../include/functions.php" ?>
-<?php include "../include/db.php" ?>
-<?php include "../include/params.php" ?>
-<?php include "../include/dictionary2.php" ?>
-
-<?php opendb();?>
-
 <?php
-	// error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);  // [josip] za error reports
 
-	header("Content-type: text/html; charset=utf-8");
-	opendb();
-	$clientID = session("client_id");
-	$userID = session("user_id");
-	$roleID = session('role_id');
+include "../include/functions.php";
+include "../include/db.php";
+include "../include/params.php";
+include "../include/dictionary2.php";
 
-	$Allow = getPriv("employees", $userID);
-	if ($Allow == False) echo header ('Location: ../permission/?l=' . $cLang);
+    header("Content-type: text/html; charset=utf-8");
+    opendb();
 
-	addlog(47);
+    $clientID = session("client_id");
+    $userID = session("user_id");
+    $roleID = session('role_id');
 
-	// glavni promelivi ----------------------------------
+    $Allow = getPriv("employees", $userID);
+    if ($Allow == false) {
+        echo header('Location: ../permission/?l=' . $cLang);
+    }
 
-	$clienttypeid = dlookup("select clienttypeid from clients where id = " . $clientID);
+    addlog(47);
 
-	$getQueryClient = pg_fetch_array(query("select * from clients where id=" . $clientID));
-	$allowedfm = $getQueryClient["allowedfm"];
-	$allowedrouting = $getQueryClient["allowedrouting"];
+    // glavni promelivi ----------------------------------
 
-	$getQueryUser = pg_fetch_array(query("select * from users where id=" . $userID));
-	$metric =$getQueryUser["metric"];
-		if ($metric == 'mi') {
-			$value = 0.621371;
-			$unitSpeed = "mph";
-		} else {
-			$value = 1;
-			$unitSpeed = "Km/h";
-		}
-	$snooze = $getQueryUser["snooze"];
+    $clienttypeid = dlookup("select clienttypeid from clients where id = " . $clientID);
 
-	$alarmTypes = pg_fetch_all(query("select * from alarmtypes where isactive='1' order by substring(alarmgroup FROM '^[0-9]+')::int asc"));
+    $getQueryClient = pg_fetch_array(query("select * from clients where id=" . $clientID));
+    $allowedfm = $getQueryClient["allowedfm"];
+    $allowedrouting = $getQueryClient["allowedrouting"];
 
-	$qGetMobileOperators = query("select * from operators order by name");
-	$getFullOperators = pg_fetch_all($qGetMobileOperators);
+    $getQueryUser = pg_fetch_array(query("select * from users where id=" . $userID));
+    $metric =$getQueryUser["metric"];
+        if ($metric == 'mi') {
+            $value = 0.621371;
+            $unitSpeed = "mph";
+        } else {
+            $value = 1;
+            $unitSpeed = "Km/h";
+        }
+    $snooze = $getQueryUser["snooze"];
 
-	$allowedSMSvEmail = $getQueryUser["allowsmsvemail"];
+    $alarmTypes = pg_fetch_all(query("select * from alarmtypes where isactive='1' order by substring(alarmgroup FROM '^[0-9]+')::int asc"));
 
-function pp($a) {
-    echo '<pre>'.print_r($a,1).'</pre>';
+    $qGetMobileOperators = query("select * from operators order by name");
+    $getFullOperators = pg_fetch_all($qGetMobileOperators);
+
+    $allowedSMSvEmail = $getQueryUser["allowsmsvemail"];
+
+function pp($a)
+{
+    echo '<pre>'.print_r($a, 1).'</pre>';
 }
 
 ?>
@@ -283,51 +284,50 @@ $allowed2 = 0;
 $allowed3 = 0;
 $strOrg = "";
 if ($roleID == "2") {
-	$strOrg = "select * from organisation where id in (
+    $strOrg = "select * from organisation where id in (
 	select distinct organisationid from vehicles where clientid=" . $clientID . "
 	and active='1' and organisationid <> 0) order by code::INTEGER";
-
 } else {
-	$strOrg = "select s.id, s.code, s.name, s.description from (select *, (select count(*) from vehicles where clientid=" . $clientID . " and organisationid=o.id) allinoe,
+    $strOrg = "select s.id, s.code, s.name, s.description from (select *, (select count(*) from vehicles where clientid=" . $clientID . " and organisationid=o.id) allinoe,
 	(select count(*) from vehicles where id in (select vehicleid from uservehicles where userid=" . $userID . ") and organisationid=o.id) vehinoe
 	 from organisation o where id in (select distinct organisationid from vehicles where id in (select vehicleid from uservehicles where
 	userid=" . $userID . ") and active='1' and organisationid <> 0) order by code::INTEGER) s where s.allinoe=s.vehinoe";
 }
 $strCom = "";
 if ($roleID == "2") {
-	$strCom = "select * from vehicles where clientID=" . $clientID . " and active='1' order by cast(code as integer) asc" ;
-	$allowFuel = dlookup("select count(*) from vehicles where clientID=" . $clientID . " and active='1' and allowfuel = '1'");
-	$allowedRFID = dlookup("select count(*) from vehicles where clientID=" . $clientID . " and active='1' and allowrfid = '1'");
-	$sqlV = "select id from vehicles where clientID=" . $clientID . " and active='1'";
+    $strCom = "select * from vehicles where clientID=" . $clientID . " and active='1' order by cast(code as integer) asc" ;
+    $allowFuel = dlookup("select count(*) from vehicles where clientID=" . $clientID . " and active='1' and allowfuel = '1'");
+    $allowedRFID = dlookup("select count(*) from vehicles where clientID=" . $clientID . " and active='1' and allowrfid = '1'");
+    $sqlV = "select id from vehicles where clientID=" . $clientID . " and active='1'";
 } else {
-	$strCom = "select * from vehicles where id in (select vehicleid from uservehicles where userid=" . $userID . ") and active='1' order by cast(code as integer) asc";
-	$allowFuel = dlookup("select count(*) from vehicles where id in (select vehicleid from uservehicles where userid=" . $userID . ") and active='1' and allowfuel = '1'");
-	$allowedRFID = dlookup("select count(*) from vehicles where id in (select vehicleid from uservehicles where userid=" . $userID . ") and active='1' and allowrfid = '1'");
-	$sqlV = "select vehicleID from uservehicles uv left outer join vehicles v on v.id=uv.vehicleid where userID=" . $userID . " and v.active='1'";
+    $strCom = "select * from vehicles where id in (select vehicleid from uservehicles where userid=" . $userID . ") and active='1' order by cast(code as integer) asc";
+    $allowFuel = dlookup("select count(*) from vehicles where id in (select vehicleid from uservehicles where userid=" . $userID . ") and active='1' and allowfuel = '1'");
+    $allowedRFID = dlookup("select count(*) from vehicles where id in (select vehicleid from uservehicles where userid=" . $userID . ") and active='1' and allowrfid = '1'");
+    $sqlV = "select vehicleID from uservehicles uv left outer join vehicles v on v.id=uv.vehicleid where userID=" . $userID . " and v.active='1'";
 }
 
 $allowedCapace = dlookup("select count(*) from vehicleport where vehicleid in ($sqlV) and porttypeid=17");
 
 if (pg_num_rows(query($strOrg)) > 0) {
-	$allowed2 = 1;
+    $allowed2 = 1;
 }
 
 if ((dlookup("select count(*) from vehicles where clientID=" . $clientID . " and active='1'")) == pg_num_rows(query($strCom))) {
-	$allowed3 = 1;
+    $allowed3 = 1;
 }
 
 $alerts = query("select distinct uniqid from alarms where clientid=" . $clientID . "");
 // go zima brojot na alerti so razlicen uniqid + 1 za ostanatite
 
-if(pg_num_rows($alerts)==0){
-?>
+if (pg_num_rows($alerts)==0) {
+    ?>
 	<div id="noData" style="padding-left:43px; font-size:22px; font-style:italic; padding-bottom:40px" class="text4">
 		<?php dic("Reports.NoData1")?>
 	</div>
 <?php
-}
-else // GLAVEN ELSE
-{
+
+} else {
+    // GLAVEN ELSE
 ?>
 
 <!-- **********************************  GLAVNA TABELA  **************************** -->
@@ -344,9 +344,12 @@ else // GLAVEN ELSE
 	    <td width="22%" class="text2 th-row la"><b><?php dic("Settings.TypeOfAlert") ?><b></td>
 		<td width="16%" class="text2 th-row"><b><?php dic("Fm.Vehicle") ?>/<?php dic("Fm.Vehicles") ?><b></td>
 		<td width="13%" class="text2 th-row la"><b><?php echo dic_("Reports.Email")?><b></td>
-		<?php if ($allowedSMSvEmail == 1) { ?>
+		<?php if ($allowedSMSvEmail == 1) {
+    ?>
 		<td width="7%" class="text2 th-row la">&nbsp;&nbsp;<b><?php echo dic_("Settings.SendviaEmail")?><b></td>
-		<?php } ?>
+		<?php 
+}
+    ?>
 		<td width="10%" class="text2 th-row"><b><?php dic("Settings.Sound") ?> (snooze)<b></td>
 	    <td width="9%" class="text2 th-row"><b><?php echo dic_("Settings.AvailableFor")?><b></td>
 	    <td width="6%" class="text2 th-row"><font color = "#ff6633"><b><?php dic("Settings.Change")?><b></font></td>
@@ -361,144 +364,142 @@ $all_alerts = query("select a.*,at.name, at.description, v.registration, cast(v.
 				where a.clientid=". $clientID ." and at.id <> 11
 				order by cast(a.uniqid as integer) desc, alarmtypeid, code asc");
 
-$alarmRowInfo = array();	// glavna promenliva kade ke bidata zacuvani vrednostite za redovite koi treba da bidat prikazani
-$lastvar = array();			// se cuvaat promenlivi od prethodniot red + celiot prethoden red
-$lastrow = '';				// se cuva posledniot red
-$vehReg = '';				// promelniva za cuvanje na registracii na vozila (edno ili povekje)
-$Title = '';				// naslov na organizaciona edinica ili na grupata
-$lastuniqid='';				//inicijalna vrednost
+    $alarmRowInfo = array();    // glavna promenliva kade ke bidata zacuvani vrednostite za redovite koi treba da bidat prikazani
+$lastvar = array();            // se cuvaat promenlivi od prethodniot red + celiot prethoden red
+$lastrow = '';                // se cuva posledniot red
+$vehReg = '';                // promelniva za cuvanje na registracii na vozila (edno ili povekje)
+$Title = '';                // naslov na organizaciona edinica ili na grupata
+$lastuniqid='';                //inicijalna vrednost
 $cntUniqID = 0;
 
-$cntAllowVeh='';
+    $cntAllowVeh='';
 
-function formatregistration($fontVeh, $row) {
-	return '<span style="color:'.$fontVeh.'">'.$row["registration"]. ' ('.$row["code"].'); </span> ';
-}
+    function formatregistration($fontVeh, $row)
+    {
+        return '<span style="color:'.$fontVeh.'">'.$row["registration"]. ' ('.$row["code"].'); </span> ';
+    }
 
-function formatvehicles($Title, $allow, $vehReg) {
-	return $Title . " (". $allow .")<br><div>" . $vehReg . "</div>";
-}
+    function formatvehicles($Title, $allow, $vehReg)
+    {
+        return $Title . " (". $allow .")<br><div>" . $vehReg . "</div>";
+    }
 
 // -------------------------------------- LOOP za generirawe na redovite ----------------------------------------------------
 // --------------------------------------------------------------------------------------------------------------------------
-while ($alertrow = pg_fetch_array($all_alerts,null,PGSQL_ASSOC)) {
-if($alertrow["vid"] <> "") {  // gi otfrla site koi imaat prazni vid
+while ($alertrow = pg_fetch_array($all_alerts, null, PGSQL_ASSOC)) {
+    if ($alertrow["vid"] <> "") {  // gi otfrla site koi imaat prazni vid
 
 // -------------------------------------------------- boja na vozilata i check --------------------------------------------
-	if ($roleID == "2") {
-			$checkVeh = dlookup("select count(*) from vehicles where clientID=" . $clientID . " and active='1' and id=". $alertrow["vid"]);
-		}
-		else {
-			$checkVeh = dlookup("select count(*) from vehicles where id in (select vehicleid from uservehicles where vehicleid=" .  $alertrow["vid"] . " and userid=" . $userID . ") and active='1'");
-		}
-		($checkVeh == 0) ? $fontVeh = "red" : $fontVeh="";
+    if ($roleID == "2") {
+        $checkVeh = dlookup("select count(*) from vehicles where clientID=" . $clientID . " and active='1' and id=". $alertrow["vid"]);
+    } else {
+        $checkVeh = dlookup("select count(*) from vehicles where id in (select vehicleid from uservehicles where vehicleid=" .  $alertrow["vid"] . " and userid=" . $userID . ") and active='1'");
+    }
+        ($checkVeh == 0) ? $fontVeh = "red" : $fontVeh="";
 // --------------------------------------------------[END] boja na vozilata i check ----------------------------------------
 
-if($alertrow["uniqid"]=="") { // nema uniqid
+if ($alertrow["uniqid"]=="") { // nema uniqid
 
-	$vehReg .= '<span style="color:'.$fontVeh.'">'.$alertrow["registration"]. ' ('.$alertrow["code"].') </span> ';
-		array_push($alarmRowInfo, array(
-			'data' => $alertrow,
-			'vreg'	=> $vehReg
-		));
+    $vehReg .= '<span style="color:'.$fontVeh.'">'.$alertrow["registration"]. ' ('.$alertrow["code"].') </span> ';
+    array_push($alarmRowInfo, array(
+            'data' => $alertrow,
+            'vreg'    => $vehReg
+        ));
 
-	$vehReg="";
-
+    $vehReg="";
 } else { //ima uniqid
 
-		// ----------------------------- Title and cntAllowVeh --------------------------------------------------------------
-		if ($alertrow["typeofgroup"] == 2) {
-			$Title = dlookup("select name from organisation where id=" . $alertrow["settings"]);
+        // ----------------------------- Title and cntAllowVeh --------------------------------------------------------------
+        if ($alertrow["typeofgroup"] == 2) {
+            $Title = dlookup("select name from organisation where id=" . $alertrow["settings"]);
 
-			if ($roleID == "2") {
-				$cntAllowVeh = dlookup("select count(*) from vehicles where clientID=" . $clientID . " and organisationid = " . $alertrow["settings"] . " and active='1'") ;
-			} else {
-				$cntAllowVeh = dlookup("select count(*) from vehicles where id in (select vehicleid from uservehicles where userid=" . $userID . ") and organisationid = " . $alertrow["settings"] . " and active='1'");
-			}
-			}
-		if ($alertrow["typeofgroup"] == 3) {
-			$Title = dic_("Tracking.AllVehCompany");
+            if ($roleID == "2") {
+                $cntAllowVeh = dlookup("select count(*) from vehicles where clientID=" . $clientID . " and organisationid = " . $alertrow["settings"] . " and active='1'") ;
+            } else {
+                $cntAllowVeh = dlookup("select count(*) from vehicles where id in (select vehicleid from uservehicles where userid=" . $userID . ") and organisationid = " . $alertrow["settings"] . " and active='1'");
+            }
+        }
+    if ($alertrow["typeofgroup"] == 3) {
+        $Title = dic_("Tracking.AllVehCompany");
 
-			if ($roleID == "2") {
-				$cntAllowVeh = dlookup("select count(*) from vehicles where clientID=" . $clientID . " and active='1'") ;
-			} else {
-				$cntAllowVeh = dlookup("select count(*) from vehicles where id in (select vehicleid from uservehicles where userid=" . $userID . ") and active='1'");
-			}
-		}
-		// -------------------------------[end] Title and cntAllowVeh ------------------------------------------------------------
+        if ($roleID == "2") {
+            $cntAllowVeh = dlookup("select count(*) from vehicles where clientID=" . $clientID . " and active='1'") ;
+        } else {
+            $cntAllowVeh = dlookup("select count(*) from vehicles where id in (select vehicleid from uservehicles where userid=" . $userID . ") and active='1'");
+        }
+    }
+        // -------------------------------[end] Title and cntAllowVeh ------------------------------------------------------------
 
-	if($lastuniqid == "") $lastuniqid = $alertrow["uniqid"]; // inicijalna vrednost za prv uniqid
+    if ($lastuniqid == "") {
+        $lastuniqid = $alertrow["uniqid"];
+    } // inicijalna vrednost za prv uniqid
 
-	if($alertrow["uniqid"] == $lastuniqid) {
+    if ($alertrow["uniqid"] == $lastuniqid) {
+        $cntUniqID++; // izbroj go redot
 
-		$cntUniqID++; // izbroj go redot
+        $vehReg .= formatRegistration($fontVeh, $alertrow);
+        $lastrow = $alertrow;
+    }
+    if ($alertrow["uniqid"] != $lastuniqid) {
+        $row = '';
+        $vehRegTemp = formatvehicles($lastvar['title'], $lastvar['cntallowveh'], $vehReg);
 
-		$vehReg .= formatRegistration($fontVeh, $alertrow);
-		$lastrow = $alertrow;
+        if ($cntUniqID == 1) {
+            $row = $lastvar['row'];
+        } else {
+            $row = $lastrow;
+        }
 
-	}
-	if($alertrow["uniqid"] != $lastuniqid) {
+        array_push($alarmRowInfo, array(
+                'data' => $row,
+                'vreg'    => $vehRegTemp
+            ));
 
-		$row = '';
-		$vehRegTemp = formatvehicles($lastvar['title'], $lastvar['cntallowveh'], $vehReg);
-
-		if($cntUniqID == 1) {
-			$row = $lastvar['row'];
-		}else {
-			$row = $lastrow;
-		}
-
-		array_push($alarmRowInfo, array(
-				'data' => $row,
-				'vreg'	=> $vehRegTemp
-			));
-
-		$vehReg = formatRegistration($fontVeh, $alertrow);
-		$cntUniqID = 1; //reset bidejke eden veke e pronajden
-	}
-
+        $vehReg = formatRegistration($fontVeh, $alertrow);
+        $cntUniqID = 1; //reset bidejke eden veke e pronajden
+    }
 }  // else ako ima uniqid
 
-	$lastvar = array('title' => $Title, 'fontveh' => $fontVeh, 'cntallowveh' => $cntAllowVeh, 'row' => $alertrow);
-	$lastuniqid = $alertrow["uniqid"];
-
-} // glaven if za vid <> ""
+    $lastvar = array('title' => $Title, 'fontveh' => $fontVeh, 'cntallowveh' => $cntAllowVeh, 'row' => $alertrow);
+        $lastuniqid = $alertrow["uniqid"];
+    } // glaven if za vid <> ""
 } // end while fetch
 
-if($lastuniqid != "") {	// proverka poradi toa sto moze da ne postoi nitu eden red so uniqid
+if ($lastuniqid != "") {    // proverka poradi toa sto moze da ne postoi nitu eden red so uniqid
 
-	$vehRegTemp = formatvehicles($lastvar['title'], $lastvar['cntallowveh'], $vehReg);
-	array_push($alarmRowInfo, array(
-					'data' => $lastvar['row'],  //currrow
-					'vreg'	=> $vehRegTemp
-				));
+    $vehRegTemp = formatvehicles($lastvar['title'], $lastvar['cntallowveh'], $vehReg);
+    array_push($alarmRowInfo, array(
+                    'data' => $lastvar['row'],  //currrow
+                    'vreg'    => $vehRegTemp
+                ));
 }
 
-?>
+    ?>
  <!-- zacuvaj gi podatocite za site redovi vo JS  -->
 <script type="text/javascript">
-	row_array = <?php echo json_encode($alarmRowInfo); ?>;
-	getMO = <?php echo json_encode($getFullOperators); ?>;
+	row_array = <?php echo json_encode($alarmRowInfo);
+    ?>;
+	getMO = <?php echo json_encode($getFullOperators);
+    ?>;
 </script>
 
 <?php
 
 /////////////////////////////////////// END LOOP /////////////////////////////////////////
 
-$rowCnt = 0;	// broj na red vo tabelata
+$rowCnt = 0;    // broj na red vo tabelata
 
-foreach ($alarmRowInfo as $tableRow)
-{  //w3
+foreach ($alarmRowInfo as $tableRow) {  //w3
 
 $condVeh = ($tableRow['data']['uniqid'] != "") ? $cntAllowVeh : $checkVeh;
 
-if ($condVeh > 0) //da se smeni
-{  //w6
+    if ($condVeh > 0) {
+        //da se smeni  //w6
 
 // REDOVI NA TABELATA --------------------------------------------------------
 
-	$rowCnt++;
-	?>
+    $rowCnt++;
+        ?>
 	<tr id="<?php echo $tableRow['data']['id'] ?>">
 		<td class="text2 td-row la"><?php echo $rowCnt?></td>
 		<td class="text2 td-row la">
@@ -506,125 +507,137 @@ if ($condVeh > 0) //da se smeni
 			<br>
 		<?php
 
-		if ($tableRow['data']["alarmtypeid"] == 17){
-			if ($tableRow['data']["remindme"] != "") {
-				$arr = explode(" ", $tableRow['data']["remindme"]);
-				if ($arr[1] == "days") $remindme = $arr[0] . " " . dic_("Reports.Days_");
-				else {
-					$remindme = round($arr[0] * $value,0) . " " . $metric;
-				}
-				echo " (". $remindme ." " . dic_("Settings.Before") . ")";
-			}
+        if ($tableRow['data']["alarmtypeid"] == 17) {
+            if ($tableRow['data']["remindme"] != "") {
+                $arr = explode(" ", $tableRow['data']["remindme"]);
+                if ($arr[1] == "days") {
+                    $remindme = $arr[0] . " " . dic_("Reports.Days_");
+                } else {
+                    $remindme = round($arr[0] * $value, 0) . " " . $metric;
+                }
+                echo " (". $remindme ." " . dic_("Settings.Before") . ")";
+            }
+        }
 
-		}
+        if ($tableRow['data']["alarmtypeid"] == 18) {
+            if ($tableRow['data']["remindme"] != "") {
+                $arr = explode("; ", $tableRow['data']["remindme"]);
+                if (count($arr) == 1) {
+                    $arr1 = explode(" ", $arr[0]);
+                    if ($arr1[1] == "days") {
+                        $remindme = $arr1[0] . " " . dic_("Reports.Days_");
+                    } else {
+                        $remindme = round($arr1[0] * $value, 0) . " " . $metric;
+                    }
+                    echo " (". $remindme ." " . dic_("Settings.Before") . ")";
+                } else {
+                    $arr1 = explode(" ", $arr[0]);
+                    if ($arr1[1] == "days") {
+                        $remindme = $arr1[0] . " " . dic_("Reports.Days_");
+                    } else {
+                        $remindme = round($arr1[0] * $value, 0) . " " . $metric;
+                    }
 
-		if ($tableRow['data']["alarmtypeid"] == 18){
-			if ($tableRow['data']["remindme"] != "") {
+                    $arr2 = explode(" ", $arr[1]);
+                    if ($arr2[1] == "days") {
+                        $remindme1 = $arr2[0] . " " . dic_("Reports.Days_");
+                    } else {
+                        $remindme1 = round($arr2[0] * $value, 0) . " " . $metric;
+                    }
 
-				$arr = explode("; ", $tableRow['data']["remindme"]);
-				if(count($arr) == 1) {
-					$arr1 = explode(" ", $arr[0]);
-					if ($arr1[1] == "days") $remindme = $arr1[0] . " " . dic_("Reports.Days_");
-					else $remindme = round($arr1[0] * $value,0) . " " . $metric;
-					echo " (". $remindme ." " . dic_("Settings.Before") . ")";
-				} else {
-					$arr1 = explode(" ", $arr[0]);
-					if ($arr1[1] == "days") $remindme = $arr1[0] . " " . dic_("Reports.Days_");
-					else $remindme = round($arr1[0] * $value,0) . " " . $metric;
+                    echo " (". $remindme .", " . $remindme1 . " " . dic_("Settings.Before") . ")";
+                }
+            }
+        }
 
-					$arr2 = explode(" ", $arr[1]);
-					if ($arr2[1] == "days") $remindme1 = $arr2[0] . " " . dic_("Reports.Days_");
-					else $remindme1 = round($arr2[0] * $value,0) . " " . $metric;
+        if ($tableRow['data']["alarmtypeid"] == 20) {
+            if ($tableRow['data']["remindme"] != "") {
+                $arr = explode(" ", $tableRow['data']["remindme"]);
+                if ($arr[1] == "days") {
+                    $remindme = $arr[0] . " " . dic_("Reports.Days_");
+                } else {
+                    $remindme = round($arr[0] * $value, 0) . " " . $metric;
+                }
+                echo " (". $remindme ." " . dic_("Settings.Before") . ")";
+            }
+        }
 
-					echo " (". $remindme .", " . $remindme1 . " " . dic_("Settings.Before") . ")";
-				}
-			}
+        if ($tableRow['data']["alarmtypeid"] == 7) {
+            echo "(". round($tableRow['data']['speed'] * $value) . " " .$unitSpeed.")";
+        }
 
-		}
+        if ($tableRow['data']["alarmtypeid"] == 10) {
+            echo "(" . dlookup("select name from pointsofinterest where id = ".$tableRow['data']["poiid"]) . ")<br>(" . $tableRow['data']['timeofpoi'] . " " . dic_("Settings.minutes") . ")";
+        }
 
-		if ($tableRow['data']["alarmtypeid"] == 20){
-			if ($tableRow['data']["remindme"] != "") {
+        if ($tableRow['data']["alarmtypeid"] == 9) {
+            echo "(" . dlookup("select name from pointsofinterest where id = ".$tableRow['data']["poiid"]) . ")";
+        }
 
-			$arr = explode(" ", $tableRow['data']["remindme"]);
-				if ($arr[1] == "days") $remindme = $arr[0] . " " . dic_("Reports.Days_");
-				else {
-					$remindme = round($arr[0] * $value,0) . " " . $metric;
-				}
-				echo " (". $remindme ." " . dic_("Settings.Before") . ")";
-			}
-		}
-
-		if ($tableRow['data']["alarmtypeid"] == 7){
-			echo "(". round($tableRow['data']['speed'] * $value) . " " .$unitSpeed.")";
-		}
-
-		if ($tableRow['data']["alarmtypeid"] == 10){
-			echo "(" . dlookup("select name from pointsofinterest where id = ".$tableRow['data']["poiid"]) . ")<br>(" . $tableRow['data']['timeofpoi'] . " " . dic_("Settings.minutes") . ")";
-		}
-
-		if ($tableRow['data']["alarmtypeid"] == 9){
-			echo "(" . dlookup("select name from pointsofinterest where id = ".$tableRow['data']["poiid"]) . ")";
-		}
-
-		if ($tableRow['data']["alarmtypeid"] == 8){
-			echo "(" . dlookup("select name from pointsofinterest where id = " . $tableRow['data']["poiid"]) . ")";
-
-		}
-		?>
+        if ($tableRow['data']["alarmtypeid"] == 8) {
+            echo "(" . dlookup("select name from pointsofinterest where id = " . $tableRow['data']["poiid"]) . ")";
+        }
+        ?>
 
 		</td>
 
 		<td class="text2 td-row" style="color:<?php echo $fontVeh?>; cursor:pointer" onclick="hideVeh(<?php echo $tableRow['data']["id"] ?>)">
 			<?php
-				echo $tableRow['vreg'];
-			?>
+                echo $tableRow['vreg'];
+        ?>
 		</td>
 		<td class="text2 td-row la" style="line-height:15px;">
 			<?php
-			if($tableRow['data']["emails"]!="")	echo str_replace(',', '<br>', $tableRow['data']["emails"]);
-			// nema potreba od else &nbsp;
-			?>
+            if ($tableRow['data']["emails"]!="") {
+                echo str_replace(',', '<br>', $tableRow['data']["emails"]);
+            }
+            // nema potreba od else &nbsp;
+            ?>
 		</td>
 		<?php
-		if ($allowedSMSvEmail == 1) { ?>
+        if ($allowedSMSvEmail == 1) {
+            ?>
 			<td class="text2 td-row la">
 			<?php
-				if($tableRow['data']["smsviaemail"] != null) {
-					echo str_replace(',', '<br>', $tableRow['data']["smsviaemail"]);
-				} else echo "/";
-			?>
+                if ($tableRow['data']["smsviaemail"] != null) {
+                    echo str_replace(',', '<br>', $tableRow['data']["smsviaemail"]);
+                } else {
+                    echo "/";
+                }
+            ?>
 			</td>
 		<?php
-		}
-		?>
+
+        }
+        ?>
 		<td class="text2 td-row">
 			<?php echo dic_("Settings.Sound") . "  " . $tableRow['data']["soundid"];
-			echo (($snooze == 0) ? dic("Settings.NoRepetition") : " (" . $snooze . " " . dic_("Reports.Minutes") . ")"); ?>
+        echo(($snooze == 0) ? dic("Settings.NoRepetition") : " (" . $snooze . " " . dic_("Reports.Minutes") . ")");
+        ?>
 		</td>
 		<td class="text2 td-row">
 			<?php
-				if($tableRow['data']["available"] == 1) {
-					echo dic_("Settings.User");
-				} else
-				if($tableRow['data']["available"] == 2) {
-					echo dic_("Reports.OrgUnit");
-				} else
-				if($tableRow['data']["available"] == 3) {
-					echo dic_("Settings.Company");
-				} else {
-					?> / <?php
-				}
-			?>
+                if ($tableRow['data']["available"] == 1) {
+                    echo dic_("Settings.User");
+                } elseif ($tableRow['data']["available"] == 2) {
+                    echo dic_("Reports.OrgUnit");
+                } elseif ($tableRow['data']["available"] == 3) {
+                    echo dic_("Settings.Company");
+                } else {
+                    ?> / <?php
+
+                }
+        ?>
 
 		<?php
 
-		$styleBtn = "";
-		$styleDisabled = "";
-		if ($tableRow['data']["typeofgroup"] == 2 and $allowed2 == 0 or $tableRow['data']["typeofgroup"] == 3 and $allowed3 == 0) {
-			$styleBtn = "; opacity:0.5;";
-			$styleDisabled = "disabled";
-		}
-		 ?>
+        $styleBtn = "";
+        $styleDisabled = "";
+        if ($tableRow['data']["typeofgroup"] == 2 and $allowed2 == 0 or $tableRow['data']["typeofgroup"] == 3 and $allowed3 == 0) {
+            $styleBtn = "; opacity:0.5;";
+            $styleDisabled = "disabled";
+        }
+        ?>
 		</td>
 		<td class="text2 td-row">
 			<button id="btnEditA<?php echo $rowCnt?>" class="edit-btn" <?php echo $styleDisabled?> onclick="storeAlerts(true,<?php echo $tableRow['data']["id"]?>)" style="height:22px; width:30px <?php echo $styleBtn ?>"></button>
@@ -634,7 +647,8 @@ if ($condVeh > 0) //da se smeni
 		</td>
 	</tr>
 	<?php
-	}  //w6.
+
+    }  //w6.
 } //w3.
 
 ?>
@@ -644,7 +658,8 @@ if ($condVeh > 0) //da se smeni
 </div>	<!-- [END] **********************************  GLAVNA TABELA  **************************** -->
 
 <?php
-}	// [END]. tabela else (za noData)
+
+}    // [END]. tabela else (za noData)
 ?>
 <!-- ********************************* ******************************** **************************** -->
 <!--                   DIALOGS                  -->
@@ -669,45 +684,73 @@ if ($condVeh > 0) //da se smeni
 			<select id = "TipNaAlarm" style="font-size: 11px; width:365px; position: relative; top: 0px ;visibility: visible;" onchange="OptionsChangeAlarmType()" class="combobox text2">
 			<?php
 
-			$alarmgroup = "";
-			foreach ($alarmTypes as $index => $alarmRow) {
+            $alarmgroup = "";
+            foreach ($alarmTypes as $index => $alarmRow) {
 
-				// proverki za koi opcii da bidat dozvoleni
-				$alarmRow['check'] = 0;
-				$alarmRow['jump'] = 1;
+                // proverki za koi opcii da bidat dozvoleni
+                $alarmRow['check'] = 0;
+                $alarmRow['jump'] = 1;
 
-				if($alarmRow['id'] == 48 && $allowFuel == 0) $alarmRow['check'] = 1;	// alarm za dozvoleno gorivo
-				if(($alarmRow['id'] == 23 || $alarmRow['id'] == 22) && $allowedRFID == 0) $alarmRow['check'] = 1;	// alarm za RFID
-				if($alarmRow['id'] == 5  && $allowedCapace == 0) $alarmRow['check'] = 1;  // za dali e dozvoleno kapace za korivo
+                if ($alarmRow['id'] == 48 && $allowFuel == 0) {
+                    $alarmRow['check'] = 1;
+                }    // alarm za dozvoleno gorivo
+                if (($alarmRow['id'] == 23 || $alarmRow['id'] == 22) && $allowedRFID == 0) {
+                    $alarmRow['check'] = 1;
+                }    // alarm za RFID
+                if ($alarmRow['id'] == 5  && $allowedCapace == 0) {
+                    $alarmRow['check'] = 1;
+                }  // za dali e dozvoleno kapace za korivo
 
-				if($alarmRow['alarmgroup'] == "3-RoutesCombo" && $allowedrouting == 0) $alarmRow['check'] = 1;
-				if($alarmRow['alarmgroup'] == "4-FleetManagement"  && $allowedfm == 0) $alarmRow['check'] = 1;
-				if($alarmRow['alarmgroup'] == "6-MotoAlarms"  && $clienttypeid != 6) $alarmRow['check'] = 1;
-				if($alarmRow['alarmgroup'] == "8-AssetAlerts"  && $clienttypeid != 7) $alarmRow['jump'] = 0;
-				if($alarmRow['alarmgroup'] == "7-SecurityAlerts"  && $clienttypeid != 8) $alarmRow['jump'] = 0;
-				if($alarmRow['alarmgroup'] == "9-OBDAlerts"  && $clienttypeid != 9) $alarmRow['jump'] = 0;
-				if($alarmRow['alarmgroup'] == "10-PersonalAlerts"  && $clienttypeid != 3) $alarmRow['jump'] = 0;
-				
-				// [END]. proverki --------------------------------------------------------------------------------------
-				if($alarmRow["jump"]==1) {
-					if($alarmRow["alarmgroup"] == $alarmgroup) {
-						// prikazi gi site od ist alarmgroup
-						?>
-							<option value="<?php echo $alarmRow['id'] ?>" <?php if($alarmRow["check"]==1) echo "disabled='disabled'" ?>><?php dic($alarmRow['name']) ?></option>
+                if ($alarmRow['alarmgroup'] == "3-RoutesCombo" && $allowedrouting == 0) {
+                    $alarmRow['check'] = 1;
+                }
+                if ($alarmRow['alarmgroup'] == "4-FleetManagement"  && $allowedfm == 0) {
+                    $alarmRow['check'] = 1;
+                }
+                if ($alarmRow['alarmgroup'] == "6-MotoAlarms"  && $clienttypeid != 6) {
+                    $alarmRow['check'] = 1;
+                }
+                if ($alarmRow['alarmgroup'] == "8-AssetAlerts"  && $clienttypeid != 7) {
+                    $alarmRow['jump'] = 0;
+                }
+                if ($alarmRow['alarmgroup'] == "7-SecurityAlerts"  && $clienttypeid != 8) {
+                    $alarmRow['jump'] = 0;
+                }
+                if ($alarmRow['alarmgroup'] == "9-OBDAlerts"  && $clienttypeid != 9) {
+                    $alarmRow['jump'] = 0;
+                }
+                if ($alarmRow['alarmgroup'] == "10-PersonalAlerts"  && $clienttypeid != 3) {
+                    $alarmRow['jump'] = 0;
+                }
+                
+                // [END]. proverki --------------------------------------------------------------------------------------
+                if ($alarmRow["jump"]==1) {
+                    if ($alarmRow["alarmgroup"] == $alarmgroup) {
+                        // prikazi gi site od ist alarmgroup
+                        ?>
+							<option value="<?php echo $alarmRow['id'] ?>" <?php if ($alarmRow["check"]==1) {
+    echo "disabled='disabled'";
+}
+                        ?>><?php dic($alarmRow['name']) ?></option>
 						<?php
-					} else {
-						// promeni go
-						$alarmgroup = $alarmRow["alarmgroup"];
-						$alarmgroupShow = explode('-', $alarmgroup);
-						// prikazi ja taa grupa kako disabled vo option
-						?>
+
+                    } else {
+                        // promeni go
+                        $alarmgroup = $alarmRow["alarmgroup"];
+                        $alarmgroupShow = explode('-', $alarmgroup);
+                        // prikazi ja taa grupa kako disabled vo option
+                        ?>
 							<option disabled="disabled">----------------------<?php dic("Settings." . $alarmgroupShow[1]) ?>----------------------</option>
-							<option value="<?php echo $alarmRow['id'] ?>" <?php if($alarmRow["check"]==1) echo "disabled='disabled'" ?>><?php dic($alarmRow['name']) ?></option>
+							<option value="<?php echo $alarmRow['id'] ?>" <?php if ($alarmRow["check"]==1) {
+    echo "disabled='disabled'";
+}
+                        ?>><?php dic($alarmRow['name']) ?></option>
 						<?php
-					}
-				}
-			}
-			?>
+
+                    }
+                }
+            }
+            ?>
 			</select>
 			</td>
 		</tr>
@@ -717,16 +760,16 @@ if ($condVeh > 0) //da se smeni
 				<div class="ui-widget" style="height: 25px; width: 100%;">
 					<select id="combobox" style="width: 370px;">
 						<?php
-						$str1 = "";
-						$str1 .= "select * from pointsofinterest where clientid=" . $clientID ." and type=1 and active = '1' ORDER BY name";
-						$dsPP = query($str1);
-						while($row = pg_fetch_array($dsPP))
-						{
-						?>
+                        $str1 = "";
+                        $str1 .= "select * from pointsofinterest where clientid=" . $clientID ." and type=1 and active = '1' ORDER BY name";
+                        $dsPP = query($str1);
+                        while ($row = pg_fetch_array($dsPP)) {
+                            ?>
 							<option value="<?php echo $row["id"] ?>"><?php echo $row["name"]?></option>
-						<?
-						}
-						?>
+						<?php
+
+                        }
+                        ?>
 					</select>
 				</div>
 			</td>
@@ -743,16 +786,17 @@ if ($condVeh > 0) //da se smeni
 				<div class="ui-widget" style="height: 25px; width: 100%;">
 					<select id="comboboxVlez" style="width: 365px">
 						<?php
-						$str2 = "";
-						$str2 .= "select * from pointsofinterest where clientid=" . $clientID ." and (type=2 or type=3) and active = '1' ORDER BY name";
-						$dsPP2 = query($str2);
+                        $str2 = "";
+                        $str2 .= "select * from pointsofinterest where clientid=" . $clientID ." and (type=2 or type=3) and active = '1' ORDER BY name";
+                        $dsPP2 = query($str2);
 
-						while($row2 = pg_fetch_array($dsPP2)) {
-						?>
+                        while ($row2 = pg_fetch_array($dsPP2)) {
+                            ?>
 							<option value="<?php echo $row2["id"] ?>" ><?php echo $row2["name"]?></option>
-						<?
-						}
-						?>
+						<?php
+
+                        }
+                        ?>
 					</select>
 				</div>
 			</td>
@@ -763,15 +807,16 @@ if ($condVeh > 0) //da se smeni
 				<div class="ui-widget" style="height: 25px; width: 100%;">
 					<select id="comboboxIzlez" style="width: 370px">
 						<?php
-						$str3 = "";
-						$str3 .= "select * from pointsofinterest where clientid=" . $clientID ." and (type=2 or type=3) and active = '1' ORDER BY name";
-						$dsPP3 = query($str3);
-						while($row3 = pg_fetch_array($dsPP3)) {
-						?>
+                        $str3 = "";
+                        $str3 .= "select * from pointsofinterest where clientid=" . $clientID ." and (type=2 or type=3) and active = '1' ORDER BY name";
+                        $dsPP3 = query($str3);
+                        while ($row3 = pg_fetch_array($dsPP3)) {
+                            ?>
 							<option value="<?php echo $row3["id"] ?>"><?php echo $row3["name"]?></option>
-						<?
-						}
-						?>
+						<?php
+
+                        }
+                        ?>
 					</select>
 				</div>
 			</td>
@@ -788,12 +833,16 @@ if ($condVeh > 0) //da se smeni
 				<option value="0"><?php echo dic_("Tracking.SelectOption")?></option>
 				<option value="1"><?php echo dic_("Tracking.OneVehicle")?></option>
 				<?php
-				if (pg_num_rows(query($strOrg)) > 0) { ?>
-					<option value="2"><?php echo dic_("Tracking.VehInOrgU")?></option> <?php }
+                if (pg_num_rows(query($strOrg)) > 0) {
+                    ?>
+					<option value="2"><?php echo dic_("Tracking.VehInOrgU")?></option> <?php 
+                }
 
-				if ((dlookup("select count(*) from vehicles where clientID=" . $clientID . " and active='1'")) == pg_num_rows(query($strCom))) { ?>
+                if ((dlookup("select count(*) from vehicles where clientID=" . $clientID . " and active='1'")) == pg_num_rows(query($strCom))) {
+                    ?>
 					<option value="3"><?php echo dic_("Tracking.AllVehCompany") ?></option>
-				<?php }	?>
+				<?php 
+                }    ?>
 			</select>
 			</div>
 			</td>
@@ -805,13 +854,14 @@ if ($condVeh > 0) //da se smeni
 			<select id="voziloOdbrano" style="width: 365px;" class="combobox text2">
 				<?php
 
-				$dsPP = query($strCom);
-				while($row = pg_fetch_array($dsPP)) {
-				?>
+                $dsPP = query($strCom);
+                while ($row = pg_fetch_array($dsPP)) {
+                    ?>
 				<option value="<?php echo $row["id"] ?>"><?php echo $row["registration"]?>&nbsp;(<?php echo $row["code"]?>)</option>
-				<?
-				}
-				?>
+				<?php
+
+                }
+                ?>
 				</select>
 			</div>
 			</td>
@@ -822,15 +872,21 @@ if ($condVeh > 0) //da se smeni
 			<div class="ui-widget" style="height: 25px; width: 100%">
 			<select id="oEdinica" style="width: 365px;" class="combobox text2">
 				<?php
-				$dsPP2 = query($strOrg);
+                $dsPP2 = query($strOrg);
 
-				$brojRedovi = pg_num_rows($dsPP2);
-				while($row2 = pg_fetch_array($dsPP2)) {
-				?>
-				<option value="<?php echo $row2["id"] ?>"><?php if ($brojRedovi>0){ echo $row2["name"]?>&nbsp;(<?php echo $row2["code"]?><?php }else{ echo dic_("Settings.NoOrgU");}?>)</option>
-				<?
-				}
-				?>
+                $brojRedovi = pg_num_rows($dsPP2);
+                while ($row2 = pg_fetch_array($dsPP2)) {
+                    ?>
+				<option value="<?php echo $row2["id"] ?>"><?php if ($brojRedovi>0) {
+    echo $row2["name"]?>&nbsp;(<?php echo $row2["code"]?><?php 
+} else {
+    echo dic_("Settings.NoOrgU");
+}
+                    ?>)</option>
+				<?php
+
+                }
+                ?>
 			</select>
 			</div>
 			</td>
@@ -881,12 +937,14 @@ if ($condVeh > 0) //da se smeni
 					<option value="0" selected="selected"><?php echo dic_("Settings.MobileOperator")?></option>
 					<?php
 
-					while($operator = pg_fetch_array($qGetMobileOperators)) {
-					?>
-					<option value="<?php echo $operator["id"] ?>"><?php echo $operator["name"]; ?></option>
-					<?
-					}
-					?>
+                    while ($operator = pg_fetch_array($qGetMobileOperators)) {
+                        ?>
+					<option value="<?php echo $operator["id"] ?>"><?php echo $operator["name"];
+                        ?></option>
+					<?php
+
+                    }
+                    ?>
 				</select>
 				</div>
 			</td>

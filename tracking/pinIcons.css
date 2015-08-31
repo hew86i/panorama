@@ -1,36 +1,17 @@
 @font-face {
-	font-family: "PinIcons";
-	src: url("fonts/pinicons.eot");
-	src: url("fonts/pinicons.eot#iefix") format("embedded-opentype"),
-	url("fonts/pinicons.woff") format("woff"),
-	url("fonts/pinicons.ttf") format("truetype"),
-	url("fonts/pinicons.svg") format("svg");
+	font-family: "POIIcons";
+	src: url("fonts/poiicons.eot");
+	src: url("fonts/poiicons.eot#iefix") format("embedded-opentype"),
+	url("fonts/poiicons.woff") format("woff"),
+	url("fonts/poiicons.ttf") format("truetype"),
+	url("fonts/poiicons.svg") format("svg");
 	font-weight: normal;
 	font-style: normal;
 }
-@font-face { 
-	font-family: "Ionicons"; 
-	src: url("fonts/ionicons.eot?v=2.0.0"); 
-	src: url("fonts/ionicons.eot?v=2.0.0#iefix") format("embedded-opentype"), 
-		 url("fonts/ionicons.ttf?v=2.0.0") format("truetype"),
-		 url("fonts/ionicons.woff?v=2.0.0") format("woff"), 
-		 url("fonts/ionicons.svg?v=2.0.0#Ionicons") format("svg"); 
-	 font-weight: normal;
-	 font-style: normal; 
-}
-@font-face {
-	font-family: 'icomoon';
-	src:url('fonts/icomoon.eot?pvafsn');
-	src:url('fonts/icomoon.eot?#iefixpvafsn') format('embedded-opentype'),
-		url('fonts/icomoon.ttf?pvafsn') format('truetype'),
-		url('fonts/icomoon.woff?pvafsn') format('woff'),
-		url('fonts/icomoon.svg?pvafsn#icomoon') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-.icon-poi-0:before, .icon-poi-1:before, .icon-poi-2:before, .icon-poi-3:before, .icon-poi-4:before, .icon-poi-5:before, .icon-poi-6:before, .icon-poi-10:before, .icon-poi-13:before, .icon-poi-15:before, .icon-poi-22:before {
-	display: inline-block;
-	font-family: "Ionicons";
+[class^="icon-"]:before, [class*=" icon-"]:before,
+[class^="icon-"]:after, [class*=" icon-"]:after {
+	display: inline-block;   
+	font-family: POIIcons;
 	speak: none; font-style: normal; 
 	font-weight: normal;
 	font-variant: normal;
@@ -39,55 +20,80 @@
 	line-height: 1;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	margin-left: 5px;
 }
-.icon-poi-7:before, .icon-poi-8:before, .icon-poi-23:before {
-	display: inline-block;
-	font-family: "icomoon"; 
-	speak: none; font-style: normal; 
-	font-weight: normal; 
-	font-variant: normal; 
-	text-transform: none; 
-	text-rendering: auto; 
-	line-height: 1;
-	-webkit-font-smoothing: antialiased; 
-	-moz-osx-font-smoothing: grayscale;
+.icon-poi-0:before {
+	content: "\e02c";
 }
-.icon-poi-9:before, .icon-poi-11:before, .icon-poi-12:before, .icon-poi-14:before, .icon-poi-16:before, .icon-poi-17:before, .icon-poi-18:before, .icon-poi-19:before, .icon-poi-20:before, .icon-poi-21:before {
-	display: inline-block;
-	font-family: "PinIcons"; 
-	speak: none; font-style: normal; 
-	font-weight: normal; 
-	font-variant: normal; 
-	text-transform: none; 
-	text-rendering: auto; 
-	line-height: 1;
-	-webkit-font-smoothing: antialiased; 
-	-moz-osx-font-smoothing: grayscale;
+.icon-poi-1:before {
+	content: "\e011";
 }
-.icon-poi-0:before { content: "\f2a6"; }
-.icon-poi-1:before { content: "\f279"; }
-.icon-poi-2:before { content: "\f371"; }
-.icon-poi-3:before { content: "\f21b"; }
-.icon-poi-4:before { content: "\f141"; }
-.icon-poi-5:before { content: "\f348"; }
-.icon-poi-6:before { content: "\f137"; }
-.icon-poi-7:before { content: "\e6dc"; }
-.icon-poi-8:before { content: "\e6dd"; }
-.icon-poi-9:before { content: "\e007"; }
-.icon-poi-10:before { content: "\f214"; }
-.icon-poi-11:before { content: "\e004"; }
-.icon-poi-12:before { content: "\e000"; }
-.icon-poi-13:before { content: "\f36d"; }
-.icon-poi-14:before { content: "\e006"; }
-.icon-poi-15:before { content: "\f36f"; }
-.icon-poi-16:before { content: "\e00a"; }
-.icon-poi-17:before { content: "\e002"; }
-.icon-poi-18:before { content: "\e009"; }
-.icon-poi-19:before { content: "\e008"; }
-.icon-poi-20:before { content: "\e001"; }
-.icon-poi-21:before { content: "\e005"; }
-.icon-poi-22:before { content: "\f47a"; }
-.icon-poi-23:before { content: "\e7bf"; }
+.icon-poi-2:before {
+	content: "\e035";
+}
+.icon-poi-3:before {
+	content: "\e00e";
+}
+.icon-poi-4:before {
+	content: "\e010";
+}
+.icon-poi-5:before {
+	content: "\e012";
+}
+.icon-poi-6:before {
+	content: "\e007";
+}
+.icon-poi-7:before {
+	content: "\e01b";
+}
+.icon-poi-8:before {
+	content: "\e013";
+}
+.icon-poi-9:before {
+	content: "\e02d";
+}
+.icon-poi-10:before {
+	content: "\e000";
+}
+.icon-poi-11:before {
+	content: "\e00c";
+}
+.icon-poi-12:before {
+	content: "\e002";
+}
+.icon-poi-13:before {
+	content: "\e03f";
+}
+.icon-poi-14:before {
+	content: "\e022";
+}
+.icon-poi-15:before {
+	content: "\e033";
+}
+.icon-poi-16:before {
+	content: "\e038";
+}
+.icon-poi-17:before {
+	content: "\e009";
+}
+.icon-poi-18:before {
+	content: "\e037";
+}
+.icon-poi-19:before {
+	content: "\e02e";
+}
+.icon-poi-20:before {
+	content: "\e004";
+}
+.icon-poi-21:before {
+	content: "\e00f";
+}
+.icon-poi-22:before {
+	content: "\e030";
+}
+.icon-poi-23:before {
+	content: "\e003";
+}
 
 .iconpin20 {
 	font-size: 20px;

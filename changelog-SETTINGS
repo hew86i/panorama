@@ -1,6 +1,6 @@
-./settings/Organisation.php *
-./settings/Drivers.php 
-./settings/DeleteOrgUnit.php *
+./settings/Organisation.php *  -------
+./settings/Drivers.php
+./settings/DeleteOrgUnit.php * ----------
 ./settings/Vehicles.php *
 ./settings/storeAlert.php *
 ./settings/ModifyVehicle.php *
@@ -9,7 +9,7 @@
 ./settings/AddNewOrgUnit.php
 ./settings/GroupPOI.php  *
 ./settings/AddAllowedDriver.php
-./settings/AddNewDriver.php *
+./settings/AddNewDriver.php * -----------
 ./settings/Delete.php
 ./settings/ModifyDriver.php
 ./settings/UserVehicles.php

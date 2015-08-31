@@ -1131,7 +1131,14 @@ function OnClickSHTrajectory(){
     		PathPerVehShadow[z1] = [];
 		}
     if (ShowHideTrajectory == true) {
+        if (_trajSH) {
+            //alert(Car[_trajCodes].datum)
+            //alert(_trajPodatoci)
+            _trajSH = false;
+            getPosNew(_trajPodatoci);
+        }
         ShowHideTrajectory = false;
+        _trajSH = false;
         var s = 1;
         while (document.getElementById("1_checkRow" + s) != null) {
             tmpCheckGroup[1][s] = 0;
@@ -1436,6 +1443,18 @@ function getPosNew(_podatoci){
 			}
 		}
 
+        checkTF = true;
+        if (_trajSH) {
+            var trajArr = _trajIDs.split(", ");
+            for (_cntTvID = 0; _cntTvID < trajArr.length; _cntTvID++) {
+                if (_podatoci.split("#")[j].split("|")[27] == trajArr[_cntTvID]) {
+                    checkTF = false;
+                    _trajPodatoci = "#"+_podatoci.split("#")[j];
+                }
+            }
+        }
+		if (checkTF) {
+     
         if($('#naredba1_' +_podatoci.split("#")[j].split("|")[27]).length > 0)
         {
             if($('#naredba2_' + _podatoci.split("#")[j].split("|")[27]).children().html() == "Moto-block" && kola.engineblock == "1")
@@ -1539,9 +1558,9 @@ function getPosNew(_podatoci){
             //if (parseInt(kola.cbfuel, 10) != 0) {
 				$('#vh-cbfuel1-' + kola.id).css({ display: "block" });
 				if(liq == 'galon')
-				    $('#vh-cbfuel-' + kola.id).html(Math.round(100*parseInt((kola.cbfuel * 0.264172), 10)/100) + ' gal');
+				    $('#vh-cbfuel-' + kola.id).html(Math.round(100*parseFloat((kola.cbfuel * 0.264172))/100) + ' gal');
 			    else
-			        $('#vh-cbfuel-' + kola.id).html(Math.round(100*parseInt(kola.cbfuel, 10)/100) + ' L');
+			        $('#vh-cbfuel-' + kola.id).html(Math.round(100*parseInt(kola.cbfuel, 10)/100) + ' lit');
 			/*
 			} else {
 							if(parseInt($('#vh-cbfuel-' + kola.id).html(), 10) == 0)
@@ -1566,6 +1585,9 @@ function getPosNew(_podatoci){
             //if (parseInt(kola.cbtemp, 10) != 0) {
 				$('#vh-cbtemp1-' + kola.id).css({ display: "block" });
 				$('#vh-cbtemp-' + kola.id).html(Math.round(converttemp(kola.cbtemp, tempunit)) + ' °' + tempunit);
+				if(Math.round(converttemp(kola.cbtemp, tempunit)) == -40) {
+				    $('#vh-cbtemp1-' + kola.id).css({ display: "none" });
+				}
 			/*
 			} else {
 							if(parseInt($('#vh-cbtemp-' + kola.id).html(), 10) == 0 || kola.ignition == '0')
@@ -1600,7 +1622,7 @@ function getPosNew(_podatoci){
 							var nexserv = '<font style="color: Red;">' + $('#'+this.id).html().substring($('#'+this.id).html().indexOf("(")+1, $('#'+this.id).html().indexOf(")")) + '</font>';
 						else
 							var nexserv = $('#'+this.id).html().substring($('#'+this.id).html().indexOf("(")+1, $('#'+this.id).html().indexOf(")"));
-	                    ShowPopup(event, dic('Reports.Past', lang) + ' ' + mmetric + ': <b>' + $('#'+this.id).html().substring(0, $('#'+this.id).html().indexOf("(")-1) + '</b><br/>Преостануваат <b>' + nexserv + '</b> до следен сервис!');
+	                    ShowPopup(event, dic('Reports.Past', lang) + ' ' + mmetric + ': <b>' + $('#'+this.id).html().substring(0, $('#'+this.id).html().indexOf("(")-1) + '</b><br/>'+dic("Live.Remaining", lang)+' <b>' + nexserv + '</b> '+dic("Live.UntilNextService", lang)+'!');
 	                });
 				} else
 				{
@@ -1615,12 +1637,22 @@ function getPosNew(_podatoci){
 								$('#vh-cbdistance1-' + kola.id).css({ display: "none" });
 						}*/
 			
-			if ($('#vh-cbfuel1-' + kola.id).css('display') == 'none' && $('#vh-cbrpm1-' + kola.id).css('display') == 'none' && $('#vh-cbtemp1-' + kola.id).css('display') == 'none' && $('#vh-cbdistance1-' + kola.id).css('display') == 'none') {
+			if(kola.ignition == '0') {
+			   $('#vh-cbrpm1-' + kola.id).css({ display: "none" });
+			   $('#vh-cbtemp1-' + kola.id).css({ display: "none" });
+			}
+			var hidecabus = true;
+			for(var cb=0; cb<$('#vh-canbus-' + kola.id).children().length; cb++) {
+			    if($($('#vh-canbus-' + kola.id).children()[cb]).css('display') != 'none') {
+			        hidecabus = false;
+			        break;
+			    }
+			}
+			if (hidecabus) {
                 $('#vh-canbus-' + kola.id).css({ display: "none" });
             } else {
                 $('#vh-canbus-' + kola.id).css({ display: "block" });
             }
-			
 			if(clientid == '367')
 			{
 				if(kola.zoneids != "")
@@ -1678,7 +1710,7 @@ function getPosNew(_podatoci){
                 					var zoneindt = kola.fulldt;
                 				else
                 					var zoneindt = kola.zonedt;
-                				str += '<div onmousemove="ShowPopup(event, \'Влез во зона: ' + formatdt1(zoneindt) + '\');" onmouseout="HidePopup()" id="div_zone_'+geoid+'_'+kola.id+'" style="float:left; width:16px; height:16px; margin-left:2px; margin-bottom:2px; cursor:pointer" onclick="FindVehicleOnMap0(' + kola.id + ')" class="' + cname + '">' + kola.id + '<input type="hidden" value="'+zoneindt+'"/></div>';
+                				str += '<div onmousemove="ShowPopup(event, \'' + dic("enterZone", lang) + ': ' + formattime13_(zoneindt, timeformatU_) + " " + formatdate13_(zoneindt, dateformatU_) + '\');" onmouseout="HidePopup()" id="div_zone_'+geoid+'_'+kola.id+'" style="float:left; width:16px; height:16px; margin-left:2px; margin-bottom:2px; cursor:pointer" onclick="FindVehicleOnMap0(' + kola.id + ')" class="' + cname + '">' + kola.id + '<input type="hidden" value="'+zoneindt+'"/></div>';
                 				if(FirstLoad)
                 				{
                 					if(kola.zonedt > $($('#geo-fence-' + geoid).children()[$('#geo-fence-' + geoid).children().length-1]).children().val())
@@ -1765,14 +1797,16 @@ function getPosNew(_podatoci){
 				
 			$('#vh-temp-' + kola.id).html(Math.round(converttemp(kola.temperature, tempunit) * 100)/100 + ' °' + tempunit);
 			if(liq == 'galon') {
-			    $('#vh-litres-' + kola.id).html(Math.round(Math.round((kola.litres * 0.264172) * 100)/100) + ' gal');
+			    if(parseInt(kola.litres, 10) != 0)
+			        $('#vh-litres-' + kola.id).html(Math.round(parseFloat((kola.litres * 0.264172) * 100)/100) + ' gal');
 			    if (parseInt(kola.ultrasonic, 10) != 0) {
-			        $('#vh-ultrasonic-' + kola.id).html(Math.round(Math.round((kola.ultrasonic * 0.264172) * 100)/100) + ' gal');
+			        $('#vh-ultrasonic-' + kola.id).html(Math.round(parseFloat((kola.ultrasonic * 0.264172) * 100)/100) + ' gal');
 			    }
 			} else {
-			    $('#vh-litres-' + kola.id).html(Math.round(Math.round(kola.litres * 100)/100) + ' L');
+			    if(parseInt(kola.litres, 10) != 0)
+			        $('#vh-litres-' + kola.id).html(Math.round(Math.round(kola.litres * 100)/100) + ' lit');
 			    if (parseInt(kola.ultrasonic, 10) != 0) {
-			        $('#vh-ultrasonic-' + kola.id).html(Math.round(Math.round(kola.ultrasonic * 100)/100) + ' L');
+			        $('#vh-ultrasonic-' + kola.id).html(Math.round(Math.round(kola.ultrasonic * 100)/100) + ' lit');
 			    }
 		    }
 			var mmetric = ' Km';
@@ -1807,7 +1841,7 @@ function getPosNew(_podatoci){
 								var nexserv = '<font style="color: Red;">' + $('#'+this.id).html().substring($('#'+this.id).html().indexOf("(")+1, $('#'+this.id).html().indexOf(")")) + '</font>';
 							else
 								var nexserv = $('#'+this.id).html().substring($('#'+this.id).html().indexOf("(")+1, $('#'+this.id).html().indexOf(")"));
-		                    ShowPopup(event, dic('Reports.Past', lang) + ' ' + mmetric + ': <b>' + $('#'+this.id).html().substring(0, $('#'+this.id).html().indexOf("(")-1) + '</b><br/>Преостануваат <b>' + nexserv + '</b> до следен сервис!');
+		                    ShowPopup(event, dic('Reports.Past', lang) + ' ' + mmetric + ': <b>' + $('#'+this.id).html().substring(0, $('#'+this.id).html().indexOf("(")-1) + '</b><br/>'+dic("Live.Remaining", lang)+' <b>' + nexserv + '</b> '+dic("Live.UntilNextService", lang)+'!');
 		                });
 					} else
 					{
@@ -1847,7 +1881,7 @@ function getPosNew(_podatoci){
 									var nexserv = '<font style="color: Red;">' + $('#'+this.id).html().substring($('#'+this.id).html().indexOf("(")+1, $('#'+this.id).html().indexOf(")")) + '</font>';
 								else
 									var nexserv = $('#'+this.id).html().substring($('#'+this.id).html().indexOf("(")+1, $('#'+this.id).html().indexOf(")"));
-			                    ShowPopup(event, dic('Reports.Past', lang) + ' ' + mmetric + ': <b>' + $('#'+this.id).html().substring(0, $('#'+this.id).html().indexOf("(")-1) + '</b><br/>Преостануваат <b>' + nexserv + '</b> до следен сервис!');
+			                    ShowPopup(event, dic('Reports.Past', lang) + ' ' + mmetric + ': <b>' + $('#'+this.id).html().substring(0, $('#'+this.id).html().indexOf("(")-1) + '</b><br/>'+dic("Live.Remaining", lang)+' <b>' + nexserv + '</b> '+dic("Live.UntilNextService", lang)+'!');
 			                });
 						} else
 						{
@@ -1899,8 +1933,8 @@ function getPosNew(_podatoci){
                             $('#weather-' + kola.id).css({display: 'block'});
                             if(_weather[2] != '') {
                                 var _sdt = new Date(_weather[2] * 1000);
-                                var tmpdt = _sdt.getFullYear() + '-' + onenum(parseInt(_sdt.getMonth(), 10) + 1) + '-' + onenum(_sdt.getDate()) + ' ' + onenum(_sdt.getHours()) + ':' + onenum(_sdt.getMinutes()); // + ':' + onenum(_sdt.getSeconds());
-                                tmpdt = formatdatetime(tmpdt);
+                                var tmpdt = _sdt.getFullYear() + '-' + onenum(parseInt(_sdt.getMonth(), 10) + 1) + '-' + onenum(_sdt.getDate()) + ' ' + onenum(_sdt.getHours()) + ':' + onenum(_sdt.getMinutes()) + ':' + onenum(_sdt.getSeconds());
+                                tmpdt = formatdate13_(tmpdt, dateformatU_) + " " + formattime13_1(tmpdt, timeformatU_);//formatdatetime(tmpdt);
                             } else {
                                 var tmpdt = '/';
                             }
@@ -1937,15 +1971,16 @@ function getPosNew(_podatoci){
             if(kola.inputvoltage != '/' && kola.inputvoltage != undefined){
                 if(parseInt(kola.inputvoltage, 10) != 0)
                     $('#vh-inputvoltage-' + kola.id).html(' ' + parseFloat(kola.inputvoltage).toFixed(2) + ' V');
-                else
-                    $('#vh-inputvoltage-' + kola.id).html(' / ');
-            } else
-                $('#vh-inputvoltage-' + kola.id).html(' / ');
+                //else
+                    //$('#vh-inputvoltage-' + kola.id).html(' / ');
+            }
+            // else
+                //$('#vh-inputvoltage-' + kola.id).html(' / ');
             //if (kola.location == '') { $('#vh-pp-' + kola.id).css("borderTop", '0px') } else { $('#vh-pp-' + kola.id).css("borderTop", '1px dotted #333') }
             tmr = tmr + 100
             if(kola.sedista == "/")
             {
-            	_imgsedista = '<img src="../images/nosignal.png" onmousemove="ShowPopup(event, \'Потребна проверка на сензори на седишта\')" onmouseout="HidePopup()" style="width: 11px; position: relative; margin-top: 0px; margin-left: 2px; height: 11px; margin-bottom: -2px;" id="img-senzor-'+kola.id+'">';
+            	_imgsedista = '<img src="../images/nosignal.png" onmousemove="ShowPopup(event, \''+dic("Tracking.RequireSS",lang)+'\')" onmouseout="HidePopup()" style="width: 11px; position: relative; margin-top: 0px; margin-left: 2px; height: 11px; margin-bottom: -2px;" id="img-senzor-'+kola.id+'">';
             	$('#vh-sedista-' + kola.id).html(_imgsedista);
             } else
         	{
@@ -1961,6 +1996,8 @@ function getPosNew(_podatoci){
             $('#vh-rpm-' + kola.id).html(kola.rpm);
         }
         //AnimateMarker(kola.id, parseFloat(kola.lon), parseFloat(kola.lat), kola.color)
+        
+        }
     }
     FirstLoad = false;
     //checkVehicesOnMap()
@@ -2174,8 +2211,8 @@ function getWeather(_id, _lon, _lat, _vehid) {
                         $('#weather-' + _id).css({display: 'block'});
                         if(msg.current_observation.observation_epoch != '') {
                             var _sdt = new Date(msg.current_observation.observation_epoch * 1000);
-                            var tmpdt = _sdt.getFullYear() + '-' + onenum(parseInt(_sdt.getMonth(), 10) + 1) + '-' + onenum(_sdt.getDate()) + ' ' + onenum(_sdt.getHours()) + ':' + onenum(_sdt.getMinutes()); // + ':' + onenum(_sdt.getSeconds());
-                            tmpdt = formatdatetime(tmpdt);
+                            var tmpdt = _sdt.getFullYear() + '-' + onenum(parseInt(_sdt.getMonth(), 10) + 1) + '-' + onenum(_sdt.getDate()) + ' ' + onenum(_sdt.getHours()) + ':' + onenum(_sdt.getMinutes()) + ':' + onenum(_sdt.getSeconds());
+                            tmpdt = formatdate13_(tmpdt, dateformatU_) + " " + formattime13_1(tmpdt, timeformatU_);//formatdatetime(tmpdt);
                         } else {
                             var tmpdt = '/';
                         }
@@ -2274,14 +2311,14 @@ function ConnectToServer(){
                         compose();
                     }
                     if($('#vh-garmin-status-' + feed[2])[0] != undefined) {
-                        $('#vh-garmin-status-' + feed[2]).html('Гармин: Активен <img src="../images/stikla2.png" width="10px" style="padding-top: 2px; padding-bottom: 2px; padding-right: 4px; position: relative; float: right;" />');
+                        $('#vh-garmin-status-' + feed[2]).html(dic("garmin",lang) + ': ' + dic("Admin.Active",lang) + ' <img src="../images/stikla2.png" width="10px" style="padding-top: 2px; padding-bottom: 2px; padding-right: 4px; position: relative; float: right;" />');
                     }
                 }
                 if(feed[1] == 'etastatus'){
                     if($('#vh-img-garminref-' + feed[2])[0] != undefined) {
                         $('#vh-img-garminref-' + feed[2]).attr('width', '17');
                         $('#vh-img-garminref-' + feed[2]).attr('src', $('#vh-img-garminref-' + feed[2]).attr('src').replace('gif', 'png'));
-                        $('#vh-garmin-status-' + feed[2]).html('Гармин: Активен <img src="../images/stikla2.png" width="10px" style="padding-top: 2px; padding-bottom: 2px; padding-right: 4px; position: relative; float: right;" />');
+                        $('#vh-garmin-status-' + feed[2]).html(dic("garmin",lang) + ': ' + dic("Admin.Active",lang) + ' <img src="../images/stikla2.png" width="10px" style="padding-top: 2px; padding-bottom: 2px; padding-right: 4px; position: relative; float: right;" />');
                         var _id = 'vh-garmin-estimationtime-' + feed[2];
                         $('#vh-garmin-estimationtime-' + feed[2]).html(formatdatetime(feed[3]));
                         if(parseInt(parseInt(feed[4], 10) / 1000, 10) > 0)
@@ -2298,7 +2335,7 @@ function ConnectToServer(){
                         $('#garminList-' + feed[0] + '-' + feed[3]).load('./getGarminInfo.php?gid=' + feed[3]);
                     }
                     if($('#vh-garmin-status-' + feed[2])[0] != undefined) {
-                        $('#vh-garmin-status-' + feed[2]).html('Гармин: Активен <img src="../images/stikla2.png" width="10px" style="padding-top: 2px; padding-bottom: 2px; padding-right: 4px; position: relative; float: right;" />');
+                        $('#vh-garmin-status-' + feed[2]).html(dic("garmin",lang) + ': ' + dic("Admin.Active",lang) + ' <img src="../images/stikla2.png" width="10px" style="padding-top: 2px; padding-bottom: 2px; padding-right: 4px; position: relative; float: right;" />');
                     }
                 }
                 if(feed[1] == 'StopPositionStart'){
@@ -2311,7 +2348,7 @@ function ConnectToServer(){
                         $('#garminList-' + feed[0] + '-' + feed[3]).load('./getGarminInfo.php?gid=' + feed[3]);
                     }
                     if($('#vh-garmin-status-' + feed[2])[0] != undefined) {
-                        $('#vh-garmin-status-' + feed[2]).html('Гармин: Активен <img src="../images/stikla2.png" width="10px" style="padding-top: 2px; padding-bottom: 2px; padding-right: 4px; position: relative; float: right;" />');
+                        $('#vh-garmin-status-' + feed[2]).html(dic("garmin",lang) + ': ' + dic("Admin.Active",lang) + ' <img src="../images/stikla2.png" width="10px" style="padding-top: 2px; padding-bottom: 2px; padding-right: 4px; position: relative; float: right;" />');
                     }
                 }
                 if(feed[1] == 'StopPositionUnRead' || feed[1] == 'StopPositionRead' || feed[1] == 'StopPositionDelete'){
@@ -2325,15 +2362,15 @@ function ConnectToServer(){
                     var _id = 'garminstop-' + feed[2];
                     $('#' + _id).css({display: 'none'});
                     if($('#vh-garmin-status-' + feed[2])[0] != undefined) {
-                        $('#vh-garmin-status-' + feed[2]).html('Гармин: Активен <img src="../images/stikla2.png" width="10px" style="padding-top: 2px; padding-bottom: 2px; padding-right: 4px; position: relative; float: right;" />');
+                        $('#vh-garmin-status-' + feed[2]).html(dic("garmin",lang) + ': ' + dic("Admin.Active",lang) + ' <img src="../images/stikla2.png" width="10px" style="padding-top: 2px; padding-bottom: 2px; padding-right: 4px; position: relative; float: right;" />');
                     }
                 }
                 if(feed[1] == 'PositionSend'){
                     $('#div-Add-Garmin').dialog('destroy');
                     $('#loadingGarmin').css({ display: "none" });
-                    msgbox('Успешно испратена точка до гармин уред!');
+                    msgbox(dic("Tracking.GarminSuccPoint",lang));
                     if($('#vh-garmin-status-' + feed[2])[0] != undefined) {
-                        $('#vh-garmin-status-' + feed[2]).html('Гармин: Активен <img src="../images/stikla2.png" width="10px" style="padding-top: 2px; padding-bottom: 2px; padding-right: 4px; position: relative; float: right;" />');
+                        $('#vh-garmin-status-' + feed[2]).html(dic("garmin",lang) + ': ' + dic("Admin.Active",lang) + ' <img src="../images/stikla2.png" width="10px" style="padding-top: 2px; padding-bottom: 2px; padding-right: 4px; position: relative; float: right;" />');
                     }
                 }
                 if(feed[1] == 'NotConnected'){
@@ -2343,13 +2380,13 @@ function ConnectToServer(){
                             $('#vh-img-garminref-' + feed[2]).attr('src', $('#vh-img-garminref-' + feed[2]).attr('src').replace('gif', 'png'));
                         }
                         if($('#vh-garmin-status-' + feed[2])[0] != undefined) {
-                            $('#vh-garmin-status-' + feed[2]).html('Гармин: Неактивен <img src="../images/stikla3.png" width="10px" style="padding-top: 2px; padding-bottom: 2px; padding-right: 4px; position: relative; float: right;" />');
+                            $('#vh-garmin-status-' + feed[2]).html(dic("garmin",lang) + ': ' + dic("Inactive",lang) + ' <img src="../images/stikla3.png" width="10px" style="padding-top: 2px; padding-bottom: 2px; padding-right: 4px; position: relative; float: right;" />');
                         }
                     }
                     $('#div-Add-Garmin').dialog('destroy');
                     $('#loadingGarmin').css({ display: "none" });
                     if($('#errMess')[0] != undefined) {
-                        $('#errMess').html('Возилото не е поврзано!!!').css({ display: 'block' })
+                        $('#errMess').html(dic("Tracking.VehNotConn",lang)).css({ display: 'block' })
                         ReloadOutgoingMess();
                         compose();
                     }
@@ -2363,31 +2400,31 @@ function ConnectToServer(){
                 }
                 if(feed[1] == 'Connected'){
                     if($('#vh-garmin-status-' + feed[2])[0] != undefined) {
-                        $('#vh-garmin-status-' + feed[2]).html('Гармин: Активен <img src="../images/stikla2.png" width="10px" style="padding-top: 2px; padding-bottom: 2px; padding-right: 4px; position: relative; float: right;" />');
+                        $('#vh-garmin-status-' + feed[2]).html(dic("garmin",lang) + ': ' + dic("Admin.Active",lang) + ' <img src="../images/stikla2.png" width="10px" style="padding-top: 2px; padding-bottom: 2px; padding-right: 4px; position: relative; float: right;" />');
                     }
                 }
                 if(feed[1] == 'ErrorDelivery'){
                     $('#div-Add-Garmin').dialog('destroy');
                     $('#loadingGarmin').css({ display: "none" });
                     if($('#errMess')[0] != undefined) {
-                        $('#errMess').html('Пораката не е успешно доставена!!!').css({ display: 'block' })
+                        $('#errMess').html(dic("Tracking.MessNotDelivered",lang)).css({ display: 'block' })
                         ReloadOutgoingMess();
                         compose();
                     }
                     if($('#vh-garmin-status-' + feed[2])[0] != undefined) {
-                        $('#vh-garmin-status-' + feed[2]).html('Гармин: Неактивен <img src="../images/stikla3.png" width="10px" style="padding-top: 2px; padding-bottom: 2px; padding-right: 4px; position: relative; float: right;" />');
+                        $('#vh-garmin-status-' + feed[2]).html(dic("garmin",lang) + ': ' + dic("Inactive",lang) + ' <img src="../images/stikla3.png" width="10px" style="padding-top: 2px; padding-bottom: 2px; padding-right: 4px; position: relative; float: right;" />');
                     }
                 }
                 if(feed[1] == 'IsDelivery'){
                     $('#div-Add-Garmin').dialog('destroy');
                     $('#loadingGarmin').css({ display: "none" });
                     if($('#errMess')[0] != undefined) {
-                        $('#errMess').html('Пораката не е успешно доставена!!!').css({ display: 'block' })
+                        $('#errMess').html(dic("Tracking.MessNotDelivered",lang)).css({ display: 'block' })
                         ReloadOutgoingMess();
                         compose();
                     }
                     if($('#vh-garmin-status-' + feed[2])[0] != undefined) {
-                        $('#vh-garmin-status-' + feed[2]).html('Гармин: Активен <img src="../images/stikla2.png" width="10px" style="padding-top: 2px; padding-bottom: 2px; padding-right: 4px; position: relative; float: right;" />');
+                        $('#vh-garmin-status-' + feed[2]).html(dic("garmin",lang) + ': ' + dic("Admin.Active",lang) + ' <img src="../images/stikla2.png" width="10px" style="padding-top: 2px; padding-bottom: 2px; padding-right: 4px; position: relative; float: right;" />');
                     }
                 }
                 if(feed[1] == 'InsertQuickMessage' || feed[1] == 'DeleteQuickMessage'){
@@ -2401,7 +2438,7 @@ function ConnectToServer(){
                         HideWait();
                     }
                     if($('#vh-garmin-status-' + feed[2])[0] != undefined) {
-                        $('#vh-garmin-status-' + feed[2]).html('Гармин: Активен <img src="../images/stikla2.png" width="10px" style="padding-top: 2px; padding-bottom: 2px; padding-right: 4px; position: relative; float: right;" />');
+                        $('#vh-garmin-status-' + feed[2]).html(dic("garmin",lang) + ': ' + dic("Admin.Active",lang) + ' <img src="../images/stikla2.png" width="10px" style="padding-top: 2px; padding-bottom: 2px; padding-right: 4px; position: relative; float: right;" />');
                     }
                 }
 			},
@@ -2491,6 +2528,7 @@ function IsConnected(){
 		ConnectToServer()
 		LastServerCommunication = new Date();			
 	} else {
+	    
 		ws.send('ping',"");
 		var currentdate = new Date(); 
 		var ddiff = currentdate - LastServerCommunication
@@ -2807,8 +2845,10 @@ function getLeftList(tlang) {
 	        LoadCurrentPosition = true
 	        AjaxStarted = false
 	        //Ajax();
-	        setTimeout("IsConnected()",3000);
+	        setTimeout("IsConnected()", 3000);
 	        setTimeout("CheckForLostConn()", 120000);
+	        if(allowgarmin > 0)
+                setTimeout("checkAllGarmin();", 4000);
 	    },
 	    error: function () {
 	        HideWait();
@@ -4235,7 +4275,7 @@ function promeniOdometar(id, code){
     }
 	if(odometarVrednost=="")
 	{
-		msgbox("Мора да внесете километри за одометарот.")
+		msgbox(dic("Tracking.MustOdometer",lang));
 	}
 	else
 	{

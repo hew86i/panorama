@@ -8,6 +8,7 @@
 	
 	opendb();
 	$uid = getQUERY("uid");
+	$_SESSION['emailflag'] = dlookup("select emailflag from users where id=" . session("user_id")); // novo
 	if(is_numeric($uid))
 	{
 		$ruser = query("select u.id, u.roleid, u.clientid, u.fullname, (select name from clients where id=u.clientid) clientname from users u where u.id=".$uid);
@@ -17,7 +18,6 @@
 		$_SESSION['client_id']= pg_fetch_result($ruser, 0, 'clientid');
 		$_SESSION['user_fullname']= pg_fetch_result($ruser, 0, 'fullname');
 		$_SESSION['company']= pg_fetch_result($ruser, 0, 'clientname');
-		$_SESSION['emailflag'] = dlookup("select emailflag from users where id=" . $uid); // novo
 		echo header('Location: ./?l=' . $cLang);
 	}
 	
@@ -265,17 +265,13 @@
 
 		<script>
 		 	var pass_strength = '<?php echo json_encode($_SESSION["pass_strength"]); ?>';
-		 	if (Number(pass_strength) <= 6) {
-
-		 		//$.notify("Ве молиме да ја промените вашата лозика", "info");  #95b1d7
+		 	if (Number(pass_strength) < 6  && '<?php echo $_SESSION["cntAfterLogin"]?>' == false) {
 
 		 		toastr.options ={  "positionClass": "toast-top-right"};
 		 		toastr.info("<?php echo dic('Reports.PasswordChange')?>");
 
 		 	}
 		</script>
-
-
 
 		<a href="./routes/?l=<?php echo $cLang?>" onclick="<?php echo $routes?>" class="menu corner15" style="left:10px; top:370px;">
 			<img class="imgMenu" src="./images/Routing.png" width="64" height="64" border="0" align="absmiddle" style="<?php echo $routes1?>" />
@@ -312,19 +308,19 @@
 
 	<!-- modal dialog jquery ui sto ne se prikazuva -->
 
-	<div id="dialog-promena-email" title="<?php dic("Admin.Notification")?>" style="display:none">
+<div id="dialog-promena-email" title="<?php dic("Admin.Notification")?>" style="display:none">
 	  <p>
-	    <span class="ui-icon ui-icon-info" style="float:left; margin:0 7px 50px 0;"></span>
+	    <span class="ui-icon ui-icon-info" style="float:left; margin:0 7px 100px 0;"></span>
 	    <?php echo dic("Reports.ModalInfo")?>
 	  </p>
 	  <div id="remaining-days-div" style="margin-bottom: 10px">
-	  	<p><?php echo dic("Reports.ModalInfoAlertT1")?> <strong><span id="remaining-days" class="text5" style="font-weight:bold; font-size:13px"></span></strong> <?php echo dic("Reports.ModalInfoAlertT2")?></p>
+	  	<p><?php echo dic("Reports.ModalInfoAlertT1")?> <strong><span id="remaining-days" class="text5" style="color: #414141; font-weight:bold; font-size:13px"></span></strong> <?php echo dic("Reports.ModalInfoAlertT2")?></p>
 	  </div>
 	  <div style="margin-left:23px">
 	  <div id="dialog-promena-email-input"></div>
 	  	<p class="validateTips" style="color:red"></p>
 	  </div>
-	</div>
+</div>
 
 </body>
 </html>
@@ -353,8 +349,10 @@ var daysToActivate = 15;
 var buttonOkStatus = 0;  // za ok kopceto da iskluci ako vednas se klikne
 var email_falg = '<?php echo session("emailflag") ?>';
 var userid = '<?php echo session("user_id")?>';
+
 console.log("email flag: "+email_falg);
-	if(Number(email_falg)===0){
+
+	if(Number(email_falg)===0 && '<?php echo $_SESSION["cntAfterLogin"]?>' == false){
 	  $(function() {
 	  	// povik do UserFirstLogin.php - za creiranje na zapis
 	  	// korisnikot prv pat kliknal
@@ -379,7 +377,8 @@ console.log("email flag: "+email_falg);
 	    	resizable: false,
 	      	modal: true,
 	      	draggable: false,
-	      	height: 275,
+	      	height: 285,
+		width: 350,
 	      	closeOnEscape: false,
 	      	open: function( event, ui ) {
 
@@ -409,7 +408,6 @@ console.log("email flag: "+email_falg);
 			      			$.ajax({
 								url: "./settings/UserUpdateEmail.php?l="+'<?php echo $cLang; ?>' ,
 								type: 'POST',
-								/*dataType: 'json',*/
 								async: true,
 								data :{ newEmail: thisval },
 								})
@@ -456,11 +454,11 @@ console.log("email flag: "+email_falg);
 			    		$(':button::nth-child(2)').attr('disabled','disabled').hide();
 						$( "#dialog-promena-email-input" )
 					    	.append("<label class=\"item item-input\">"+
-					    			" <span class=\"text5\" style=\"font-weight:bold; font-size:14px\">Email </span>"+
+					    			" <span class=\"text5\" style=\"font-weight:bold; font-size:12px; color: #414141\">"+'<?php dic("Reports.Email")?>'+": </span>"+
 					    			" <input type=\"email\" class=\"textboxcalender corner5 text5\" style=\"width:200px; height:22px; font-size:12px\" id=\"nov_email\" required>"+
 					    			"</label>"
 					    	);
-$('#nov_email').focus();
+					$('#nov_email').focus();
 			    	}
 			    }
 		      ] //end buttons
@@ -481,7 +479,7 @@ function kiklopSetCookie (c_name,value,expiredays) {
 
 	lang = '<?php echo $cLang?>';
 	$(document).ready(function () {
-		// alert('<?php echo dic("Reports.NotificationEmailValid"); ?>');
+
     	$(document.body).click(function(event) {
 			var hide = true;
 
@@ -519,6 +517,11 @@ function kiklopSetCookie (c_name,value,expiredays) {
 		});
 
 		modalNajava();
+
+
+		<?php
+			$_SESSION["cntAfterLogin"] = true;
+		?>
 
     });
     if ('<?php echo $err?>' == 'permission') { mymsg('<?php echo dic("Login.PermMenu")?>'); }

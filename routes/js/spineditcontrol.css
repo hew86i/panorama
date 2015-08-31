@@ -1,0 +1,16 @@
+/**
+ * Spin button sytle sheet
+ * Part of SpinEditControl
+ */
+
+.SpinButtonUp{
+	border-width: 1px 1px 1px 1px;
+	background: url(../../Images/SEC_up.gif) no-repeat center center;
+	background-color: buttonface;
+}
+
+.SpinButtonDown{
+	border-width: 1px 1px 1px 1px;
+	background: url(../../Images/SEC_down.gif) no-repeat center center;
+	background-color: buttonface;
+}

@@ -227,6 +227,8 @@ var controls = [];
 var vectors = [];
 var VehcileIDs = []
 
+var VehiclesGSM = []
+
 var VehcileIDsWS = '';
 
 var AllowedMaps = "11111"
@@ -1822,6 +1824,7 @@ function eventClick(e) {
         VehClick = false;
     }
     if (AddPOI == true) {
+        dialogPosition = $(window).scrollTop();
     	if (AllowAddPoi == false) { return false }
         $('#poiAddress').val('');
         $('#loadingAddress').css({ visibility: "visible" });
@@ -1869,7 +1872,11 @@ function eventClick(e) {
 		$("#poiGroup dt a").html('<span>'+dic("selGroup", lang)+'</span>');
 		$(".dropdownRadius dt a")[0].title = "";
 		$(".dropdownRadius dt a span").html(dic("selRadius", lang));
-        $("#div-Add-POI").dialog({ modal: true, width: 430, height: 440, zIndex: 9999, resizable: false });
+        $("#div-Add-POI").dialog({ modal: true, width: 430, height: 440, zIndex: 9999, resizable: false,
+            close: function(){
+                window.scrollTo(0, dialogPosition);
+            }
+         });
 		$('#poiName').focus();
 		AddPOI = false;
 		if (!VehClick)
@@ -2637,6 +2644,13 @@ function refreshEstimation(_gsm, _code) {
 function checkGarmin(_gsm) {
     if(ws != null) {
         ws.send('checkgarmin', _gsm);
+    }
+}
+function checkAllGarmin() {
+    for(var i=0; i<VehiclesGSM.length; i++) {
+        if(ws != null) {
+            ws.send('checkgarmin', VehiclesGSM[i]);
+        }
     }
 }
 function newImageFromCamera(_gsm, _code) {
@@ -8976,7 +8990,7 @@ function LoadPOIPetar(_id) {
                             else
                                 var _color = _ppp[7];*/
                             //var _bgimg = 'http://80.77.159.246:88/new/pin/?color=' + _ppp[5] + '&type=0';
-                            //debugger;                            
+                            //debugger;
                             //tmpMarkers[i][tmpMarkers[i].length - 1].events.element.innerHTML = '<div style="background: transparent url(' + _bgimg + ') no-repeat; width: 24px; height: 24px; font-size:4px"></div>';
                             if(_ppp[3] != '1') {
                                // alert('<span class="iconpin24 icon-poi-'+_ppp[9]+'" style="color: '+_ppp[5]+'; text-shadow: 0px 0px 1px black;"></span>')
@@ -8985,8 +8999,6 @@ function LoadPOIPetar(_id) {
                             var groupName = _ppp[6];
                             if(_ppp[3] == "1")
                                 groupName = dic("Settings.NotGroupedItems", lang);
-
-
                             tmpMarkers[i][tmpMarkers[i].length - 1].events.element.style.cursor = 'pointer';
                             //tmpMarkers[tmpMarkers.length - 1].events.element.style.backgroundColor = '#' + _ppp[7];
                             //alert(_ppp[6]);
@@ -10487,7 +10499,7 @@ function EnableDisable(_alid, _vehlist, _load) {
             OnMenuClick(6);
             }
             else {
-
+            
             OnMenuClick(6);
             }*/
     	}
